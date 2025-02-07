@@ -11,7 +11,7 @@
         "Descripcion": "Dashboard",
         "Modulo": "Cliente",
         "Action": "Index",
-        "Icon": "fa-solid fa-diagram-project fa-2xl",        
+        "Icon": "fa-solid fa-diagram-project fa-2xl",
         "IdRolGrupo": "100"
       },
       {
@@ -19,7 +19,7 @@
         "Descripcion": "Órdenes",
         "Modulo": "Cliente",
         "Action": "ConsultarOrdenes",
-        "Icon": "fa-sharp fa-solid fa-file-arrow-up fa-2xl",        
+        "Icon": "fa-sharp fa-solid fa-file-arrow-up fa-2xl",
         "IdRolGrupo": "100"
       },
       {
@@ -27,7 +27,7 @@
         "Descripcion": "Pedidos",
         "Modulo": "Cliente",
         "Action": "Pedido",
-        "Icon": "fa-sharp fa-solid fa-notes-medical fa-2xl",        
+        "Icon": "fa-sharp fa-solid fa-notes-medical fa-2xl",
         "IdRolGrupo": "100"
       },
       {
@@ -35,15 +35,15 @@
         "Descripcion": "Catálogo de Pruebas",
         "Modulo": "Cliente",
         "Action": "Catalogo",
-        "Icon": "fa-solid fa-rectangle-list fa-2xl",        
-        "IdRolGrupo": "100, 1"
+        "Icon": "fa-solid fa-rectangle-list fa-2xl",
+        "IdRolGrupo": "100, 1, 7, 4"
       },
       {
         "OpcionID": 171,
         "Descripcion": "Gestión de Clientes",
         "Modulo": "Administrativo",
         "Action": "Index",
-        "Icon": "fa-sharp fa-solid fa-users fa-2xl",        
+        "Icon": "fa-sharp fa-solid fa-users fa-2xl",
         "IdRolGrupo": "1"
       },
       //{
@@ -59,7 +59,7 @@
         "Descripcion": "Administración Pruebas",
         "Modulo": "Administrativo",
         "Action": "PruebasAdmin",
-        "Icon": "fa-sharp fa-solid fa-file-arrow-up fa-2xl",        
+        "Icon": "fa-sharp fa-solid fa-file-arrow-up fa-2xl",
         "IdRolGrupo": "1"
       },
       {
@@ -67,7 +67,7 @@
         "Descripcion": "Pedidos Operador",
         "Modulo": "OpLogistico",
         "Action": "Index",
-        "Icon": "fa-sharp fa-solid fa-notes-medical fa-2xl",        
+        "Icon": "fa-sharp fa-solid fa-notes-medical fa-2xl",
         "IdRolGrupo": "7"
       },
       {
@@ -75,8 +75,8 @@
         "Descripcion": "Ordenes Laboratorio",
         "Modulo": "Laboratorista",
         "Action": "Index",
-        "Icon": "fa-sharp fa-solid fa-flask-vial fa-2xl",        
-        "IdRolGrupo": "4, 8"
+        "Icon": "fa-sharp fa-solid fa-flask-vial fa-2xl",
+        "IdRolGrupo": "4, 8, 1"
       },
       {
         "OpcionID": 180,
