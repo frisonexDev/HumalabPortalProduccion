@@ -1,0 +1,59 @@
+﻿<div class="container-fluid justify-content-between bg-white rounded-3 p-3 mt-3">
+
+    <h5 class="fw-bold">Demográficos de la orden</h5>
+
+    <div class="row mt-2">
+
+        <div class="d-flex justify-content-between gap-5">
+            <div class="col-3">
+
+                <div class="d-flex gap-2">
+                    <h5 id="numOrden" style="font-size:14px;">N° Orden:</h5>
+                    <input id="txtNOrden" style="height:2rem; width:5rem" class="form-control" disabled type="text" placeholder="Nro. Orden" />
+                </div>
+
+                <div class="d-flex mt-4 gap-2">
+                    <h5 @* class="fw-bold mt-2" *@ style="font-size:14px;">Medicamentos:</h5>
+                    @* <input id="txtMedicamento" pattern="[A-Za-z0-9]" style="height:2rem" class="form-control" type="text" /> *@
+                    <textarea id="txtMedicamento" pattern="[A-Za-z0-9]" rows="4" style="resize:none; height:4rem" class="form-control" type="text" maxlength="200"></textarea>
+                </div> 
+                
+                <div class="d-flex mt-4 gap-3">
+                    <h5 @* class="fw-bold mt-2" *@ style="font-size:14px;">Tipo cliente:</h5>
+                    <select id="selTipCliente" style="height:2rem; width:10rem; margin-left:0.7rem" class="form-select">                       
+                    </select>
+                </div>
+
+            </div>
+
+            <div class="col-4">
+                <div class="d-flex gap-2">
+                    <h5 @* class="fw-bold mt-2" *@ style="font-size:14px;">Fecha de Ingreso:</h5>
+                    <input id="dptFecIng" style="height:2rem; width:11rem" disabled class="form-control" type="text" />
+
+                </div>
+
+                <div class="d-flex mt-4 gap-2">
+                    <h5 @* class="fw-bold mt-2" *@ style="font-size:14px;">Diagnóstico:</h5>
+                    @* <input id="txtDiagnostico" pattern="[A-Za-z0-9]" style="height:2rem" class="form-control" type="text" /> *@
+                    <textarea id="txtDiagnostico" pattern="[A-Za-z0-9]" rows="4" style="resize:none; height:4rem" class="form-control" type="text" maxlength="200"></textarea>
+                </div>
+
+                <div class="d-flex mt-4 gap-3">
+                    <h5 @* class="fw-bold mt-2" *@ style="font-size:14px;">Código Laboratorio:</h5>
+                    <input id="txtCodLab" style="height:2rem; margin-left:0.5rem" class="form-control" type="text" placeholder="Código laboratorio" />
+                </div>
+
+            </div>
+
+            <div class="col-4">
+                <h5 @* class="fw-bold" *@ style="font-size:14px;">Observaciones:</h5>
+                <textarea id="txtObsOrd" pattern="[A-Za-z0-9]" rows="4" style="resize:none; height:4rem" class="form-control" type="text" maxlength="200"></textarea>
+            </div>
+
+        </div>
+
+    </div>
+
+
+</div>

@@ -1,0 +1,32 @@
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.Humalab.Seguridad\bin\Release\net6.0\GDifare.Portal.Humalab.Seguridad.deps.json
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.Humalab.Seguridad\bin\Release\net6.0\GDifare.Portal.Humalab.Seguridad.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.Humalab.Seguridad\bin\Release\net6.0\GDifare.Portal.Humalab.Seguridad.pdb
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.Humalab.Seguridad\bin\Release\net6.0\GDifare.Portales.Comunicaciones.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.Humalab.Seguridad\obj\Release\net6.0\GDifare.Portal.Humalab.Seguridad.csproj.AssemblyReference.cache
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.Humalab.Seguridad\obj\Release\net6.0\GDifare.Portal.Humalab.Seguridad.Resources.Routes.resources
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.Humalab.Seguridad\obj\Release\net6.0\GDifare.Portal.Humalab.Seguridad.csproj.GenerateResource.cache
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.Humalab.Seguridad\obj\Release\net6.0\GDifare.Portal.Humalab.Seguridad.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.Humalab.Seguridad\obj\Release\net6.0\GDifare.Portal.Humalab.Seguridad.AssemblyInfoInputs.cache
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.Humalab.Seguridad\obj\Release\net6.0\GDifare.Portal.Humalab.Seguridad.AssemblyInfo.cs
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.Humalab.Seguridad\obj\Release\net6.0\GDifare.Portal.Humalab.Seguridad.csproj.CoreCompileInputs.cache
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.Humalab.Seguridad\obj\Release\net6.0\GDifare.Portal.Humalab.Seguridad.csproj.CopyComplete
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.Humalab.Seguridad\obj\Release\net6.0\GDifare.Portal.Humalab.Seguridad.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.Humalab.Seguridad\obj\Release\net6.0\refint\GDifare.Portal.Humalab.Seguridad.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.Humalab.Seguridad\obj\Release\net6.0\GDifare.Portal.Humalab.Seguridad.pdb
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.Humalab.Seguridad\obj\Release\net6.0\ref\GDifare.Portal.Humalab.Seguridad.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.Humalab.Seguridad\bin\Release\net6.0\GDifare.Portal.Humalab.Seguridad.deps.json
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.Humalab.Seguridad\bin\Release\net6.0\GDifare.Portal.Humalab.Seguridad.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.Humalab.Seguridad\bin\Release\net6.0\GDifare.Portal.Humalab.Seguridad.pdb
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.Humalab.Seguridad\bin\Release\net6.0\GDifare.Portales.Comunicaciones.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.Humalab.Seguridad\obj\Release\net6.0\GDifare.Portal.Humalab.Seguridad.csproj.AssemblyReference.cache
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.Humalab.Seguridad\obj\Release\net6.0\GDifare.Portal.Humalab.Seguridad.Resources.Routes.resources
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.Humalab.Seguridad\obj\Release\net6.0\GDifare.Portal.Humalab.Seguridad.csproj.GenerateResource.cache
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.Humalab.Seguridad\obj\Release\net6.0\GDifare.Portal.Humalab.Seguridad.GeneratedMSBuildEditorConfig.editorconfig
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.Humalab.Seguridad\obj\Release\net6.0\GDifare.Portal.Humalab.Seguridad.AssemblyInfoInputs.cache
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.Humalab.Seguridad\obj\Release\net6.0\GDifare.Portal.Humalab.Seguridad.AssemblyInfo.cs
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.Humalab.Seguridad\obj\Release\net6.0\GDifare.Portal.Humalab.Seguridad.csproj.CoreCompileInputs.cache
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.Humalab.Seguridad\obj\Release\net6.0\GDifare.Portal.Humalab.Seguridad.csproj.CopyComplete
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.Humalab.Seguridad\obj\Release\net6.0\GDifare.Portal.Humalab.Seguridad.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.Humalab.Seguridad\obj\Release\net6.0\refint\GDifare.Portal.Humalab.Seguridad.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.Humalab.Seguridad\obj\Release\net6.0\GDifare.Portal.Humalab.Seguridad.pdb
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.Humalab.Seguridad\obj\Release\net6.0\ref\GDifare.Portal.Humalab.Seguridad.dll

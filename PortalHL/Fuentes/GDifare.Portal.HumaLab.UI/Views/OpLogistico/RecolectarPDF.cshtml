@@ -1,0 +1,131 @@
+﻿@using GDifare.Portal.HumaLab.UI.Models.Pedidos;
+@*@model GDifare.Portal.Humalab.Servicio.Modelos.PedidosOpLogistico.VerDetallePedidoOperadorResponse*@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <style>
+        body {
+            background-color: white;
+        }
+
+        h1 {
+            text-align: center;
+        }
+
+        .border {
+            border-collapse: collapse;
+            width: 100%;
+            margin-bottom: 20px;
+        }
+
+            .border th,
+            .border td {
+                padding: 5px;
+                border: 2px solid black;
+            }
+
+        .header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+            .header div {
+                flex-basis: 48%;
+            }
+
+            .header strong {
+                display: inline-block;
+                width: 150px;
+            }
+
+        .summary {
+            text-align: left;
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 20px;
+        }
+
+            .summary strong {
+                flex-basis: 50%;
+            }
+
+    </style>
+
+</head>
+<body>
+    <!-- Utilizando la etiqueta <embed> -->
+    @*<embed src="@Url.Action("RecolectarPDF", "OpLogistico")" type="application/pdf" width="100%" height="600px" />*@
+    @*<iframe src="@Url.Action("RecolectarPDF", "OpLogistico")" width="100%" height="600px"></iframe>*@
+    @*<a href="@Url.Action("RecolectarPDF", "OpLogistico")">Ver PDF</a>*@
+    @*<iframe src="@Url.Action("RecolectarPDF", "OpLogistico")" style="width: 100%; height: 600px;"></iframe>*@
+    @*<iframe src="@Url.Action("RecolectarPDF", "OpLogistico")" frameborder="0" style="width: 100%; height: 600px;"></iframe>*@
+    <p>@ViewBag.IdPedido</p>
+    <!-- Utilizando la etiqueta <object> -->
+@*    <object data="@Url.Action("RecolectarPDF", "OpLogistico")" type="application/pdf" width="100%" height="600px">
+        <p>Tu navegador no admite la visualización de PDFs. Puedes descargar el PDF <a href="@Url.Action("RecolectarPDF", "OpLogistico")">aquí</a>.</p>
+    </object>*@
+   Cabecera
+    <h1>PDF</h1>
+    <div class="header">
+        <div>
+            <p><strong>Cliente:</strong> @Model.Pedido.Cliente</p>
+            <p><strong>Responsable:</strong> @Model.Pedido.Usuario</p>
+            <p><strong>Contacto responsable:</strong> @Model.Pedido.CorreoCliente</p>
+            <p><strong>Correo responsable:</strong> @Model.Pedido.CorreoCliente</p>
+            <p><strong>Observación responsable:</strong> @Model.Pedido.ObservacionCliente</p>
+        </div>
+        <div>
+            <p><strong>N° de remisión:</strong> @Model.Pedido.NumeroRemision</p>
+            <p><strong>Operador logístico:</strong> @Model.Pedido.OperadorLogistico</p>
+            <p><strong>Contacto operador logístico:</strong> @Model.Pedido.CorreoCliente</p>
+            <p><strong>Correo operador logístico:</strong> @Model.Pedido.CorreoCliente</p>
+            <p><strong>Observación operador logístico:</strong> @Model.Pedido.ObservacionOperador</p>
+        </div>
+    </div>
+    
+    Detalle de Órdenes
+    <table class="border" style="width:100%">
+        <thead>
+            <tr style="background-color:#D8D8D8">
+                <th>Muestra</th>
+                <th>Fecha</th>
+                <th>Usuario</th>
+                <th>Retirado</th>
+                <th>Rechazado</th>
+                <th>Comentario</th>
+                <th>Estado</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var orden in Model.Muestras)
+            {
+                <tr>
+                    <td>@orden.TipoMuestra</td>
+                    <td>@orden.Numero</td>
+                    <td>@orden.Identificacion</td>
+                    <td align="center">
+                        <input type="checkbox" name="@orden.Numero" data-id="@orden.IdPruebaMuestra" value="Retirado" @(orden.Retirado ? "checked" : "") disabled />
+                    </td>
+                    <td align="center">
+                        <input type="checkbox" name="@orden.Numero" data-id="@orden.IdPruebaMuestra" value="Retirado" @(orden.Retirado ? "checked" : "") disabled />
+                    </td>
+                    <td>@orden.ObservacionOperador</td>
+                    <td>@orden.EstadoMuestra</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <div style="float: right;">
+    <div class="summary">
+        <div >
+            <p><strong>Total de muestras:</strong> @Model.Pedido.TotalMuestras</p>
+            <p><strong>Muestras recolectadas:</strong> @Model.Pedido.MuestrasRecolectadas</p>
+        </div>
+    </div>
+    </div>
+</body>
+</html>

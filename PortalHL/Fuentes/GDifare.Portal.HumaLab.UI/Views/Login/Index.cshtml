@@ -1,0 +1,287 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+
+@model GDifare.Portal.Humalab.Seguridad.Modelos.CredencialesRequest;
+@{
+    ViewData["Title"] = "Login";
+    Layout = "/Views/Shared/_BootStrapLayoutLogin.cshtml";
+}
+<style>
+    .captcha {
+        padding: 0px 30px;
+        display: inline-block;
+        border: 1px solid #007239;
+        border-radius: 8px;
+    }
+
+
+    canvas {
+        /*prevent interaction with the canvas*/
+        pointer-events: none;
+    }
+
+    .tableFloting {
+        background: transparent !important;
+        position: relative;
+        left: 55% !important;
+    }
+
+</style>
+
+<div class="container-fluid d-flex justify-content-start align-items-center vh-100 bg-primary" style="background-image: url('Resources/images/Fondo/Fondo.png'); background-repeat: no-repeat; background-size: cover;">
+
+    <table class="tableFloting">
+        <tr>
+            <td>
+                <div class="p-4 rounded-3 " style="width:25rem; height:25rem; ">
+
+                    <div class="d-flex align-items-center justify-content-center">
+
+                        <h1 class="text-center" style="color:#00558B">HUMALAB</h1>
+
+
+                    </div>
+
+
+                    <div class="input-group input-group-lg mt-4  align-items-center justify-content-center">
+
+                        <div style="background-color:#7A9495; padding:0.41rem">
+                            <i class="fa-solid fa-user" style="color:whitesmoke"></i>
+                        </div>
+                        <input id="txtusuario" class="form-control input-lg" type="text" placeholder="Usuario" asp-for="Usuario" value="" />
+                    </div>
+
+                    <div class="input-group mt-3  align-items-center justify-content-center">
+
+                        <div style="background-color:#7A9495; padding:0.41rem">
+                            <i class="fa-solid fa-lock" style="color:whitesmoke"></i>
+                        </div>
+                        <input id="txtcontrasena" class="form-control input-lg" type="password" placeholder="Contraseña" asp-for="Clave" value="" />
+                        <span class="toggle-password" id="togglePassword">👁️</span>
+                    </div>
+                    <div style="padding:10px">
+                        <div class="row">
+                            <div class="col-md-5">
+                                <div id="captcha" class="captcha">
+                                </div>
+                            </div>
+                            <div class="col-md-1">
+                            </div>
+                            <div class="col-md-1" style="padding: 17px 5px">
+
+                                <a onclick="createCaptcha()" href="#!"><i class="fa fa-refresh" aria-hidden="true"></i></a>
+
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-md-6">
+                                <input type="text" class="form-control input-lg" placeholder="Captcha" id="cpatchaTextBox" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <button id="btnValidar" type="submit" onclick="Validar()" class="btn  text-white w-100 mt-4 btn-lg" style="background:#7A9495">
+                        Iniciar Sesión
+                    </button>
+
+
+
+                </div>
+
+
+                <div style="position:absolute; display:none" id="Loading">
+
+                    <div style="text-align:center">
+                        <img src="~/Resources/images/Spinner/spinner.svg"><br />
+                    </div>
+                </div>
+            </td>
+            <td></td>
+        </tr>
+    </table>
+</div>
+
+<!--AdminKit-->
+<link class="js-stylesheet" href="~/AdminKit/css/light.css" rel="stylesheet">
+<script src="~/AdminKit/js/notyf.js"></script>
+<script src="~/AdminKit/js/app.js"></script>
+<script src="~/js/Notificaciones.js"></script>
+
+
+<script>
+
+
+
+
+    window.onload = function () {
+        document.getElementById("cpatchaTextBox").addEventListener("keypress", pressEnter, false);;
+        createCaptcha()
+        localStorage.removeItem('opcionMenu');
+        localStorage.removeItem('Menu');
+    }
+
+
+    var togglePassword = document.querySelector('#togglePassword');
+    var idPass = document.querySelector('#txtcontrasena');
+
+    togglePassword.addEventListener('click', function () {
+        // Alternar el tipo de input entre 'password' y 'text'
+        const type = idPass.getAttribute('type') === 'password' ? 'text' : 'password';
+        idPass.setAttribute('type', type);
+
+        // Cambiar el ícono según el estado
+        this.textContent = type === 'password' ? '👁️' : '👁️';
+    });
+
+    var code;
+    function createCaptcha() {
+        //clear the contents of captcha div first
+        document.getElementById('captcha').innerHTML = "";
+        var charsArray = "0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ#$%&*";
+        var lengthOtp = 5;
+        var captcha = [];
+        for (var i = 0; i < lengthOtp; i++) {
+            //below code will not allow Repetition of Characters
+            var index = Math.floor(Math.random() * charsArray.length + 1); //get the next character from the array
+            if (captcha.indexOf(charsArray[index]) == -1)
+                captcha.push(charsArray[index]);
+            else i--;
+        }
+        var canv = document.createElement("canvas");
+        canv.id = "captcha";
+        canv.width = 105;
+        canv.height = 40;
+
+        var ctx = canv.getContext("2d");
+        ctx.font = "bold 25px Comic Sans MS";
+
+
+        // ctx.strokeStyle = "#FFF";
+
+        ctx.strokeText(captcha.join(""), 0, 30);
+        //  ctx.fillStyle = 'white';
+        //ctx.fillStyle = "#FFF";
+        //storing captcha so that can validate you can save it somewhere else according to your specific requirements
+        code = captcha.join("");
+        document.getElementById("captcha").appendChild(canv); // adds the canvas to the body element
+    }
+    function validateCaptcha() {
+        event.preventDefault();
+        //debugger
+        if (document.getElementById("cpatchaTextBox").value == code) {
+            //alert("Valid Captcha")
+            return 1;
+        } else {
+
+            // alert("Invalid Captcha. try Again");
+            createCaptcha();
+            return 0;
+        }
+    }
+
+    /*////////////////////////////////////////////////////*/
+
+
+    function pressEnter(event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            document.getElementById("btnValidar").click();
+        }
+    }
+
+
+    function Validar() {
+        document.getElementById("btnValidar").disabled = true;
+        var datologin = {};
+        var usuario = document.getElementById("txtusuario").value;
+        var clave = document.getElementById("txtcontrasena").value
+        if (datologin.Usuario == "" || datologin.Clave == "") {
+            MensajeAlerta("warning", "Complete todos los campos")
+            document.getElementById("btnValidar").disabled = false;
+        }
+        else {
+            if (usuario != "" && clave != "") {
+
+                var key = CryptoJS.enc.Utf8.parse('93wj660t8fok9jws');
+                var iv = CryptoJS.enc.Utf8.parse('r0yy7e67p49ee4d7');
+
+                // var encryptedusuario = CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(usuario), key,
+                var encryptedusuario = CryptoJS.AES.encrypt(usuario, key,
+                    {
+                        //keySize: 128 / 8,
+                        iv: iv,
+                        mode: CryptoJS.mode.CBC,
+                        padding: CryptoJS.pad.Pkcs7
+                    });
+
+                //  var encryptedpassword = CryptoJS.AES.encrypt(CryptoJS.enc.Utf8.parse(clave), key,
+                var encryptedpassword = CryptoJS.AES.encrypt(clave, key,
+                    {
+                        // keySize: 128 / 8,
+                        iv: iv,
+                        mode: CryptoJS.mode.CBC,
+                        padding: CryptoJS.pad.Pkcs7
+                    });
+
+                datologin.Usuario = encryptedusuario.toString();
+                datologin.Clave = encryptedpassword.toString();
+            }
+
+            if (validateCaptcha() == 1) {
+                LoadingShow()
+                MetodoPost(datologin)
+            }
+            else {
+                MensajeAlerta("danger", "Captcha invalido")
+                document.getElementById("btnValidar").disabled = false;
+            }
+
+        }
+    }
+
+    function MetodoPost(datos) {
+
+        // console.log(datos)
+        $.ajax({
+
+            url: '@Url.Action("Validation","Login")',
+            type: 'POST',
+            data: datos,
+            success: function (response) {
+
+                if (response == 200) {
+                    window.location.href = '@Url.Action("Blank", "Administrativo", new { Usuario =  "usuario"})'.replace("usuario", btoa(datos.Usuario));
+                }
+                if (response == 404) {
+                    MensajeAlerta("warning", "Usuario y/o contraseña incorrectos")
+                    LoadingHide()
+                    document.getElementById("btnValidar").disabled = false;
+                }
+
+                if (response == 500) {
+                    MensajeAlerta("danger", "No se ha podido establecer conexión con el servidor")
+                    LoadingHide()
+                    document.getElementById("btnValidar").disabled = false;
+                }
+            }
+
+
+        });
+    }
+
+    function LoadingShow() {
+        var x = document.getElementById("Loading");
+        if (x.style.display === "none") {
+            x.style.display = "block";
+        }
+    }
+    function LoadingHide() {
+        var x = document.getElementById("Loading");
+        if (x.style.display === "block") {
+            x.style.display = "none";
+        }
+    }
+</script>

@@ -1,0 +1,93 @@
+﻿
+<style>
+    @@media (max-width: 768px) {
+        .table th,
+        .table td {
+            font-size: 0.8rem;
+            white-space: nowrap;
+        }
+            /* Oculta ciertas columnas en pantallas pequeñas */
+            .table th:nth-child(3),
+            .table td:nth-child(3),
+            .table th:nth-child(4),
+            .table td:nth-child(4) {
+                display: none;
+            }
+    }
+</style>
+
+<div class="container-fluid bg-white rounded-3 p-3 mt-3 mb-3">
+
+    <div class="table-responsive">
+        <table id="example" class="table dataTable mt-2" style="width:100%;" aria-describedby="example_info">
+            <thead class="bg-primary">
+                <tr>
+                    <th class="fw-bold text-center" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 136.613px; color:#F4F4F2;">ID</th>
+                    <th class="fw-bold text-center" tabindex="1" aria-controls="example" rowspan="1" colspan="1" style="width: 228px;color:#F4F4F2;">N° ORDEN</th>
+                    <th class="fw-bold text-center" tabindex="2" aria-controls="example" rowspan="1" colspan="1" style="width: 100.688px;color:#F4F4F2;">FECHA INGRESO</th>
+                    <th class="fw-bold text-center" tabindex="3" aria-controls="example" rowspan="1" colspan="1" style="width: 40.325px;color:#F4F4F2;">OPERADOR LOGÍSTICO</th>
+                    <th class="fw-bold text-center" tabindex="4" aria-controls="example" rowspan="1" colspan="1" style="width: 86.2125px;color:#F4F4F2;">ESTADO</th>
+                    <th class="fw-bold text-center" tabindex="6" aria-controls="example" rowspan="1" colspan="1" style="width: 40.325px;color:#F4F4F2;">OBSERVACIONES</th>
+                    <th class="fw-bold text-center" tabindex="8" aria-controls="example" rowspan="1" colspan="1" style="width: 75.8375px;color:#F4F4F2;">ACCIÓN</th>
+
+                </tr>
+            </thead>
+
+            <tbody>
+                <tr class="odd">
+                    <td class="sorting_1">1</td>
+                    <td>OR-2312</td>
+                    <td>22-03-2023</td>
+                    <td>TRANSPORTE URBAN</td>
+                    <td>ENTREGADO</td>
+                    <td class="justify-content-center align-items-center">
+                        <a class="btn text-decoration-none" data-bs-toggle="modal" data-bs-target="#ModalComentarios"><i class="fa-regular fa-comment"></i></a>
+                    </td>
+                    <td class="justify-content-center align-items-center">
+
+                        <a title="ENVIAR" class="btn text-decoration-none"><i class="fa-solid fa-paper-plane" style="color: #F2F2F4;"></i></a>
+
+                    </td>
+
+                </tr>
+
+
+
+            </tbody>
+
+        </table>
+    </div>
+
+    <div class="d-flex justify-content-end align-items-end mt-3">
+
+        <div class="gap-2">
+
+            <h5>TOTAL MUESTRAS ENTREGADAS</h5>
+            <h5>TOTAL MUESTRAS RECIBIDAS</h5>
+            <h5>TOTAL MUESTRAS RECHAZADAS</h5>
+            <h5>SIN MUESTRAS</h5>
+
+        </div>
+
+
+    </div>
+
+
+
+</div>
+
+<script>
+
+    $('#example').DataTable({
+
+        language: {
+            url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json',
+        },
+
+    });
+
+</script>
+
+<!--Modal Observación-->
+<partial name="/Views/Modales/Comentarios.cshtml" />
+

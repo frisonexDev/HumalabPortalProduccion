@@ -1,0 +1,43 @@
+﻿<style>
+   .modal-danger .modal-content {
+        background-color: #f2dede;
+        border-color: #de1634;
+        /*color: #b94a48;*/
+        color: red;
+    }
+
+        .modal-danger .modal-content .modal-header {
+            background-color: #f5c7b5;
+            border-color: #de1634;
+            
+        }
+
+        .modal-danger .modal-content .modal-body {
+            border-top-color: #de1634;
+        }
+
+        .modal-danger .modal-content .modal-footer + .modal-collapse .modal-body {
+            border-bottom-color: #de1634;
+        }
+        .modal-header .modal-title{
+        color:#000;
+        }
+</style>
+
+<div class="modal fade modal-danger" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3 class="modal-title" id="staticBackdropLabel"><b>Estado Cartera</b></h3>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <pre style="font-size:14px"><span><b>El usuario ha sido suspendido para la generación de órdenes</b><br />Por favor contactese con el proveedor del sistema.</span>
+                </pre>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>

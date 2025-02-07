@@ -1,0 +1,359 @@
+﻿
+<div class="container-fluid bg-white rounded-3 p-3 mt-3">
+
+    <div class="d-flex justify-content-end align-items-end mb-2">
+
+        <button type="button" class="btn btn-primary" data-bs-toggle="modal" onclick="limpiarModalDarAlta()" data-bs-target="#ModalDardeAlta">
+            Dar de Alta
+        </button>
+
+    </div>
+
+    <table id="tablaCliente" class="table table-responsive dataTable mt-2" style="width:100%;" aria-describedby="example_info">
+        <thead class="bg-primary">
+            <tr>
+                <th class="fw-bold text-center" tabindex="0" aria-controls="example" rowspan="1" colspan="1" aria-label="Name: activate to sort column descending" style="width: 136.613px; color:#F4F4F2;">ID</th>
+                <th class="fw-bold text-center" tabindex="1" aria-controls="example" rowspan="1" colspan="1" aria-label="Position: activate to sort column ascending" style="width: 228px;color:#F4F4F2;">CLIENTE</th>
+                <th class="fw-bold text-center" tabindex="2" aria-controls="example" rowspan="1" colspan="1" aria-label="Office: activate to sort column ascending" style="width: 100.688px;color:#F4F4F2;">RUC</th>
+                <th class="fw-bold text-center" tabindex="3" aria-controls="example" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 40.325px;color:#F4F4F2;">USUARIO</th>
+                <th class="fw-bold text-center" tabindex="4" aria-controls="example" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 86.2125px;color:#F4F4F2;">FECHA DE REGISTRO</th>
+                <th class="fw-bold text-center" tabindex="5" aria-controls="example" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 75.8375px;color:#F4F4F2;">OPERADOR LOGÍSTICO</th>
+                <th class="fw-bold text-center" tabindex="6" aria-controls="example" rowspan="1" colspan="1" aria-label="Age: activate to sort column ascending" style="width: 40.325px;color:#F4F4F2;">FACTURACIÓN</th>
+                <th class="fw-bold text-center" tabindex="7" aria-controls="example" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 86.2125px;color:#F4F4F2;">ESTADO</th>
+                <th class="fw-bold text-center" tabindex="8" aria-controls="example" rowspan="1" colspan="1" aria-label="Start date: activate to sort column ascending" style="width: 86.2125px;color:#F4F4F2;">FECHA TEMPORAL</th>
+                <th class="fw-bold text-center" tabindex="9" aria-controls="example" rowspan="1" colspan="1" aria-label="Salary: activate to sort column ascending" style="width: 75.8375px;color:#F4F4F2;">ACCIÓN</th>
+
+            </tr>
+        </thead>
+
+        <tbody id="tablaClienteDatos">
+           
+        </tbody>
+
+    </table>
+
+</div>
+
+<script src="~/js/Notificaciones.js"></script>
+
+<script>
+    
+    //Limpia modal dar de alta
+    function limpiarModalDarAlta(){
+        var inputCliente = document.getElementById("clienteFlexline");
+        inputCliente.value = "";        
+
+        var comboUsuario = document.getElementById("comboUsuarios");
+        comboUsuario.innerHTML = '';       
+
+        var comboCodigo = document.getElementById("codCliente");
+        comboCodigo.innerHTML = '';
+
+        var nomCodigoCliente = document.getElementById("nomCliente");
+        nomCodigoCliente.value = "";
+
+        var direCliente = document.getElementById("direCliente");
+        direCliente.value = "";
+
+        var clienteProvincia = document.getElementById("clienteProvincia");
+        clienteProvincia.value = "";
+
+        var clienteCiudad = document.getElementById("clienteCiudad");
+        clienteCiudad.value = "";
+
+        var clienteLatitud = document.getElementById("clienteLatitud");
+        clienteLatitud.value = "";
+
+        var clienteLongitud = document.getElementById("clienteLongitud");
+        clienteLongitud.value = "";
+    }
+
+    //Get clientes con cualquier estado y llena la tabla
+    function MetodoGetClientes() {
+        var clientes = {
+            Offset: 1,
+            Limit: 10
+        };
+
+        $.ajax({
+            url: '@Url.Action("ClientesHumalab","GestionCliente")',
+            type: 'GET',
+            data: clientes,
+            beforeSend: function () {
+                loadingShow();
+            },
+            success: function (response) {               
+                
+                if (response.codigoRespuesta === "01") {
+                    MensajeAlerta1("warning", response.mensajeRespuesta)
+                }
+
+                if (response.mensajeRespuesta === "Error") {
+                    MensajeAlerta1("danger", "Se ha producido un error, comuníquese con el área de sistemas.")
+                }
+
+                if (response.codigoRespuesta === "00") {                                        
+                    addTablaClientes(response.dataClientes);
+                }
+
+                setTimeout(() => {
+                    loadingHide();
+                }, 1000);              
+            }
+        });
+    }    
+
+    //agregar datos en la tabla
+    function addTablaClientes(dataClientes) {
+        var tablaClientes = document.getElementById("tablaClienteDatos");
+        tablaClientes.innerHTML = ''; 
+        
+        var txtFacturacion = "";
+        
+        var comboEstadosSus = document.getElementById('cmbestadoSus');        
+
+        for (var i = 0; i < dataClientes.length; i++) {
+
+            var filaClientes = tablaClientes.insertRow();
+
+            //id
+            var clienteId = filaClientes.insertCell();
+            clienteId.innerHTML = dataClientes[i].idCliente;
+            
+            //cliente
+            var cliente = filaClientes.insertCell();
+            cliente.innerHTML = dataClientes[i].cliente;
+            
+            //ruc
+            var ruc = filaClientes.insertCell();
+            ruc.innerHTML = dataClientes[i].ruc;
+           
+            //usuario
+            var usuario = filaClientes.insertCell();
+            usuario.innerHTML = dataClientes[i].usuario;
+            
+            //fecharegistro
+            var fecharegistro = filaClientes.insertCell();
+            fecharegistro.innerHTML = dataClientes[i].fechaRegistro;
+            
+            //operador
+            var operadorLog = filaClientes.insertCell();
+            operadorLog.innerHTML = dataClientes[i].operadorLogistico;
+            
+            //codigoEstado            
+            var facturacion = filaClientes.insertCell();
+            facturacion.innerHTML = dataClientes[i].estadoCodigo;
+           
+            //estado
+            var estado = filaClientes.insertCell();
+            estado.innerHTML = dataClientes[i].estado;
+
+            //fechatemporal
+            var fechaTemporal = filaClientes.insertCell();
+            fechaTemporal.innerHTML = dataClientes[i].fechaTemporal;
+
+            //boton editar
+            var editar = filaClientes.insertCell();
+            var editCliente = document.createElement("i");
+            editCliente.className = "fa-solid fa-pen-to-square";
+            editar.appendChild(editCliente);
+            
+            //ocultar encabezado de la columna
+            var tablaGeneral = document.getElementById("tablaCliente");
+            var columnaFactura = 6;                           
+            var encabezadoFactura = tablaGeneral.getElementsByTagName("th")[columnaFactura];
+            encabezadoFactura.style.display = "none";
+
+            //ocultar encabezafo fecha temporal
+            var columnaFechaTemporal = 8;
+            var encabezadoFechaTemporal = tablaGeneral.getElementsByTagName("th")[columnaFechaTemporal];
+            encabezadoFechaTemporal.style.display = "none";            
+
+            //ocultar fila de la columna facturacion
+            for (let i = 0; i < tablaGeneral.rows.length; i++) {
+                tablaGeneral.rows[i].cells[columnaFactura].style.display = 'none';
+            }
+
+            //ocultar fila de la columna fechatemporal
+            for (let i = 0; i < tablaGeneral.rows.length; i++) {
+                tablaGeneral.rows[i].cells[columnaFechaTemporal].style.display = 'none';
+            }
+
+
+            editCliente.addEventListener("click", function () {                
+                
+                //obtiene el ruc del cliente y carga en el modal suspencion
+                var datosTabla = document.getElementById("tablaClienteDatos");
+                var valorCliente = "";
+                var clienteEstado = "";
+                var factura = "";
+                var txtFactura = "";
+                var valorFactura = 0;
+                var vlrEstado = 0;
+                var vlrIdCliente = 0;
+                var fechaTemporal = "";
+
+                var filasTabla = datosTabla.getElementsByTagName('tr');                
+
+                if (comboEstadosSus === null || comboEstadosSus === "") {
+                    LimpiarComboEstados();
+                    MetodoGetEstadoHumaSus();
+
+                    comboEstadosSus = document.getElementById('cmbestadoSus');
+                }                
+
+                //caputura valores de cada fila de la tabla
+                for (var i = 0; i < filasTabla.length; i++) {                                        
+                    var fechaVigenciaTabla = document.getElementById("fechaVigente");
+                    var fechaValor = document.getElementById("valorFecha");                    
+
+                    filasTabla[i].addEventListener('click', function () {
+                                                
+                        valorCliente = this.getElementsByTagName('td')[2].textContent;
+                        document.getElementById("clienteHumalab").value = valorCliente;                       
+
+                        var inputCliente = document.getElementById("clienteHumalab");
+                        inputCliente.disabled = true;
+                        
+                        vlrEstado = this.getElementsByTagName('td')[6].textContent;
+                        clienteEstado = this.getElementsByTagName('td')[7].textContent;
+                        fechaTemporal = this.getElementsByTagName('td')[8].textContent;                                                
+
+                        for (var i = 0; i < comboEstadosSus.options.length; i++) {
+                            var opcionesC = comboEstadosSus.options[i];
+
+                            if (opcionesC.value === vlrEstado) {
+                                comboEstadosSus.selectedIndex = i;
+                            }
+                        }
+
+                        vlrIdCliente = this.getElementsByTagName('td')[0].textContent;
+                        sessionStorage.setItem('miVariable', vlrIdCliente);
+
+                        //hace una llamada a flexline para valor de facturacion cliente                                                                       
+                        $.ajax({
+                            url: '@Url.Action("FacturacionEstadosFlexline","GestionCliente")',
+                            type: 'GET',
+                            data: { Identificacion: valorCliente },                            
+                            success: function (response) {
+
+                                if (response === "01" || response === null || response === "") {
+                                    document.getElementById("facturacion").value = "$ " + 0.00;
+                                    txtFactura = document.getElementById("facturacion");
+                                    txtFactura.disabled = true;
+                                }
+                                else{
+                                    for (var i = 0; i < response.length; i++) {
+                                        valorFactura = response[i].valorVencido;
+
+                                        document.getElementById("facturacion").value = "$ " + valorFactura;
+                                        txtFactura = document.getElementById("facturacion");
+                                        txtFactura.disabled = true;
+                                    }
+                                }
+                            }
+                        });                       
+
+                        if (clienteEstado === "Activo" || clienteEstado === "Suspendido") {
+                            fechaValor.style.display = "none";
+                            fechaVigenciaTabla.style.display = "none";
+                        }
+                        else {
+                            fechaValor.style.display = "block";
+                            fechaVigenciaTabla.style.display = "block";                          
+
+                            var fechaFinal = fechaTemporal.split(" ");                              
+                            var fechaFormateada = fechaFinal[0];                            
+                            var fechaNormal = moment(fechaFormateada, ["DD/MM/YYYY", "MM/DD/YYYY"]);
+                            
+                            if (fechaNormal.isValid()) {
+                                var dateFinal = fechaNormal.format("YYYY-MM-DD");
+                                $("#fechaVigente").val(dateFinal);
+                            }
+
+                            //llamar la observacion del estado temporal del cliente
+                            var idUsuario = this.getElementsByTagName('td')[0].textContent;
+                            
+                            $.ajax({
+                                url: '@Url.Action("ObservacionCliente","GestionCliente")',
+                                type: 'GET',
+                                data: { idUsuario: idUsuario },
+                                success: function (response) {
+
+                                    if(response !== null){                                        
+                                        var obser = document.getElementById("observacion");
+                                        obser.value = response;
+                                    }
+                                }
+                            });
+                        }
+                        
+                        comboEstadosSus.addEventListener('change', function () {
+                            var valorEstado = comboEstadosSus.selectedOptions[0].text;
+
+                            if (valorEstado === "Activo" || valorEstado === "Suspendido") {
+                                fechaValor.style.display = "none";
+                                fechaVigenciaTabla.style.display = "none";
+                            }
+                            else {
+                                fechaValor.style.display = "block";
+                                fechaVigenciaTabla.style.display = "block";
+                            }
+                        });
+
+                    });
+                }
+
+                var editModalCliente = new bootstrap.Modal(document.getElementById("ModalSuspensionCliente"));
+                editModalCliente.show();
+            });
+        }
+
+        $('#tablaCliente').DataTable({
+            
+            pageLength: 10,
+            searching: false,
+            language: {
+                url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json',
+            },
+
+        });
+    }
+
+    //Get estado clientes de humalab combo pero modal suspencion
+    function MetodoGetEstadoHumaSus() {        
+        $.ajax({
+            url: '@Url.Action("EstadosClienteHuma","GestionCliente")',
+            type: 'GET',            
+            success: function (responseSus) {                
+
+                var comboEstadosSus = document.getElementById('cmbestadoSus');                
+
+                for (var i = 0; i < responseSus.length; i++) {
+                    var opcionesSus = document.createElement('option');
+                    opcionesSus.text = responseSus[i].nombre;
+                    opcionesSus.value = responseSus[i].idCatalogoDetalle;
+
+                    //asigna valores al combo
+                    comboEstadosSus.add(opcionesSus);
+                }
+            }
+        });
+    }
+
+    function LimpiarComboEstados(){
+        var comboEstadosSus = document.getElementById('cmbestadoSus');
+        comboEstadosSus.innerHTML = '';
+    }
+
+    //carga los clientes en base a la ultima fecha
+    MetodoGetClientes();
+
+    //carga los estados para el combo box del modal supension cliente
+    MetodoGetEstadoHumaSus();
+
+</script>
+
+<!--Modal para dar de alta Clientes-->
+<partial name="/Views/Modales/DardeAlta.cshtml" />
+<partial name="/Views/Modales/SuspensionCliente.cshtml" />

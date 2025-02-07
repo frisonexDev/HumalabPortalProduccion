@@ -1,0 +1,329 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = GDifare.Portal.HumaLab.UI
+build_property.RootNamespace = GDifare.Portal.HumaLab.UI
+build_property.ProjectDir = C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Administrativo/AdminOrdenes.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5pc3RyYXRpdm9cQWRtaW5PcmRlbmVzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Administrativo/Blank.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5pc3RyYXRpdm9cQmxhbmsuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Administrativo/EditarOrdAdmin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5pc3RyYXRpdm9cRWRpdGFyT3JkQWRtaW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Administrativo/Facturacion.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5pc3RyYXRpdm9cRmFjdHVyYWNpb24uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Administrativo/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5pc3RyYXRpdm9cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Administrativo/PruebasAdmin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWRtaW5pc3RyYXRpdm9cUHJ1ZWJhc0FkbWluLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Cliente/Catalogo.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZVxDYXRhbG9nby5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Cliente/ConsultarOrdenes.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZVxDb25zdWx0YXJPcmRlbmVzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Cliente/EditarOrden.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZVxFZGl0YXJPcmRlbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Cliente/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Cliente/NuevaOrden.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZVxOdWV2YU9yZGVuLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Cliente/Pedido.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2xpZW50ZVxQZWRpZG8uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Componentes/BarChartMuestras.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcG9uZW50ZXNcQmFyQ2hhcnRNdWVzdHJhcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Componentes/BreadCrumb.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcG9uZW50ZXNcQnJlYWRDcnVtYi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Componentes/BuscarOrden.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcG9uZW50ZXNcQnVzY2FyT3JkZW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Componentes/BuscarOrdenAdmin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcG9uZW50ZXNcQnVzY2FyT3JkZW5BZG1pbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Componentes/BuscarPedidosLaboratorista.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcG9uZW50ZXNcQnVzY2FyUGVkaWRvc0xhYm9yYXRvcmlzdGEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Componentes/BuscarPedidosOpLogistico.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcG9uZW50ZXNcQnVzY2FyUGVkaWRvc09wTG9naXN0aWNvLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Componentes/BuscarResultMedicLab.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcG9uZW50ZXNcQnVzY2FyUmVzdWx0TWVkaWNMYWIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Componentes/BusquedaClienteFecha.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcG9uZW50ZXNcQnVzcXVlZGFDbGllbnRlRmVjaGEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Componentes/BusquedaEstado.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcG9uZW50ZXNcQnVzcXVlZGFFc3RhZG8uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Componentes/BusquedaExamen.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcG9uZW50ZXNcQnVzcXVlZGFFeGFtZW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Componentes/BusquedaExamenAdmin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcG9uZW50ZXNcQnVzcXVlZGFFeGFtZW5BZG1pbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Componentes/BusquedaFecha.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcG9uZW50ZXNcQnVzcXVlZGFGZWNoYS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Componentes/BusquedaPedido.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcG9uZW50ZXNcQnVzcXVlZGFQZWRpZG8uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Componentes/DemograficoPaciente.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcG9uZW50ZXNcRGVtb2dyYWZpY29QYWNpZW50ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Componentes/DemograficoPacienteAdmin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcG9uZW50ZXNcRGVtb2dyYWZpY29QYWNpZW50ZUFkbWluLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Componentes/DemograficoPedido.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcG9uZW50ZXNcRGVtb2dyYWZpY29QZWRpZG8uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Componentes/DemograficoPedidoAdmin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcG9uZW50ZXNcRGVtb2dyYWZpY29QZWRpZG9BZG1pbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Componentes/InformacionRecolectarOP.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcG9uZW50ZXNcSW5mb3JtYWNpb25SZWNvbGVjdGFyT1AuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Componentes/InformativoPedidoLab.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcG9uZW50ZXNcSW5mb3JtYXRpdm9QZWRpZG9MYWIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Componentes/LineChartMuestra.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcG9uZW50ZXNcTGluZUNoYXJ0TXVlc3RyYS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Componentes/Notificaciones/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcG9uZW50ZXNcTm90aWZpY2FjaW9uZXNcRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Componentes/Notificaciones/Success.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcG9uZW50ZXNcTm90aWZpY2FjaW9uZXNcU3VjY2Vzcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Componentes/Notificaciones/Warning.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcG9uZW50ZXNcTm90aWZpY2FjaW9uZXNcV2FybmluZy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Componentes/PieChartMuestras.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcG9uZW50ZXNcUGllQ2hhcnRNdWVzdHJhcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Componentes/TablaCatalogo.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcG9uZW50ZXNcVGFibGFDYXRhbG9nby5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Componentes/TablaConsultarOrden.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcG9uZW50ZXNcVGFibGFDb25zdWx0YXJPcmRlbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Componentes/TablaExamenOrden.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcG9uZW50ZXNcVGFibGFFeGFtZW5PcmRlbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Componentes/TablaExamenOrdenAdmin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcG9uZW50ZXNcVGFibGFFeGFtZW5PcmRlbkFkbWluLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Componentes/TablaFacturacion.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcG9uZW50ZXNcVGFibGFGYWN0dXJhY2lvbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Componentes/TablaGestionCliente.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcG9uZW50ZXNcVGFibGFHZXN0aW9uQ2xpZW50ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Componentes/TablaMuestrasLab.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcG9uZW50ZXNcVGFibGFNdWVzdHJhc0xhYi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Componentes/TablaOrdenesAdmin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcG9uZW50ZXNcVGFibGFPcmRlbmVzQWRtaW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Componentes/TablaOrdenLab.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcG9uZW50ZXNcVGFibGFPcmRlbkxhYi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Componentes/TablaOrdenLaboratorista.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcG9uZW50ZXNcVGFibGFPcmRlbkxhYm9yYXRvcmlzdGEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Componentes/TablaPedidos.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcG9uZW50ZXNcVGFibGFQZWRpZG9zLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Componentes/TablaPedidosLab.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcG9uZW50ZXNcVGFibGFQZWRpZG9zTGFiLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Componentes/TablaPedidosOP.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcG9uZW50ZXNcVGFibGFQZWRpZG9zT1AuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Componentes/TablaPruebasAdmin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcG9uZW50ZXNcVGFibGFQcnVlYmFzQWRtaW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Componentes/TablaRecolectarOP.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcG9uZW50ZXNcVGFibGFSZWNvbGVjdGFyT1AuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Componentes/TablaResultadosLab.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ29tcG9uZW50ZXNcVGFibGFSZXN1bHRhZG9zTGFiLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Laboratorista/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGFib3JhdG9yaXN0YVxJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Laboratorista/PedidosLab.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTGFib3JhdG9yaXN0YVxQZWRpZG9zTGFiLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Login/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTG9naW5cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Medico/ConsultarResultadosMedico.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTWVkaWNvXENvbnN1bHRhclJlc3VsdGFkb3NNZWRpY28uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Modales/CatalogoUtilidad.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW9kYWxlc1xDYXRhbG9nb1V0aWxpZGFkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Modales/Comentarios.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW9kYWxlc1xDb21lbnRhcmlvcy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Modales/DardeAlta.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW9kYWxlc1xEYXJkZUFsdGEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Modales/EntregarPedidoOP.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW9kYWxlc1xFbnRyZWdhclBlZGlkb09QLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Modales/EnviarOrden.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW9kYWxlc1xFbnZpYXJPcmRlbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Modales/ObservacionPrueba.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW9kYWxlc1xPYnNlcnZhY2lvblBydWViYS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Modales/PopUp.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW9kYWxlc1xQb3BVcC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Modales/PopUpAdmin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW9kYWxlc1xQb3BVcEFkbWluLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Modales/RecolectarMuestras.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW9kYWxlc1xSZWNvbGVjdGFyTXVlc3RyYXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Modales/SuspensionCliente.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW9kYWxlc1xTdXNwZW5zaW9uQ2xpZW50ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Modales/VencidoCartera.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTW9kYWxlc1xWZW5jaWRvQ2FydGVyYS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/OpLogistico/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3BMb2dpc3RpY29cSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/OpLogistico/Recolectar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3BMb2dpc3RpY29cUmVjb2xlY3Rhci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/OpLogistico/RecolectarPDF.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcT3BMb2dpc3RpY29cUmVjb2xlY3RhclBERi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXEVycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Shared/_BootStrapLayoutLogin.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Cb290U3RyYXBMYXlvdXRMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Shared/_BootStrapLayoutMenu.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Cb290U3RyYXBMYXlvdXRNZW51LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Shared/_SideBar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9TaWRlQmFyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Shared/_TopBar.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9Ub3BCYXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HumalabPortalGit/PortalHL/Fuentes/GDifare.Portal.HumaLab.UI/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 

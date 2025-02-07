@@ -1,0 +1,406 @@
+﻿
+
+<div class="container-fluid bg-white rounded-3 mt-3">
+
+    <div class="d-flex col">
+
+        <div class="d-flex col gap-4 align-items-center justify-content-center">
+            <label id="labcliente" name="lab_cliente" class="fw-bold">Cliente:</label>
+            <input id="txtcliente" class="form-control" placeholder="Ingresar nombre cliente" type="text" style="width:300px" />
+
+            <div>
+                <span>
+                    <input id="radnombre" class="form-switch" name="rad-cliente" type="radio" onchange="buscarClienteCata()" />
+                    <label>Nombre</label>
+                </span>
+                <br />
+                <span>
+                    <input id="radruc" class="form-switch" name="rad-cliente" type="radio" onchange="buscarClienteCata()" />
+                    <label>Identificación</label>
+                </span>
+            </div>
+
+            <div class="d-flex align-items-center gap-2 justify-content-around m-4">
+                <div class="fw-bold">
+                    Estado:
+                </div>
+                <select class="form-control" id="cmbestado">
+                    <option value="0">----------------</option>
+                </select>
+            </div>
+
+            <div class="modal-footer">
+                <button id="btnBuscar" type="button" class="btn btn-primary" onclick="BuscarCliente()">Buscar</button>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script src="~/js/Notificaciones.js"></script>
+
+<script>
+
+    var buscarClienteCata = () => {
+        if ($('#radruc').is(':checked')) {
+
+            var txtRuc = document.getElementById("txtcliente");
+
+            txtRuc.value = "";
+            $('#txtcliente').attr('placeholder', 'Ingrese Identificación');
+
+            const rucCliente = document.getElementById("txtcliente");
+
+            rucCliente.addEventListener('input', function () {
+                if (this.value.length > 13) {
+                    this.value = this.value.slice(0, 13);
+                }
+            });               
+        }
+        else if ($('#radnombre').is(':checked')) {
+            var txtCliente = document.getElementById("txtcliente");
+            txtCliente.value = "";
+
+            $('#txtcliente').attr('placeholder', 'Ingrese Nombre');
+
+            const nombreCliente = document.getElementById("txtcliente");
+
+            nombreCliente.addEventListener('input', function () {
+                if (this.value.length > 1000) {
+                    this.value = this.value.slice(0, 1000);
+                }
+            });
+        }
+    };
+
+    //Limpia modal dar de alta
+    function limpiarModalDarAlta() {
+        var inputCliente = document.getElementById("clienteFlexline");
+        inputCliente.value = "";        
+
+        var comboUsuario = document.getElementById("comboUsuarios");
+        comboUsuario.innerHTML = '';
+
+        var comboOperador = document.getElementById("comboOperador");
+        comboOperador.innerHTML = '';
+
+        var nomCodigoCliente = document.getElementById("nomCliente");
+        nomCodigoCliente.value = "";
+
+        var comboCodigo = document.getElementById("codCliente");
+        comboCodigo.innerHTML = '';
+
+        var direCliente = document.getElementById("direCliente");
+        direCliente.value = "";
+
+        var clienteProvincia = document.getElementById("clienteProvincia");
+        clienteProvincia.value = "";
+
+        var clienteCiudad = document.getElementById("clienteCiudad");
+        clienteCiudad.value = "";
+
+        var clienteLatitud = document.getElementById("clienteLatitud");
+        clienteLatitud.value = "";
+
+        var clienteLongitud = document.getElementById("clienteLongitud");
+        clienteLongitud.value = "";
+    }
+
+    //Get estados clientes de humalab combo box 
+    function MetodoGetEstadoHuma() {        
+        $.ajax({
+            url: '@Url.Action("EstadosClienteHuma","GestionCliente")',
+            type: 'GET',            
+            success: function (response){
+                var comboEstados = document.getElementById('cmbestado');
+
+                for (var i = 0; i < response.length; i++) {
+                    var opciones = document.createElement('option');
+                    opciones.text = response[i].nombre;
+                    opciones.value = response[i].idCatalogoDetalle;
+
+                    //asigna valores al combo
+                    comboEstados.add(opciones); 
+                }
+
+            }
+        });
+    }
+
+    //Tecla enter para buscar clientes
+    function busquedaClienteEnter(){
+        var busquedaCliente = document.getElementById("txtcliente");
+
+        busquedaCliente.addEventListener("keyup", function (event) {
+            if (event.key === "Enter") {
+                var datosCliente = {
+                    RucNombre: document.getElementById("txtcliente").value,
+                    idEstado: document.getElementById("cmbestado").value,
+                    Offset: 1,
+                    Limit: 10
+                };
+
+                MetodoGetClienteHuma(datosCliente);               
+            }
+        });
+    }
+
+    //Get busqueda cliente humalab
+    function BuscarCliente(){
+        document.getElementById("btnBuscar").disabled = true;
+        var datosCliente = {
+            RucNombre: document.getElementById("txtcliente").value,
+            idEstado: document.getElementById("cmbestado").value,
+            Offset: 1,
+            Limit: 10
+        };
+
+        if (datosCliente.idEstado === '') {
+            MensajeAlerta1("warning", "Complete todos los campos.")
+            document.getElementById("btnBuscar").disabled = false;
+        }
+        else{                      
+            MetodoGetClienteHuma(datosCliente)
+            document.getElementById("btnBuscar").disabled = false;
+        }
+    }
+
+    function MetodoGetClienteHuma(datosCliente){
+        var tablaClientes = document.getElementById("tablaClienteDatos");
+        tablaClientes.innerHTML = '';
+
+        $.ajax({
+            url: '@Url.Action("BuscarClienteHumalab","GestionCliente")',
+            type: 'GET',
+            data: datosCliente,
+            success: function (response) {                                
+
+                if (response.codigoRespuesta === "01") {
+                    MensajeAlerta1("warning", response.mensajeRespuesta)
+                }
+
+                if (response.mensajeRespuesta === "Error") {
+                    MensajeAlerta1("danger", "Se ha producido un error, comuníquese con el área de sistemas.")
+
+                    var modalDarAlta = document.getElementById("ModalDardeAlta");
+                    modalDarAlta.style.display = "none";
+                }
+
+                if (response.codigoRespuesta === "00") {
+                    for (var i = 0; i < response.dataClientes.length; i++) {
+                        var filaClientes = tablaClientes.insertRow();
+
+                        //id
+                        var idCliente = filaClientes.insertCell();
+                        idCliente.innerHTML = response.dataClientes[i].idCliente;
+                        
+                        //cliente
+                        var cliente = filaClientes.insertCell();
+                        cliente.innerHTML = response.dataClientes[i].cliente;
+                        
+                        //ruc
+                        var ruc = filaClientes.insertCell();
+                        ruc.innerHTML = response.dataClientes[i].ruc;
+                        
+                        //usuario
+                        var usuario = filaClientes.insertCell();
+                        usuario.innerHTML = response.dataClientes[i].usuario;
+                        
+                        //fecharegistro
+                        var fecharegistro = filaClientes.insertCell();
+                        fecharegistro.innerHTML = response.dataClientes[i].fechaRegistro;
+                        
+                        //operador
+                        var operadorLog = filaClientes.insertCell();
+                        operadorLog.innerHTML = response.dataClientes[i].operadorLogistico;
+                        
+                        //facturacion
+                        var facturacion = filaClientes.insertCell();
+                        facturacion.innerHTML = response.dataClientes[i].estadoCodigo;
+                        
+                        //estado
+                        var estado = filaClientes.insertCell();
+                        estado.innerHTML = response.dataClientes[i].estado;
+
+                        //fechatemporal
+                        var fechaTemporal = filaClientes.insertCell();
+                        fechaTemporal.innerHTML = response.dataClientes[i].fechaTemporal;
+
+                        //boton editar
+                        var editar = filaClientes.insertCell();
+                        var editCliente = document.createElement("i");
+                        editCliente.className = "fa-solid fa-pen-to-square";
+                        editar.appendChild(editCliente);
+
+                        //ocultar columna encabezado
+                        var tablaGeneral = document.getElementById("tablaCliente");
+                        var columnaFactura = 6;
+                        var encabezadoFactura = tablaGeneral.getElementsByTagName("th")[columnaFactura];
+                        encabezadoFactura.style.display = "none";
+
+                        //ocultar encabezado fecha temporal
+                        var columnaFechaTemporal = 8;
+                        var encabezadoFechaTemporal = tablaGeneral.getElementsByTagName("th")[columnaFechaTemporal];
+                        encabezadoFechaTemporal.style.display = "none";
+
+                        //ocultar fila de la columna
+                        for (let i = 0; i < tablaGeneral.rows.length; i++) {
+                            tablaGeneral.rows[i].cells[columnaFactura].style.display = 'none';
+                        }
+
+                        //ocultar fila de la columna fechatemporal
+                        for (let i = 0; i < tablaGeneral.rows.length; i++) {
+                            tablaGeneral.rows[i].cells[columnaFechaTemporal].style.display = 'none';
+                        }
+
+                        editCliente.addEventListener("click", function () {                                                   
+
+                            //obtiene nombre del cliente y carga en el modal suspencion
+                            var datosTabla = document.getElementById("tablaClienteDatos");;
+                            var valorCliente = "";
+                            var clienteEstado = "";
+                            var factura = "";
+                            var txtFactura = "";
+                            var valorFactura = 0;
+                            var vlrEstado = 0;
+                            var vlrIdCliente = 0;
+                            var fechaTemporal = "";
+
+                            var filasTabla = datosTabla.getElementsByTagName('tr');
+                            var comboEstadosSus = document.getElementById('cmbestadoSus');
+
+                            if (comboEstadosSus === null || comboEstadosSus === "") {
+                                LimpiarComboEstados();
+                                
+                                MetodoGetEstadoHuma();
+                                comboEstadosSus = document.getElementById('cmbestadoSus');
+                            }
+
+                            //caputura el valor de identificacion del cliente
+                            for (var i = 0; i < filasTabla.length; i++) {
+
+                                var fechaVigenciaTabla = document.getElementById("fechaVigente");
+                                var fechaValor = document.getElementById("valorFecha");
+
+                                filasTabla[i].addEventListener('click', function () {
+                                    valorCliente = this.getElementsByTagName('td')[2].textContent;
+                                    document.getElementById("clienteHumalab").value = valorCliente;
+
+                                    vlrEstado = this.getElementsByTagName('td')[6].textContent;
+                                    for (var i = 0; i < comboEstadosSus.options.length; i++) {
+                                        var opcionesC = comboEstadosSus.options[i];
+
+                                        if (opcionesC.value === vlrEstado) {
+                                            comboEstadosSus.selectedIndex = i;
+                                        }
+                                    }
+
+                                    vlrIdCliente = this.getElementsByTagName('td')[0].textContent;
+                                    sessionStorage.setItem('miVariable', vlrIdCliente);
+
+                                    var inputCliente = document.getElementById("clienteHumalab");
+                                    inputCliente.disabled = true;
+
+                                    //hace una llamada a fexline para el total de facturacion cliente
+                                    $.ajax({
+                                        url: '@Url.Action("FacturacionEstadosFlexline","GestionCliente")',
+                                        type: 'GET',
+                                        data: { Identificacion: valorCliente },                                        
+                                        success: function (response) {                                            
+
+                                            if (response === "01" || response === null || response === "") {
+                                                document.getElementById("facturacion").value = "$ " + 0.00;
+                                                txtFactura = document.getElementById("facturacion");
+                                                txtFactura.disabled = true;
+                                            }
+                                            else{
+                                                for (var i = 0; i < response.length; i++) {
+                                                    valorFactura = response[i].valorVencido;
+
+                                                    document.getElementById("facturacion").value = "$ " + valorFactura;
+                                                    txtFactura = document.getElementById("facturacion");
+                                                    txtFactura.disabled = true;
+                                                }
+                                            }
+                                        }
+                                    });
+
+                                    clienteEstado = this.getElementsByTagName('td')[7].textContent;
+                                    fechaTemporal = this.getElementsByTagName('td')[8].textContent;
+
+                                    if (clienteEstado === "Activo" || clienteEstado === "Suspendido") {
+                                        fechaValor.style.display = "none";
+                                        fechaVigenciaTabla.style.display = "none";
+                                    }
+                                    else {
+                                        fechaValor.style.display = "block";
+                                        fechaVigenciaTabla.style.display = "block";
+
+                                        var fechaFinal = fechaTemporal.split(" ");
+                                        var fechaFormateada = fechaFinal[0];
+                                        var fechaNormal = moment(fechaFormateada, "DD/MM/YYYY");
+
+                                        if (fechaNormal.isValid()) {
+                                            var dateFinal = fechaNormal.format("YYYY-MM-DD");
+                                            $("#fechaVigente").val(dateFinal);
+                                        }
+
+                                        //llamar la observacion del estado temporal del cliente
+                                        var idUsuario = this.getElementsByTagName('td')[0].textContent;
+
+                                        $.ajax({
+                                            url: '@Url.Action("ObservacionCliente","GestionCliente")',
+                                            type: 'GET',
+                                            data: { idUsuario: idUsuario },
+                                            success: function (response) {
+
+                                                if (response !== null) {
+                                                    var obser = document.getElementById("observacion");
+                                                    obser.value = response;
+                                                }
+                                            }
+                                        });
+                                    }
+
+                                    comboEstadosSus.addEventListener('change', function () {
+                                        var valorEstado = comboEstadosSus.selectedOptions[0].text;
+
+                                        if (valorEstado === "Activo" || valorEstado === "Suspendido") {
+                                            fechaValor.style.display = "none";
+                                            fechaVigenciaTabla.style.display = "none";
+                                        }
+                                        else {
+                                            fechaValor.style.display = "block";
+                                            fechaVigenciaTabla.style.display = "block";
+                                        }
+                                    });
+                                });
+                            }
+
+                            var editModalCliente = new bootstrap.Modal(document.getElementById("ModalSuspensionCliente"));
+                            editModalCliente.show();
+                        });
+                    }
+                }
+            }
+        });
+    }
+
+    function LimpiarComboEstados() {
+        var comboEstadosSus = document.getElementById('cmbestadoSus');
+        comboEstadosSus.innerHTML = '';
+    }
+
+    //carga combo box de estados cliente
+    MetodoGetEstadoHuma(); 
+
+    //Que realice la busqueda cuando se presiona enter
+    busquedaClienteEnter();
+
+</script>
+
+<partial name="~/Views/Componentes/Notificaciones/Success.cshtml" />
+<partial name="~/Views/Componentes/Notificaciones/Warning.cshtml" />
+<partial name="~/Views/Componentes/Notificaciones/Error.cshtml" />

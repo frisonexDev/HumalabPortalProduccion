@@ -1,0 +1,774 @@
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\appsettings.Development.json
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\appsettings.json
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\catalogoMuestras.json
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\catalogoMuestrasFinal.json
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\MenuHumaLab.json
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\GDifare.Portal.HumaLab.UI.staticwebassets.runtime.json
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\GDifare.Portal.HumaLab.UI.exe
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\GDifare.Portal.HumaLab.UI.deps.json
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\GDifare.Portal.HumaLab.UI.runtimeconfig.json
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\GDifare.Portal.HumaLab.UI.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\GDifare.Portal.HumaLab.UI.pdb
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\BarcodeStandard.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\BouncyCastle.Cryptography.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\EPPlus.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\EPPlus.Interfaces.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\EPPlus.System.Drawing.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\HtmlAgilityPack.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\HtmlRendererCore.PdfSharp.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Humanizer.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\itextsharp.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\MessagePack.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\MessagePack.Annotations.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\System.Web.Mvc.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\System.Web.Razor.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\System.Web.Helpers.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\System.Web.WebPages.Deployment.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\System.Web.WebPages.Razor.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\System.Web.WebPages.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.AspNetCore.Razor.Language.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.Bcl.AsyncInterfaces.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.Build.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.Build.Framework.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.CodeAnalysis.AnalyzerUtilities.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.CodeAnalysis.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.CodeAnalysis.CSharp.Features.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.CodeAnalysis.CSharp.Workspaces.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.CodeAnalysis.Features.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.CodeAnalysis.Razor.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.CodeAnalysis.Scripting.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.CodeAnalysis.Workspaces.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.DiaSymReader.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.DotNet.Scaffolding.Shared.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.IO.RecyclableMemoryStream.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.NET.StringTools.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.VisualStudio.Debugger.Contracts.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.VisualStudio.Web.CodeGeneration.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.VisualStudio.Web.CodeGeneration.Core.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\dotnet-aspnet-codegenerator-design.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.VisualStudio.Web.CodeGeneration.Templating.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.Web.Infrastructure.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\NuGet.Common.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\NuGet.Configuration.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\NuGet.DependencyResolver.Core.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\NuGet.Frameworks.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\NuGet.LibraryModel.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\NuGet.Packaging.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\NuGet.ProjectModel.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\NuGet.Protocol.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\NuGet.Versioning.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\PdfSharpCore.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ICSharpCode.SharpZipLib.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\SixLabors.Fonts.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\SixLabors.ImageSharp.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\System.Composition.AttributedModel.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\System.Composition.Convention.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\System.Composition.Hosting.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\System.Composition.Runtime.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\System.Composition.TypedParts.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\System.Drawing.Common.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\System.Reflection.MetadataLoadContext.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\System.Security.Cryptography.Pkcs.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\System.Security.Permissions.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\System.Windows.Extensions.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\zxing.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ZXing.Windows.Compatibility.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\af\Humanizer.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ar\Humanizer.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\az\Humanizer.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\bg\Humanizer.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\bn-BD\Humanizer.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\cs\Humanizer.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\da\Humanizer.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\de\Humanizer.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\el\Humanizer.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\es\Humanizer.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\fa\Humanizer.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\fi-FI\Humanizer.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\fr\Humanizer.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\fr-BE\Humanizer.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\he\Humanizer.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\hr\Humanizer.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\hu\Humanizer.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\hy\Humanizer.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\id\Humanizer.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\is\Humanizer.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\it\Humanizer.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ja\Humanizer.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ko-KR\Humanizer.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ku\Humanizer.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\lv\Humanizer.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ms-MY\Humanizer.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\mt\Humanizer.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\nb\Humanizer.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\nb-NO\Humanizer.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\nl\Humanizer.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\pl\Humanizer.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\pt\Humanizer.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ro\Humanizer.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ru\Humanizer.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\sk\Humanizer.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\sl\Humanizer.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\sr\Humanizer.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\sr-Latn\Humanizer.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\sv\Humanizer.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\th-TH\Humanizer.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\tr\Humanizer.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\uk\Humanizer.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\uz-Cyrl-UZ\Humanizer.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\uz-Latn-UZ\Humanizer.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\vi\Humanizer.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\zh-CN\Humanizer.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\zh-Hans\Humanizer.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\zh-Hant\Humanizer.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\cs\Microsoft.CodeAnalysis.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\de\Microsoft.CodeAnalysis.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\es\Microsoft.CodeAnalysis.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\fr\Microsoft.CodeAnalysis.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\it\Microsoft.CodeAnalysis.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ja\Microsoft.CodeAnalysis.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ko\Microsoft.CodeAnalysis.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\pl\Microsoft.CodeAnalysis.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\pt-BR\Microsoft.CodeAnalysis.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ru\Microsoft.CodeAnalysis.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\tr\Microsoft.CodeAnalysis.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\zh-Hans\Microsoft.CodeAnalysis.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\zh-Hant\Microsoft.CodeAnalysis.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\cs\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\de\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\es\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\fr\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\it\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ja\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ko\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\pl\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\pt-BR\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ru\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\tr\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\cs\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\de\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\es\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\fr\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\it\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ja\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ko\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\pl\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\pt-BR\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ru\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\tr\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\cs\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\de\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\es\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\fr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\it\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ja\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ko\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\pl\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\pt-BR\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ru\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\tr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\cs\Microsoft.CodeAnalysis.Features.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\de\Microsoft.CodeAnalysis.Features.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\es\Microsoft.CodeAnalysis.Features.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\fr\Microsoft.CodeAnalysis.Features.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\it\Microsoft.CodeAnalysis.Features.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ja\Microsoft.CodeAnalysis.Features.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ko\Microsoft.CodeAnalysis.Features.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\pl\Microsoft.CodeAnalysis.Features.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\pt-BR\Microsoft.CodeAnalysis.Features.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ru\Microsoft.CodeAnalysis.Features.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\tr\Microsoft.CodeAnalysis.Features.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\zh-Hans\Microsoft.CodeAnalysis.Features.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\zh-Hant\Microsoft.CodeAnalysis.Features.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\cs\Microsoft.CodeAnalysis.Scripting.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\de\Microsoft.CodeAnalysis.Scripting.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\es\Microsoft.CodeAnalysis.Scripting.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\fr\Microsoft.CodeAnalysis.Scripting.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\it\Microsoft.CodeAnalysis.Scripting.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ja\Microsoft.CodeAnalysis.Scripting.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ko\Microsoft.CodeAnalysis.Scripting.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\pl\Microsoft.CodeAnalysis.Scripting.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\pt-BR\Microsoft.CodeAnalysis.Scripting.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ru\Microsoft.CodeAnalysis.Scripting.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\tr\Microsoft.CodeAnalysis.Scripting.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\zh-Hans\Microsoft.CodeAnalysis.Scripting.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\zh-Hant\Microsoft.CodeAnalysis.Scripting.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\cs\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\de\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\es\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\fr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\it\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ja\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ko\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\pl\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\pt-BR\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ru\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\de\PdfSharpCore.resources.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.Pkcs.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\GDifare.Portal.EstadoCartera.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\GDifare.Portal.Humalab.Seguridad.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\GDifare.Portal.Humalab.Servicio.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\GDifare.Portales.Comunicaciones.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\GDifare.Portal.Humalab.Seguridad.pdb
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\GDifare.Portal.Humalab.Servicio.pdb
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\GDifare.Portal.HumaLab.UI.csproj.AssemblyReference.cache
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\GDifare.Portal.HumaLab.UI.Properties.Resources.resources
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\GDifare.Portal.HumaLab.UI.csproj.GenerateResource.cache
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\GDifare.Portal.HumaLab.UI.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\GDifare.Portal.HumaLab.UI.AssemblyInfoInputs.cache
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\GDifare.Portal.HumaLab.UI.AssemblyInfo.cs
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\GDifare.Portal.HumaLab.UI.csproj.CoreCompileInputs.cache
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\GDifare.Portal.HumaLab.UI.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\GDifare.Portal.HumaLab.UI.RazorAssemblyInfo.cache
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\GDifare.Portal.HumaLab.UI.RazorAssemblyInfo.cs
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\staticwebassets\msbuild.GDifare.Portal.HumaLab.UI.Microsoft.AspNetCore.StaticWebAssets.props
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\staticwebassets\msbuild.build.GDifare.Portal.HumaLab.UI.props
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.GDifare.Portal.HumaLab.UI.props
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.GDifare.Portal.HumaLab.UI.props
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\staticwebassets.pack.json
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\staticwebassets.build.json
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\staticwebassets.development.json
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\scopedcss\bundle\GDifare.Portal.HumaLab.UI.styles.css
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\GDifare.Portal.HumaLab.UI.csproj.CopyComplete
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\GDifare.Portal.HumaLab.UI.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\refint\GDifare.Portal.HumaLab.UI.dll
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\GDifare.Portal.HumaLab.UI.pdb
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\GDifare.Portal.HumaLab.UI.genruntimeconfig.cache
+C:\Users\JoseGuarnizo\PortalHumalabProducIssues\ISSUES_1.0.005\Portal Humalab\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\ref\GDifare.Portal.HumaLab.UI.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\appsettings.Development.json
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\appsettings.json
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\catalogoMuestras.json
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\catalogoMuestrasFinal.json
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\MenuHumaLab.json
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\GDifare.Portal.HumaLab.UI.staticwebassets.runtime.json
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\GDifare.Portal.HumaLab.UI.exe
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\GDifare.Portal.HumaLab.UI.deps.json
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\GDifare.Portal.HumaLab.UI.runtimeconfig.json
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\GDifare.Portal.HumaLab.UI.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\GDifare.Portal.HumaLab.UI.pdb
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\BarcodeStandard.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\BouncyCastle.Cryptography.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\EPPlus.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\EPPlus.Interfaces.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\EPPlus.System.Drawing.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\HtmlAgilityPack.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\HtmlRendererCore.PdfSharp.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Humanizer.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\itextsharp.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\MessagePack.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\MessagePack.Annotations.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\System.Web.Mvc.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\System.Web.Razor.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\System.Web.Helpers.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\System.Web.WebPages.Deployment.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\System.Web.WebPages.Razor.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\System.Web.WebPages.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.AspNetCore.Razor.Language.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.Bcl.AsyncInterfaces.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.Build.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.Build.Framework.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.CodeAnalysis.AnalyzerUtilities.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.CodeAnalysis.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.CodeAnalysis.CSharp.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.CodeAnalysis.CSharp.Features.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.CodeAnalysis.CSharp.Workspaces.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.CodeAnalysis.Features.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.CodeAnalysis.Razor.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.CodeAnalysis.Scripting.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.CodeAnalysis.Workspaces.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.DiaSymReader.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.DotNet.Scaffolding.Shared.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.IO.RecyclableMemoryStream.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.NET.StringTools.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.VisualStudio.Debugger.Contracts.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.VisualStudio.Web.CodeGeneration.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.VisualStudio.Web.CodeGeneration.Core.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\dotnet-aspnet-codegenerator-design.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.VisualStudio.Web.CodeGeneration.Templating.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.Web.Infrastructure.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\NuGet.Common.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\NuGet.Configuration.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\NuGet.DependencyResolver.Core.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\NuGet.Frameworks.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\NuGet.LibraryModel.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\NuGet.Packaging.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\NuGet.ProjectModel.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\NuGet.Protocol.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\NuGet.Versioning.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\PdfSharpCore.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ICSharpCode.SharpZipLib.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\SixLabors.Fonts.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\SixLabors.ImageSharp.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\System.Composition.AttributedModel.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\System.Composition.Convention.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\System.Composition.Hosting.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\System.Composition.Runtime.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\System.Composition.TypedParts.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\System.Drawing.Common.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\System.Reflection.MetadataLoadContext.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\System.Security.Cryptography.Pkcs.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\System.Security.Permissions.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\System.Windows.Extensions.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\zxing.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ZXing.Windows.Compatibility.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\af\Humanizer.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ar\Humanizer.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\az\Humanizer.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\bg\Humanizer.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\bn-BD\Humanizer.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\cs\Humanizer.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\da\Humanizer.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\de\Humanizer.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\el\Humanizer.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\es\Humanizer.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\fa\Humanizer.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\fi-FI\Humanizer.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\fr\Humanizer.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\fr-BE\Humanizer.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\he\Humanizer.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\hr\Humanizer.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\hu\Humanizer.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\hy\Humanizer.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\id\Humanizer.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\is\Humanizer.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\it\Humanizer.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ja\Humanizer.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ko-KR\Humanizer.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ku\Humanizer.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\lv\Humanizer.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ms-MY\Humanizer.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\mt\Humanizer.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\nb\Humanizer.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\nb-NO\Humanizer.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\nl\Humanizer.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\pl\Humanizer.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\pt\Humanizer.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ro\Humanizer.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ru\Humanizer.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\sk\Humanizer.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\sl\Humanizer.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\sr\Humanizer.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\sr-Latn\Humanizer.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\sv\Humanizer.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\th-TH\Humanizer.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\tr\Humanizer.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\uk\Humanizer.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\uz-Cyrl-UZ\Humanizer.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\uz-Latn-UZ\Humanizer.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\vi\Humanizer.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\zh-CN\Humanizer.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\zh-Hans\Humanizer.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\zh-Hant\Humanizer.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\cs\Microsoft.CodeAnalysis.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\de\Microsoft.CodeAnalysis.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\es\Microsoft.CodeAnalysis.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\fr\Microsoft.CodeAnalysis.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\it\Microsoft.CodeAnalysis.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ja\Microsoft.CodeAnalysis.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ko\Microsoft.CodeAnalysis.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\pl\Microsoft.CodeAnalysis.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\pt-BR\Microsoft.CodeAnalysis.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ru\Microsoft.CodeAnalysis.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\tr\Microsoft.CodeAnalysis.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\zh-Hans\Microsoft.CodeAnalysis.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\zh-Hant\Microsoft.CodeAnalysis.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\cs\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\de\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\es\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\fr\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\it\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ja\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ko\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\pl\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\pt-BR\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ru\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\tr\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\cs\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\de\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\es\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\fr\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\it\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ja\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ko\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\pl\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\pt-BR\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ru\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\tr\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\cs\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\de\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\es\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\fr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\it\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ja\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ko\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\pl\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\pt-BR\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ru\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\tr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\cs\Microsoft.CodeAnalysis.Features.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\de\Microsoft.CodeAnalysis.Features.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\es\Microsoft.CodeAnalysis.Features.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\fr\Microsoft.CodeAnalysis.Features.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\it\Microsoft.CodeAnalysis.Features.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ja\Microsoft.CodeAnalysis.Features.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ko\Microsoft.CodeAnalysis.Features.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\pl\Microsoft.CodeAnalysis.Features.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\pt-BR\Microsoft.CodeAnalysis.Features.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ru\Microsoft.CodeAnalysis.Features.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\tr\Microsoft.CodeAnalysis.Features.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\zh-Hans\Microsoft.CodeAnalysis.Features.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\zh-Hant\Microsoft.CodeAnalysis.Features.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\cs\Microsoft.CodeAnalysis.Scripting.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\de\Microsoft.CodeAnalysis.Scripting.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\es\Microsoft.CodeAnalysis.Scripting.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\fr\Microsoft.CodeAnalysis.Scripting.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\it\Microsoft.CodeAnalysis.Scripting.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ja\Microsoft.CodeAnalysis.Scripting.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ko\Microsoft.CodeAnalysis.Scripting.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\pl\Microsoft.CodeAnalysis.Scripting.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\pt-BR\Microsoft.CodeAnalysis.Scripting.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ru\Microsoft.CodeAnalysis.Scripting.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\tr\Microsoft.CodeAnalysis.Scripting.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\zh-Hans\Microsoft.CodeAnalysis.Scripting.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\zh-Hant\Microsoft.CodeAnalysis.Scripting.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\cs\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\de\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\es\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\fr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\it\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ja\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ko\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\pl\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\pt-BR\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ru\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\de\PdfSharpCore.resources.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.Pkcs.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\GDifare.Portal.EstadoCartera.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\GDifare.Portal.Humalab.Seguridad.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\GDifare.Portal.Humalab.Servicio.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\GDifare.Portales.Comunicaciones.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\GDifare.Portal.Humalab.Seguridad.pdb
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\GDifare.Portal.Humalab.Servicio.pdb
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\GDifare.Portal.HumaLab.UI.csproj.AssemblyReference.cache
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\GDifare.Portal.HumaLab.UI.Properties.Resources.resources
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\GDifare.Portal.HumaLab.UI.csproj.GenerateResource.cache
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\GDifare.Portal.HumaLab.UI.GeneratedMSBuildEditorConfig.editorconfig
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\GDifare.Portal.HumaLab.UI.AssemblyInfoInputs.cache
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\GDifare.Portal.HumaLab.UI.AssemblyInfo.cs
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\GDifare.Portal.HumaLab.UI.csproj.CoreCompileInputs.cache
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\GDifare.Portal.HumaLab.UI.MvcApplicationPartsAssemblyInfo.cache
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\GDifare.Portal.HumaLab.UI.RazorAssemblyInfo.cache
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\GDifare.Portal.HumaLab.UI.RazorAssemblyInfo.cs
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\staticwebassets\msbuild.GDifare.Portal.HumaLab.UI.Microsoft.AspNetCore.StaticWebAssets.props
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\staticwebassets\msbuild.build.GDifare.Portal.HumaLab.UI.props
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.GDifare.Portal.HumaLab.UI.props
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.GDifare.Portal.HumaLab.UI.props
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\staticwebassets.pack.json
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\staticwebassets.build.json
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\staticwebassets.development.json
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\scopedcss\bundle\GDifare.Portal.HumaLab.UI.styles.css
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\GDifare.Portal.HumaLab.UI.csproj.CopyComplete
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\GDifare.Portal.HumaLab.UI.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\refint\GDifare.Portal.HumaLab.UI.dll
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\GDifare.Portal.HumaLab.UI.pdb
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\GDifare.Portal.HumaLab.UI.genruntimeconfig.cache
+C:\HumalabGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\ref\GDifare.Portal.HumaLab.UI.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\appsettings.Development.json
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\appsettings.json
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\catalogoMuestras.json
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\catalogoMuestrasFinal.json
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\MenuHumaLab.json
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\GDifare.Portal.HumaLab.UI.staticwebassets.runtime.json
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\GDifare.Portal.HumaLab.UI.exe
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\GDifare.Portal.HumaLab.UI.deps.json
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\GDifare.Portal.HumaLab.UI.runtimeconfig.json
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\GDifare.Portal.HumaLab.UI.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\GDifare.Portal.HumaLab.UI.pdb
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\BarcodeStandard.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\BouncyCastle.Cryptography.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\EPPlus.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\EPPlus.Interfaces.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\EPPlus.System.Drawing.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\HtmlAgilityPack.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\HtmlRendererCore.PdfSharp.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Humanizer.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\itextsharp.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\MessagePack.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\MessagePack.Annotations.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\System.Web.Mvc.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\System.Web.Razor.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\System.Web.Helpers.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\System.Web.WebPages.Deployment.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\System.Web.WebPages.Razor.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\System.Web.WebPages.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.AspNetCore.Razor.Language.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.Bcl.AsyncInterfaces.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.Build.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.Build.Framework.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.CodeAnalysis.AnalyzerUtilities.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.CodeAnalysis.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.CodeAnalysis.CSharp.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.CodeAnalysis.CSharp.Features.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.CodeAnalysis.CSharp.Workspaces.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.CodeAnalysis.Features.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.CodeAnalysis.Razor.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.CodeAnalysis.Scripting.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.CodeAnalysis.Workspaces.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.DiaSymReader.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.DotNet.Scaffolding.Shared.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.IO.RecyclableMemoryStream.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.NET.StringTools.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.VisualStudio.Debugger.Contracts.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.VisualStudio.Web.CodeGeneration.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.VisualStudio.Web.CodeGeneration.Core.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\dotnet-aspnet-codegenerator-design.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.VisualStudio.Web.CodeGeneration.EntityFrameworkCore.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.VisualStudio.Web.CodeGeneration.Templating.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.VisualStudio.Web.CodeGeneration.Utils.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.VisualStudio.Web.CodeGenerators.Mvc.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.Web.Infrastructure.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\Newtonsoft.Json.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\NuGet.Common.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\NuGet.Configuration.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\NuGet.DependencyResolver.Core.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\NuGet.Frameworks.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\NuGet.LibraryModel.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\NuGet.Packaging.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\NuGet.ProjectModel.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\NuGet.Protocol.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\NuGet.Versioning.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\PdfSharpCore.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ICSharpCode.SharpZipLib.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\SixLabors.Fonts.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\SixLabors.ImageSharp.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\System.Composition.AttributedModel.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\System.Composition.Convention.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\System.Composition.Hosting.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\System.Composition.Runtime.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\System.Composition.TypedParts.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\System.Configuration.ConfigurationManager.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\System.Drawing.Common.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\System.Reflection.MetadataLoadContext.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\System.Security.Cryptography.Pkcs.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\System.Security.Cryptography.ProtectedData.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\System.Security.Permissions.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\System.Windows.Extensions.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\zxing.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ZXing.Windows.Compatibility.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\af\Humanizer.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ar\Humanizer.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\az\Humanizer.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\bg\Humanizer.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\bn-BD\Humanizer.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\cs\Humanizer.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\da\Humanizer.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\de\Humanizer.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\el\Humanizer.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\es\Humanizer.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\fa\Humanizer.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\fi-FI\Humanizer.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\fr\Humanizer.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\fr-BE\Humanizer.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\he\Humanizer.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\hr\Humanizer.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\hu\Humanizer.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\hy\Humanizer.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\id\Humanizer.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\is\Humanizer.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\it\Humanizer.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ja\Humanizer.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ko-KR\Humanizer.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ku\Humanizer.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\lv\Humanizer.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ms-MY\Humanizer.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\mt\Humanizer.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\nb\Humanizer.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\nb-NO\Humanizer.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\nl\Humanizer.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\pl\Humanizer.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\pt\Humanizer.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ro\Humanizer.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ru\Humanizer.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\sk\Humanizer.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\sl\Humanizer.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\sr\Humanizer.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\sr-Latn\Humanizer.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\sv\Humanizer.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\th-TH\Humanizer.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\tr\Humanizer.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\uk\Humanizer.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\uz-Cyrl-UZ\Humanizer.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\uz-Latn-UZ\Humanizer.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\vi\Humanizer.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\zh-CN\Humanizer.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\zh-Hans\Humanizer.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\zh-Hant\Humanizer.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\cs\Microsoft.CodeAnalysis.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\de\Microsoft.CodeAnalysis.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\es\Microsoft.CodeAnalysis.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\fr\Microsoft.CodeAnalysis.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\it\Microsoft.CodeAnalysis.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ja\Microsoft.CodeAnalysis.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ko\Microsoft.CodeAnalysis.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\pl\Microsoft.CodeAnalysis.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\pt-BR\Microsoft.CodeAnalysis.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ru\Microsoft.CodeAnalysis.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\tr\Microsoft.CodeAnalysis.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\zh-Hans\Microsoft.CodeAnalysis.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\zh-Hant\Microsoft.CodeAnalysis.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\cs\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\de\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\es\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\fr\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\it\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ja\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ko\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\pl\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\pt-BR\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ru\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\tr\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\cs\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\de\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\es\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\fr\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\it\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ja\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ko\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\pl\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\pt-BR\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ru\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\tr\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.Features.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\cs\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\de\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\es\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\fr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\it\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ja\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ko\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\pl\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\pt-BR\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ru\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\tr\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\zh-Hans\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\zh-Hant\Microsoft.CodeAnalysis.CSharp.Workspaces.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\cs\Microsoft.CodeAnalysis.Features.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\de\Microsoft.CodeAnalysis.Features.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\es\Microsoft.CodeAnalysis.Features.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\fr\Microsoft.CodeAnalysis.Features.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\it\Microsoft.CodeAnalysis.Features.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ja\Microsoft.CodeAnalysis.Features.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ko\Microsoft.CodeAnalysis.Features.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\pl\Microsoft.CodeAnalysis.Features.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\pt-BR\Microsoft.CodeAnalysis.Features.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ru\Microsoft.CodeAnalysis.Features.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\tr\Microsoft.CodeAnalysis.Features.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\zh-Hans\Microsoft.CodeAnalysis.Features.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\zh-Hant\Microsoft.CodeAnalysis.Features.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\cs\Microsoft.CodeAnalysis.Scripting.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\de\Microsoft.CodeAnalysis.Scripting.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\es\Microsoft.CodeAnalysis.Scripting.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\fr\Microsoft.CodeAnalysis.Scripting.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\it\Microsoft.CodeAnalysis.Scripting.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ja\Microsoft.CodeAnalysis.Scripting.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ko\Microsoft.CodeAnalysis.Scripting.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\pl\Microsoft.CodeAnalysis.Scripting.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\pt-BR\Microsoft.CodeAnalysis.Scripting.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ru\Microsoft.CodeAnalysis.Scripting.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\tr\Microsoft.CodeAnalysis.Scripting.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\zh-Hans\Microsoft.CodeAnalysis.Scripting.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\zh-Hant\Microsoft.CodeAnalysis.Scripting.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\cs\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\de\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\es\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\fr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\it\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ja\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ko\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\pl\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\pt-BR\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\ru\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\tr\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\de\PdfSharpCore.resources.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\runtimes\win\lib\net6.0\Microsoft.Win32.SystemEvents.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Drawing.Common.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.Pkcs.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Security.Cryptography.ProtectedData.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\runtimes\win\lib\net6.0\System.Windows.Extensions.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\GDifare.Portal.EstadoCartera.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\GDifare.Portal.Humalab.Seguridad.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\GDifare.Portal.Humalab.Servicio.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\GDifare.Portales.Comunicaciones.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\GDifare.Portal.Humalab.Seguridad.pdb
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\bin\Debug\net6.0\GDifare.Portal.Humalab.Servicio.pdb
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\GDifare.Portal.HumaLab.UI.csproj.AssemblyReference.cache
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\GDifare.Portal.HumaLab.UI.Properties.Resources.resources
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\GDifare.Portal.HumaLab.UI.csproj.GenerateResource.cache
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\GDifare.Portal.HumaLab.UI.GeneratedMSBuildEditorConfig.editorconfig
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\GDifare.Portal.HumaLab.UI.AssemblyInfoInputs.cache
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\GDifare.Portal.HumaLab.UI.AssemblyInfo.cs
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\GDifare.Portal.HumaLab.UI.csproj.CoreCompileInputs.cache
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\GDifare.Portal.HumaLab.UI.MvcApplicationPartsAssemblyInfo.cache
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\GDifare.Portal.HumaLab.UI.RazorAssemblyInfo.cache
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\GDifare.Portal.HumaLab.UI.RazorAssemblyInfo.cs
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\staticwebassets\msbuild.GDifare.Portal.HumaLab.UI.Microsoft.AspNetCore.StaticWebAssets.props
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\staticwebassets\msbuild.build.GDifare.Portal.HumaLab.UI.props
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\staticwebassets\msbuild.buildMultiTargeting.GDifare.Portal.HumaLab.UI.props
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\staticwebassets\msbuild.buildTransitive.GDifare.Portal.HumaLab.UI.props
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\staticwebassets.pack.json
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\staticwebassets.build.json
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\staticwebassets.development.json
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\scopedcss\bundle\GDifare.Portal.HumaLab.UI.styles.css
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\GDifare.Portal.HumaLab.UI.csproj.CopyComplete
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\GDifare.Portal.HumaLab.UI.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\refint\GDifare.Portal.HumaLab.UI.dll
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\GDifare.Portal.HumaLab.UI.pdb
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\GDifare.Portal.HumaLab.UI.genruntimeconfig.cache
+C:\HumalabPortalGit\PortalHL\Fuentes\GDifare.Portal.HumaLab.UI\obj\Debug\net6.0\ref\GDifare.Portal.HumaLab.UI.dll

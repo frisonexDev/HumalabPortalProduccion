@@ -1,0 +1,259 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\HumalabPortalGit\\PortalHL\\Fuentes\\GDifare.Portal.HumaLab.UI\\GDifare.Portal.HumaLab.UI.csproj": {}
+  },
+  "projects": {
+    "C:\\HumalabPortalGit\\PortalHL\\Fuentes\\GDifare.Portal.Humalab.Seguridad\\GDifare.Portal.Humalab.Seguridad.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\HumalabPortalGit\\PortalHL\\Fuentes\\GDifare.Portal.Humalab.Seguridad\\GDifare.Portal.Humalab.Seguridad.csproj",
+        "projectName": "GDifare.Portal.Humalab.Seguridad",
+        "projectPath": "C:\\HumalabPortalGit\\PortalHL\\Fuentes\\GDifare.Portal.Humalab.Seguridad\\GDifare.Portal.Humalab.Seguridad.csproj",
+        "packagesPath": "C:\\Users\\Brenda Jimenez\\.nuget\\packages\\",
+        "outputPath": "C:\\HumalabPortalGit\\PortalHL\\Fuentes\\GDifare.Portal.Humalab.Seguridad\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Brenda Jimenez\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Users\\Brenda Jimenez\\OneDrive - FRISONEX FRISON IMPORTADORA EXPORTADORA\\Escritorio\\PAQUETES DIFARE": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://pkgs.dev.azure.com/GrupoDifare/63046ca7-0958-4f77-b5b9-0128792761e6/_packaging/MicroServiciosFeed/nuget/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\HumalabPortalGit\\PortalHL\\Fuentes\\GDifare.Portal.Humalab.Servicio\\GDifare.Portal.Humalab.Servicio.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\HumalabPortalGit\\PortalHL\\Fuentes\\GDifare.Portal.Humalab.Servicio\\GDifare.Portal.Humalab.Servicio.csproj",
+        "projectName": "GDifare.Portal.Humalab.Servicio",
+        "projectPath": "C:\\HumalabPortalGit\\PortalHL\\Fuentes\\GDifare.Portal.Humalab.Servicio\\GDifare.Portal.Humalab.Servicio.csproj",
+        "packagesPath": "C:\\Users\\Brenda Jimenez\\.nuget\\packages\\",
+        "outputPath": "C:\\HumalabPortalGit\\PortalHL\\Fuentes\\GDifare.Portal.Humalab.Servicio\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Brenda Jimenez\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Users\\Brenda Jimenez\\OneDrive - FRISONEX FRISON IMPORTADORA EXPORTADORA\\Escritorio\\PAQUETES DIFARE": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://pkgs.dev.azure.com/GrupoDifare/63046ca7-0958-4f77-b5b9-0128792761e6/_packaging/MicroServiciosFeed/nuget/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\HumalabPortalGit\\PortalHL\\Fuentes\\GDifare.Portal.Humalab.Seguridad\\GDifare.Portal.Humalab.Seguridad.csproj": {
+                "projectPath": "C:\\HumalabPortalGit\\PortalHL\\Fuentes\\GDifare.Portal.Humalab.Seguridad\\GDifare.Portal.Humalab.Seguridad.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "HtmlRendererCore.PdfSharp": {
+              "target": "Package",
+              "version": "[1.0.5, )"
+            },
+            "Newtonsoft.Json": {
+              "target": "Package",
+              "version": "[13.0.3, )"
+            },
+            "PdfSharpCore": {
+              "target": "Package",
+              "version": "[1.3.57, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\HumalabPortalGit\\PortalHL\\Fuentes\\GDifare.Portal.HumaLab.UI\\GDifare.Portal.HumaLab.UI.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\HumalabPortalGit\\PortalHL\\Fuentes\\GDifare.Portal.HumaLab.UI\\GDifare.Portal.HumaLab.UI.csproj",
+        "projectName": "GDifare.Portal.HumaLab.UI",
+        "projectPath": "C:\\HumalabPortalGit\\PortalHL\\Fuentes\\GDifare.Portal.HumaLab.UI\\GDifare.Portal.HumaLab.UI.csproj",
+        "packagesPath": "C:\\Users\\Brenda Jimenez\\.nuget\\packages\\",
+        "outputPath": "C:\\HumalabPortalGit\\PortalHL\\Fuentes\\GDifare.Portal.HumaLab.UI\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Brenda Jimenez\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net6.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Users\\Brenda Jimenez\\OneDrive - FRISONEX FRISON IMPORTADORA EXPORTADORA\\Escritorio\\PAQUETES DIFARE": {},
+          "https://api.nuget.org/v3/index.json": {},
+          "https://pkgs.dev.azure.com/GrupoDifare/63046ca7-0958-4f77-b5b9-0128792761e6/_packaging/MicroServiciosFeed/nuget/v3/index.json": {}
+        },
+        "frameworks": {
+          "net6.0": {
+            "targetAlias": "net6.0",
+            "projectReferences": {
+              "C:\\HumalabPortalGit\\PortalHL\\Fuentes\\GDifare.Portal.Humalab.Seguridad\\GDifare.Portal.Humalab.Seguridad.csproj": {
+                "projectPath": "C:\\HumalabPortalGit\\PortalHL\\Fuentes\\GDifare.Portal.Humalab.Seguridad\\GDifare.Portal.Humalab.Seguridad.csproj"
+              },
+              "C:\\HumalabPortalGit\\PortalHL\\Fuentes\\GDifare.Portal.Humalab.Servicio\\GDifare.Portal.Humalab.Servicio.csproj": {
+                "projectPath": "C:\\HumalabPortalGit\\PortalHL\\Fuentes\\GDifare.Portal.Humalab.Servicio\\GDifare.Portal.Humalab.Servicio.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net6.0": {
+          "targetAlias": "net6.0",
+          "dependencies": {
+            "BarcodeLib": {
+              "target": "Package",
+              "version": "[2.3.0, )"
+            },
+            "EPPlus": {
+              "target": "Package",
+              "version": "[7.0.5, )"
+            },
+            "HtmlAgilityPack": {
+              "target": "Package",
+              "version": "[1.11.54, )"
+            },
+            "Microsoft.AspNet.Mvc": {
+              "target": "Package",
+              "version": "[5.2.9, )"
+            },
+            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
+              "target": "Package",
+              "version": "[6.0.14, )"
+            },
+            "ZXing.Net.Bindings.Windows.Compatibility": {
+              "target": "Package",
+              "version": "[0.16.12, )"
+            },
+            "iTextSharp": {
+              "target": "Package",
+              "version": "[5.5.13.4, )"
+            },
+            "jQuery": {
+              "target": "Package",
+              "version": "[3.7.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

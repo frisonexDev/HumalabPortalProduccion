@@ -1,0 +1,475 @@
+﻿
+<style>
+    td.details-control {
+        /* Image in the first column to
+                            indicate expand*/
+        background: url('/Resources/images/icons/more.png') no-repeat center;
+        cursor: pointer;
+    }
+
+    tr.shown td.details-control {
+        background: url('/Resources/images/icons/shrinkdata.PNG') no-repeat center;
+    }
+
+    .etiquetaLabel1 {
+        font-weight: bold;
+        color: orange;
+        font-size: 18px;
+    }
+
+
+    .etiquetaLabel {
+        font-weight: bold;
+        color: #000;
+        font-size: 18px;
+    }
+
+
+    .box-shadow {
+        background-color: #fff;
+        color: #000;
+        padding: 10px;
+        border-radius: 4px;
+        box-shadow: 4px 4px 2px 2px #A2A2A2;
+    }
+
+    .titulo {
+        font-size: 26px;
+        font-weight: bold;
+        color: #000;
+        margin-left: 2px;
+    }
+
+
+    .card-margin {
+        margin-bottom: 1.875rem;
+    }
+
+    .card {
+        border: 1px !important;
+        box-shadow: 0px 0px 10px 0px rgba(82, 63, 105, 0.1);
+        -webkit-box-shadow: 0px 0px 10px 0px rgba(82, 63, 105, 0.1);
+        -moz-box-shadow: 0px 0px 10px 0px rgba(82, 63, 105, 0.1);
+        -ms-box-shadow: 0px 0px 10px 0px rgba(82, 63, 105, 0.1);
+    }
+
+    .card {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        background-color: #ffffff;
+        background-clip: border-box;
+        border: 1px solid #e6e4e9;
+        border-radius: 8px;
+    }
+
+        .card .card-header.no-border {
+            border: 1px !important;
+        }
+
+        .card .card-header {
+            background: #659EC8;
+            padding: 0 0.9375rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            min-height: 50px;
+        }
+
+        .card .card-title {
+            color: #fff !important;
+            font-size: 18px;
+        }
+
+    .card-header:first-child {
+        border-radius: calc(8px - 1px) calc(8px - 1px) 0 0;
+    }
+
+    .container {
+        max-width: 100% !important;
+    }
+</style>
+<div class="container-fluid bg-white  rounded-3 p-3 mt-3 mb-3">
+    <table id="example" class="table table-responsive dataTable mt-2" style="width:100%;" aria-describedby="example_info">
+        <thead class="bg-primary">
+            <tr>
+                <th class="fw-bold text-center" tabindex="0" rowspan="1" colspan="1" style="width: 136.613px; color:#F4F4F2;"></th>
+                <th class="fw-bold text-center" tabindex="0" rowspan="1" colspan="1" style="width: 136.613px; color:#F4F4F2;">ID</th>
+                <th class="sorting fw-bold text-center" tabindex="1" aria-controls="example" rowspan="1" colspan="1" style="width: 86.2125px;color:#F4F4F2;">PRUEBA</th>
+                <th class="sorting fw-bold text-center" tabindex="6" aria-controls="example" rowspan="1" colspan="1" style="width: 40.325px;color:#F4F4F2;">PRECIO</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+
+    </table>
+
+    <div class="col-md-1 d-flex justify-content-right">
+        <div class="form-group">
+            <input id="btnExcelPruebas" onclick="expPruebas()" type="submit" value="EXPORTAR" class="btn btn-success" />
+        </div>
+    </div>
+
+
+</div>
+
+
+<!--Modal-->
+<partial name="~/Views/Modales/CatalogoUtilidad.cshtml" />
+
+<script>
+
+    var datosPruebas = [];
+
+    $(document).ready(function () {
+
+        var table;
+        var datAvalabEnd;
+
+        $.ajax({
+            url: '@Url.Action("CatalogoPruebas","Cliente")',
+            type: 'GET',
+            beforeSend: function () {
+                loadingShow();
+            },
+            success: function (response) {
+
+                if (response !== "01") {
+                    // response = response.replace(/:\.(\d+)/g, ':0.$1'); //reemplaza un numero mal formado
+                    // response = response.replace(/:O\b/g, ':"O"'); // Si `O` debería ser una cadena.
+                    // response = response.replace(/:O\b/g, ':0');    // Si `O` debería ser un número.
+                    const resp = JSON.parse(response)
+
+                    $.ajax({
+                        url: '@Url.Action("CatalogoPruebasAvalab","Cliente")',
+                        type: 'GET',
+                        beforeSend: function () { 
+                            loadingShow();
+                        },
+                        success: function (response) { 
+                            var respAvalab = JSON.parse(response);
+                            var listaAvalab = respAvalab.examen[0].details;
+
+                            const filterNullsAvalab = listaAvalab.map((x) => {
+                                return removeNullsJson(x);
+                            })
+
+                            datAvalabEnd = filterNullsAvalab;
+
+                            $.ajax({
+                                url: '@Url.Action("CatalogoPruebasExcel","Cliente")',
+                                type: 'GET',
+                                beforeSend: function () {
+                                    loadingShow();
+                                },
+                                success: function (response) {
+                                    var dataExcel = JSON.parse(response)
+                                    //console.log(dataExcel);
+                                    //fillTable(filterNulls, dataExcel);
+                                    fillTable(resp, dataExcel, datAvalabEnd);
+
+                                    loadingHide();
+                                }
+                            });
+
+                            loadingHide();
+                        }
+                    });
+                    
+                    //console.log(resp);
+
+                    // const lista = resp.examen[0].details
+                    // datosPruebas = lista;
+
+                    // const filterNulls = lista.map((x) => {
+                    //     return removeNullsJson(x);
+                    // })
+
+                    // $.ajax({
+                    //     url: '@Url.Action("CatalogoPruebasExcel","Cliente")',
+                    //     type: 'GET',
+                    //     beforeSend: function () {
+                    //         loadingShow();
+                    //     },
+                    //     success: function (response) {
+                    //         var dataExcel = JSON.parse(response)
+                    //         //console.log(dataExcel);
+                    //         //fillTable(filterNulls, dataExcel);
+                    //         fillTable(resp, dataExcel, datAvalabEnd);
+
+                    //         loadingHide();
+                    //     }
+                    // });
+
+                    loadingHide();
+                }
+                else {
+                    MensajeAlerta1("danger", "Problemas para obtener el catalogo de pruebas.");
+                    loadingHide();
+                }
+            }
+        });
+
+    });
+
+    function fillTable(dataEjemplo, dataExcel, dataAvalab) {
+
+        var pruebasFinal = [];   
+        
+        // console.log("Json con estados");
+        // console.log(dataEjemplo);
+
+        // console.log("Json avalab normal");
+        // console.log(dataAvalab);
+
+        dataExcel.forEach(examen => {            
+            for (var i = 0; i < dataEjemplo.length; i++) {
+                
+                for (var j = 0; j < dataAvalab.length; j++) {
+
+                    if (examen["CÓDIGO"] === dataEjemplo[i].CodigoExamen && examen["CÓDIGO"] === dataAvalab[j].CodigoExamen) {
+
+                        if (dataEjemplo[i].Estado === 'Activo') {
+                            
+                            var pruebas = {
+                                AbreviaturaExamen: dataEjemplo[i].CodigoExamen,
+                                Activo: dataAvalab[j].Activo,
+                                AplicaFormula: dataAvalab[j].AplicaFormula,
+                                AplicaSLA: dataAvalab[j].AplicaSLA,
+                                Autovalidacion: dataAvalab[j].Autovalidacion,
+                                CodigoExamen: dataEjemplo[i].CodigoExamen,
+                                ComentarioFijo: dataAvalab[j].ComentarioFijo,
+                                ComentarioImpresion: dataAvalab[j].ComentarioImpresion,
+                                NombreMetodo: examen["METODOLOGÍA"],
+                                NombreMuestra: examen["MUESTRA PRINCIPAL"],
+                                CostoPrueba: dataEjemplo[i].Precio,
+                                EntregaResultado: examen["TIEMPO DE ENTREGA (Horas depués de recibir la muestra en el laboratorio central)"],
+                                DescripcionAnalito: examen["FICHA Y UTILIDAD CLÍNICA"],
+                                DiasProceso: examen["DÍAS DE PROCESAMIENTO"],
+                                NombreExamen: dataAvalab[j].NombreExamen,
+                                MuestraAdicional: examen["MUESTRA ALTERNA"],
+                                Estabilidad: examen["ESTABILIDAD DE LA MUESTRA"]
+                            };
+
+                            pruebasFinal.push(pruebas);
+                        }
+                    }
+                }
+            }
+        });
+
+        //console.log(pruebasFinal);
+        table = $('#example').DataTable({
+            "data": pruebasFinal,
+            language: {
+                url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json',
+            },
+            "columns": [{
+                "className": 'details-control',
+                "orderable": true,
+                "data": null,
+                "defaultContent": ''
+            },
+            { "data": "CodigoExamen" },
+            { "data": "NombreExamen" },
+            {
+                "data": "CostoPrueba",
+                render: function (data, type) {
+                    let color = 'bg-primary';
+                    let number = parseFloat(data).toFixed(2);
+                    if (number < 0) color = 'bg-danger';
+                    return '<span style="font-size:1rem;" class="badge rounded-pill ' + color + '">' + number + '</span>';
+                }
+            }
+            ],
+            "order": [[1, 'asc']]
+        });
+    }
+    // Click events for expanding and
+    // closing using up/down arrows
+    $('#example tbody').on('click',
+        'td.details-control', function () {
+
+            var tr = $(this).closest('tr');
+            var row = table.row(tr);
+
+            if (row.child.isShown()) {
+
+                // Closing the already opened row
+                row.child.hide();
+
+                // Removing class to hide
+                tr.removeClass('shown');
+            }
+            else {
+
+                // Show the child row for detail
+                // information
+                row.child(getChildRow(row.data())).show();
+
+                // To show details,add the below class
+                tr.addClass('shown');
+            }
+        });
+
+
+
+    function removeNullsJson(jsonNulls) {
+
+        const jsonNotNulls = JSON.parse(JSON.stringify(jsonNulls));
+
+        for (var clave in jsonNotNulls) {
+            // Controlando que json realmente tenga esa propiedad
+            if (jsonNotNulls.hasOwnProperty(clave)) {
+                // Mostrando en pantalla la clave junto a su valor
+                if (jsonNotNulls[clave] === null) {
+                    jsonNotNulls[clave] = '';
+                    // console.log("La clave es " + clave+ " y el valor es " + jsonNotNulls[clave]);
+                }
+            }
+        }
+        return jsonNotNulls;
+    }
+
+    /* Function for child row details*/
+    function getChildRow(data) {
+
+
+        return '<div class ="container"  style=" display: flex;justify-content: space-between;width:100%;">' +
+            '<div style="min-width: 100%;">   <span class="titulo"> ' + data.CodigoExamen + ' | ' + data.AbreviaturaExamen + ' </span>' +
+            '     <div class="card-group">' +
+            '<div class="card text-dark bg-light mb-3" style="max-width: 18rem;">' +
+            '  <div class="card-header"><h1 class="card-title">Muestra Principal</h1></div>' +
+            '  <div class="card-body">    ' +
+            '    <p class="card-text etiquetaLabel1">' + data.NombreMuestra + '</p>' +
+            '  </div>' +
+            '</div>' +
+            '<div class="card text-dark bg-light mb-3" style="max-width: 18rem;">' +
+            '  <div class="card-header"><h5 class="card-title">Muestra Alterna</h5></div>' +
+            '  <div class="card-body">    ' +
+            '    <p class="card-text etiquetaLabel">' + data.MuestraAdicional + '</p>' +
+            '  </div>' +
+            '</div>' +
+            '<div class="card text-dark bg-light mb-3" style="max-width: 18rem;">' +
+            '  <div class="card-header"><h5 class="card-title">Código</h5></div>' +
+            '  <div class="card-body">    ' +
+            '    <p class="card-text etiquetaLabel">' + data.CodigoExamen + '</p>' +
+            '  </div>' +
+            '</div>' +
+            '<div class="card text-dark bg-light mb-3" style="max-width: 18rem;">' +
+            '  <div class="card-header"><h5 class="card-title">Metodología</h5></div>' +
+            '  <div class="card-body">    ' +
+            '    <p class="card-text etiquetaLabel">' + data.NombreMetodo + '</p>' +
+            ' </div>' +
+            '</div>' +
+            '<div class="card text-dark bg-light mb-3" style="max-width: 18rem;">' +
+            '  <div class="card-header"><h5 class="card-title">Precio</h5></div>' +
+            '  <div class="card-body">   ' +
+            '    <p class="card-text etiquetaLabel"><span class="badge ' + (data.CostoPrueba < 0 ? 'bg-danger' : 'bg-primary') + '" style="font-size:1.3rem;"> $ ' + data.CostoPrueba + '</span></p>' +
+            '  </div>' +
+            '</div>' +
+            '<div class="card text-dark bg-light mb-3" style="max-width: 18rem;">' +
+            '  <div class="card-header"><h5 class="card-title">Tiempo Entrega</h5></div>' +
+            '  <div class="card-body">    ' +
+            '    <p class="card-text etiquetaLabel"><span class="badge text-bg-primary" style="font-size:1.5rem;">' + data.EntregaResultado + '</span>  Horas  despúes de recibida la muestra</p>' +
+            '  </div>' +
+            '</div>' +
+            '<div class="card text-dark bg-light mb-3" style = "max-width: 18rem;" > ' +
+            '  <div class="card-header"><h5 class="card-title">Estabilida de la muestra</h5></div>' +
+            '  <div class="card-body">    ' +
+            '    <p class="card-text etiquetaLabel">' + data.Estabilidad + '</p > ' +
+            '  </div>' +
+            '</div>' +
+            '<div class="card text-dark bg-light mb-3" style = "max-width: 18rem;" > ' +
+            '  <div class="card-header"><h5 class="card-title">Días de procesamiento</h5></div>' +
+            '  <div class="card-body">    ' +
+            '    <p class="card-text etiquetaLabel"><span class="badge text-bg-primary" style="font-size:1.0rem;">' + data.DiasProceso + '</span></p>' +
+            '  </div>' +
+            '</div>' +
+
+            '</div>' +
+            '	<div class="tab-content p-3 border bg-light" id="nav-tabContent">' +
+            '			<div class="tab-pane fade active show" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">' +
+            '	 <br/>' +
+            '				<div class="box-shadow etiquetaLabel"><h1>UTILIDAD Y FICHA TÉCNICA</h1>' +
+            '			<div style="min-height: 250px; overflow-y: scroll;">' + data.DescripcionAnalito + '</div>' +
+            '		</div></div>' +
+            '	</div>' +
+            '</div></div>'
+    }
+
+    function expPruebas() {
+        var nombreMuestra;
+        var idMuestra;
+        var objPruebas;
+        var lstPruebasNew = [];
+
+        for (var i = 0; i < datosPruebas.length; i++) {
+            if (datosPruebas[i].EsPerfil === true) {
+                nombreMuestra = datosPruebas[i].ExamenPerfil[0].NombreMuestra;
+                idMuestra = datosPruebas[i].ExamenPerfil[0].IdMuestra;
+            }
+            else {
+                nombreMuestra = datosPruebas[i].NombreMuestra;
+                idMuestra = datosPruebas[i].IdMuestra;
+            }
+
+            objPruebas = {
+                IdExamen: datosPruebas[i].IdExamen,
+                IdMuestra: datosPruebas[i].IdMuestra,
+                CodigoExamen: datosPruebas[i].CodigoExamen,
+                EsPerfil: datosPruebas[i].EsPerfil,
+                Nombre: datosPruebas[i].NombreExamen,
+                Abreviatura: datosPruebas[i].AbreviaturaExamen,
+                Metodologia: datosPruebas[i].Autovalidacion,
+                Muestra: nombreMuestra,
+                Recipiente: datosPruebas[i].Recipiente,
+                Observaciones: datosPruebas[i].ComentarioFijo,
+                MuestraAlterna: datosPruebas[i].MuestraAdicional,
+                Precio: datosPruebas[i].CostoPrueba
+            }
+
+            lstPruebasNew.push(objPruebas);
+        }
+
+        $.ajax({
+            url: '@Url.Action("ExportExcelPruebas","Cliente")',
+            type: 'POST',
+            beforeSend: function () {
+                loadingShow();
+            },
+            data: { datosPrueba: JSON.stringify(lstPruebasNew) },
+            success: function (response) {
+
+                if (response !== "01") {
+                    var byteCharacters = atob(response);
+                    var byteNumbers = new Array(byteCharacters.length);
+
+                    for (var i = 0; i < byteCharacters.length; i++) {
+                        byteNumbers[i] = byteCharacters.charCodeAt(i);
+                    }
+
+                    var byteArray = new Uint8Array(byteNumbers);
+                    var blob = new Blob([byteArray], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
+                    var url = window.URL.createObjectURL(blob);
+                    var a = document.createElement("a");
+                    document.body.appendChild(a);
+                    a.style = "display: none";
+                    a.href = url;
+                    a.download = "PruebasHumalab.xlsx";
+                    a.click();
+
+                    window.URL.revokeObjectURL(url);
+
+                    loadingHide();
+                }
+                else {
+                    MensajeAlerta1("danger", "Problemas para exportar el excel de pruebas.");
+                    loadingHide();
+                }
+
+            }
+        });
+    }
+
+</script>

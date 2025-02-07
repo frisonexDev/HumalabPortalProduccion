@@ -1,0 +1,1383 @@
+﻿@using GDifare.Portal.Humalab.Seguridad.Modelos;
+@using GDifare.Portal.Humalab.Servicio.Modelos.Orden;
+@using GDifare.Portal.Humalab.Servicio.Utils;
+@using Newtonsoft.Json;
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+
+@{
+    ViewData["Title"] = "Cliente";
+    Layout = "/Views/Shared/_BootStrapLayoutMenu.cshtml";
+}
+
+@{
+    ObjUsuario infousuario = JsonConvert.DeserializeObject<ObjUsuario>
+        (HttpContextAccessor.HttpContext.Session.GetString("usuario"));	 
+}
+
+
+<partial name="~/Views/Componentes/BuscarOrden.cshtml" />
+
+<partial name="~/Views/Componentes/TablaConsultarOrden.cshtml" />
+
+<!--Modales-->
+
+<partial name="~/Views/Modales/PopUp.cshtml" />
+
+
+<!--JS-->
+@*<script src="~/AdminKit/js/app.js"></script>*@
+<script src="~/js/Notificaciones.js"></script>
+
+<script>
+
+    //Declarción Variables
+    var ConsultaOrdenes = new Object();
+    var Pedidos =  new Object();
+    var Ordenes = new Object();
+    var FechadeInicio;
+    var Fecha;
+    var FechaActual;
+    var CambioFecha;
+    var UsuarioGalileo;
+    var nombreFuncion;
+    var indicePop;
+
+    //Colección Objetos
+    var ListadeOrdenes =  [];
+    var ListaOrdenPedido = [];
+
+    //Valores PDF resultados
+    var pdfResultado = true;
+    var PdfOrdenActualizaRes = new Object();
+
+    var pdfCabeOrdenPdf = new Object();
+    var pdfPacOrdenPdf = new Object();
+    var pdfMedOrdenPdf = new Object();
+    var pdfPruebasPdf = new Object();
+
+    var ListaPdfPaciente = [];
+    var ListaPdfMedico = [];
+    var ListaPdfPruebas = [];
+
+    var pdfResultadosFinal = new Object();
+
+    //contador para leyenda
+    var contadorSelec = 0;
+    var contadorTodo = 0;
+
+    var presentacionOrd = false;
+
+    var tablaOrdenesInicializada = false;
+
+    window.addEventListener('load', function () {
+        nombreFuncion="@Funcion.EliminarOrden"
+
+
+        CambioFecha=false;
+        UsuarioGalileo = @infousuario!.UsuarioID;
+
+        ConsultaOrdenes = {
+            OpcionBusqueda: @Numeros.Cero,
+            IdUsuarioGalileo: @infousuario.UsuarioID,
+            UsuarioCreacion: @infousuario.UsuarioID,
+            FechaCreacion: moment().format("YYYY-MM-DD")
+        }
+
+        FechaActual= moment().format("YYYY-MM-DD");
+        CalculoFechaInicio();
+        
+        document.getElementById("dtpInicio").value = moment().format("YYYY-MM-DD");;
+        document.getElementById("dtpFin").value = moment().format("YYYY-MM-DD");
+        
+        ListarOrdenesDefault();
+        HabilitarEnviar("@Estados.Cancelado");
+
+        ListaEstados('@Estados.Orden', '@Combos.EstadoOrden');
+    });
+
+    function CalculoFechaInicio()
+    {
+        //Fecha Actual del sistema
+        var Fecha = moment().subtract(90, 'days').calendar();                
+
+        Fecha = Fecha.replace('/','')
+                     .replace('/','');
+
+        var Mes = Fecha.substring(0,2);
+        var Dia = Fecha.substring(2,4);
+        var Ano = Fecha.substring(4,8);
+
+        FechadeInicio=Ano+'-'+Mes+'-'+Dia;
+        Fecha = FechadeInicio;        
+    }
+
+    function ValidarFechas()
+    {
+        Inicio =  new Date(document.getElementById("dtpInicio").value);
+        Fin = new Date(document.getElementById("dtpFin").value);
+
+        if(Inicio>Fin)
+        {
+            MensajeAlerta1("@Notificaciones.TituloDanger","@Notificaciones.DangerFecha");
+            document.getElementById("dtpInicio").value = FechadeInicio;
+            document.getElementById("dtpFin").value = moment().format("YYYY-MM-DD");
+            CambioFecha = false;
+        }
+        else if (Inicio === Fin) {
+            MensajeAlerta1("@Notificaciones.TituloDanger", "@Notificaciones.DangerFecha");
+            document.getElementById("dtpInicio").value = FechadeInicio;
+            document.getElementById("dtpFin").value = moment().format("YYYY-MM-DD");
+            CambioFecha = false;
+        }
+        else {
+            CambioFecha = true;
+        }
+    }
+       
+   
+    function ListarOrdenesDefault()
+    {
+        ListadeOrdenes=[];        
+        
+        $.ajax({
+            url: '@Url.Action("ListarOrdenes","Cliente")',
+            type: 'GET',
+            data: ConsultaOrdenes,
+            beforeSend: function () {
+                loadingShow();
+            },
+            success: function (response) {
+                const resp = JSON.parse(response)
+                
+                if(resp.length>0)
+                {
+
+                    for(var i=0; i < resp.length; i++)
+                    {
+                        Ordenes={
+                            NOrden: resp[i].NOrden,
+                            CodigoBarra: resp[i].CodigoBarra,
+                            FechaIngreso: resp[i].FechaIngreso,
+                            NombrePaciente: resp[i].NombrePaciente,
+                            Precio: resp[i].Precio,
+                            Estado: resp[i].Estado,
+                            Observacion:resp[i].Observacion,
+                            CodigoGalileo: resp[i].CodigoGalileo
+                        }
+
+                        ListadeOrdenes.push(Ordenes);                        
+                    }                                        
+
+                    //recorrer lista de ordenes humalab en estado
+                    //recibida/recibida parcial
+                    // var reci = "Recibida";
+                    // var reciParcial = "Recibida Parcial";
+                    // var ordenActua = "";
+                    // var barraLis = "";
+
+                    // //recorrer lista de ordenes humalab en estado
+                    // //resultado pendiente
+                    // var resulPen = "Resultado pendiente";
+
+                    // //recorrer lista de ordenes humalab en estado
+                    // //validacion pendiente
+                    // var valPen = "Validacion pendiente";
+
+                    // //recorrer lista de ordenes humalab en estado
+                    // //validado
+                    // var val = "Validado";
+
+                    // for (var i = 0; i < ListadeOrdenes.length; i++) {
+
+                    //     if (reci === ListadeOrdenes[i].Estado || reciParcial === ListadeOrdenes[i].Estado ||
+                    //         resulPen === ListadeOrdenes[i].Estado || valPen === ListadeOrdenes[i].Estado ||
+                    //         val === ListadeOrdenes[i].Estado) {                                                                
+                    //             ordenActua = ListadeOrdenes[i].CodigoBarra;                                
+                                
+                    //             //procesosActualizarOrden(ordenActua);
+                    //     }                        
+                    // }                   
+
+                    TablaOrdenes(ListadeOrdenes);
+                }
+                
+                loadingHide();                
+            }                        
+        });              
+    }
+
+    // async function procesosActualizarOrden(barraLis) {
+    //     var codExterno = await ObtenerCodigoExternoLis(barraLis);
+    //     ConsultaLis(codExterno);     
+    // }
+
+
+    // function ObtenerCodigoExternoLis(ordenActua) {        
+
+    //     return new Promise((resolve, reject) => {
+    //         var barraLis = "";
+
+    //         setTimeout(() => {
+
+    //             //obtiene el codigo orden externo de LIS
+    //             $.ajax({
+    //                 url: '@Url.Action("PDFResultados", "Cliente")',
+    //                 type: 'GET',
+    //                 data: { CodigoBarra: ordenActua },
+    //                 success: function (response) {
+
+    //                     if (response !== "01") {
+    //                         barraLis = response;    
+    //                         resolve(barraLis);
+    //                     }
+    //                 }
+
+    //             });                
+
+    //         }, 5000);
+
+    //     });                
+    // }
+
+    // function ConsultaLis(barraLis) {
+
+    //     return new Promise(resolve => {
+
+    //         setTimeout(() => {
+    //             //envia consulta a LIS
+    //             $.ajax({
+    //                 url: '@Url.Action("PDFResultadosLisCabe", "Cliente")',
+    //                 type: 'GET',
+    //                 data: { CodigoBarra: barraLis },
+    //                 success: function (response) {
+
+    //                     if (response.status === "success") {
+
+    //                         //orden resultado pendiente
+    //                         if (response.idEstadoOrden === 3) {
+    //                             //actualiza estado a resultado pendiente
+    //                             ActualizarEstadoLisOrd(response.idEstadoOrden, barraLis);                                
+    //                         }
+
+    //                         //orden validacion pendiente
+    //                         if (response.idEstadoOrden === 4) {
+    //                             //actualiza estado a validado pendiente
+    //                             ActualizarEstadoLisOrd(response.idEstadoOrden, barraLis);                                
+    //                         }
+
+    //                         //orden validada
+    //                         if (response.idEstadoOrden === 5) {
+    //                             //actualiza estado a validada
+    //                             ActualizarEstadoLisOrd(response.idEstadoOrden, barraLis);                                
+    //                         }
+    //                     }
+    //                 }
+    //             });
+
+    //             resolve();
+
+    //         },5000);
+
+    //     });
+    // }
+
+    function TablaOrdenes(Lista)
+    {        
+        var html='';                
+
+        for(var i=0; i< Lista.length ; i++) {
+            var estadoPorReco = "Por Recolectar";
+            var estadoReco = "Recolectado Total";
+            var estadoRecoPar = "Recolectado Parcial";
+            var anulado = "Anulado";
+            var gene = "Generada";
+            var cance = "Cancelada";
+            var recha = "Rechazada";
+            var reci = "Recibida";
+            var reciParcial = "Recibida Parcial";
+            var val = "Validado";
+            var fact = "Facturadas";
+            var anali = "En Analisis";
+            var env = "Enviado";
+            var envParc = "Enviado Parcial";
+            var resulPen = "Resultado pendiente";
+            var valPen = "Validacion pendiente";            
+
+            var colorEstado = "";
+            var tamanioColor = "16px";
+
+            if (estadoPorReco === Lista[i].Estado) {
+                colorEstado = "#CCD1D1"; //color gris
+            }
+            else if (gene === Lista[i].Estado) {
+                colorEstado = "#F7DC6F"; //color amarillo
+            }
+            else if (estadoReco === Lista[i].Estado || estadoRecoPar === Lista[i].Estado) {
+                colorEstado = "#EB984E"; //color naranja
+            }
+            else if (cance === Lista[i].Estado || recha === Lista[i].Estado || anulado === Lista[i].Estado) {
+                colorEstado = "#CB4335"; //color rojo
+            }
+            else if (reci === Lista[i].Estado || reciParcial === Lista[i].Estado) {
+                colorEstado = "#7DCEA0"; //color verde claro
+            }
+            else if (val === Lista[i].Estado) {
+                colorEstado = "#28B463"; //color verde oscuro
+            }
+            else if (fact === Lista[i].Estado) {
+                colorEstado = "#1D8348"; //color verde oscuro
+            }
+            else if (anali === Lista[i].Estado) {
+                colorEstado = "#05FC6D"; //verde fosforesente
+            }
+            else if (env === Lista[i].Estado || envParc === Lista[i].Estado) {
+                colorEstado = "#1F618D"; //azul oscuro
+            }
+            else if (resulPen === Lista[i].Estado || valPen === Lista[i].Estado) {
+                colorEstado = "#CA6F1E"; //anaranjado oscuro
+            }
+
+            html= '<tr class="odd" id="TbFila'+i+'">'
+                + '<td class="text-center"><input id="check'+i+'"class="form-check-input" type="checkbox" onclick="CheckOrden('+i+')"/></td>'
+                + '<td class="sorting_1 text-center" id="TbFilaItem'+i+'" >'+Lista[i].CodigoBarra+'</td>'
+                + '<td class="text-center">' + Lista[i].CodigoGalileo + '</td>'
+                + '<td class="text-center">'+Lista[i].FechaIngreso.substring(0,10)+'</td>'
+                + '<td >'+Lista[i].NombrePaciente+'</td>'
+                + '<td class="text-center">$'+Lista[i].Precio.toFixed(2)+'</td>'
+                + '<td class="text-center" style="background-color:' + colorEstado + '; font-size: ' + tamanioColor + '; color: white" id="TbFilaEstado' + i + '">' + Lista[i].Estado + '</td>'
+                + '<td>'
+                    + '<div class="d-flex justify-content-center align-items-center">'
+                + '<a id="Obs' + i + '" class="btn text-decoration-none" onclick="ObtenerLog('+i+')"><i class="fa-solid fa-comment"></i></a>'
+                + '<a id="Editar' + i + '" class="btn text-decoration-none" onclick="ModificarOrden(' + Lista[i].NOrden + ')"><i class="fa-solid fa-pen-to-square" style="color: #c7c7c7;"></i></a>'
+                + '<a id="Visualizar' + i + '" class="btn text-decoration-none" onclick="ObtenerResult(' + i + ')"><i class="fa-solid fa-square-poll-horizontal" style="color: #c7c7c7;"></i></a>'
+                    + '<a id="Eliminar'+i+'" class="btn text-decoration-none" onclick="eliminarFila('+i+')"><i class="fa-solid fa-xmark" style="color: #d4024c;"></i></a>'
+                    + '</div>'
+                + '</td>'
+                + '</tr>';
+
+            $('#TbItems').append(html);
+
+            ActivarBotones(i);
+        }
+        
+        if (!$.fn.DataTable.isDataTable('#TOrdenes')) {
+            $('#TOrdenes').DataTable({
+                pageLength: 10,
+                searching: true,
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json',
+                },
+                order: [[0, 'desc']]
+            });
+        }
+        
+    }
+
+    function ModificarOrden(index)
+    {        
+        var url = "@Url.Action("EditarOrden","Cliente", new {IdOrden = Numeros.Uno})";
+        url=url.replace(@Numeros.Uno,index);        
+
+        window.location.href=url;
+    }
+
+    function ActivarBotones(index)
+    {
+
+        if (ListadeOrdenes[index].Estado != "@Estados.Validado") {
+            $('#Visualizar' + index).hide();            
+        }
+        if (ListadeOrdenes[index].Estado != "@Estados.Generado") {
+            $('#Editar' + index).hide();
+            $('#Eliminar' + index).hide();
+        }
+
+        if (ListadeOrdenes[index].Estado === "@Estados.Cancelado") {
+            $('#Eliminar' + index).hide();
+        }
+
+        if (ListadeOrdenes[index].Estado === "@Estados.PorRecolectar") {            
+            $('#Editar' + index).show();
+        }
+
+        if (ListadeOrdenes[index].Estado === "@Estados.OrdenRecolectada" ||
+            ListadeOrdenes[index].Estado === "@Estados.OrdenEnAnalisis" ||
+            ListadeOrdenes[index].Estado === "@Estados.OrdenEnviado" ||
+            ListadeOrdenes[index].Estado === "@Estados.OrdenRecolectadaParcial" ||
+            ListadeOrdenes[index].Estado === "@Estados.OrdenEnviadoParcial" ||
+            ListadeOrdenes[index].Estado === "@Estados.OrdenRechazada" ||
+            ListadeOrdenes[index].Estado === "Recibida Parcial" ||
+            ListadeOrdenes[index].Estado === "Recibida") {
+            $('#Editar' + index).show();           
+        }
+
+        //visualizar PDF resultados en estado validado, validacion pendiente
+        //y resultados pendientes
+        if (ListadeOrdenes[index].Estado === "Validado" || 
+            ListadeOrdenes[index].Estado === "Resultado pendiente" ||
+            ListadeOrdenes[index].Estado === "Validacion pendiente" ||
+            ListadeOrdenes[index].Estado === "Facturadas") {
+            $('#Visualizar' + index).show();
+            //pdfResultado = false;
+            pdfResultado = true;
+        }
+        
+    }
+
+    function ObtenerLog(index)
+    {
+        document.getElementById("txtComentarios").value="";
+        var barra = document.getElementById("TbFilaItem"+index).textContent;
+        var area = document.getElementById("txtComentarios");        
+
+        $.ajax({
+            url: '@Url.Action("ListarObservaciones","Cliente")',
+            type:'GET',
+            data: { CodigoBarra:barra },
+            success:function(response)
+            {                
+                const listLog = JSON.parse(response)                
+
+                if(listLog.length<1)
+                {
+                    MensajeAlerta1("@Notificaciones.TituloWarning","@Notificaciones.WarningObservaciones");
+                }
+                else
+                {
+
+                    for (var i = 0; i < listLog.length; i++) {
+                        area.value = "Orden: " + listLog[i].Orden + " ---" + " Observación: " + listLog[i].ObservacionOrden;
+                        area.value += '\n' + "Muestra: " + listLog[i].Muestra + " ---" + " Observación: " + listLog[i].ObservacionMuestra + " ---" + " Usuario: " + listLog[i].Usuario + " ---" + " Fecha: " + listLog[i].Fecha.substring(0,16);                        
+                    }
+                    $('#ModalComentarios').modal('show');
+                }
+               
+            }
+        });
+    }
+
+    function ObtenerResult(index) {
+        var barra = document.getElementById("TbFilaItem" + index).textContent;
+        var barraLis = "";
+
+        if (pdfResultado === false) {
+
+            loadingShow();
+
+            //obtiene el codigo de barra externo LIS
+            $.ajax({
+                url: '@Url.Action("PDFResultados","Cliente")',
+                type: 'GET',
+                data: { CodigoBarra: barra },
+                success: function (response) {
+
+                    if (response !== "01") {
+
+                        barraLis = response;
+
+                        //enviar parametros a LIS
+                        $.ajax({
+                            url: '@Url.Action("PDFResultadosLisCabe","Cliente")',
+                            type: 'GET',
+                            data: { CodigoBarra: barraLis },
+                            success: function (response) {
+
+                                if (response.status === "success") {                                    
+
+                                    pdfCabeOrdenPdf = {
+                                        IdOrden: response.idOrden,
+                                        IdLaboratorio: response.idLaboratorio,
+                                        NombreLaboratorio: response.nombreLaboratorio,
+                                        IdSede: response.idSede,
+                                        NombreSede: response.nombreSede,
+                                        IdDiagnostico: response.idDiagnostico,
+                                        DescripcionDiagnostico: response.descripcionDiagnostico,
+                                        IdPaciente: response.idPaciente,
+                                        Edad: response.edad,
+                                        IdMedico: response.idMedico,
+                                        NombreMedico: response.nombreMedico,
+                                        PrefijoOrden: response.prefijoOrden,
+                                        CodigoOrden: response.codigoOrden,
+                                        NumeroOrden: response.numeroOrden,
+                                        PrioridadOrden: response.prioridadOrden,
+                                        FechaIngreso: response.fechaIngreso,
+                                        Comentario: response.comentario,
+                                        CodigoExterno: response.codigoExterno,
+                                        IdUsuario: response.idUsuario,
+                                        IdEstadoOrden: response.idEstadoOrden,
+                                        Activo: response.activo,
+                                        DetalleOrden: response.detalleOrden,
+                                        InformacionOrden: response.informacionOrden,
+                                        InformacionPaciente: response.informacionPaciente,
+                                        EstadoOrden: response.estadoOrden,
+                                        TomaMuestra: response.tomaMuestra,
+                                        EdadCompleta: response.edadCompleta
+                                    }
+
+                                    if (response.idEstadoOrden === 1 || response.idEstadoOrden === 2) {
+                                        MensajeAlerta1("@Notificaciones.DangerPdfResult", "@Notificaciones.DangerPdfResult");
+                                        loadingHide();
+                                    }
+
+                                    //visualizar PDF en estado 3 y 4
+                                    if (response.idEstadoOrden === 3 || response.idEstadoOrden === 4) {
+                                        
+                                        var todosVal = false;
+                                        //ejecutar procesos
+                                        //procesosPdfResult(response.idPaciente, response.idMedico, barraLis, todosVal);                                        
+                                    }
+                                    else if (response.idEstadoOrden === 5) {
+                                        
+                                        var todosVal = true;                                        
+
+                                        //ejecutar procesos
+                                        //procesosPdfResult(response.idPaciente, response.idMedico, barraLis, todosVal);                                        
+                                    }
+                                }
+                                else {
+                                    MensajeAlerta1("@Notificaciones.TituloDanger", "@Notificaciones.DangerPdfResultados");
+                                    loadingHide();
+                                }                                
+                            }
+                        });
+                    }
+                    else {
+                        MensajeAlerta1("@Notificaciones.TituloDanger", "@Notificaciones.DangerPdfResultados");
+                        loadingHide();
+                    }                    
+                }
+            });
+        }
+        else {
+            loadingShow();
+            
+            $.ajax({
+                url: '@Url.Action("PDFResultadosNuevo", "Cliente")',
+                type: 'GET',
+                data: { CodigoBarra: barra },
+                success: function (response) {
+                    
+                    if (response !== "01") {
+
+                        var base64 = "data:application/pdf;base64," + response;
+
+                        var pdfWindow = window.open("", "_blank");
+
+                        if (pdfWindow) {
+                            pdfWindow.document.write("<iframe width='100%' height='100%' src='" + base64 + "'></iframe>");
+                            pdfWindow.document.title = 'ResultadoExamenes';
+
+                            // window.location.reload();
+                            loadingHide();
+                        }
+                        else {
+                            loadingHide();
+                        }
+                    }
+                    else {
+                        MensajeAlerta1("@Notificaciones.TituloDanger", "@Notificaciones.DangerPdfResultados");
+                        loadingHide();
+                    }
+
+                }
+            });
+        }
+    }
+
+    // async function procesosPdfResult(idPaciente, idMedico, barra, todosVal) {
+
+    //     //proceso paciente
+    //     await ObtenerPacientePdfLis(idPaciente);
+
+    //     //proceso medico
+    //     await ObtenerMedicoPdfLis(idMedico);
+
+    //     //proceso pruebas
+    //     await ObtenerPruePdfLis(barra);
+
+    //     //proceso genera pdf        
+    //     GenerarPdfResult(todosVal);
+    // }
+
+    // function ObtenerPacientePdfLis(idPaciente) {
+
+    //     return new Promise(resolve => {
+
+    //         setTimeout(() => {
+    //             $.ajax({
+    //                 url: '@Url.Action("PDFResultadosPacLis","Cliente")',
+    //                 type: 'GET',
+    //                 data: { PacienteId: idPaciente },
+    //                 success: function (response) {                        
+    //                     for (var i = 0; i < response.length; i++) {
+
+    //                         pdfPacOrdenPdf = {
+    //                             Identificador: response[i].identificador,
+    //                             NombrePac: response[i].nombrePaciente,
+    //                             ApelliPac: response[i].apellidoPaciente,
+    //                             FechaNacimiento: response[i].fechaNacimiento,
+    //                             GenPac: response[i].genero,
+    //                             MailPac: response[i].correoElectronico
+    //                         }
+
+    //                         ListaPdfPaciente.push(pdfPacOrdenPdf);
+    //                     }
+    //                 }
+    //             });
+
+    //             resolve();
+
+    //         }, 9000);
+
+    //     });
+
+    // }
+
+    // function ObtenerMedicoPdfLis(idMedico) {
+
+    //     return new Promise(resolve => {
+            
+    //         setTimeout(() => {
+    //             $.ajax({
+    //                 url: '@Url.Action("PDFResultadosMedLis","Cliente")',
+    //                 type: 'GET',
+    //                 data: { MedicoId: idMedico },
+    //                 success: function (response) {
+
+    //                     for (var i = 0; i < response.medico.length; i++) {
+    //                         var valoresMedico = response.medico[i];
+
+    //                         for (var j = 0; j < valoresMedico.details.length; j++) {
+
+    //                             pdfMedOrdenPdf = {
+    //                                 NomMedico: valoresMedico.details[j].nombre,
+    //                                 ApeMedico: valoresMedico.details[j].apellido,
+    //                                 EmailMedico: valoresMedico.details[j].email,
+    //                                 TeleMedico: valoresMedico.details[j].telefono
+    //                             }
+
+    //                             ListaPdfMedico.push(pdfMedOrdenPdf);
+    //                         }
+    //                     }
+    //                 }
+    //             });
+
+    //             resolve();
+
+    //         }, 9000);
+    //     });
+    // }
+
+    // function ObtenerPruePdfLis(barra) {
+
+    //     return new Promise(resolve => {
+
+    //         setTimeout(() => {
+
+    //             $.ajax({
+    //                 url: '@Url.Action("PDFResultadosPruebLis","Cliente")',
+    //                 type: 'GET',
+    //                 data: { CodBarra: barra },
+    //                 success: function (response) {
+                        
+    //                     for (var i = 0; i < response.length; i++) {
+    //                         pdfPruebasPdf = {
+    //                             idResultado: response[i].idResultado,
+    //                             idLaboratorio: response[i].idLaboratorio,
+    //                             idExamen: response[i].idExamen,
+    //                             idMuestra: response[i].idMuestra,
+    //                             codigoOrden: response[i].codigoOrden,
+    //                             codigoExterno: response[i].codigoExterno,
+    //                             nombrePaciente: response[i].nombrePaciente,
+    //                             apellidoPaciente: response[i].apellidoPaciente,
+    //                             generoPaciente: response[i].generoPaciente,
+    //                             fechaNacimiento: response[i].fechaNacimiento,
+    //                             edad: response[i].edad,
+    //                             estado: response[i].estado,
+    //                             esMicrobiologia: response[i].esMicrobiologia,
+    //                             nombreExamen: response[i].nombreExamen,
+    //                             siglaExamen: response[i].siglaExamen,
+    //                             codigoMuestra: response[i].codigoMuestra,
+    //                             descripcionMuestra: response[i].descripcionMuestra,
+    //                             tipoResultado: response[i].tipoResultado,
+    //                             siglasUnidad: response[i].siglasUnidad,
+    //                             refMinima: response[i].refMinima,
+    //                             refMaxima: response[i].refMaxima,
+    //                             panMinima: response[i].panMinima,
+    //                             panMaxima: response[i].panMaxima,
+    //                             resultadoActual: response[i].resultadoActual,
+    //                             ResultadoAnterior: response[i].resultadoAnterior,
+    //                             fechaCreacion: response[i].fechaCreacion,
+    //                             fechaUltimoResultado: response[i].fechaUltimoResultado,
+    //                             fechaValidacion: response[i].fechaValidacion,
+    //                             fechaImpresion: response[i].fechaImpresion,
+    //                             fechaEnvio: response[i].fechaEnvio,
+    //                             fechaToma: response[i].fechaToma,
+    //                             fechaRecepcion: response[i].fechaRecepcion,
+    //                             usuarioResultado: response[i].usuarioResultado,
+    //                             usuarioValidacion: response[i].usuarioValidacion,
+    //                             usuarioToma: response[i].usuarioToma,
+    //                             usuarioTransporte: response[i].usuarioTransporte,
+    //                             usuarioRecepcion: response[i].usuarioRecepcion,
+    //                             transportado: response[i].transportado, //hasta aqui ok
+    //                             tomado: response[i].tomado,
+    //                             recibido: response[i].recibido,
+    //                             resultado: response[i].resultado,
+    //                             repeticion: response[i].repeticion,
+    //                             validado: response[i].validado,
+    //                             enviado: response[i].enviado,
+    //                             impreso: response[i].impreso,
+    //                             Comentario: response[i].comentario,
+    //                             ComentarioFleb: response[i].comentarioFleb,
+    //                             ComentarioRecepcion: response[i].comentarioRecepcion,
+    //                             ComentarioFijo: response[i].comentarioFijo,
+    //                             ComentarioImpresion: response[i].comentarioImpresion,
+    //                             MuestraInforme: response[i].muestraInforme, //bool
+    //                             AplicaFormula: response[i].aplicaFormula,
+    //                             IdArea: response[i].idArea,
+    //                             nombreArea: response[i].nombreArea,
+    //                             EdadCompleta: response[i].edadCompleta,
+    //                             CodigoExamen: response[i].codigoExamen,
+    //                             NumeroDecimales: response[i].numeroDecimales,
+    //                             activo: response[i].activo,
+    //                             IdCorrelacion: response[i].idCorrelacion,
+    //                             OrdenArea: response[i].ordenArea,
+    //                             OrdenExamen: response[i].ordenExamen,
+    //                             resultadoLiteral: response[i].resultadoLiteral
+    //                         }
+
+    //                         ListaPdfPruebas.push(pdfPruebasPdf);
+    //                     }
+    //                 }
+    //             });
+
+    //             resolve();
+
+    //         }, 15000);
+
+    //     });
+    // }
+
+    //actualiza el estado de la orden y pruebas en validadas
+    // function ActualizarEstadoLisOrd(idEstado, barra) {
+
+    //     PdfOrdenActualizaRes = {
+    //         codBarra: barra,
+    //         idEstado: idEstado
+    //     }
+
+    //     $.ajax({
+    //         url: '@Url.Action("ActuaEstadoLisOrdResult", "Cliente")',
+    //         type: 'GET',
+    //         data: PdfOrdenActualizaRes,  
+    //         async: false,
+    //         success: function (response) {
+
+    //             console.log("respuesta");
+    //             console.log(response);
+    //         }
+    //     });
+    // }
+
+    //genera el PDF de los resultados
+    // function GenerarPdfResult(todosVal) {
+
+    //     var impresion = false;
+
+    //     return new Promise(resolve => {
+
+    //         setTimeout(() => {                                
+
+    //             var pdfResultados = {
+    //                 cabecera: pdfCabeOrdenPdf,
+    //                 paciente: ListaPdfPaciente,
+    //                 medico: ListaPdfMedico,
+    //                 pruebas: ListaPdfPruebas
+    //             }               
+
+    //             $.ajax({
+    //                 url: '@Url.Action("GenerarPdfResultados", "Cliente")',
+    //                 type: 'POST',
+    //                 contentType: 'application/x-www-form-urlencoded',
+    //                 data: {
+    //                     todosVal: todosVal,
+    //                     impresion: impresion,
+    //                     pdfCabeOrdenPdf: JSON.stringify(pdfResultados.cabecera),
+    //                     ListaPdfPaciente: JSON.stringify(pdfResultados.paciente),
+    //                     ListaPdfMedico: JSON.stringify(pdfResultados.medico),
+    //                     ListaPdfPruebas: JSON.stringify(pdfResultados.pruebas)
+    //                 },
+    //                 success: function (response) {
+                        
+    //                     if (response !== "01") {
+
+    //                         var base64 = "data:application/pdf;base64," + response;
+
+    //                         var pdfWindow = window.open("", "_blank");
+
+    //                         if (pdfWindow) {
+    //                             pdfWindow.document.write("<iframe width='100%' height='100%' src='" + base64 + "'></iframe>");
+    //                             pdfWindow.document.title = 'ResultadoExamenes';
+
+    //                             window.location.reload();
+    //                         }
+    //                         else {                                
+    //                             loadingHide();
+    //                         }
+    //                     }
+    //                     else {
+    //                         MensajeAlerta1("@Notificaciones.TituloDanger", "@Notificaciones.DangerPdfResultados");
+    //                         loadingHide();
+    //                     }
+                                                
+    //                     loadingHide();
+    //                 }
+    //             });
+
+    //             resolve();
+
+    //         }, 9500);
+    //     });   
+    // }
+
+    function ListaEstados(estado, Combo) {
+        var html = '';
+        var recolectado = "RCTL";
+        var recolParcial = "RCTP";
+        var enviado = "ENV";
+        var envParcial = "ENVP";
+        var generada = "GENE";
+        var recibida = "RCBD";
+        var reciParcial = "RCBP";
+
+        $.ajax({
+
+            url: '@Url.Action("ListarEstados", "Cliente")',
+            type: 'GET',
+            data: { NombreEstado: estado },
+
+            success: function (response) {
+                const listEstado = JSON.parse(response)                
+
+                if (listEstado.length > 0) {                    
+                    for (var i = 0; i < listEstado.length; i++) {
+                        
+                        if (listEstado[i].Valor === recolectado ||
+                            listEstado[i].Valor === recolParcial ||
+                            listEstado[i].Valor === enviado ||
+                            listEstado[i].Valor === envParcial ||
+                            listEstado[i].Valor === recibida ||
+                            listEstado[i].Valor === reciParcial) {
+                        }else{
+
+                            var comboEstados = document.getElementById('cmbEstadobOrden');
+                            var opciones = document.createElement('option');
+                            opciones.text = listEstado[i].Nombre;
+                            opciones.value = listEstado[i].Valor;
+
+                            //asigna valores al combo
+                            comboEstados.add(opciones);
+                        }
+                    }
+                    
+                    var newCombo = document.getElementById('cmbEstadobOrden');
+
+                    for (var i = 0; i < newCombo.length; i++) {
+
+                        if (newCombo[i].value === generada) {
+                            var valorEspecifico = newCombo[i].value;
+                            var textoEspecifico = newCombo[i].text;
+
+                            newCombo[i].parentNode.removeChild(newCombo[i]);
+
+                            // Crea una nueva opción con el valor y texto específico
+                            var nuevaOpcion = document.createElement("option");
+                            nuevaOpcion.value = valorEspecifico;
+                            nuevaOpcion.text = textoEspecifico;
+
+                            // Inserta la nueva opción en la primera posición
+                            newCombo.insertBefore(nuevaOpcion, newCombo.firstChild);
+
+                            // Establece la nueva opción como seleccionada
+                            newCombo.selectedIndex = 0;
+                            break;
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+
+    function EliminarConsultaOrden(index)
+    {
+        var filaEliminada = {
+            IdOrden: ListadeOrdenes[index].NOrden,
+            UsuarioCreacion: @infousuario.UsuarioID
+                        }
+            $.ajax({
+                url: '@Url.Action("EliminarOrden","Cliente")',
+                type: 'POST',
+                data: { orden: filaEliminada },
+                beforeSend: function () {
+                    loadingShow();
+                },
+                success: function (response) {
+
+                    if (response === @Transaccion.Correcta) {
+                        document.getElementById("TbFilaEstado" + index).innerHTML = "@Estados.Cancelado";
+                        // console.log("Elimina la orden");
+                        ListadeOrdenes[index].Estado = "@Estados.Cancelado";
+                        $('#Eliminar' + index).hide();
+                        $('#Editar' + index).hide();
+
+                        window.location.reload();
+                    }
+                    else {
+                        MensajeAlerta1("@Notificaciones.TituloDanger", "@Notificaciones.DangerError");
+                        window.location.reload();
+                    }
+
+                    loadingHide();
+                }
+        });
+    }
+
+
+    function eliminarFila(index) {
+        indicePop=index;
+        document.getElementById("mensajePopUp").innerHTML = "@Notificaciones.WarningEliminarOrden";
+        $('#ModalPopUp').modal('show');
+    }
+
+    function SeleccionarTodo()
+    {
+        var checkMarcado = document.getElementById("CheckAll").checked;
+        ListaOrdenPedido = [];
+        var contadorEstado = 0;     
+        var countLista = ListadeOrdenes.length;  
+        
+        contadorTodo = 0;
+
+        if (checkMarcado == true) {
+            for (var i = 0; i < ListadeOrdenes.length; i++) {
+
+                $('#check' + i).prop("checked", true);
+
+                Pedidos = {
+                    Id: i,
+                    IdOrden: ListadeOrdenes[i].NOrden
+                }
+                
+                ListaOrdenPedido.push(Pedidos);
+
+                if (ListadeOrdenes[i].Estado !== "@Estados.Generado") {
+                    contadorEstado++;
+                }
+                else
+                {
+                    contadorEstado=@Numeros.Cero; 
+                    contadorTodo++;
+                }
+            }
+
+            HabilitarEnviar2(contadorEstado);
+        }
+        else{
+            for (var i = 0; i < ListadeOrdenes.length; i++) {
+
+                $('#check' + i).prop("checked", false);
+                ListaOrdenPedido=[];
+                contadorTodo = 0; 
+                contadorSelec = 0;
+            }
+            HabilitarEnviar("@Estados.Cancelado");            
+        }     
+        
+        var mensajeSelec = document.getElementById("selecRegistros");
+        mensajeSelec.textContent = "Se han seleccionado " + contadorTodo + " de " + countLista + " registros";
+
+    }
+
+    function CheckOrden(index)
+    {
+        var checkMarcado = document.getElementById("check"+index).checked;        
+        var countLista = ListadeOrdenes.length;                     
+
+        if(checkMarcado==true)
+        {
+
+            for(var i=0; i< ListadeOrdenes.length ; i++)
+            {
+                if(index==i)
+                {
+
+                    Pedidos = {
+                        Id: i,
+                        IdOrden: ListadeOrdenes[i].NOrden
+                    }
+
+                    ListaOrdenPedido.push(Pedidos);
+
+                    contadorTodo++;
+                    contadorSelec++;                    
+                }
+            }
+        }
+        else
+        {
+           for(var i=0; i< ListaOrdenPedido.length;i++)
+           {
+                if (ListaOrdenPedido[i].Id == index) {
+                    ListaOrdenPedido.splice(i, 1);
+
+                    if(contadorTodo > 0){
+                        contadorSelec = contadorTodo - 1;
+                        contadorTodo = contadorSelec;
+                    }
+                    else{
+                        contadorSelec--;
+                    }
+                    
+                    break;
+                }
+           }
+            $('#CheckAll').prop("checked", false);            
+        }
+
+        var mensajeSelec = document.getElementById("selecRegistros");
+        mensajeSelec.textContent = "Se han seleccionado " + contadorSelec + " de " + countLista + " registros";
+        
+        HabilitarEnviar(ListadeOrdenes[index].Estado);
+    }
+
+
+    function HabilitarEnviar(estado)
+    {
+        if (estado=="@Estados.Generado") 
+        {
+            $('#btnEnviarOrden').prop("disabled", false);
+        }
+        if (ListaOrdenPedido.length < 1 || estado == "@Estados.Cancelado") {
+            $('#btnEnviarOrden').prop("disabled", true);
+            MensajeAlerta1("@Notificaciones.TituloWarning", "@Notificaciones.WarningOrdenEstado");
+        }
+    }
+
+    function HabilitarEnviar2(contadorestado) {
+
+        if (contadorestado >= 1) 
+        {
+            $('#btnEnviarOrden').prop("disabled", true);
+            MensajeAlerta1("@Notificaciones.TituloWarning", "@Notificaciones.WarningOrdenEstado");
+        }
+        else
+        {
+            $('#btnEnviarOrden').prop("disabled", false);
+        }
+    }
+
+    function BuscarOrdenes()
+    {
+        var count = $("#TOrdenes tr").length;
+
+        for (var j = 0; j < count; j++) {
+            $("#TbFila" + j).remove();
+        }
+        
+        var textoBuscar = document.getElementById("txtBuscarOrden").value;
+        // var opcionBusqueda = document.getElementById("cmbOrden").value;
+        var opcionEstado = document.getElementById("cmbEstadobOrden").value;
+        var FechaDesde= document.getElementById("dtpInicio").value;
+        var FechaHasta = document.getElementById("dtpFin").value;
+        ListadeOrdenes.length =0;
+
+        // console.log("textoBuscar");
+        // console.log(textoBuscar);
+
+        // console.log("opcionBusqueda");
+        // console.log(opcionBusqueda);
+
+        // console.log("opcionEstado");
+        // console.log(opcionEstado);
+
+        // console.log("fecha desde: " + FechaDesde);
+        // console.log("fecha hasta: " + FechaHasta);
+
+        // console.log("Estado Fecha Cambio");
+        // console.log(CambioFecha);
+
+        //Busqueda de ordenes solo GENERADAS
+        if (textoBuscar.trim().length === 0 && CambioFecha === false && opcionEstado === '@Numeros.Cero') {            
+            ConsultaOrdenes = {
+                OpcionBusqueda: @Numeros.Cero,
+                IdUsuarioGalileo: @infousuario.UsuarioID,
+                UsuarioCreacion: @infousuario.UsuarioID,
+                FechaCreacion: moment().format("YYYY-MM-DD")
+            }
+        }
+
+        //Busqueda de todas las ordenes solo por fechas
+        if (textoBuscar.trim().length === 0 && CambioFecha === false && opcionEstado === '@Numeros.Cero') {
+            ConsultaOrdenes = {
+                OpcionBusqueda: @Numeros.Trece,
+                IdUsuarioGalileo: @infousuario.UsuarioID,
+                UsuarioCreacion: @infousuario.UsuarioID,
+                FechaInicio: FechaDesde,
+                FechaFin: FechaHasta,
+            }
+        }
+        else if (textoBuscar.trim().length === 0 && CambioFecha === true && opcionEstado === '@Numeros.Cero') {
+            ConsultaOrdenes = {
+                OpcionBusqueda: @Numeros.Trece,
+                IdUsuarioGalileo: @infousuario.UsuarioID,
+                UsuarioCreacion: @infousuario.UsuarioID,
+                FechaInicio: FechaDesde,
+                FechaFin: FechaHasta,
+            }
+        }
+
+        //Busqueda de ordenes por cedula, nombres o apellidos
+        if (textoBuscar.trim().length != 0 && CambioFecha === false) {            
+            textoBuscar = textoBuscar.replace(" ", "%")
+                .replace(" ", "%");
+
+            ConsultaOrdenes = {
+                IdUsuarioGalileo: @infousuario.UsuarioID,
+                OpcionBusqueda: @Numeros.Dos,
+                // CodigoBarra: textoBuscar,
+                DatoBusqueda: textoBuscar,
+                FechaInicio: FechaDesde,
+                FechaFin: FechaHasta,
+                opcionEstado: opcionEstado
+            }            
+        }
+        else if (textoBuscar.trim().length != 0 && CambioFecha === true) {            
+            textoBuscar = textoBuscar.replace(" ", "%")
+                .replace(" ", "%");
+
+            ConsultaOrdenes = {
+                IdUsuarioGalileo: @infousuario.UsuarioID,
+                OpcionBusqueda: @Numeros.Dos,
+                // CodigoBarra: textoBuscar,
+                DatoBusqueda: textoBuscar,
+                FechaInicio: FechaDesde,
+                FechaFin: FechaHasta,
+                opcionEstado: opcionEstado
+            }            
+        }
+
+        //Busqueda de ordenes por nombre
+        // if (textoBuscar.trim().length != 0 && CambioFecha === false /* && opcionEstado === '@Numeros.Cero' */) {            
+        //     textoBuscar = textoBuscar.replace(" ", "%")
+        //         .replace(" ", "%");
+
+        //     ConsultaOrdenes = {
+        //         IdUsuarioGalileo: @infousuario.UsuarioID,
+        //         OpcionBusqueda: @Numeros.Dos,
+        //         DatoBusqueda: textoBuscar,
+        //         FechaInicio: FechaDesde,
+        //         FechaFin: FechaHasta,
+        //         opcionEstado: opcionEstado
+        //     }
+        // }
+        // else if (textoBuscar.trim().length != 0 && CambioFecha === true /* && opcionEstado === '@Numeros.Cero' */) {            
+        //     textoBuscar = textoBuscar.replace(" ", "%")
+        //         .replace(" ", "%");
+
+        //     ConsultaOrdenes = {
+        //         IdUsuarioGalileo: @infousuario.UsuarioID,
+        //         OpcionBusqueda: @Numeros.Dos,
+        //         DatoBusqueda: textoBuscar,
+        //         FechaInicio: FechaDesde,
+        //         FechaFin: FechaHasta,
+        //         opcionEstado: opcionEstado
+        //     }
+        // }        
+
+        //Busqueda de ordenes por cédula
+        // if (textoBuscar.trim().length != 0 && CambioFecha === false /* && opcionEstado === '@Numeros.Cero' */) {            
+        //     ConsultaOrdenes = {
+        //         IdUsuarioGalileo: @infousuario.UsuarioID,
+        //         OpcionBusqueda: @Numeros.Tres,
+        //         DatoBusqueda: textoBuscar,
+        //         FechaInicio: FechaDesde,
+        //         FechaFin: FechaHasta,
+        //         opcionEstado: opcionEstado
+        //     }
+
+        // }
+        // else if (textoBuscar.trim().length != 0 && CambioFecha === true /* && opcionEstado === '@Numeros.Cero' */) {            
+        //     ConsultaOrdenes = {
+        //         IdUsuarioGalileo: @infousuario.UsuarioID,
+        //         OpcionBusqueda: @Numeros.Tres,
+        //         DatoBusqueda: textoBuscar,
+        //         FechaInicio: FechaDesde,
+        //         FechaFin: FechaHasta,
+        //         opcionEstado: opcionEstado
+        //     }
+        // }        
+
+        if (textoBuscar.trim().length === 0 && CambioFecha === false && 
+            opcionEstado != '@Numeros.Cero') {            
+            ConsultaOrdenes = {
+                IdUsuarioGalileo: @infousuario.UsuarioID,
+                OpcionBusqueda: @Numeros.Seis,
+                DatoBusqueda: opcionEstado,
+                FechaInicio: FechaDesde,
+                FechaFin: FechaHasta
+            }
+
+        }        
+
+        if (textoBuscar.trim().length === 0 && CambioFecha === true && 
+            opcionEstado != '@Numeros.Cero') {            
+            ConsultaOrdenes = {
+                IdUsuarioGalileo: @infousuario.UsuarioID,
+                OpcionBusqueda: @Numeros.Siete,
+                DatoBusqueda: opcionEstado,
+                FechaInicio: FechaDesde,
+                FechaFin: FechaHasta
+            }
+
+        }        
+
+        if (textoBuscar.trim().length === 0 && CambioFecha === true && opcionEstado === '@Numeros.Cero') {            
+            ConsultaOrdenes = {
+                IdUsuarioGalileo: @infousuario.UsuarioID,
+                OpcionBusqueda: @Numeros.Ocho,
+                FechaInicio: FechaDesde,
+                FechaFin: FechaHasta
+            }
+
+        }
+
+        //Busqueda por fechas recolectado total/parcial
+        if (textoBuscar.trim().length === 0 && CambioFecha === false && opcionEstado === '@Numeros.Diez') {            
+            ConsultaOrdenes = {
+                IdUsuarioGalileo: @infousuario.UsuarioID,
+                OpcionBusqueda: @Numeros.Diez,
+                FechaInicio: FechaDesde,
+                FechaFin: FechaHasta
+            }
+        } else if (CambioFecha === true && opcionEstado === '@Numeros.Diez') {            
+            ConsultaOrdenes = {
+                IdUsuarioGalileo: @infousuario.UsuarioID,
+                OpcionBusqueda: @Numeros.Diez,
+                FechaInicio: FechaDesde,
+                FechaFin: FechaHasta
+            }
+        }
+
+        //Busqueda por cedula recoletado total/parcial
+        // if (textoBuscar.trim().length != 0 && CambioFecha === false &&
+        //     opcionEstado === '@Numeros.Diez') {
+        //     ConsultaOrdenes = {
+        //         IdUsuarioGalileo: @infousuario.UsuarioID,
+        //         OpcionBusqueda: @Numeros.Diez,
+        //         DatoBusqueda: textoBuscar,
+        //         FechaInicio: FechaDesde,
+        //         FechaFin: FechaHasta
+        //     }
+        // }
+        // else if (textoBuscar.trim().length != 0 && CambioFecha === true &&
+        //     opcionEstado === '@Numeros.Diez') {
+        //     ConsultaOrdenes = {
+        //         IdUsuarioGalileo: @infousuario.UsuarioID,
+        //         OpcionBusqueda: @Numeros.Diez,
+        //         DatoBusqueda: textoBuscar,
+        //         FechaInicio: FechaDesde,
+        //         FechaFin: FechaHasta
+        //     }
+        // }
+
+        //---------------------------------------------//
+
+        //Busqueda por fechas enviado total/parcial
+        if (textoBuscar.trim().length === 0 && CambioFecha === false && opcionEstado === '@Numeros.Once') {            
+            ConsultaOrdenes = {
+                IdUsuarioGalileo: @infousuario.UsuarioID,
+                OpcionBusqueda: @Numeros.Once,
+                FechaInicio: FechaDesde,
+                FechaFin: FechaHasta
+            }
+        } else if (CambioFecha === true && opcionEstado === '@Numeros.Once') {            
+            ConsultaOrdenes = {
+                IdUsuarioGalileo: @infousuario.UsuarioID,
+                OpcionBusqueda: @Numeros.Once,
+                FechaInicio: FechaDesde,
+                FechaFin: FechaHasta
+            }
+        }
+        
+        //Busqueda por cedula enviado total/parcial
+        // if (textoBuscar.trim().length != 0 && CambioFecha === false &&
+        //     opcionEstado === '@Numeros.Once') {
+        //     ConsultaOrdenes = {
+        //         IdUsuarioGalileo: @infousuario.UsuarioID,
+        //         OpcionBusqueda: @Numeros.Once,
+        //         DatoBusqueda: textoBuscar,
+        //         FechaInicio: FechaDesde,
+        //         FechaFin: FechaHasta
+        //     }
+        // }
+        // else if (textoBuscar.trim().length != 0 && CambioFecha === true &&
+        //     opcionEstado === '@Numeros.Once') {
+        //     ConsultaOrdenes = {
+        //         IdUsuarioGalileo: @infousuario.UsuarioID,
+        //         OpcionBusqueda: @Numeros.Once,
+        //         DatoBusqueda: textoBuscar,
+        //         FechaInicio: FechaDesde,
+        //         FechaFin: FechaHasta
+        //     }
+        // }
+
+        //---------------------------------------------//
+
+        //Busqueda por fechas recibida/parcial
+        if (textoBuscar.trim().length === 0 && CambioFecha === false && opcionEstado === '@Numeros.Doce') {            
+            ConsultaOrdenes = {
+                IdUsuarioGalileo: @infousuario.UsuarioID,
+                OpcionBusqueda: @Numeros.Doce,
+                FechaInicio: FechaDesde,
+                FechaFin: FechaHasta
+            }
+        }
+        else if (CambioFecha === true && opcionEstado === '@Numeros.Doce') {            
+            ConsultaOrdenes = {
+                IdUsuarioGalileo: @infousuario.UsuarioID,
+                OpcionBusqueda: @Numeros.Doce,
+                FechaInicio: FechaDesde,
+                FechaFin: FechaHasta
+            }
+        }
+
+        //Busqueda por cedula recibida/parcial
+        // if (textoBuscar.trim().length != 0 && opcionEstado === '@Numeros.Doce' &&
+        //     CambioFecha === false) {
+        //     ConsultaOrdenes = {
+        //         IdUsuarioGalileo: @infousuario.UsuarioID,
+        //         OpcionBusqueda: @Numeros.Doce,
+        //         DatoBusqueda: textoBuscar,
+        //         FechaInicio: FechaDesde,
+        //         FechaFin: FechaHasta                
+        //     }
+        // }
+        // else if (textoBuscar.trim().length != 0 && opcionEstado === '@Numeros.Doce' &&
+        //     CambioFecha === true) {
+        //     ConsultaOrdenes = {
+        //         IdUsuarioGalileo: @infousuario.UsuarioID,
+        //         OpcionBusqueda: @Numeros.Doce,
+        //         DatoBusqueda: textoBuscar,
+        //         FechaInicio: FechaDesde,
+        //         FechaFin: FechaHasta                
+        //     }
+        // }
+
+        ListarOrdenesDefault();
+        $('#btnEnviarOrden').prop("disabled", true);
+
+    }
+
+</script>

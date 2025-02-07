@@ -1,0 +1,8 @@
+﻿@model GDifare.Portal.Humalab.Servicio.Modelos.PedidosOpLogistico.VerDetallePedidoOperadorResponse
+@{
+    ViewData["Title"] = "OpLogistico";
+    Layout = "/Views/Shared/_BootStrapLayoutMenu.cshtml";
+}
+
+@await Html.PartialAsync("~/Views/Componentes/InformacionRecolectarOP.cshtml", Model.Pedido)
+@await Html.PartialAsync("~/Views/Componentes/TablaRecolectarOP.cshtml", Model.Muestras)

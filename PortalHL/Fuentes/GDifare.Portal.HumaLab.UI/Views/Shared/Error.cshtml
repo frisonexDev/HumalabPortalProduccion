@@ -1,0 +1,17 @@
+﻿@using GDifare.Portal.HumaLab.UI.Models;
+
+@{
+    ViewData["Title"] = "Error";
+}
+
+<h1 class="text-danger">Error.</h1>
+<h2 class="text-danger">Ocurrió un error al procesar su solicitud.</h2>
+
+@if (Model.ShowRequestId)
+{
+    <p>
+        <strong>Request ID:</strong> <code>@Model.RequestId</code>
+    </p>
+}
+
+<img src="~/resources/images/fondo/404-error-page-not-found.png" style="width:800px;height:500px"/>

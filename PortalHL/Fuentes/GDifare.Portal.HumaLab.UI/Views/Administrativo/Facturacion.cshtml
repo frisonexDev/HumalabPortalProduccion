@@ -1,0 +1,736 @@
+﻿@{
+    ViewData["Title"] = "Administrativo";
+    Layout = "/Views/Shared/_BootStrapLayoutMenu.cshtml";
+}
+
+<partial name="~/Views/Componentes/BusquedaClienteFecha.cshtml" />
+<partial name="~/Views/Componentes/TablaFacturacion.cshtml" />
+
+<style>
+    .a-disable {
+        pointer-events: none;
+        cursor: default;
+    }
+
+
+    table.dataTable tbody tr.selected > * {
+        box-shadow: inset 0 0 0 9999px rgb(213, 223, 212) !important;
+        color: #007239 !important;
+        font-weight: bold;
+    }
+
+    .alingContent {
+        display: Flex;
+        justify-content: right;
+    }
+
+
+
+    .alingContentCenter {
+        display: Flex;
+        justify-content: center;
+    }
+
+    table.dataTable tr.dtrg-group.dtrg-start td {
+        background-color: transparent;
+        max-height: 5px !important;
+        border-top: 1px solid black;
+    }
+
+    table.dataTable tr.dtrg-group.dtrg-end td {
+        background-color: transparent;
+        height: 5px !important;
+        border-bottom: 1px solid black;
+    }
+
+
+    .modal-header {
+        background: #00558B !important;
+    }
+
+    .modal-title {
+        color: #fff !important;
+    }
+
+    .btn-close {
+        background: red url('/Resources/images/icons/iconCosed.PNG') no-repeat center !important;
+        opacity: 1 !important;
+    }
+
+</style>
+
+
+<script>
+    var ListaPruebas = [];
+    var jsonOrdenes = {};
+
+    var jsonOrdenesFactu = [];
+
+    var lstClientes = [];
+
+    var totalMuestras = parseInt(0);
+    var totalFactura = parseFloat(0, 2);
+    var table;
+    let datosCliente = {};
+    $("#totalMuestras").val(totalMuestras);
+    $("#totalFacturas").val(totalFactura.toFixed(2));
+
+    var totalFacturaFinal = 0;
+    var totalSuma = 0;
+
+    var valorTodos = "";
+    var finalClienteSelec = false;
+
+    window.addEventListener('load', function () {
+
+        CargarClientes()
+        document.getElementById("txtCliente").addEventListener("keypress", pressEnter, false);
+        document.getElementById("select-pruebas").addEventListener("keypress", pressEnter, false);
+
+
+        var middeMonth = new Date(moment().year() + '-' + (moment().month().toString().length === 1 ? '0' + (moment().month() + 1) : moment().month() + 1) + '-16');
+        var hoy = moment(moment().add(0, 'days'))
+
+        let start
+        let end
+        if (hoy <= new Date(middeMonth)) {
+            start = moment().add(0, 'months').startOf('month').format("YYYY-MM-DD");
+            end = moment(middeMonth).format("YYYY-MM-DD");
+            $("#dtpFchDes").val(start);
+            $("#dtpFchHas").val(end);
+        }
+        else {
+            start = moment(middeMonth).add(1, 'day').format("YYYY-MM-DD");
+            end = moment().add(0, 'months').endOf('month').format("YYYY-MM-DD");
+            $("#dtpFchDes").val(start);
+            $("#dtpFchHas").val(end);
+        }
+
+    });
+
+    $("#dtpFchDes").change(function () { limpiarCampos() })
+    $("#dtpFchHas").change(function () { limpiarCampos() })
+
+    function validarRangoFechas() {
+        var desde = new moment($("#dtpFchDes").val(), 'LL')
+        var hasta = new moment($("#dtpFchHas").val(), 'LL')
+
+        if (desde._i > hasta._i) {
+            return true;
+        }
+        return false;
+    }
+
+    function limpiarCampos() {
+        jsonOrdenes = {};
+        totalMuestras = parseInt(0);
+        totalFactura = parseFloat(0, 2);
+        $("#totalMuestras").val(totalMuestras);
+        $("#totalFacturas").val(totalFactura.toFixed(2));
+
+        if ($.fn.DataTable.isDataTable('#example')) {
+            $('#example').off();
+            if (table != null) {
+                table.clear();
+                table.destroy();
+            }
+            $("#example tbody").empty();
+        }
+        $('#btnPrefactura').addClass('a-disable bg-secondary');
+        $('#btnPrefactura').removeClass('bg-primary');
+        $('#btnFactura').addClass('a-disable bg-secondary');
+        $('#btnFactura').removeClass('bg-primary');
+    }
+
+    function pressEnter(event) {
+        if (event.key === "Enter") {
+            event.preventDefault();
+            document.getElementById("cliente").click();
+        }
+    }
+
+    $('input[type=radio][name=inlineRadioOptions]').change(function () {
+        document.getElementById("cliente").click();
+    });
+
+    function prefactura() {
+
+        var jsonData = {};
+        let i = 0;
+
+        table.rows().data().each(function (value) {
+            jsonData[i] = value;
+            i++;
+        });
+
+        var ordenes = jsonData;
+
+        if (jsonOrdenesFactu.length > 0) {
+            const ordenesFiltro = jsonOrdenesFactu.map((x) => x.idOrden);
+            const distinctOrder = [...new Set(ordenesFiltro)]                         
+
+            datosCliente.totalMuestra = distinctOrder.length;
+            //datosCliente.totalMuestra = $("#totalMuestras").val();
+            datosCliente.totalFactura = $("#totalFacturas").val();
+            datosCliente.estadoFactura = $("input[name='inlineRadioOptions']:checked")[0].dataset.name;
+
+            datosCliente.facturaList = jsonOrdenesFactu;
+            datosCliente.OrdenList = distinctOrder;
+        }
+        else {
+            const ordenesFiltro = jsonOrdenes.map((x) => x.idOrden);
+            const distinctOrder = [...new Set(ordenesFiltro)]   
+            
+            datosCliente.totalMuestra = distinctOrder.length;
+            //datosCliente.totalMuestra = $("#totalMuestras").val();
+            datosCliente.totalFactura = $("#totalFacturas").val();
+            datosCliente.estadoFactura = $("input[name='inlineRadioOptions']:checked")[0].dataset.name;
+
+            datosCliente.facturaList = ordenes;
+            datosCliente.OrdenList = distinctOrder;
+        }                      
+
+        if (!$.isEmptyObject(jsonData)) {
+            $.ajax({
+                url: '@Url.Action("pdfFactura", "Administrativo")',
+                type: 'POST',
+                data: {
+                    "facturas": datosCliente
+                },
+                beforeSend: function () {
+                    loadingShow();
+                },
+                success: function (response) {                    
+                    if (response.status == 200) {
+                        let pdfWindow = window.open("")
+                        pdfWindow.document.write(
+                            "<iframe width='100%' height='100%' src='data:application/pdf;base64, " +
+                            encodeURI(response.base64PDF) + "'></iframe>"
+                        )
+                        pdfWindow.document.title = 'Prefactura';
+                    }
+                    else {
+                        MensajeAlerta1("danger", "Se ha generador un error :" + response.base64PDF);
+                    }
+                    loadingHide();
+                }
+            });
+        }
+        else {
+            MensajeAlerta1("danger", "No se ha seleccionado ninguna orden");
+        }
+    }
+
+
+    function factura() {
+
+        let consolidadoFacturacion = {};
+
+        let datosFacturacion = {};
+        let clienteRequest = {};
+        let datosFactura = {};
+        /******************************************************* */
+
+        datosFacturacion.Empresa = datosCliente.Empresa;
+        datosFacturacion.Ruc = datosCliente.CodClienteCta;
+        datosFacturacion.Asesor = datosCliente.Asesor;
+
+        // const detalles = jsonOrdenes.map((x) => {
+        //     let detalleFacturacion = {}
+        //     detalleFacturacion.Codigo = x.codigo
+        //     detalleFacturacion.Cantidad = x.cantidad
+        //     detalleFacturacion.Precio = x.precio
+
+
+        //     return detalleFacturacion;
+        // })
+        
+        const detalles = jsonOrdenesFactu.map((x) => {
+            let detalleFacturacion = {}
+            detalleFacturacion.Codigo = x.codigo
+            detalleFacturacion.Cantidad = x.cantidad
+            detalleFacturacion.Precio = x.precio
+            detalleFacturacion.idOrden = x.idOrden
+
+            return detalleFacturacion;
+        })
+        
+        const idOrdenes = jsonOrdenesFactu.map((x) => x.idOrden);
+
+        datosFacturacion.detalle = detalles;
+        
+        consolidadoFacturacion.facturaFlexResquest = datosFacturacion
+        
+        /****************************************************************************** */
+        clienteRequest.cliente = $("#txtCliente").val();
+        clienteRequest.tipo = $("input[name='inlineRadioOptions']:checked").val();
+        clienteRequest.desde = $("#dtpFchDes").val();
+        clienteRequest.hasta = $("#dtpFchHas").val();
+        clienteRequest.Ruc = $("#txtCliente").val();
+
+        consolidadoFacturacion.clienteRequest = clienteRequest
+        
+        /******************************************************************************* */
+
+        if (jsonOrdenesFactu.length > 0) {
+            const ordenesFiltro = jsonOrdenesFactu.map((x) => x.idOrden);
+            const distinctOrder = [...new Set(ordenesFiltro)]
+
+            datosFactura.identificacionUsuario = datosCliente.CodClienteCta;
+            datosFactura.totalMuestra = distinctOrder.length;//$("#totalMuestras").val();
+            datosFactura.totalFactura = $("#totalFacturas").val();
+            datosFactura.estadoFactura = $("input[name='inlineRadioOptions']:checked")[0].dataset.name;
+            datosFactura.idOrden = idOrdenes;
+
+            consolidadoFacturacion.datosFactura = datosFactura;
+        }
+        else{
+            const ordenesFiltro = jsonOrdenes.map((x) => x.idOrden);            
+            const distinctOrder = [...new Set(ordenesFiltro)]
+
+            datosFactura.identificacionUsuario = datosCliente.CodClienteCta;
+            datosFactura.totalMuestra = distinctOrder.length;//$("#totalMuestras").val();
+            datosFactura.totalFactura = $("#totalFacturas").val();
+            datosFactura.estadoFactura = $("input[name='inlineRadioOptions']:checked")[0].dataset.name;
+            datosFactura.idOrden = idOrdenes;
+
+            consolidadoFacturacion.datosFactura = datosFactura;
+        }       
+        
+        /*********************************************************************************** */        
+        bootbox.confirm({
+            title: 'Facturar Cliente',
+            message: 'Está seguro de enviar Facturar?.',
+            buttons: {
+                cancel: {
+                    label: '<i class="fa fa-times"></i> No',
+                    className: 'btn-danger'
+                },
+                confirm: {
+                    label: '<i class="fa fa-check"></i> Si',
+                    className: 'btn-success'
+                }
+            },
+            callback: function (result) {                
+                if (result) {
+                    loadingShow();
+
+                    $.ajax({
+                        url: '@Url.Action("Factura", "Administrativo")',
+                        type: 'POST',
+                        data: consolidadoFacturacion,
+                        success: function (response) {
+                            
+                            if (response.correlativo == 0) {
+                                MensajeAlerta1("danger", response.mensaje)
+                                $("#cliente").click();
+
+                                window.location.reload();
+                            }
+                            else {
+                                if (response.respuestaHumalab == 0) {
+                                    MensajeAlerta1("success", "FLexLine respondio OK")
+                                    setTimeout(() => {
+                                        MensajeAlerta1("danger", "Se ha producido un error en la facturación NO se actualizaron los itmes en Humalab")
+                                    }, "1000")
+                                    $("#cliente").click();
+
+                                    //window.location.reload();
+                                }
+                                else {
+                                    MensajeAlerta1("success", "Se ha facturado correctamente")
+                                    $("#inlineRadio2").prop('checked', true);
+                                    $("#cliente").click();
+
+                                    //window.location.reload();
+                                }
+                            }
+                        },
+
+                        error: function (xhr, status, error) {
+                            MensajeAlerta1("danger", "Se ha producido un error en la facturación : " + error)
+                            $("#cliente").click();
+
+                            window.location.reload();
+                        },
+                        complete: function (xhr, status, error) {
+                            setTimeout(() => { loadingHide(); }, "1000")
+                        }
+
+                    });
+
+                }
+            }
+        });
+
+    }
+
+    function consultarPedidos() {
+
+        limpiarCampos();        
+        var cliente = $("#txtCliente").val();
+        var tipo = $("input[name='inlineRadioOptions']:checked").val();
+        var desde = $("#dtpFchDes").val();
+        var hasta = $("#dtpFchHas").val();
+
+        valorTodos = document.getElementById("select-pruebas").value;        
+
+        if (validarCampos()) {
+            
+            table = $('#example').addClass('nowrap').DataTable({
+                destroy: true,
+                ordering: false,
+                responsive: true,
+                lengthMenu: [10, 20, 50, 100],
+                pageLength: 10,
+                scrollCollapse: true,
+                scrollY: '500px',
+                ajax: {
+                    url: '@Url.Action("facturasPendientes", "Administrativo")',
+                    data: {
+                        "Ruc": cliente,
+                        "Estado": tipo,
+                        "Desde": desde,
+                        "Hasta": hasta,
+                        "Valor": valorTodos
+                    },
+                    type: 'GET',
+                    contentType: 'application/json',
+                    dataSrc: ""
+                },
+                drawCallback: function (settings) {                                                           
+                    var response = settings.json;
+
+                    if (response !== undefined) {
+
+                        if (response.length > 0 && response.length !== undefined) {
+                            $('#btnPrefactura').removeClass('a-disable bg-secondary');
+                            $('#btnPrefactura').addClass('bg-primary');
+                            $('#btnFactura').removeClass('a-disable bg-secondary');
+                            $('#btnFactura').addClass('bg-primary');
+                            if (tipo == @ViewBag.Validadas) {
+                                habilitaFactura();
+                            }
+                            else {
+                                desHabilitaFactura();
+                            }                            
+                            jsonOrdenes = response.map((x) => {
+                                let precioDosDecimales = parseFloat(x.precio).toFixed(2);
+                                x.precio = precioDosDecimales;
+                                return x
+                            }
+                            );
+
+                        }
+                        else {
+                            $('#btnPrefactura').addClass('a-disable bg-secondary');
+                            $('#btnPrefactura').removeClass('bg-primary');
+                            $('#btnFactura').addClass('a-disable bg-secondary');
+                            $('#btnFactura').removeClass('bg-primary');
+                            jsonOrdenes = {};
+                        }                        
+                    }
+                    loadingHide();
+                },
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json',
+                },
+                columns: [
+                    { 
+                        "data": "idOrden",
+                        orderable: false,        
+                        render: function (data, type, full, meta) {
+                            var escapedData = JSON.stringify(full).replace(/"/g, '&quot;');
+                            // var idOrden = full.idOrden;
+                            // return '<input id="check' + idOrden + '" type="checkbox" onclick="CheckFactu(' + escapedData + ')">';
+                            var idOrden = full.idOrden;
+                            return '<input id="check' + idOrden + '" type="checkbox" onclick="CheckFactu(' + escapedData + ', this.checked)">';
+                        }                    
+                    },
+                    { "data": "idOrden" },
+                    { "data": "codigo" },
+                    { "data": "nombre" },
+                    {
+                        "data": "cantidad",
+                        render: function (data, type) {
+                            let count = parseFloat(data).toFixed(0);
+                            return '<span class="alingContentCenter">' + count + '</span>';
+                        }
+
+                    },
+                    {
+                        "data": "precio",
+                        render: function (data, type) {
+
+                            let color = 'orange';
+                            let number = formatDecimal(data);
+                            return '<span class="alingContentCenter">' + number + '</span>';
+                        }
+                    },
+                    {
+                        "data": "estadoFactura",
+                        render: function (data, type) {
+                            let opc = $("input[name='inlineRadioOptions']:checked").val();
+
+
+                            return '<span class="alingContentCenter"><span class="badge ' + (opc != 37 ? 'bg-danger' : 'bg-success') + '" style="font-size:1rem;">' + data + '</span></span>';
+                        }
+                    }
+                ],
+                rowGroup: {
+                    dataSrc: 'nombre',
+                    startRender: function (rows, group, level) {
+
+                        let headerRow = null;
+                        if (rows.count() > 1) {
+                            headerRow = + ' (' + rows.count() + ' items)';
+                            return $('<tr/>').append('<td colspan="1" class="group"><b>' + group + '</b></td>')//rows.count()
+                        }
+                    },
+                    endRender: function (rows, group) {
+
+                        let countItems = rows.count();
+                        let salaryAvg =
+                            rows
+                                .data()
+                                .pluck('precio')
+                                .reduce((a, b) => parseFloat(a) + parseFloat(b), parseFloat(0));/// rows.count();
+
+                        let color = 'red';
+                        //console.log(salaryAvg)
+                        let number = formatDecimal(salaryAvg)
+                        let tr = document.createElement('tr');
+
+                        addCell(tr, '<div class="alingContent" style="width: 100%;"><b>Total  </b></div>', 3);
+                        addCell(tr, '<div class="alingContentCenter" style="width: 100%;"><b>' + countItems.toFixed(0) + '</b>  </div>');
+                        addCell(tr, '<div class="alingContentCenter" style="width: 100%;"><b>' + number + '</b>  </div>', 1);
+                        addCell(tr, '');
+                        if (countItems.toFixed(0) > 1) return tr;
+                    },
+
+                },
+                order: [[2, 'asc']]
+            });
+
+            setTimeout(() => {
+                let muestras = [];
+                table.rows().data().each(function (value) {
+
+                    if (value.precio != null) {
+                        muestras[totalMuestras] = value;
+                        totalMuestras += 1;                        
+                        totalFactura += parseFloat(value.precio, 2);
+                    }
+                    else {
+                        // console.log("------->", value.precio)
+                    }
+                });
+
+                const ordenesFiltro = muestras.map((x) => x.idOrden);
+                const distinctOrder = [...new Set(ordenesFiltro)]
+
+                $("#totalMuestras").val(distinctOrder.length)
+                $("#totalFacturas").val(formatDecimal(totalFactura));
+
+            }, "1000")
+        }
+        else { loadingHide(); }
+    }
+    
+    function formatDecimal(num) {
+        return parseFloat(num, 2).toFixed(2).replace(/\d(?=(\d{9})+\.)/g)
+    }
+
+    function addCell(tr, content, colSpan = 1) {
+        let td = document.createElement('td');
+
+        td.colSpan = colSpan;
+        td.innerHTML = content;
+
+        tr.appendChild(td);
+    }
+
+    function validarCampos() {
+        var cliente = $("#txtCliente").val();
+        var desde = new moment($("#dtpFchDes").val(), 'LL')
+        var hasta = new moment($("#dtpFchHas").val(), 'LL')       
+
+        // if (validaVacio(cliente) || validaVacio(desde._i) || validaVacio(hasta._i)) {
+        //     MensajeAlerta1("warning", "Complete todos los campos");
+        //     return false;
+        // }
+
+        if (validarRangoFechas()) {
+            MensajeAlerta1("danger", "La fecha desde NO debe ser mayor a la fecha hasta");
+
+        }
+
+        return true;
+    }
+
+    function habilitaFactura() {
+        $('#btnFactura').removeClass('a-disable bg-secondary');
+        $('#btnFactura').addClass('bg-primary');
+    }
+    function desHabilitaFactura() {
+        $('#btnFactura').addClass('a-disable bg-secondary');
+        $('#btnFactura').removeClass('bg-primary');
+    }
+
+    function CargarClientes() {
+
+        $.ajax({
+            url: '@Url.Action("informacionCliente", "Administrativo")',
+            type: 'GET',
+            success: function (response) {                
+                ComboPruebas(response);
+            }
+        });
+    }
+
+
+    function ComboPruebas(lista) {
+        //var html = '';
+        var html = '<option value="-1">TODOS</option>';
+
+        for (var key = 0, size = lista.length; key < size; key++) {
+            ListaPruebas.push(lista[key]);
+            html += '<option value="' + key + '"' + '>'
+                + '<div class="d-flex">'
+                + '<h5>' + lista[key].codClienteCta + " " + '</h5>'
+                + '<h5>' + ' | ' + lista[key].nombreCliente + " " + '</h5>'
+                + '<h5>' + ' | ' + lista[key].nombreOperadorLogistico + " " + '</h5>'
+                + '</div>'
+
+                + '</option>';
+        }
+
+        $('#select-pruebas').append(html);
+
+    }
+
+
+    function SelectTable() {
+        limpiarCampos()
+        var valor = document.getElementById("select-pruebas").value;
+        var itemSelect = {};
+
+        for (var i = 0, size = ListaPruebas.length; i < size; i++) {
+            if (valor == i) {
+                itemSelect = ListaPruebas[i]
+            }
+        } 
+
+        if (valor === "-1") {            
+            var infoCliente = document.getElementById('nomCliente');
+            infoCliente.style.display = "none";
+
+            datosCliente.Empresa = itemSelect.empresa;
+            datosCliente.Ruc = itemSelect.codClienteCta;
+            datosCliente.Asesor = itemSelect.nombreOperadorLogistico;
+
+            datosCliente.cliente = itemSelect.nombreCliente;
+            datosCliente.CodClienteCta = itemSelect.codClienteCta;
+
+            const today = moment();
+            let dates = today.format();
+            datosCliente.fecha = dates.replace('T', ' ');
+            document.getElementById("cliente").click();
+
+            finalClienteSelec = true;
+        }
+        else {
+            document.getElementById('nomCliente').innerHTML = "";
+            if (itemSelect !== undefined || itemSelect !== "" || itemSelect !== null) {
+                const infoCliente = '<b>Cliente : </b>' + itemSelect.identificacion + ' | ' 
+                                    + itemSelect.nombreCliente + ' <b>  ( Ruc Factura :' 
+                                    + itemSelect.codClienteCta + ' )</b><b> Asesor Asignado: </b>' 
+                                    + itemSelect.idOperadorLogistico + ' | ' 
+                                    + itemSelect.nombreOperadorLogistico;
+
+                $("#txtCliente").val(itemSelect.identificacion);
+
+                document.getElementById('nomCliente').innerHTML = infoCliente;
+
+                datosCliente.Empresa = itemSelect.empresa;
+                datosCliente.Ruc = itemSelect.codClienteCta;
+                datosCliente.Asesor = itemSelect.nombreOperadorLogistico;
+
+                datosCliente.cliente = itemSelect.nombreCliente;
+                datosCliente.CodClienteCta = itemSelect.codClienteCta;
+
+                const today = moment();
+                let dates = today.format();
+                datosCliente.fecha = dates.replace('T', ' ');
+                document.getElementById("cliente").click();
+            }
+        }
+        
+    }
+
+    //obtiene datos de cada fila seleccionada para facturar
+    function CheckFactu(index, isChecked) {
+
+        var idFilaSelec = index.idOrden;
+        var codPrueba = index.codigo;
+        var precio = index.precio;               
+
+        var precio = parseFloat(precio);        
+
+        if (isChecked === true) {
+            
+            for (var i = 0; i < jsonOrdenes.length; i++) {
+                if (idFilaSelec === jsonOrdenes[i].idOrden) {
+                    jsonOrdenesFactu.push(index);
+
+                    //suma el total de seleccionadas
+                    totalSuma = totalSuma + precio;
+                    totalFacturaFinal = parseFloat(totalSuma.toFixed(2));
+                    break;
+                }
+            }
+        }
+        else{           
+
+            for (var i = 0; i < jsonOrdenesFactu.length; i++) {
+                
+                if (jsonOrdenesFactu[i].codigo === codPrueba && 
+                    jsonOrdenesFactu[i].idOrden === idFilaSelec) {
+                    jsonOrdenesFactu.splice(i, 1); 
+                    
+                    //resta el total de seleccionadas
+                    totalSuma = totalSuma - precio;
+                    totalFacturaFinal = parseFloat(totalSuma.toFixed(2));
+                    
+                    break;
+                }
+            }
+        }
+
+        $("#totalFacturas").val(formatDecimal(totalFacturaFinal));
+    }
+
+    function SelecTodosFactu() {              
+        var checkMarcado = document.getElementById("checkFactuAdmin").checked;
+        
+        if (checkMarcado === true) {            
+            jsonOrdenesFactu = [];
+
+            for (var i = 0; i < jsonOrdenes.length; i++) {                
+                $('input[type="checkbox"]').prop("checked", true);
+                jsonOrdenesFactu.push(jsonOrdenes[i]);
+            }            
+        }
+        else{            
+
+            for (var i = 0; i < jsonOrdenes.length; i++) {                
+                $('input[type="checkbox"]').prop("checked", false);
+            }            
+            jsonOrdenesFactu = [];            
+        }
+
+        // $("#totalFacturas").val(formatDecimal(totalFacturaFinal));        
+        $("#totalFacturas").val(totalFactura.toFixed(2));
+    }
+
+</script>

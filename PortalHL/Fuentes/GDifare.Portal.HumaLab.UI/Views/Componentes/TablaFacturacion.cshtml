@@ -1,0 +1,49 @@
+﻿    
+
+<div class="container-fluid bg-white rounded-3 p-3 mt-3 mb-3">
+
+    <table id="example" class="table table-responsive cell-border" style="width:100%;" aria-describedby="example_info">
+
+      
+        <thead class="bg-primary">
+            <tr>                
+                <th class="fw-bold" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 50.613px; color:#F4F4F2;">
+                    <input id="checkFactuAdmin" class="form-check-input" type="checkbox" onclick="SelecTodosFactu()"/>
+                </th>
+                <th class="fw-bold " tabindex="1" aria-controls="example" rowspan="1" colspan="1" style="color:#F4F4F2;">ORDEN</th>
+                <th class="fw-bold " tabindex="2" aria-controls="example" rowspan="1" colspan="1" style="color:#F4F4F2;">PRUEBA</th>
+                <th class="fw-bold " tabindex="3" aria-controls="example" rowspan="1" colspan="1" style="color:#F4F4F2;">DESCRIPCIÓN</th>
+                <th class="fw-bold " tabindex="4" aria-controls="example" rowspan="1" colspan="1" style="color:#F4F4F2;">CANTIDAD</th>
+                <th class="fw-bold " tabindex="5" aria-controls="example" rowspan="1" colspan="1" style="color:#F4F4F2;">PRECIO</th>
+                <th class="fw-bold " tabindex="6" aria-controls="example" rowspan="1" colspan="1" style="color:#F4F4F2;">ESTADO</th>
+
+            </tr>
+        </thead>
+
+    </table>
+
+    <div class="mt-4">
+
+        <div class="d-flex justify-content-end align-items-end mt-2 gap-2">
+
+            <h5>Total Ordenes</h5>
+            <input disabled type="number" id="totalMuestras" style=" text-align: right;" />
+
+        </div>
+
+        <div class="d-flex justify-content-end align-items-end mt-2 gap-2">
+
+            <h5>Total Factura</h5>
+            <input disabled type="number" id="totalFacturas" style=" text-align: right;" />
+
+        </div>
+
+        <div class="d-flex justify-content-end align-items-end mt-2 gap-2">
+            <a class="btn btn-secondary text-decoration-none a-disable" id="btnPrefactura" onclick="prefactura()" style="color:white">IMPRIMIR</a>
+            <a class="btn btn-secondary text-decoration-none a-disable" id="btnFactura" onclick="factura()" style="color:white">FACTURAR</a>
+
+        </div>
+
+    </div>
+
+</div>

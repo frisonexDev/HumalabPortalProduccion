@@ -1,0 +1,108 @@
+[
+  {
+    "OpcionID": 0,
+    "Descripcion": "LIMS",
+    "Modulo": "Home",
+    "Action": "Index",
+    "Icon": "/image/Prototipo_Icono-21_enable.png",
+    "Items": [
+      {
+        "OpcionID": 173,
+        "Descripcion": "Dashboard",
+        "Modulo": "Cliente",
+        "Action": "Index",
+        "Icon": "fa-solid fa-diagram-project fa-2xl",        
+        "IdRolGrupo": "100"
+      },
+      {
+        "OpcionID": 174,
+        "Descripcion": "Órdenes",
+        "Modulo": "Cliente",
+        "Action": "ConsultarOrdenes",
+        "Icon": "fa-sharp fa-solid fa-file-arrow-up fa-2xl",        
+        "IdRolGrupo": "100"
+      },
+      {
+        "OpcionID": 175,
+        "Descripcion": "Pedidos",
+        "Modulo": "Cliente",
+        "Action": "Pedido",
+        "Icon": "fa-sharp fa-solid fa-notes-medical fa-2xl",        
+        "IdRolGrupo": "100"
+      },
+      {
+        "OpcionID": 176,
+        "Descripcion": "Catálogo de Pruebas",
+        "Modulo": "Cliente",
+        "Action": "Catalogo",
+        "Icon": "fa-solid fa-rectangle-list fa-2xl",        
+        "IdRolGrupo": "100, 1"
+      },
+      {
+        "OpcionID": 171,
+        "Descripcion": "Gestión de Clientes",
+        "Modulo": "Administrativo",
+        "Action": "Index",
+        "Icon": "fa-sharp fa-solid fa-users fa-2xl",        
+        "IdRolGrupo": "1"
+      },
+      //{
+      //  "OpcionID": 172,
+      //  "Descripcion": "Facturación",
+      //  "Modulo": "Administrativo",
+      //  "Action": "Facturacion",
+      //  "Icon": "fa-sharp fa-solid fa-address-card fa-2xl",        
+      //  "IdRolGrupo": "1"
+      //},
+      {
+        "OpcionID": 181,
+        "Descripcion": "Administración Pruebas",
+        "Modulo": "Administrativo",
+        "Action": "PruebasAdmin",
+        "Icon": "fa-sharp fa-solid fa-file-arrow-up fa-2xl",        
+        "IdRolGrupo": "1"
+      },
+      {
+        "OpcionID": 177,
+        "Descripcion": "Pedidos Operador",
+        "Modulo": "OpLogistico",
+        "Action": "Index",
+        "Icon": "fa-sharp fa-solid fa-notes-medical fa-2xl",        
+        "IdRolGrupo": "7"
+      },
+      {
+        "OpcionID": 178,
+        "Descripcion": "Ordenes Laboratorio",
+        "Modulo": "Laboratorista",
+        "Action": "Index",
+        "Icon": "fa-sharp fa-solid fa-flask-vial fa-2xl",        
+        "IdRolGrupo": "4, 8"
+      },
+      {
+        "OpcionID": 180,
+        "Descripcion": "Resultados",
+        "Modulo": "Medico",
+        "Action": "ConsultarResultadosMedico",
+        "Icon": "fa-sharp fa-solid fa-file-arrow-up fa-2xl",
+        "IdRolGrupo": "159"
+      },
+      {
+        "OpcionID": 182,
+        "Descripcion": "Administración Órdenes",
+        "Modulo": "Administrativo",
+        "Action": "AdminOrdenes",
+        "Icon": "fa-solid fa-list-check fa-2xl",
+        "IdRolGrupo": "1"
+      }
+      //},
+      //{
+      //  "OpcionID": 179,
+      //  "Descripcion": "Pedidos Laboratorio",
+      //  "Modulo": "Laboratorista",
+      //  "Action": "PedidosLab",
+      //  "Icon": "fa-sharp fa-solid fa-file fa-2xl",
+      //  "IdRolGrupo": "106,74"
+      //}
+    ]
+  }
+]

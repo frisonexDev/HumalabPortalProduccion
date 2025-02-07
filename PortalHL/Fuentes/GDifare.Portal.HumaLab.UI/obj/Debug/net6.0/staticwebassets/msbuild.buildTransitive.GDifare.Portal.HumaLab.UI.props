@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\buildMultiTargeting\GDifare.Portal.HumaLab.UI.props" />
+</Project>

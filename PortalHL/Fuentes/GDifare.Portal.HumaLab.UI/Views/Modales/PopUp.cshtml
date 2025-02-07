@@ -1,0 +1,50 @@
+﻿@using GDifare.Portal.Humalab.Servicio.Utils;
+
+<div class="modal fade" id="ModalPopUp" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header bg-primary">
+				<h5 class="modal-title text-white">ELIMINAR</h5>
+				<a class="btn text-decoration-none rounded-2" id="cerrarModal" data-bs-dismiss="modal" aria-label="Close" onclick="BtnCancelar()" style="background-color:red"><i class="fa-solid fa-xmark fa-xl" style="color:white ;"></i></a>
+			</div>
+
+			<div class="modal-body justify-content-center align-items-center m-4">
+
+				<!--CONTENIDO DEL MODAL-->
+				<div id="mensajePopUp"></div>
+
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="BtnCancelar()">Cancelar</button>
+				<button type="button" class="btn btn-danger" onclick="BtnEliminar()">Eliminar</button>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<script>
+
+	function BtnEliminar()
+	{
+		if(nombreFuncion==="@Funcion.EliminarOrden")
+		{
+			EliminarConsultaOrden(indicePop);
+		}
+		
+		if (nombreFuncion === "@Funcion.EliminarPrueba") {
+			EliminarOrden();
+		}
+
+		if (nombreFuncion === "@Funcion.EliminarPedido") {
+			EliminarPedido(indicePop);
+		}
+
+		$('#ModalPopUp').modal('hide');
+	}
+	function BtnCancelar()
+	{
+		console.log("Presiona Cancelar");
+	}
+</script>

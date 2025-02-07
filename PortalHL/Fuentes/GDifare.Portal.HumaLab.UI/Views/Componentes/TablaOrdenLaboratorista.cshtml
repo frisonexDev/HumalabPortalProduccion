@@ -1,0 +1,228 @@
+﻿@using GDifare.Portal.HumaLab.UI.Models.Pedidos;
+@using GDifare.Portal.Humalab.Servicio.Utils;
+@using Newtonsoft.Json;
+@model PedidosLaboratorista
+@{
+    string datos = JsonConvert.SerializeObject(ViewBag.DatosConsulta);
+}
+<div id="datos" data-datosconsulta="@datos"></div>
+
+<style>
+    @@media (max-width: 768px) {
+            .table th,
+            .table td {
+                font-size: 0.8rem;
+                white-space: nowrap;
+            }
+            /* Oculta ciertas columnas en pantallas pequeñas */
+            .table th:nth-child(3),
+            .table td:nth-child(3),
+            .table th:nth-child(4),
+            .table td:nth-child(4) {
+                display: none;
+            }
+        }
+</style>
+
+<div class="container-fluid bg-white rounded-3 p-3 mt-3 mb-3">
+    <div class="table-responsive">
+        <table id="example" class="table dataTable mt-2" style="width:100%;" aria-describedby="example_info">
+            <thead class="bg-primary">
+                <tr>
+                    <th class="fw-bold text-center" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 10.613px; color:#F4F4F2;" hidden>IDORDEN</th>
+                    <th class="fw-bold text-center" tabindex="1" aria-controls="example" rowspan="1" colspan="1" style="width: 10.613px; color:#F4F4F2;" hidden>IDPEDIDO</th>
+
+                    <th class="fw-bold text-center" tabindex="2" aria-controls="example" rowspan="1" colspan="1" style="width: 10.613px; color:#F4F4F2;">CLIENTE</th>
+
+                    <th class="fw-bold text-center" tabindex="4" aria-controls="example" rowspan="1" colspan="1" style="width: 60px;color:#F4F4F2;">N° ORDEN</th>
+                    <th class="fw-bold text-center" tabindex="5" aria-controls="example" rowspan="1" colspan="1" style="width: 60px;color:#F4F4F2;">N° ORDEN LIS</th>
+                    <th class="fw-bold text-center" tabindex="6" aria-controls="example" rowspan="1" colspan="1" style="width: 60px;color:#F4F4F2;">IDENTIFICACIÓN</th>
+                    <th class="fw-bold text-center" tabindex="7" aria-controls="example" rowspan="1" colspan="1" style="width: 60px;color:#F4F4F2;">NOMBRES</th>
+                    <th class="fw-bold text-center" tabindex="8" aria-controls="example" rowspan="1" colspan="1" style="width: 60px;color:#F4F4F2;">FECHA INGRESO</th>
+                    <th class="fw-bold text-center" tabindex="9" aria-controls="example" rowspan="1" colspan="1" style="width: 80.325px;color:#F4F4F2;">OPERADOR LOGÍSTICO</th>
+                    <th class="fw-bold text-center" tabindex="10" aria-controls="example" rowspan="1" colspan="1" style="width: 80.2125px;color:#F4F4F2;">ESTADO</th>
+                    <th class="fw-bold text-center" tabindex="11" aria-controls="example" rowspan="1" colspan="1" style="width: 150.325px;color:#F4F4F2;">OBSERVACIONES</th>
+                    <th class="fw-bold text-center" tabindex="12" aria-controls="example" rowspan="1" colspan="1" style="width: 65.8375px;color:#F4F4F2;">ACCIÓN</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model.ConsultaPedidosLab)
+                {
+                    <tr>
+                        <td hidden>
+                            @Html.DisplayFor(modelItem => item.IdOrden)
+                        </td>
+                        <td hidden>
+                            @Html.DisplayFor(modelItem => item.IdPedido)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.ClienteNombre)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CodigoBarraOrden)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Resultados)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.IdentificacionPac)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NombresPac)
+                        </td>
+                        <td>
+                            <text>@item.FechaCreacion.Value.ToString("dd/MM/yyyy")</text>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.UsuarioOperador)
+                        </td>
+                        <td>
+                            @*@Html.DisplayFor(modelItem => item.EstadoPedido)*@
+                            @{
+                                string clase = string.Empty;
+                                string estado = item.EstadoPedido;
+
+                                if (estado == Estados.OrdenRechazada)
+                                    clase = "bg-danger";
+                                else if (estado == Estados.OrdenEnAnalisis)
+                                    clase = "bg-success";
+                                else if (estado == Estados.OrdenRecolectada || estado == Estados.OrdenRecolectadaParcial ||
+                                estado == Estados.OrdenEnviado || estado == Estados.OrdenEnviadoParcial)
+                                    clase = "bg-secondary";
+                                else if (estado == Estados.OrdenPorRecolectar)
+                                    clase = "bg-primary";
+                                else
+                                    clase = "bg-primary";
+                            }
+                            <span class="badge @clase" style="font-size:0.75rem;">@estado</span>
+                        </td>
+                        <td style="white-space: pre-line;">
+                            @Html.DisplayFor(modelItem => item.ObservacionMuestras)
+                        </td>
+                        <td>
+                            @{
+                                if (estado == Estados.OrdenRecolectada || estado == Estados.OrdenRecolectadaParcial ||
+                                estado == Estados.OrdenEnviado || estado == Estados.OrdenEnviadoParcial ||
+                                estado == Estados.RechazadaLabora || estado == Estados.OrdenRecibida ||
+                                estado == Estados.OrdenRecibida || estado == Estados.OrdenRecibidaParcial ||
+                                estado == Estados.OrdenPorRecolectar || estado == Estados.Generado)
+                                {
+                                    <a asp-action="PedidosLab" asp-route-id="@item.IdOrden" asp-route-datos="@datos" asp-route-estado="@estado">Detalles</a>
+                                }
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+
+    <div class="mt-4">
+
+        <div class="d-flex justify-content-end align-items-end gap-2">
+            <button id="btnExportLabo" onclick="exportarLab()" class="btn btn-primary text-decoration-none">EXPORTAR</button>
+        </div>
+
+    </div>
+
+    <div class="row justify-content-end align-items-end mt-3">
+        <div class="row gap-2 align-items-end justify-content-end ml-3">
+            <div class="col-md-6">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <span class="fw-bold">TOTAL MUESTRAS ENTREGADAS: </span>
+                    </div>
+                    <div class="col-md-6">
+                        <input id="muestrasEntregadas" name="Cliente" type="text" class="form-control" disabled value="@Html.DisplayFor(model => model.ResumenPedidosLab.TotalMuestrasEntregadas)" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <span class="fw-bold">TOTAL MUESTRAS RECIBIDAS: </span>
+                    </div>
+                    <div class="col-md-6">
+                        <input id="muestrasRecibidas" name="Cliente" type="text" class="form-control" disabled value="@Html.DisplayFor(model => model.ResumenPedidosLab.TotalMuestrasRecibidas)" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <span class="fw-bold">TOTAL MUESTRAS RECHAZADAS: </span>
+                    </div>
+                    <div class="col-md-6">
+                        <input id="muestrasRechazadas" name="Cliente" type="text" class="form-control" disabled value="@Html.DisplayFor(model => model.ResumenPedidosLab.TotalMuestrasRechazadas)" />
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="row align-items-center">
+                    <div class="col-md-6">
+                        <span class="fw-bold">SIN MUESTRAS: </span>
+                    </div>
+                    <div class="col-md-6">
+                        <input id="sinMuestras" name="Cliente" type="text" class="form-control" disabled value="@Html.DisplayFor(model => model.ResumenPedidosLab.TotalSinMuestra)" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <partial name="~/Views/Componentes/Notificaciones/Success.cshtml" />
+</div>
+
+<script>    
+
+    $('#example').DataTable({
+
+        language: {
+            url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json',
+        },
+    });
+
+    function exportarLab() {
+        var consultaPedidosLab = @Html.Raw(System.Text.Json.JsonSerializer.Serialize(Model.ConsultaPedidosLab));        
+        var exportarDatos = consultaPedidosLab;        
+
+        $.ajax({
+            url: '@Url.Action("ExportalLab","Laboratorista")',
+            type: 'POST',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(exportarDatos),
+            success: function (response) {
+                
+                var byteCharacters = atob(response);
+                var byteNumbers = new Array(byteCharacters.length);
+
+                for (var i = 0; i < byteCharacters.length; i++) {
+                    byteNumbers[i] = byteCharacters.charCodeAt(i);
+                }
+
+                var byteArray = new Uint8Array(byteNumbers);
+                var blob = new Blob([byteArray], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
+                var url = window.URL.createObjectURL(blob);
+                var a = document.createElement("a");
+                document.body.appendChild(a);
+                a.style = "display: none";
+                a.href = url;
+                a.download = "ReporteLaboratorista.xlsx";
+                a.click();
+
+                window.URL.revokeObjectURL(url);
+
+            },
+            error: function (error) {
+                MensajeAlerta1("@Notificaciones.TituloDanger", "Error al exportal el archivo excel.");
+            }
+
+        });
+    }
+
+</script>
+
+<!--Modal Observación-->
+<partial name="/Views/Modales/Comentarios.cshtml" />
+

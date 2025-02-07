@@ -1,0 +1,93 @@
+﻿@using GDifare.Portal.Humalab.Servicio.Utils;
+
+<div class="modal fade" id="ModalRecolectarMuestras" tabindex="-1" role="dialog" aria-hidden="true">
+        
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header bg-primary">
+                    <h5 class="modal-title text-white">RECOLECTAR</h5>
+                    <a class="btn text-decoration-none rounded-2" data-bs-dismiss="modal" aria-label="Close" style="background-color:red"><i class="fa-solid fa-xmark fa-xl" style="color:white ;"></i></a>
+                </div>
+            @using (Html.BeginForm("RecolectarPedido", "OpLogistico", FormMethod.Post))
+            {
+                <div class="modal-body justify-content-center align-items-center m-3">
+
+                    <!--CONTENIDO DEL MODAL-->
+
+                    <input id="idPedidoModal" name="IdPedido" hidden />
+                    <input id="idOperadorModal" name="IdOperador"  hidden />
+
+                    <div class="row mb-3">
+                        <label class="col-form-label col-md-3 fw-bold">N° Remisión CL:</label>
+                        <div class="col-md-9">
+                            <input id="numeroRemisionModal" class="form-control" type="text" disabled />
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-form-label col-md-3 fw-bold">Usuario:</label>
+                        <div class="col-md-9">
+                            <input id="usuarioModal" class="form-control" type="text" disabled />
+                        </div>
+                    </div>
+
+                    <div class="row mb-3">
+                        <label class="col-form-label col-md-3 fw-bold">Observación Operador Logístico:</label>
+                        <div class="col-md-9">
+                            <textarea id="observacionOperadorModal" name="ObservacionOperador" class="form-control" rows="3" placeholder="Máximo 200 palabras" maxlength="200" style="resize:none"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="modal-footer">
+                    <button type="submit" class="btn btn-success">Guardar</button>
+                </div>
+            }
+            </div>
+        </div>
+    <script>        
+
+        $(document).ready(function () {
+            // Selecciona el formulario por su ID
+            var form = $("#ModalRecolectarMuestras");
+
+            // Agrega un evento submit al formulario
+            form.submit(function (event) {
+                event.preventDefault();
+                var formData = {
+                    IdPedido: $("#idPedidoModal").val(),
+                    ObservacionOperador: $("#observacionOperadorModal").val()
+                };
+
+                // console.log(formData);
+
+                $.ajax({
+                    url: '@Url.Action("RecolectarPedido","OpLogistico")',
+                    type: 'POST',
+                    data: formData,
+                    success: function (response) {
+
+                        if(response.procesoExitoso)
+                        {
+                            $("#ModalRecolectarMuestras").modal("hide");
+                            MensajeAlerta1("@Notificaciones.TituloSuccess", "@Notificaciones.SuccessPedidoRecolectado");
+                            $("#example input[type='checkbox']").prop("disabled", true);
+                            $('#btnValidarRecoleccion').prop("disabled", true);
+
+                            window.location.reload();
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        MensajeAlerta1("@Notificaciones.TituloDanger", "@Notificaciones.DangerError");
+                        console.error(error);
+                    }
+                });
+            });
+        });
+
+    </script>
+</div>
+
+
+

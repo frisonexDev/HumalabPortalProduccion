@@ -1,0 +1,29 @@
+﻿@{
+    ViewData["Title"] = "Administrativo";
+    Layout = "/Views/Shared/_BootStrapLayoutMenu.cshtml";
+}
+<style>
+
+    .
+
+</style>
+
+<script>
+
+    window.onload = function () {
+        var estado = '@ViewData["cartera"]';
+
+        jQuery('#staticBackdrop').modal('hide');
+        if (estado == 'S')
+            jQuery('#staticBackdrop').modal('show');
+       
+    }
+
+</script>
+<partial name="~/Views/Componentes/BusquedaEstado.cshtml" />
+
+<partial name="~/Views/Componentes/TablaGestionCliente.cshtml" />
+
+
+
+<partial name="/Views/Modales/VencidoCartera.cshtml" />

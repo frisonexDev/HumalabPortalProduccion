@@ -1,0 +1,59 @@
+﻿@using GDifare.Portal.Humalab.Seguridad.Modelos
+@using Newtonsoft.Json
+
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+@{
+    ObjUsuario infoUsuario = JsonConvert.DeserializeObject<ObjUsuario>
+    (HttpContextAccessor.HttpContext.Session.GetString("usuario"));
+
+}
+
+<style>
+
+    .a-disable {
+        pointer-events: none;
+    }
+
+    @@media (max-width: 768px) {
+        .table th,
+        .table td {
+            font-size: 0.8rem;
+            white-space: nowrap;
+        }
+            /* Oculta ciertas columnas en pantallas pequeñas */
+            .table th:nth-child(3),
+            .table td:nth-child(3),
+            .table th:nth-child(4),
+            .table td:nth-child(4) {
+                display: none;
+            }
+    }
+</style>
+
+
+<div class="container-fluid bg-white rounded-3 p-3 mt-3 mb-3">
+
+    <div class="table-responsive">
+        <table id="TResultMedicoLab" class="table dataTable mt-2" style="width:100%;" aria-describedby="example_info">
+
+            <thead class="bg-primary">
+                <tr>
+                    <th class=" fw-bold text-center" tabindex="1" aria-controls="example" rowspan="1" colspan="1" style="width: 50.2125px;color:#F4F4F2;">ID</th>
+                    <th class=" fw-bold text-center" tabindex="1" aria-controls="example" rowspan="1" colspan="1" style="width: 50.2125px;color:#F4F4F2;">N° ORDEN</th>
+                    <th class=" fw-bold text-center" tabindex="2" aria-controls="example" rowspan="1" colspan="1" style="width: 75.688px;color:#F4F4F2;">IDENTIFICACIÓN</th>
+                    <th class=" fw-bold text-center" tabindex="3" aria-controls="example" rowspan="1" colspan="1" style="width: 100.325px;color:#F4F4F2;">NOMBRE PACIENTE</th>
+                    <th class=" fw-bold text-center" tabindex="4" aria-controls="example" rowspan="1" colspan="1" style="width: 86.2125px;color:#F4F4F2;">FECHA INGRESO</th>
+                    <th class=" fw-bold text-center" tabindex="5" aria-controls="example" rowspan="1" colspan="1" style="width: 75.8375px;color:#F4F4F2;">ESTADO</th>
+                    <th class=" fw-bold text-center" tabindex="6" aria-controls="example" rowspan="1" colspan="1" style="width: 75.8375px;color:#F4F4F2;">SEDE</th>
+                    <th class=" fw-bold text-center" tabindex="7" aria-controls="example" rowspan="1" colspan="1" style="width: 40.325px;color:#F4F4F2;">ACCIÓN</th>
+                </tr>
+            </thead>
+
+            <tbody id="TbItemsResultLab">
+            </tbody>
+
+        </table>
+    </div>
+
+</div>

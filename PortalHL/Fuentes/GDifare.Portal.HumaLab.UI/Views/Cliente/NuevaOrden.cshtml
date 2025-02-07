@@ -1,0 +1,973 @@
+﻿@using GDifare.Portal.Humalab.Seguridad.Modelos;
+@using GDifare.Portal.Humalab.Servicio.Modelos.Orden;
+@using Newtonsoft.Json;
+
+@using GDifare.Portal.Humalab.Servicio.Utils;
+
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+<link class="js-stylesheet" href="~/AdminKit/css/light.css" rel="stylesheet">
+
+@{
+    ViewData["Title"] = "Cliente";
+    Layout = "/Views/Shared/_BootStrapLayoutMenu.cshtml";
+}
+
+@{
+    ObjUsuario usuario = JsonConvert.DeserializeObject<ObjUsuario>
+        (HttpContextAccessor.HttpContext.Session.GetString("usuario"));
+
+
+}
+
+<div class="container-fluid  bg-white rounded-3 p-3 mt-2">
+
+    <div class="d-flex gap-3 align-items-center">
+
+        <a onclick="NuevaOrden()" class="btn btn-primary"><i class="fa-solid fa-file-circle-plus" style="color:white"></i> NUEVA ORDEN</a>
+        <a onclick="GuardarOrden()" class="btn btn-success"><i class="fa-solid fa-floppy-disk" style="color:white"></i> GUARDAR</a>
+        <div id="EncabezadoBarra" class="d-flex gap-1 mt-2">
+            <h5 id="NombreBarra" class="fs-4"></h5>
+            <h5 id="lblBarra" class="fs-4 fw-bold"></h5>
+        </div>
+    </div>
+
+
+</div>
+
+<!--JS-->
+<script src="~/AdminKit/js/notyf.js"></script>
+<script src="~/AdminKit/js/app.js"></script>
+<script src="~/js/Notificaciones.js"></script>
+<script src="~/js/LimpiarTabla.js"></script>
+
+<partial name="~/Views/Componentes/DemograficoPaciente.cshtml" />
+<partial name="~/Views/Componentes/DemograficoPedido.cshtml" />
+<partial name="~/Views/Componentes/BusquedaExamen.cshtml" />
+<!--Alerta de Notificación-->
+<partial name="~/Views/Componentes/Notificaciones/Success.cshtml" />
+<partial name="~/Views/Componentes/Notificaciones/Warning.cshtml" />
+<partial name="~/Views/Componentes/Notificaciones/Error.cshtml" />
+
+<!--Modal-->
+<partial name="~/Views/Modales/ObservacionPrueba.cshtml" />
+
+<script>
+
+    var datosPrueba = new Object();
+    var ConsultaOrden = new Object();
+    var ConsultarPaciente = new Object();
+    var examenPrecio = new Object();
+    var MuestrasSelect = new Object();
+    var Diagnostico = new Object();
+    var Guardado;
+
+    var PacienteOrden;
+    var Orden;
+    var CodigoOrden;
+    var CodigoOrdenNew;
+    var result;
+    var contadorItem;
+
+    var ListaPruebas = [];
+    var ListaSelect = [];
+    var ListaDiagnostico = [];
+    var PrecioOrden = [];
+    var ListaMuestras = new Array();
+    var MuestraFinal = [];
+
+    var FechaOrdenCod;
+
+    window.addEventListener('load', function () {
+
+        Guardado = false
+        contadorItem = @Numeros.Cero
+            PrecioOrden =[]
+        
+        //Fecha Actual del sistema
+        document.getElementById("dtpNaciPac").value = moment().format("YYYY-MM-DD")
+        document.getElementById("dptFecIng").value = moment().format("DD/MM/YYYY hh:mm")
+        document.getElementById("txtTelPac").addEventListener("keypress", soloNumeros, false)
+        document.getElementById("txtEdadPac").addEventListener("keypress", soloNumeros, false)
+        //document.getElementById("txtIdentPac").addEventListener("keypress", soloNumeros, false)
+
+        //LimpiarMiga
+        // CargarMiga("@BreadCrumbs.NuevaOrden")
+
+        //Cargar N° de Orden
+        //CargarNumeroOrden()
+
+        //Cargar con Datos el Combo Pruebas
+        //CargarCatalogoPruebas()
+
+        //Cargar nuevo combo con las pruebas
+        CargarCatalogoPruebasNew();
+
+        //Cargar tipos de clientes
+        CargarTiposClientes();
+
+    });
+
+    function CargarNumeroOrden() {
+        ConsultaOrden = {
+            IdUsuarioGalileo: @usuario.UsuarioID,
+            UsuarioCreacion: @usuario.UsuarioID,
+            FechaCreacion: moment().format("YYYY-MM-DD")
+        }
+
+        $.ajax({
+            url: '@Url.Action("ObtenerNOrden","Cliente")',
+            type: 'GET',
+            data: ConsultaOrden,
+            success: function (response) {
+
+                if (response != 400) {
+                    document.getElementById("txtNOrden").value = response;
+
+                    var labelNumOrden = document.getElementById('numOrden');
+                    var txtOrden = document.getElementById('txtNOrden');
+
+                    labelNumOrden.style.display = 'none';
+                    txtOrden.style.display = 'none';
+                }
+                else {
+                    MensajeAlerta("@Notificaciones.TituloDanger", "@Notificaciones.DangerError");
+                }
+
+            }
+
+        });
+    }
+
+
+    function CargarTiposClientes() {
+
+        var cmbTiposClientes = document.getElementById("selTipCliente");
+
+        $.ajax({
+            url: '@Url.Action("TiposClientesHumalab", "Cliente")',
+            type: 'GET',
+            success: function (response) {
+
+                for (var i = 0; i < response.length; i++) {
+                    var opCombo = document.createElement("option");
+                    opCombo.text = response[i].nombreCatalogo;
+                    opCombo.value = response[i].idCatalogo;
+
+                    cmbTiposClientes.appendChild(opCombo);
+                }
+            }
+        });
+    }
+
+    // function CargarCatalogoPruebas()
+    // {
+
+    //     $.ajax({
+    //         url: '@Url.Action("CatalogoPruebas","Cliente")',
+    //         type: 'GET',
+    //         success: function (response) {
+
+    //             if(response !== "01"){
+    //                 //console.log(JSON.parse(response));
+    //                 const resp = JSON.parse(response)
+    //                 const lista = resp.examen[0].details
+    //                 //console.log(lista)
+    //                 ComboPruebas(lista);
+    //             }
+    //             else{
+    //                 MensajeAlerta1("@Notificaciones.TituloDanger", "Problemas para obtener el catalogo de pruebas.");
+    //             }
+    //         }
+
+    //     });
+    // }
+
+    function CargarCatalogoPruebasNew() {
+        $.ajax({
+            url: '@Url.Action("CatalogoPruebasNew","Cliente")',
+            type: 'GET',
+            success: function (response) {
+                if (response !== "01") {
+                    var resp = JSON.parse(response);
+                    ComboPruebasNew(resp);
+                }
+                else {
+                    MensajeAlerta1("@Notificaciones.TituloDanger", "Problemas para obtener el catalogo de pruebas.");
+                }
+            }
+
+        });
+    }
+
+    // function ComboPruebas(lista) {
+    //     var html = '';
+    //     var nombreMuestra ='';
+    //     var idMuestra = 0;
+    //     for (var key = 0, size = lista.length; key < size; key++)
+    //     {
+
+    //         if (lista[key].EsPerfil===true) {
+    //             nombreMuestra = lista[key].ExamenPerfil[0].NombreMuestra;
+    //             idMuestra = lista[key].ExamenPerfil[0].IdMuestra;
+    //         }
+    //         else{
+    //             nombreMuestra = lista[key].NombreMuestra;
+    //             idMuestra = lista[key].IdMuestra;
+    //         }
+
+    //         datosPrueba = {
+    //             IdExamen: lista[key].IdExamen,
+    //             //IdMuestra: lista[key].IdMuestra,
+    //             IdMuestra: idMuestra,
+    //             CodigoExamen: lista[key].CodigoExamen,
+    //             EsPerfil: lista[key].EsPerfil,
+    //             Nombre: lista[key].NombreExamen,
+    //             Abreviatura: lista[key].AbreviaturaExamen,
+    //             Metodologia: lista[key].Autovalidacion,
+    //             Muestra: nombreMuestra,
+    //             Recipiente:lista[key].Recipiente,
+    //             Observaciones: lista[key].ComentarioFijo,
+    //             MuestraAlterna: lista[key].MuestraAdicional,
+    //             Precio: lista[key].CostoPrueba
+    //         }
+
+    //         ListaPruebas.push(datosPrueba);
+    //         // console.log(lista[key])
+    //         html +=  '<option value="'+key+'"'+'>'
+    //                         +'<div class="d-flex">'
+    //                             +'<h5>'+lista[key].CodigoExamen+" "+'</h5>'
+    //                             +'<h5>'+lista[key].NombreExamen+" "+'</h5>'
+    //                             +'<h5>'+'$'+lista[key].CostoPrueba +'</h5>'
+    //                         +'</div>'
+
+    //                   +'</option>';
+
+    //     }
+
+    //     $('#select-pruebas').append(html);
+
+    // }
+
+    function ComboPruebasNew(lista) {
+        var html = '';
+        var nombreMuestra = '';
+        var idMuestra = 0;
+        //console.log(lista);
+
+        ListaPruebas = [];
+
+        for (var key = 0, size = lista.length; key < size; key++) {
+
+            if (lista[key].Estado !== 'Inactivo') {
+
+                datosPrueba = {
+                    IdExamen: lista[key].IdExamen,
+                    IdMuestra: lista[key].IdMuestra,
+                    CodigoExamen: lista[key].CodigoExamen,
+                    EsPerfil: lista[key].EsPerfil,
+                    Nombre: lista[key].Nombre,
+                    Abreviatura: lista[key].Abreviatura,
+                    Metodologia: lista[key].Metodologia,
+                    Muestra: lista[key].Muestra,
+                    Recipiente: lista[key].Recipiente,
+                    Observaciones: lista[key].Observaciones,
+                    MuestraAlterna: lista[key].MuestraAlterna,
+                    Precio: lista[key].Precio
+                }
+
+                ListaPruebas.push(datosPrueba);
+                // html += '<option value="' + key + '"' + '>'
+                //     + '<div class="d-flex">'
+                //     + '<h5>' + lista[key].CodigoExamen + " " + '</h5>'
+                //     + '<h5>' + lista[key].Nombre + " " + '</h5>'
+                //     + '<h5>' + '$' + lista[key].Precio + '</h5>'
+                //     + '</div>'
+
+                //     + '</option>';
+            }
+        }
+
+        ListaPruebas.forEach((prueba, key) => {
+            html += '<option value="' + key + '">'
+                + prueba.CodigoExamen + " "
+                + prueba.Nombre + " "
+                + '$' + prueba.Precio
+                + '</option>';
+        });
+
+        $('#select-pruebas').append(html);        
+    }
+
+    function SelectTable() {
+        var valor = document.getElementById("select-pruebas").value;
+        var html = '';
+        var recipiente = '';
+        var muestraAlterna = '';
+        var precioPrueba = @Numeros.Cero;
+        var metodologia = '';
+        var contarrepetidos = @Numeros.Cero;
+
+        for (var i = 0, size = ListaPruebas.length; i < size; i++) {
+            if (valor == i) {
+                MuestrasSelect = {
+                    id: i,
+                    IdOrden: document.getElementById("txtNOrden").value,
+                    IdPruebaGalileo: ListaPruebas[i].IdExamen,
+                    IdMuestraGalileo: ListaPruebas[i].IdMuestra,
+                    CodigoExamen: ListaPruebas[i].CodigoExamen,
+                    EsPerfil: ListaPruebas[i].EsPerfil,
+                    Nombre: ListaPruebas[i].Nombre,
+                    Abreviatura: ListaPruebas[i].Abreviatura,
+                    Metodologia: ListaPruebas[i].Metodologia,
+                    NombreMuestra: ListaPruebas[i].Muestra,
+                    MuestraAlterna: ListaPruebas[i].MuestraAlterna,
+                    Recipiente: ListaPruebas[i].Recipiente,
+                    Precio: ListaPruebas[i].Precio,
+                    CodigoBarra: null,
+                    EstadoMuestra: null,
+                    UsuarioCreacion: @usuario.UsuarioID
+                    }
+
+                if (ListaPruebas[i].Precio === null) {
+                    precioPrueba = 0;
+                }
+                else {
+                    precioPrueba = ListaPruebas[i].Precio
+                }
+
+                examenPrecio = {
+                    id: i,
+                    Precio: precioPrueba
+                }
+
+                if (ListaPruebas[i].Recipiente === undefined || ListaPruebas[i].Recipiente === null) {
+                    recipiente = "@Caracteres.Guion";
+                }
+                else {
+                    recipiente = ListaPruebas[i].Recipiente;
+                }
+
+                if (ListaPruebas[i].MuestraAlterna === undefined || ListaPruebas[i].MuestraAlterna === null) {
+                    muestraAlterna = "@Caracteres.Guion";
+                }
+                else {
+                    muestraAlterna = ListaPruebas[i].MuestraAlterna;
+                }
+
+                if (ListaPruebas[i].Metodologia === undefined || ListaPruebas[i].Metodologia === null) {
+                    metodologia = '@Caracteres.Guion';
+                }
+                else {
+                    metodologia = ListaPruebas[i].Metodologia;
+                }
+
+                if (ListaSelect.length > 0) 
+                {                                         
+                    for (var j = 0; j < ListaSelect.length; j++) {
+                        if (ListaPruebas[i].IdExamen === ListaSelect[j].IdPruebaGalileo) {
+                            contarrepetidos++;
+                        }
+                    }
+
+                    if (contarrepetidos === @Numeros.Cero) {
+                        PrecioOrden.push(examenPrecio);
+                        ListaSelect.push(MuestrasSelect);
+                        contadorItem++;
+
+                        html = '<tr class="odd"' + 'id="fila' + i + '"' + '>'
+                            + '<td class="text-center" hidden>' + contadorItem + '</td>'
+                            + '<td class="text-center">' + ListaPruebas[i].CodigoExamen + '</td>'
+                            + ' <td>' + ListaPruebas[i].Nombre + '</td>'
+                            + ' <td class="text-center">' + ListaPruebas[i].Abreviatura + '</td>'
+                            // + ' <td class="text-center">' + metodologia + '</td>'
+                            + ' <td>' + ListaPruebas[i].Muestra + '</td>'
+                            //+ ' <td class="text-center">' + recipiente + '</td>'
+                            + ' <td class="text-center">' + precioPrueba + '</td>'
+                            + ' <td class="text-center">' + muestraAlterna + '</td>'
+                            + '<td class="justify-content-center align-items-center">'
+                            + '<div class="d-flex">'
+                            + '<a class="btn text-decoration-none" onclick="eliminarFila(' + i + ');"><i class="fa-solid fa-xmark" style="color: #d4024c;"></i></a>'
+                            + '</div>'
+                            + '</td>'
+                            + '</tr>'
+
+                        $('#TbItemsExamen').append(html);
+                    }
+                }
+                else {
+
+                    PrecioOrden.push(examenPrecio);
+                    ListaSelect.push(MuestrasSelect);                    
+
+                    contadorItem++;
+
+                    html = '<tr class="odd"' + 'id="fila' + i + '"' + '>'
+                        + '<td class="text-center" hidden>' + contadorItem + '</td>'
+                        + '<td class=" text-center">' + ListaPruebas[i].CodigoExamen + '</td>'
+                        + ' <td>' + ListaPruebas[i].Nombre + '</td>'
+                        + ' <td class="text-center">' + ListaPruebas[i].Abreviatura + '</td>'
+                        // + ' <td class="text-center">' + metodologia + '</td>'
+                        + ' <td>' + ListaPruebas[i].Muestra + '</td>'
+                        //+ ' <td class="text-center">' + recipiente + '</td>'
+                        + ' <td class="text-center">' + precioPrueba + '</td>'
+                        + ' <td class="text-center">' + muestraAlterna + '</td>'
+                        + '<td class="justify-content-center align-items-center">'
+                        + '<div class="d-flex">'
+                        + '<a class="btn text-decoration-none" onclick="eliminarFila(' + i + ');"><i class="fa-solid fa-xmark" style="color: #d4024c;"></i></a>'
+                        + '</div>'
+                        + '</td>'
+                        + '</tr>'
+
+                    $('#TbItemsExamen').append(html);
+
+                }
+            }
+        }
+
+        sortTable();
+        TotalOrden();        
+
+        valor.addEventListener('click', function (event) {
+            event.stopPropagation();
+        });
+    }
+
+    function TotalOrden() {
+        var Sumar = 0;
+        if (PrecioOrden.length > 0) {
+            for (var i = 0; i < PrecioOrden.length; i++) {
+                Sumar += parseFloat(PrecioOrden[i].Precio);
+            }
+
+            document.getElementById("lblTotalOrden").value = "@Caracteres.Dolar" + Sumar.toFixed(2);
+        }
+        else {
+            document.getElementById("lblTotalOrden").value = "@Caracteres.Dolar" + "@NumDecimales.CeroString";
+        }
+    }
+
+
+    function sortTable() {
+        var table, rows, switching, i, x, y, shouldSwitch;
+        table = document.getElementById("TExamenOrden");
+        switching = true;
+        /* Make a loop that will continue until
+        no switching has been done: */
+        while (switching) {
+            // Start by saying: no switching is done:
+            switching = false;
+            rows = table.rows;
+            /* Loop through all table rows (except the
+            first, which contains table headers): */
+            for (i = 1; i < (rows.length - 1); i++) {
+                // Start by saying there should be no switching:
+                shouldSwitch = false;
+                /* Get the two elements you want to compare,
+                one from current row and one from the next: */
+                x = rows[i].getElementsByTagName("TD")[0];
+                y = rows[i + 1].getElementsByTagName("TD")[0];
+                // Check if the two rows should switch place:
+                if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                    // If so, mark as a switch and break the loop:
+                    shouldSwitch = true;
+                    break;
+                }
+            }
+            if (shouldSwitch) {
+                /* If a switch has been marked, make the switch
+                and mark that a switch has been done: */
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+            }
+        }
+    }
+
+    function GenerarPDF() {
+        $.ajax({
+            url: '@Url.Action("VisualizarPDF","Cliente")',
+            type: 'POST',
+            data: { CodigoBarra: CodigoOrden },
+            success: function (response) {
+
+                let pdfWindow = window.open("")
+                pdfWindow.document.write(
+                    "<iframe width='100%' height='100%' src='data:application/pdf;base64, " +
+                    encodeURI(response) + "'></iframe>"
+                )
+                pdfWindow.document.title = 'Etiquetas'
+
+                var url = '@Url.Action("ConsultarOrdenes","Cliente")'
+
+                setTimeout(Redireccionar(url), 1500)
+            }
+
+        });
+    }
+
+    function eliminarFila(index) {
+        $("#fila" + index).remove();
+        // console.log(ListaSelect);
+        for (var i = 0, size = ListaSelect.length; i <= size; i++) {
+            if (ListaSelect[i].id == index) {
+                ListaSelect.splice(i, 1);
+                break;
+            }
+        }
+
+        for (var i = 0; i < PrecioOrden.length; i++) {
+            if (PrecioOrden[i].id == index) {
+                PrecioOrden.splice(i, 1);
+                break;
+            }
+        }
+
+        TotalOrden();
+    }
+
+    function seleccionado(ids) {
+        var txtComenta = ListaPruebas[ids].Observaciones;
+        document.getElementById("obsprueba").textContent = txtComenta.value
+    }
+
+    function ValidarCorreo() {
+        // Using test we can check if the text match the pattern
+        if (validateEmail('txtCorrPac')) {
+            $('#txtCorrPac').popover("hide");
+        } else {
+            $('#txtCorrPac').popover("show");
+        }
+    }
+
+    function soloNumeros(e) {
+        var key = window.event ? e.which : e.keyCode;
+        if (key < 48 || key > 57) {
+            e.preventDefault();
+        }
+    }
+
+    function NuevaOrden() {
+        Guardado = false;
+        LimpiarCampos();
+        //CargarNumeroOrden();
+        //Proceso para ConsultarOrden
+        MensajeAlerta1("@Notificaciones.TituloSuccess", "@Notificaciones.Success");
+    }
+
+
+    function GenerarCodBarra() {
+        var idCliente;
+        var numOrden;
+        var NOrden;
+
+        $.ajax({
+            url: '@Url.Action("ObtenerIdCliente", "Cliente")',
+            type: 'GET',
+            async: false,
+            data: { idGalileo: @usuario.UsuarioID },
+            success: function (response) {
+                idCliente = response;
+
+                ConsultaOrden = {
+                    IdUsuarioGalileo: @usuario.UsuarioID,
+                    UsuarioCreacion: @usuario.UsuarioID,
+                    FechaCreacion: moment().format("YYYYMMDD")
+                }
+
+                $.ajax({
+                    url: '@Url.Action("ObtenerNOrden", "Cliente")',
+                    type: 'GET',
+                    data: ConsultaOrden,
+                    success: function (response) {
+
+                        if (response != 400) {
+                            //console.log("id cliente es: " + idCliente);
+                            //FechaOrdenCod = moment().format("YYYYMMDD");
+                            FechaOrdenCod = moment().format("YYMMDD");
+                            document.getElementById("txtNOrden").value = response;
+
+                            var labelNumOrden = document.getElementById('numOrden');
+                            var txtOrden = document.getElementById('txtNOrden');
+
+                            labelNumOrden.style.display = 'none';
+                            txtOrden.style.display = 'none';
+
+                            var NOrden = document.getElementById("txtNOrden").value;
+                            if (NOrden < 10 && NOrden > 0) {
+                                //NOrden = "@CodigoBarra.SeisDigitos" + NOrden;
+                                //NOrden = "@CodigoBarra.TresDigitos" + NOrden;
+                                NOrden = "@CodigoBarra.CuatroDigitos" + NOrden;
+                            }
+                            if (NOrden < 100 && NOrden > 9) {
+                                //NOrden = "@CodigoBarra.CincoDigitos" + NOrden;
+                                //NOrden = "@CodigoBarra.DosDigitos" + NOrden;
+                                NOrden = "@CodigoBarra.TresDigitos" + NOrden;
+                            }
+                            if (NOrden < 1000 && NOrden > 99) {
+                                //NOrden = "@CodigoBarra.CuatroDigitos" + NOrden;
+                                //NOrden = "@CodigoBarra.UnDigito" + NOrden;
+                                NOrden = "@CodigoBarra.DosDigitos" + NOrden;
+                            }
+                            if (NOrden < 10000 && NOrden > 999) {
+                                //NOrden = "@CodigoBarra.TresDigitos" + NOrden;
+                                //NOrden = "@CodigoBarra.UnDigito" + NOrden;
+                                NOrden = "@CodigoBarra.UnDigito" + NOrden;
+                            }
+                            if (NOrden < 100000 && NOrden > 9999) {
+                                //NOrden = "@CodigoBarra.DosDigitos" + NOrden;
+                                //NOrden = "@CodigoBarra.UnDigito" + NOrden;
+                                NOrden = "@CodigoBarra.UnDigito" + NOrden;
+                            }
+                            if (NOrden < 1000000 && NOrden > 99999) {
+                                NOrden = "@CodigoBarra.UnDigito" + NOrden;
+                            }
+
+                            CodigoOrden = FechaOrdenCod + idCliente + NOrden;
+                            //CodigoOrden = idCliente + "-" + NOrden;
+                            //CodigoOrden = FechaOrdenCod + NOrden;
+
+                            for (var i = 0; i < ListaSelect.length; i++) {
+                                ListaSelect[i].CodigoBarra = CodigoOrden;
+                            }
+
+                            document.getElementById("NombreBarra").innerHTML = "Código de Barra:";
+                            document.getElementById("lblBarra").innerHTML = CodigoOrden;
+                            //console.log("codigo barras: " + CodigoOrden);
+                            //console.log("nuevo: " + CodigoOrdenNew);
+                            DatosOrden();
+                            RegistrarOrden();
+                            GenerarPDF();
+                        }
+                        else {
+                            MensajeAlerta("@Notificaciones.TituloDanger", "@Notificaciones.DangerError");
+                        }
+
+                    }
+
+                });
+            }
+        });
+
+        //Formato Código de Barra de la Orden
+        //CodigoCliente-XXXXNumeroOrden
+        var Cliente = @usuario.UsuarioID;
+
+        // var NOrden = document.getElementById("txtNOrden").value;
+        // console.log("Numero es:");
+        // console.log(NOrden);
+        //var NOrden = (parseInt(NOrden) + 1);
+
+        // if (NOrden < 10 && NOrden > 0) {
+        //     NOrden = "@CodigoBarra.SeisDigitos" + NOrden;
+        // }
+        // if (NOrden < 100 && NOrden > 9) {
+        //     NOrden = "@CodigoBarra.CincoDigitos" + NOrden;
+        // }
+        // if (NOrden < 1000 && NOrden > 99) {
+        //     NOrden = "@CodigoBarra.CuatroDigitos" + NOrden;
+        // }
+        // if (NOrden < 10000 && NOrden > 999) {
+        //     NOrden = "@CodigoBarra.TresDigitos" + NOrden;
+        // }
+        // if (NOrden < 100000 && NOrden > 9999) {
+        //     NOrden = "@CodigoBarra.DosDigitos" + NOrden;
+        // }
+        // if (NOrden < 1000000 && NOrden > 99999) {
+        //     NOrden = "@CodigoBarra.UnDigito" + NOrden;
+        // }
+
+        // console.log("El numero de orden es:");
+        // console.log(NOrden);
+
+        //CodigoOrden = Cliente + "-" + NOrden;
+        // CodigoOrden = idCliente + "-" + NOrden;
+
+        // for (var i = 0; i < ListaSelect.length; i++) {
+        //     ListaSelect[i].CodigoBarra = CodigoOrden;
+        // }
+
+        // document.getElementById("NombreBarra").innerHTML = "Código de Barra:";
+        // document.getElementById("lblBarra").innerHTML = CodigoOrden;
+    }
+
+    function GuardarOrden() {
+        if (CamposObligatorios()) {
+            if (Guardado === false) {
+                GenerarCodBarra();
+                // DatosOrden();
+                // RegistrarOrden();
+                // GenerarPDF();
+            }
+            else {
+                MensajeAlerta("@Notificaciones.TituloWarning", "@Notificaciones.WarningOrden");
+            }
+        }
+    }
+
+    function Redireccionar(URL) {
+        window.location.href = URL;
+    }
+
+    function RegistrarOrden() {
+        $.ajax({
+            url: '@Url.Action("RegistrarOrden","Cliente")',
+            type: 'POST',
+            data: { orden: Orden },
+            success: function (response) {
+
+                if (response == 201) {
+                    MensajeAlerta("@Notificaciones.TituloSuccess", "@Notificaciones.SuccessOrdenNueva");
+                    Guardado = true;
+                }
+                else {
+                    MensajeAlerta("@Notificaciones.TituloWarning", "@Notificaciones.WarningOrden");
+                }
+
+            }
+
+        });
+    }
+
+    function DatosOrden() {
+        DatosPaciente();
+        Orden = {
+            IdOrden: document.getElementById("txtNOrden").value,
+            IdPedidos: null,
+            IdUsuarioGalileo: @usuario.UsuarioID,
+            Identificacion: document.getElementById("txtIdentPac").value,
+            CodigoBarra: CodigoOrden,
+            Medicamento: document.getElementById("txtMedicamento").value,
+            Diagnostico: document.getElementById("txtDiagnostico").value,
+            Observacion: document.getElementById("txtObsOrd").value,
+            Pruebas: ListaSelect,
+            Paciente: PacienteOrden,
+            UsuarioCreacion: @usuario.UsuarioID,
+            EmpresaId: @usuario.EmpresaID, //nuevo
+            FechaCreacion: document.getElementById("dptFecIng").value,
+
+        }
+        // console.log("Lista de pruebas");
+        // console.log(ListaSelect);
+    }
+
+    function DatosPaciente() {
+        var ident = document.getElementById("txtIdentPac").value;
+        var nomPac = document.getElementById("txtNomPac").value;
+        var apellPac = document.getElementById("txtApellPac").value;
+        var genero = document.getElementById("selGenPac").value;
+        var fecha = document.getElementById("dtpNaciPac").value;
+        var edadPac = document.getElementById("txtEdadPac").value;
+        var codPais = document.getElementById("txtcodigoPais").value;
+        var telPac = document.getElementById("txtTelPac").value;
+        var corrPac = document.getElementById("txtCorrPac").value;
+
+        var telefono = codPais + telPac;
+
+        var resGenero = false;
+
+        //tipo de paciente
+        var tipCliente = document.getElementById("selTipCliente");
+        var txtTipCliente = tipCliente.selectedIndex;
+
+        var valTipo = tipCliente.options[txtTipCliente].value;
+        var txtTipo = tipCliente.options[txtTipCliente].text;
+
+        //codigo laboratorio
+        var codLab = document.getElementById("txtCodLab").value;
+
+        if (genero === "@Numeros.Uno") {
+            resGenero = true;
+        } else {
+            resGenero = false;
+        }
+
+
+        PacienteOrden = {
+            Identificacion: ident,
+            Nombres: nomPac,
+            Apellidos: apellPac,
+            Genero: resGenero,
+            FechaNacimiento: fecha,
+            Edad: edadPac,
+            Telefono: telefono,
+            Email: corrPac,
+            UsuarioCreacion: @usuario.UsuarioID,
+            FechaCreacion: document.getElementById("dptFecIng").value,
+            TipoPaciente: valTipo, //verificar
+            CodLaboratorio: codLab //verificar
+        }
+    }
+
+    function ValidarCedula() {
+        var cad = document.getElementById("txtIdentPac").value.trim();
+        var total = 0;
+        var longitud = cad.length;
+        var longcheck = longitud - 1;
+
+        if (cad !== "" && longitud === 10) {
+            for (i = 0; i < longcheck; i++) {
+                if (i % 2 === 0) {
+                    var aux = cad.charAt(i) * 2;
+                    if (aux > 9) aux -= 9;
+                    total += aux;
+                } else {
+                    total += parseInt(cad.charAt(i)); //parseInt o concatenará en lugar de sumar
+                }
+            }
+
+            total = total % 10 ? 10 - total % 10 : 0;
+
+            if (cad.charAt(longitud - 1) == total) {
+                $('#txtIdentPac').popover("hide");
+            } else {
+                $('#txtIdentPac').popover("show");
+
+            }
+
+
+        }
+    }
+
+    function BuscarPaciente() {
+        ConsultarPaciente = {
+            Identificacion: document.getElementById("txtIdentPac").value,
+            UsuarioCreacion: @usuario.UsuarioID,
+            FechaCreacion: moment().format("YYYY-MM-DD")
+
+        }
+
+        $.ajax({
+            url: '@Url.Action("ObtenerPaciente","Cliente")',
+            type: 'GET',
+            data: ConsultarPaciente,
+            success: function (response) {
+
+                Paciente = response;
+                // console.log(Paciente);
+
+                if (response.nombres != null) {
+
+                    document.getElementById("txtNomPac").value = response.nombres;
+                    document.getElementById("txtApellPac").value = response.apellidos;
+                    if (response.genero) {
+                        document.getElementById("selGenPac").value = '1';
+                    }
+                    else {
+                        document.getElementById("selGenPac").value = '0';
+                    }
+
+                    document.getElementById("txtEdadPac").value = response.edad;
+                    document.getElementById("txtTelPac").value = response.telefono.substring(4);
+                    document.getElementById("txtCorrPac").value = response.email;
+
+                    var cadenaFecha = response.fechaNacimiento
+
+                    document.getElementById("dtpNaciPac").value = cadenaFecha.substr(0, 10);
+                }
+                else {
+                    LimpiarCamposPaciente();
+                }
+            }
+
+        });
+
+        ValidarCedula();
+
+    }
+
+    function CamposObligatorios() {
+        var ident = document.getElementById("txtIdentPac").value;
+        var nomPac = document.getElementById("txtNomPac").value;
+        var apellPac = document.getElementById("txtApellPac").value;
+        var genero = document.getElementById("selGenPac").value;
+        var fecha = document.getElementById("dtpNaciPac").value;
+        var edadPac = document.getElementById("txtEdadPac").value;
+        var telPac = document.getElementById("txtTelPac").value;
+        var corrPac = document.getElementById("txtCorrPac").value;
+
+        var obsOrd = document.getElementById("txtObsOrd").value;
+        var Medicamentos = document.getElementById("txtMedicamento").value;
+        var DiagOrd = document.getElementById("txtDiagnostico").value;
+        var numfila = document.getElementById('TExamenOrden').getElementsByTagName('tr').length - 1;
+
+
+        if (validaVacio(ident) || validaVacio(nomPac) || validaVacio(apellPac) /* || validaVacio(edadPac) */
+            // || fecha == moment().format("YYYY-MM-DD")
+            || genero == 2) {
+            MensajeAlerta("@Notificaciones.TituloWarning", "@Notificaciones.WarningCampos");
+            return false;
+        }
+
+        if (numfila < 1) {
+            MensajeAlerta("@Notificaciones.TituloWarning", "@Notificaciones.WarningExamen");
+            return false;
+        }
+        else {
+            return true;
+        }
+
+    }
+
+    function LimpiarCamposPaciente() {
+        document.getElementById("txtNomPac").value = "";
+        document.getElementById("txtApellPac").value = "";
+        document.getElementById("txtEdadPac").value = "";
+        document.getElementById("txtTelPac").value = "";
+        document.getElementById("txtCorrPac").value = "";
+        document.getElementById("selGenPac").value = "2";
+        document.getElementById("dtpNaciPac").value = moment().format("YYYY-MM-DD");
+        document.getElementById("NombreBarra").innerHTML = "";
+        document.getElementById("lblBarra").innerHTML = "";
+
+        //Datos Demográficos de la Orden
+        document.getElementById("txtObsOrd").value = "";
+        document.getElementById("txtMedicamento").value = "";
+        document.getElementById("txtDiagnostico").value = "";
+
+        //Combo de las Pruebas
+        document.getElementById("select-pruebas").value = "";
+        $('#select-pruebas').select2({
+            theme: "bootstrap-5",
+            width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+            placeholder: $(this).data('placeholder'),
+        });
+
+        LimpiarTabla("@Tablas.TExamen", "@Tablas.TItemExamen");
+        document.getElementById("lblTotalOrden").value = "@Caracteres.Dolar@NumDecimales.CeroString";
+    }
+
+    function LimpiarCampos() {
+        contadorItem = @Numeros.Cero;
+
+        //moment es una libreria de JS para el manejo de fechas
+
+        //Datos Demográficos del Paciente
+        document.getElementById("txtIdentPac").value = "";
+        document.getElementById("txtNomPac").value = "";
+        document.getElementById("txtApellPac").value = "";
+        document.getElementById("txtEdadPac").value = "";
+        document.getElementById("txtTelPac").value = "";
+        document.getElementById("txtCorrPac").value = "";
+        document.getElementById("selGenPac").value = "2";
+        document.getElementById("dtpNaciPac").value = moment().format("YYYY-MM-DD");
+        document.getElementById("NombreBarra").innerHTML = "";
+        document.getElementById("lblBarra").innerHTML = "";
+
+        //Datos Demográficos de la Orden
+        document.getElementById("txtObsOrd").value = "";
+        document.getElementById("txtMedicamento").value = "";
+        document.getElementById("txtDiagnostico").value = "";
+
+        //Combo de las Pruebas
+        document.getElementById("select-pruebas").value = "";
+        $('#select-pruebas').select2({
+            theme: "bootstrap-5",
+            width: $(this).data('width') ? $(this).data('width') : $(this).hasClass('w-100') ? '100%' : 'style',
+            placeholder: $(this).data('placeholder'),
+        });
+
+        LimpiarTabla("@Tablas.TExamen", "@Tablas.TItemExamen");
+        document.getElementById("lblTotalOrden").value = "@Caracteres.Dolar@NumDecimales.CeroString";
+    }
+
+</script>

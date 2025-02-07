@@ -1,0 +1,163 @@
+﻿@using GDifare.Portal.Humalab.Servicio.Utils;
+
+@{
+    ViewData["Title"] = "Administrativo";
+    Layout = "/Views/Shared/_BootStrapLayoutMenu.cshtml";
+}
+
+<partial name="~/Views/Componentes/TablaPruebasAdmin.cshtml" />
+
+<script>
+    var datosPrueba = new Object();
+    var ListaPruebasNew = [];
+    var ListaPruebasFinal = [];
+    var ListaPruebasInac = [];    
+    var lista;
+
+    function CargarCatalogoPruebas() {
+        $.ajax({
+            url: '@Url.Action("CatalogoPruebasAdmin","Administrativo")',
+            type: 'GET',
+            success: function (response) {
+                if (response !== null || response !== "") {
+                    const resp = JSON.parse(response);
+                    
+                    if (resp.examen && resp.examen.length > 0 && resp.examen[0].details) {                        
+                        lista = resp.examen[0].details;                        
+                        TablaPruebas(lista);
+                    }
+                    else{                        
+                        ArmarTablaPruebas(resp);
+                    }
+                }
+                else {
+                    MensajeAlerta1("@Notificaciones.TituloDanger", "Problemas para obtener las pruebas.");
+                }
+            }
+        });
+    }
+
+    function TablaPruebas(listaPruebas) {
+        var html = '';
+        var nombreMuestra = '';
+        var idMuestra = 0;
+        var nombreExamen = "";
+
+        for (var key = 0, size = listaPruebas.length; key < size; key++) {
+            
+            if (listaPruebas[key].EsPerfil === true) {
+                nombreMuestra = listaPruebas[key].ExamenPerfil[0].NombreMuestra;
+                idMuestra = listaPruebas[key].ExamenPerfil[0].IdMuestra;
+                nombreExamen = listaPruebas[key].ExamenPerfil[0].NombreExamen;
+            }
+            else {
+                nombreMuestra = listaPruebas[key].NombreMuestra;
+                idMuestra = listaPruebas[key].IdMuestra;
+                nombreExamen = listaPruebas[key].NombreExamen;
+            }
+
+            if (listaPruebas[key].Activo === true) {
+                
+                datosPrueba = {
+                    IdExamen: listaPruebas[key].IdExamen,
+                    IdMuestra: listaPruebas[key].IdMuestra,
+                    CodigoExamen: listaPruebas[key].CodigoExamen,
+                    EsPerfil: listaPruebas[key].EsPerfil,
+                    Nombre: listaPruebas[key].NombreExamen,
+                    //Nombre: nombreExamen,
+                    Abreviatura: listaPruebas[key].AbreviaturaExamen,
+                    Metodologia: listaPruebas[key].Autovalidacion,
+                    Muestra: nombreMuestra,
+                    Recipiente: listaPruebas[key].Recipiente,
+                    Observaciones: listaPruebas[key].ComentarioFijo,
+                    MuestraAlterna: listaPruebas[key].MuestraAdicional,
+                    Precio: listaPruebas[key].CostoPrueba,
+                    Estado: 'Activo'
+                }
+
+                ListaPruebasNew.push(datosPrueba);
+            }                         
+        }
+
+        ArmarTablaPruebas(ListaPruebasNew);
+    }
+
+    function ArmarTablaPruebas(ListaPruebas) {
+        var tbPruebas = document.getElementById("tbPruebasAdmin");
+
+        ListaPruebas.forEach(function (prueba) {
+            var row = tbPruebas.insertRow();
+
+            var codigo = row.insertCell(0);
+            var nombre = row.insertCell(1);
+            var precio = row.insertCell(2);
+            var estado = row.insertCell(3);
+
+            codigo.textContent = prueba.CodigoExamen;
+            nombre.textContent = prueba.Nombre;
+            precio.textContent = prueba.Precio;
+
+            //Combo box dinaminico para el estado
+            var selectEstado = document.createElement("select");
+            //Activo
+            var optionActivo = document.createElement("option");
+            optionActivo.value = "Activo";
+            optionActivo.textContent = "Activo";
+            
+            //Inactivo
+            var optionInactivo = document.createElement("option");            
+            optionInactivo.value = "Inactivo";
+            optionInactivo.textContent = "Inactivo";
+            
+            //Agregar opciones
+            selectEstado.appendChild(optionActivo);
+            selectEstado.appendChild(optionInactivo);
+
+            selectEstado.value = prueba.Estado;
+            estado.appendChild(selectEstado);            
+
+            ListaPruebasFinal.push(prueba);
+
+            //evento del combo activo e inactivo
+            selectEstado.addEventListener('change', function () {
+                
+                //actualiza el estado
+                var nuevoEstado = this.value;
+                prueba.Estado = nuevoEstado;
+            });
+
+        });
+
+        if (!$.fn.DataTable.isDataTable('#tbAdminPruebas')) {
+            $('#tbAdminPruebas').DataTable({
+                pageLength: 10,
+                searching: true,
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json',
+                },                
+            });
+        }
+    }
+
+    function cargarPruebasActivas() {
+        var pruebasJSON = JSON.stringify(ListaPruebasFinal);             
+
+        $.ajax({
+            url: '@Url.Action("JsonFinalPruebas","Administrativo")',
+            type: 'POST',
+            data: { pruebaFinalJSON: pruebasJSON },
+            success: function (response) {  
+                
+                if (response === "00") {                    
+                    MensajeAlerta1("@Notificaciones.TituloSuccess", "Carga exitosa.");                   
+                }
+                else{
+                    MensajeAlerta1("@Notificaciones.TituloDanger", "Problemas para cargar las pruebas.");
+                }                
+            }
+        });
+    }
+
+    CargarCatalogoPruebas();
+
+</script>

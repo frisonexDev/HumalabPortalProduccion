@@ -1,0 +1,258 @@
+﻿@using GDifare.Portal.Humalab.Seguridad.Modelos;
+@using GDifare.Portal.Humalab.Servicio.Utils;
+@using Newtonsoft.Json;
+
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+@{
+    ObjUsuario infousuario = JsonConvert.DeserializeObject<ObjUsuario>
+        (HttpContextAccessor.HttpContext.Session.GetString("usuario"));	 
+}
+
+<div class="container-fluid bg-white rounded-3 mt-3">
+
+    <div class="row d-flex p-3">
+
+        <div class="d-flex col">
+
+            <div class="d-flex align-items-center gap-2">
+                <input id="numeroRemision" class="form-control" placeholder="N° Remisión" type="search" style="width:200px"/>
+
+                <select id="cmbEstadoPedido" class="form-select" style="width:200px">
+                    <option selected value="0">Estado Pedido</option>
+                </select>
+
+                <span class="fw-bold">Desde</span>
+                <span><input id="dtpFechaDesdeP" class="form-control" type="date" /></span>
+
+                <span class="fw-bold">Hasta</span>
+                <span><input id="dtpFechaHastaP" class="form-control" type="date" /></span>
+
+                <a class="btn text-decoration-none text-white p-2 rounded-1 bg-primary" onclick="BuscarPedido()">Buscar</a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+    var Fecha;
+    var ConsultaPedido = new Object();
+    var idUsuario;
+
+    window.addEventListener('load', function(){
+        idUsuario = @infousuario!.UsuarioID
+        ConsultaPedido = {
+
+            OpcionBusqueda: @Numeros.Cero,
+            IdUsuario: idUsuario
+        }
+
+        CalculoFechaInicio()
+        //document.getElementById("dtpFechaDesdeP").value = Fecha
+        document.getElementById("dtpFechaDesdeP").value = moment().format("YYYY-MM-DD")
+        document.getElementById("dtpFechaHastaP").value = moment().format("YYYY-MM-DD")
+        ListarTodosPedidos()
+        EstadosPedido("@Estados.Pedido")
+    });
+
+    function CalculoFechaInicio() {
+        //Fecha Actual del sistema
+        Fecha = moment().subtract(90, 'days').calendar();
+
+        Fecha = Fecha.replace('/', '')
+            .replace('/', '');
+
+        var Mes = Fecha.substring(0, 2);
+        var Dia = Fecha.substring(2, 4);
+        var Ano = Fecha.substring(4, 8);
+
+        var FechadeInicio = Ano + '-' + Mes + '-' + Dia;
+        Fecha = FechadeInicio;        
+    }
+
+    function BuscarPedido()
+    {
+        var estadoPedido = document.getElementById("cmbEstadoPedido").value;
+        var fechaDesde = document.getElementById("dtpFechaDesdeP").value;
+        var fechaHasta = document.getElementById("dtpFechaHastaP").value;
+        var nRemision = document.getElementById("numeroRemision").value;
+
+        // console.log("estadoPedido");
+        // console.log(estadoPedido);
+
+        // console.log("fechaDesde");
+        // console.log(fechaDesde);
+
+        // console.log("fechaHasta");
+        // console.log(fechaHasta);
+        
+        // console.log("nRemision");
+        // console.log(nRemision);
+
+        //Busqueda de todos los pedidos
+        if (nRemision.trim() === "" && estadoPedido === "@Numeros.Cero" || 
+            fechaDesde !== Fecha || fechaHasta !== moment().format("YYYY-MM-DD")) {
+            // console.log("opcion 4");
+            ConsultaPedido = {
+                OpcionBusqueda: @Numeros.Cuatro,
+                IdUsuario: @infousuario.UsuarioID,
+                FechaDesde: fechaDesde,
+                FechaHasta: fechaHasta,
+                DatoBusqueda: estadoPedido,
+                numRemision: nRemision
+            };
+        }
+        else if (nRemision.trim() === "" && estadoPedido != "@Numeros.Cero") {
+            // console.log("opcion 3");
+            ConsultaPedido = {
+                OpcionBusqueda: @Numeros.Tres,
+                DatoBusqueda: estadoPedido,
+                IdUsuario: @infousuario.UsuarioID,
+                FechaDesde: fechaDesde,
+                FechaHasta: fechaHasta,
+                numRemision: nRemision
+            };
+        }
+
+        if (nRemision.trim() !== "" && estadoPedido === "@Numeros.Cero" && 
+            fechaDesde === Fecha && fechaHasta === moment().format("YYYY-MM-DD")) {
+            // console.log("opcion 1");
+            ConsultaPedido={
+                OpcionBusqueda: @Numeros.Uno,
+                DatoBusqueda: estadoPedido,
+                IdUsuario: @infousuario.UsuarioID,
+                FechaDesde: fechaDesde,
+                FechaHasta: fechaHasta,
+                numRemision: nRemision
+            };
+        }
+        else if (nRemision.trim() !== "" && estadoPedido != "@Numeros.Cero" ) {
+            // console.log("opcion 2");
+            ConsultaPedido = {
+                OpcionBusqueda: @Numeros.Dos,
+                DatoBusqueda: estadoPedido,
+                IdUsuario: @infousuario.UsuarioID,
+                FechaDesde: fechaDesde,
+                FechaHasta: fechaHasta,
+                numRemision: nRemision
+            };
+
+        }
+
+        ListarTodosPedidos();
+    }
+
+
+    function ListarTodosPedidos() {
+
+        var count = $("#TbPedidos tr").length;
+
+        for (var j = 0; j < count; j++) {
+            $("#itemPedido" + j).remove();
+
+        }
+
+        ListaPedido=[];
+
+        $.ajax({
+            url: '@Url.Action("ListarPedidos","Cliente")',
+            type: 'GET',
+            data: ConsultaPedido,
+            beforeSend: function () {
+                loadingShow();
+            },
+            success: function (response) {
+
+                if (response.trim() !== '' || Array.isArray(response) && response.length > 0) {
+                    
+                    var lista = JSON.parse(response);
+
+                    ListaPedido = lista;
+                    CargarDatosTabla(lista);
+
+                    loadingHide();
+                }
+                else {
+                    MensajeAlerta1("@Notificaciones.TituloDanger", "@Notificaciones.DangerError");
+                    loadingHide();
+                } 
+                
+                loadingHide();
+            }
+            
+        });
+    }
+
+    function EstadosPedido(estado) {
+        var html = '';
+
+        var recolectado = "RCTL";
+        var recolParcial = "RCPC";
+        var enviado = "ENV";
+        var envParcial = "ENVP";
+        var porrecolec = "PREC";
+        
+        $.ajax({
+
+            url: '@Url.Action("ListarEstados", "Cliente")',
+            type: 'GET',
+            data: { NombreEstado : estado},
+
+            success: function (response) {
+                const listEstado = JSON.parse(response)
+
+                if (listEstado.length > 0) {
+                    for (var i = 0; i < listEstado.length; i++) {
+
+                        if (listEstado[i].Valor === recolectado ||
+                            listEstado[i].Valor === recolParcial ||
+                            listEstado[i].Valor === enviado ||
+                            listEstado[i].Valor === envParcial) {
+                        }
+                        else{
+
+                            var comboEstados = document.getElementById('cmbEstadoPedido');
+                            var opciones = document.createElement('option');
+                            opciones.text = listEstado[i].Nombre;
+                            opciones.value = listEstado[i].Valor;
+
+                            //asigna valores al combo
+                            comboEstados.add(opciones);
+                        }
+                    }
+                    
+                    var newCombo = document.getElementById('cmbEstadoPedido');
+
+                    // for (var i = 0; i < newCombo.length; i++) {
+
+                    //     if (newCombo[i].value === porrecolec) {
+                    //         var valorEspecifico = newCombo[i].value;
+                    //         var textoEspecifico = newCombo[i].text;
+
+                    //         newCombo[i].parentNode.removeChild(newCombo[i]);
+
+                    //         // Crea una nueva opción con el valor y texto específico
+                    //         var nuevaOpcion = document.createElement("option");
+                    //         nuevaOpcion.value = valorEspecifico;
+                    //         nuevaOpcion.text = textoEspecifico;
+
+                    //         // Inserta la nueva opción en la primera posición
+                    //         newCombo.insertBefore(nuevaOpcion, newCombo.firstChild);
+
+                    //         // Establece la nueva opción como seleccionada
+                    //         newCombo.selectedIndex = 0;
+                    //         break;
+                    //     }
+                    // }
+
+                }
+
+            }
+        });
+    }
+
+</script>

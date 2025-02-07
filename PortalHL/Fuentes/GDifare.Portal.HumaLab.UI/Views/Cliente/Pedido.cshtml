@@ -1,0 +1,371 @@
+﻿@using GDifare.Portal.Humalab.Seguridad.Modelos;
+@using Newtonsoft.Json;
+@using GDifare.Portal.Humalab.Servicio.Utils;
+
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+@{
+    ViewData["Title"] = "Cliente";
+    Layout = "/Views/Shared/_BootStrapLayoutMenu.cshtml";
+}
+
+@{
+    ObjUsuario infousuario = JsonConvert.DeserializeObject<ObjUsuario>
+        (HttpContextAccessor.HttpContext.Session.GetString("usuario"));
+
+
+}
+
+<partial name="~/Views/Componentes/BusquedaPedido.cshtml" />
+<partial name="~/Views/Componentes/TablaPedidos.cshtml" />
+
+<!--Modales-->
+
+<partial name="~/Views/Modales/PopUp.cshtml" />
+
+<script>
+    var idUsuario;
+    var ListaPedido = [];
+    var datosOperador = new Object();
+    var obElimPedido = "";
+
+    window.addEventListener('load', function () {
+        nombreFuncion = "@Funcion.EliminarPedido"
+        idUsuario=@infousuario.UsuarioID
+        ObtenerOperador();
+    });
+
+    function CargarDatosTabla(listaP)
+    {                
+        var html ='';
+        var fechaRetiro='';
+        var fechaCreacion='';
+        var incremento =@Numeros.Uno;
+        for(var i=0; i<listaP.length ; i++)
+        {            
+            if (listaP[i].fechaRetiro === listaP[i].fechaCreacion) {
+                fechaRetiro = "@Caracteres.Guion";
+            }
+            else {
+                fechaRetiro = listaP[i].fechaRetiro;
+            }
+            fechaCreacion = listaP[i].fechaCreacion;
+
+            // if (listaP[i].FechaRetiro === listaP[i].FechaCreacion) {
+            //     fechaRetiro="@Caracteres.Guion";
+            // }
+            // else
+            // {
+            //     fechaRetiro = listaP[i].FechaRetiro;
+            // }
+            // fechaCreacion = listaP[i].FechaCreacion;
+
+            var estadoPorReco = "Por Recolectar";
+            var estadoReco = "Recolectado";
+            var estadoRecoPar = "Recolectado Parcial";
+            var anulado = "Anulado";
+            var enviado = "Enviado";
+            var enviadoParcial = "Enviado Parcial";
+
+            var colorEstado = "";
+            var tamanioColor = "200px 100px";
+
+            //por recolectar color gris
+            if (estadoPorReco === listaP[i].estadoPedido) {
+                colorEstado = "#CCD1D1";
+            }
+            //recolectado y recolectado parcial color naranja
+            else if (estadoReco === listaP[i].estadoPedido || estadoRecoPar === listaP[i].estadoPedido) {
+                colorEstado = "#EB984E";
+            }
+            //anulado color rojo
+            else if (anulado === listaP[i].estadoPedido) {
+                colorEstado = "#CB4335";
+            }
+            //enviado y enviado parcial
+            else if (enviado === listaP[i].estadoPedido || enviadoParcial === listaP[i].estadoPedido) {
+                colorEstado = "#28B463";
+            }
+
+            // //por recolectar color gris
+            // if (estadoPorReco === listaP[i].EstadoPedido) {
+            //     colorEstado = "#CCD1D1";
+            // }
+            // //recolectado y recolectado parcial color naranja
+            // else if (estadoReco === listaP[i].EstadoPedido || estadoRecoPar === listaP[i].EstadoPedido) {
+            //     colorEstado = "#EB984E";
+            // }
+            // //anulado color rojo
+            // else if (anulado === listaP[i].EstadoPedido) {
+            //     colorEstado = "#CB4335";
+            // }
+            // //enviado y enviado parcial
+            // else if (enviado === listaP[i].EstadoPedido || enviadoParcial === listaP[i].EstadoPedido) {
+            //     colorEstado = "#28B463";
+            // }
+
+            html = '<tr id="itemPedido' + i + '" class="odd">'
+                + '<td class="text-center">' + incremento + '</td>'
+                + '<td class="sorting_1 text-center">' + listaP[i].numeroRemision + '</td>'
+                + '<td class="text-center">' + fechaCreacion.substring(0, 10) + '</td>'
+                + '<td class="text-center">' + listaP[i].totalOrdenes + '</td>'
+                + '<td class="text-center">' + listaP[i].totalMuestras + '</td>'
+                + '<td class="text-center">' + listaP[i].totalRetiradas + '</td>'
+                + '<td class="text-center">' + fechaRetiro.substring(0, 10) + '</td>'
+                + '<td id="TbFilaEstadoP' + i + '" class="text-center" style="background-color:' + colorEstado + '; background-size:' + tamanioColor + '; color: white" >' + listaP[i].estadoPedido + '</td>'
+                + '<td>'
+                + '<div class="d-flex gap-2 justify-content-center align-items-center">'
+                + '<a id="btnPdf' + i + '" class="btn text-decoration-none" onclick="GenerarPDF(' + listaP[i].idPedido + ')"> <i class="fa-solid fa-square-poll-horizontal" style = "color: #c7c7c7;" > </i></a > '
+                + '<a id="btnEliminarPedido' + i + '" class="btn text-decoration-none" onclick="EliminarFila(' + listaP[i].idPedido + ')"><i class="fa-solid fa-xmark" style="color: #d4024c;"></i></a>'
+                + '</div>'
+                + '</td>'
+                + '</tr>'
+                ;
+
+            $('#tbItemsPedido').append(html);
+            incremento++;
+
+            // html = '<tr id="itemPedido'+i+'" class="odd">'
+            //     + '<td class="text-center">' + incremento + '</td>'
+            //     + '<td class="sorting_1 text-center">'+listaP[i].NumeroRemision+'</td>'
+            //     + '<td class="text-center">' + fechaCreacion.substring(0, 10) + '</td>'
+            //     + '<td class="text-center">'+listaP[i].TotalOrdenes+'</td>'
+            //     + '<td class="text-center">' + listaP[i].TotalMuestras + '</td>'
+            //     + '<td class="text-center">' + listaP[i].TotalRetiradas + '</td>'
+            //     + '<td class="text-center">' + fechaRetiro.substring(0, 10) + '</td>'
+            //     + '<td id="TbFilaEstadoP' + i + '" class="text-center" style="background-color:' + colorEstado + '; background-size:' + tamanioColor + '; color: white" >' + listaP[i].EstadoPedido + '</td>'
+            //     + '<td>'
+            //     +'<div class="d-flex gap-2 justify-content-center align-items-center">'
+            //     + '<a id="btnPdf' + i + '" class="btn text-decoration-none" onclick="GenerarPDF(' + listaP[i].IdPedido + ')"> <i class="fa-solid fa-square-poll-horizontal" style = "color: #c7c7c7;" > </i></a > '
+            //          + '<a id="btnEliminarPedido' + i + '" class="btn text-decoration-none" onclick="EliminarFila(' + listaP[i].IdPedido + ')"><i class="fa-solid fa-xmark" style="color: #d4024c;"></i></a>'
+            //     + '</div>'
+            //     + '</td>'
+            //     + '</tr>'
+            //     ;
+
+            // $('#tbItemsPedido').append(html);            
+            // incremento++;
+        }
+
+        if (!$.fn.DataTable.isDataTable('#TbPedidos')) {
+            $('#TbPedidos').DataTable({
+                pageLength: 10,
+                searching: true,
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json',
+                    emptyTable: "",
+                    zeroRecords: "",
+                },
+                order: [[0, 'desc']]
+            });
+        }
+
+        HabilitarBoton();
+    }
+
+
+    function EliminarFila(index) {
+
+        //indicePop = index;
+        //document.getElementById("mensajePopUp").innerHTML = "@Notificaciones.WarningEliminarPedido";
+        //$('#ModalPopUp').modal('show');   
+        bootbox.prompt({
+            title: 'Observación de la eliminación del pedido',
+            centerVertical: true,
+            callback: function (result) {                
+                if(result !== null){
+                    obElimPedido = result;
+                    EliminarPedido(index);
+                }else{
+                }
+            }
+        });
+    }
+
+    function EliminarPedido(index)
+    {
+        var idenClientes = String(@infousuario.Identificacion);
+
+        if (idenClientes.charAt(0) !== "0") {
+			idenClientes = "0" + idenClientes;
+		}
+
+        //enviar correo de eliminar pedido al operador
+        $.ajax({
+            url: '@Url.Action("EnviarCorreoElimPedido", "Cliente")',
+            type: 'POST',
+            async: false,
+            data: {
+                idPedido: index, idOPerador: datosOperador.idOperador,
+                nomOperador: datosOperador.NombreOperador, observacion: obElimPedido,
+                idenCliente: idenClientes
+            },
+            sucess: function (response) {
+                if (response === "" || response === null) {
+                    MensajeAlerta1("@Notificaciones.TituloDanger", "No se envió el correo electrónico al asesor.");
+                }
+            }
+        });
+
+        $.ajax({
+
+            url: '@Url.Action("EliminarPedido","Cliente")',
+            type: 'POST',
+            data: { IdPedido: index, UsuarioEliminacion: idUsuario },
+            success: function (response) {
+
+                if (response === @Transaccion.Correcta) {
+                    MensajeAlerta1("@Notificaciones.TituloSuccess", "@Notificaciones.SuccessPedidoEliminado");                                        
+
+                    for(var i = 0; i <= ListaPedido.length;i++ )
+                    {                  
+                        if (ListaPedido[i] !== undefined) {                            
+                            if (index === ListaPedido[i].idPedido) {
+                                document.getElementById("TbFilaEstadoP" + i).innerHTML = "@Estados.Cancelado";
+                                $('#btnEliminarPedido' + i).hide();
+                                $('#btnPdf' + i).hide();
+                            }
+                        }                        
+                        // if (index === ListaPedido[i].idPedido) {
+                        //     document.getElementById("TbFilaEstadoP" + i).innerHTML = "@Estados.Cancelado";
+                        //     $('#btnEliminarPedido' + i).hide();
+                        //     $('#btnPdf' + i).hide();
+                        // }
+                    }
+
+                    window.location.reload();
+                }
+                else {
+                    MensajeAlerta1("@Notificaciones.TituloDanger", "@Notificaciones.DangerError");
+                }
+                
+            }
+        });
+    }
+
+    function HabilitarBoton()
+    {        
+
+        for (var i = 0; i < ListaPedido.length; i++) {
+
+            if (ListaPedido[i].estadoPedido === "@Estados.PorRecolectar") {
+                $('#btnEliminarPedido' + i).show();
+            }
+            else {
+                $('#btnEliminarPedido' + i).hide();
+            }
+
+            if (ListaPedido[i].estadoPedido === "@Estados.Anulado") {
+                $('#btnEliminarPedido' + i).hide();
+            }
+            // if (ListaPedido[i].EstadoPedido === "@Estados.PorRecolectar") {
+            //     $('#btnEliminarPedido' + i).show();
+            // }
+            // else
+            // {
+            //     $('#btnEliminarPedido' + i).hide();
+            // }
+
+            // if (ListaPedido[i].EstadoPedido === "@Estados.Anulado") {
+            //     $('#btnEliminarPedido' + i).hide();
+            // }
+        }
+    }
+    
+    function GenerarPDF(index) {  
+        
+        var impresion = false;
+
+        bootbox.confirm({
+            title: 'Informe pedidos',
+            message: 'Desea imprimir el informe en Excel ?',
+            buttons: {
+                cancel: {
+                    label: '<i class="fa fa-times"></i> No',
+                    className: 'btn-danger'
+                },
+                confirm: {
+                    label: '<i class="fa fa-check"></i> Si',
+                    className: 'btn-success'
+                }
+            },
+            callback: function (result) {
+                if (result) {                    
+                    impresion = true;
+
+                    $.ajax(
+                        {
+                            url: '@Url.Action("RecolectarPDF", "Cliente")',
+                            type: 'POST',
+                            data: { id: index, impresion: impresion },
+                            success: function (response) {
+                                
+                                var byteCharacters = atob(response);                                
+                                var byteNumbers = new Array(byteCharacters.length);                                
+
+                                for (var i = 0; i < byteCharacters.length; i++) {
+                                    byteNumbers[i] = byteCharacters.charCodeAt(i);
+                                }
+                                
+                                var byteArray = new Uint8Array(byteNumbers);                                
+                                var blob = new Blob([byteArray], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });                                
+                                var url = window.URL.createObjectURL(blob);
+                                var a = document.createElement("a");
+                                document.body.appendChild(a);
+                                a.style = "display: none";                                
+                                a.href = url;
+                                a.download = "Pedidos.xlsx";
+                                a.click();
+
+                                window.URL.revokeObjectURL(url);
+                            }
+
+                        });                    
+                }
+                else {
+
+                    $.ajax(
+                        {
+                            url: '@Url.Action("RecolectarPDF", "Cliente")',
+                            type: 'POST',
+                            data: { id: index, impresion: impresion },
+                            success: function (response) {
+                                let pdfWindow = window.open("")
+                                pdfWindow.document.write(
+                                    "<iframe width='100%' height='100%' src='data:application/pdf;base64, " +
+                                    encodeURI(response) + "'></iframe>"
+                                )
+                                pdfWindow.document.title = 'Pedidos'
+                            }
+
+                        });
+                }
+            }
+        });
+
+    }
+
+    function ObtenerOperador(){
+        $.ajax({
+
+            url: '@Url.Action("ObtenerOperador","Cliente")',
+            type: 'GET',
+            data: { IdUsuario: idUsuario },
+            success: function (response) {
+
+                if (response.idOperador == 0) {
+
+                    MensajeAlerta1("@Notificaciones.TituloDanger", "@Notificaciones.DangerOperador");
+                }
+                else {
+                    datosOperador = {
+                        idOperador: response.idOperador,
+                        NombreOperador: response.nombre
+                    }                    
+                }
+            }
+
+        });
+    }
+    
+</script>

@@ -1,0 +1,482 @@
+﻿@using GDifare.Portal.Humalab.Seguridad.Modelos;
+@using GDifare.Portal.Humalab.Servicio.Utils;
+@using Newtonsoft.Json;
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+@{
+    ViewData["Title"] = "Administrativo";
+    Layout = "/Views/Shared/_BootStrapLayoutMenu.cshtml";
+}
+
+@{
+    ObjUsuario infousuario = JsonConvert.DeserializeObject<ObjUsuario>
+        (HttpContextAccessor.HttpContext.Session.GetString("usuario"));	 
+}
+
+<partial name="~/Views/Componentes/BuscarOrdenAdmin.cshtml" />
+
+<partial name="~/Views/Componentes/TablaOrdenesAdmin.cshtml" />
+
+<partial name="~/Views/Modales/PopUpAdmin.cshtml" />
+
+<!--JS-->
+<script src="~/js/Notificaciones.js"></script>
+
+<script>
+
+    var ConsultarOrden = new Object();
+    var OrdenesAdmin = new Object();
+    var FechadeInicioAdmin;
+    var ListadeOrdenesAdmin = [];
+    var indicePopAdmin;
+    var FechaActual;
+    var nombreFuncionAdmin;
+    var CambioFechaAdmin;
+    var pdfResultAdmin = true;
+
+
+    var Fecha;    
+    var UsuarioGalileo;      
+
+    window.addEventListener('load', function () {
+        nombreFuncionAdmin = "@Funcion.EliminarOrdenAdmin"
+
+        CambioFechaAdmin = false;
+
+        ConsultarOrden = {
+            OpcionBusqueda: @Numeros.Cero,            
+            FechaCreacion: moment().format("YYYY-MM-DD")
+        }
+
+        FechaActual = moment().format("YYYY-MM-DD");
+        //CalculoFechaInicio();
+
+        document.getElementById("dtpInicioAdmin").value = moment().format("YYYY-MM-DD");;
+        document.getElementById("dtpFinAdmin").value = moment().format("YYYY-MM-DD");        
+
+        ListaEstadosOrdAdmin('@Estados.Orden');
+        CargarOrdenesAdminDefault();
+        //HabilitarEnviar("@Estados.Cancelado");
+    });
+
+    function ListaEstadosOrdAdmin(estado) {
+        var html = '';
+        var recolectado = "RCTL";
+        var recolParcial = "RCTP";
+        var enviado = "ENV";
+        var envParcial = "ENVP";
+        var generada = "GENE";
+        var recibida = "RCBD";
+        var reciParcial = "RCBP";
+
+        $.ajax({
+            url: '@Url.Action("ListarEstadosOrdAdmin", "Administrativo")',
+            type: 'GET',          
+            data: { NombreEstadoAdmin: estado },
+            success: function (response) {
+                const listEstadoAdmin = JSON.parse(response)
+
+                if (listEstadoAdmin.length > 0) {
+                    for (var i = 0; i < listEstadoAdmin.length; i++) {
+
+                        if (listEstadoAdmin[i].Valor === recolectado ||
+                            listEstadoAdmin[i].Valor === recolParcial ||
+                            listEstadoAdmin[i].Valor === enviado ||
+                            listEstadoAdmin[i].Valor === envParcial ||
+                            listEstadoAdmin[i].Valor === recibida ||
+                            listEstadoAdmin[i].Valor === reciParcial) {
+                        } else {
+
+                            var comboEstadosAdmin = document.getElementById('cmbEstadobOrdenAdmin');
+                            var opciones = document.createElement('option');
+                            opciones.text = listEstadoAdmin[i].Nombre;
+                            opciones.value = listEstadoAdmin[i].Valor;
+
+                            //asigna valores al combo
+                            comboEstadosAdmin.add(opciones);
+                        }
+                    }
+
+                    var newComboAdmin = document.getElementById('cmbEstadobOrdenAdmin');
+
+                    for (var i = 0; i < newComboAdmin.length; i++) {
+
+                        if (newComboAdmin[i].value === generada) {
+                            var valorEspecifico = newComboAdmin[i].value;
+                            var textoEspecifico = newComboAdmin[i].text;
+
+                            newComboAdmin[i].parentNode.removeChild(newComboAdmin[i]);
+
+                            // Crea una nueva opción con el valor y texto específico
+                            var nuevaOpcionAdmin = document.createElement("option");
+                            nuevaOpcionAdmin.value = valorEspecifico;
+                            nuevaOpcionAdmin.text = textoEspecifico;
+
+                            // Inserta la nueva opción en la primera posición
+                            newComboAdmin.insertBefore(nuevaOpcionAdmin, newComboAdmin.firstChild);
+
+                            // Establece la nueva opción como seleccionada
+                            newComboAdmin.selectedIndex = 0;
+                            break;
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+
+    function CargarOrdenesAdminDefault() {
+
+        //console.log(ConsultaOrdenesAdmin);
+
+        $.ajax({
+            url: '@Url.Action("ListarOrdenesAdmin","Administrativo")',
+            type: 'GET',
+            data: ConsultarOrden,
+            beforeSend: function () {
+                loadingShow();
+            },
+            success: function (response) {
+                if (response !== null || response !== "") {                    
+                    var resp = JSON.parse(response)
+
+                    if (resp.length > 0) {
+
+                        for (var i = 0; i < resp.length; i++) {
+                            OrdenesAdmin = {
+                                NOrden: resp[i].NOrden,
+                                CodigoBarra: resp[i].CodigoBarra,
+                                FechaIngreso: resp[i].FechaIngreso,
+                                NombrePaciente: resp[i].NombrePaciente,
+                                Precio: resp[i].Precio,
+                                Estado: resp[i].Estado,
+                                Observacion: resp[i].Observacion,
+                                CodigoGalileo: resp[i].CodigoGalileo,
+                                NombreCliente: resp[i].NombreCliente
+                            }
+
+                            ListadeOrdenesAdmin.push(OrdenesAdmin);
+                        }
+
+                        TablaOrdenesAdmin(ListadeOrdenesAdmin);
+                    }
+
+                    
+                }
+                else {
+                    MensajeAlerta1("@Notificaciones.TituloDanger", "Problemas para obtener las órdenes.");
+                    loadingHide();
+                }
+
+                loadingHide();
+            }
+        });
+    }
+    
+    function TablaOrdenesAdmin(ListaAdmin) {
+        var html = '';
+
+        for (var i = 0; i < ListaAdmin.length; i++) {
+
+            html = '<tr class="odd" id="TbFila' + i + '">'
+                // + '<td class="text-center"><input id="check' + i + '"class="form-check-input" type="checkbox" onclick="CheckOrden(' + i + ')"/></td>'
+                + '<td class="sorting_1 text-center" id="TbFilaItem' + i + '" >' + ListaAdmin[i].CodigoBarra + '</td>'
+                + '<td class="text-center">' + ListaAdmin[i].CodigoGalileo + '</td>'
+                + '<td class="text-center">' + ListaAdmin[i].NombreCliente + '</td>'
+                + '<td class="text-center">' + ListaAdmin[i].FechaIngreso + '</td>'
+                + '<td >' + ListaAdmin[i].NombrePaciente + '</td>'
+                // + '<td class="text-center">$' + ListaAdmin[i].Precio.toFixed(2) + '</td>'
+                + '<td class="text-center" color: white" id="TbFilaEstado' + i + '">' + ListaAdmin[i].Estado + '</td>'
+                + '<td>'
+                + '<div class="d-flex justify-content-center align-items-center">'
+                // + '<a id="Obs' + i + '" class="btn text-decoration-none" onclick="ObtenerLogAdmin(' + i + ')"><i class="fa-solid fa-comment"></i></a>'
+                + '<a id="Editar' + i + '" class="btn text-decoration-none" onclick="ModificarOrdenAdmin(' + ListaAdmin[i].NOrden + ')"><i class="fa-solid fa-pen-to-square" style="color: #c7c7c7;"></i></a>'
+                + '<a id="Visualizar' + i + '" class="btn text-decoration-none" onclick="ObtenerResultAdmin(' + i + ')"><i class="fa-solid fa-square-poll-horizontal" style="color: #c7c7c7;"></i></a>'
+                + '<a id="Eliminar' + i + '" class="btn text-decoration-none" onclick="eliminarFilaAdmin(' + i + ')"><i class="fa-solid fa-xmark" style="color: #d4024c;"></i></a>'
+                + '</div>'
+                + '</td>'
+                + '</tr>';
+
+            $('#tbOrdenesAdmin').append(html);
+
+            ActivarBotonesAdmin(i);
+        }
+
+        if (!$.fn.DataTable.isDataTable('#tbAdminOrdenes')) {
+            $('#tbAdminOrdenes').DataTable({
+                pageLength: 10,
+                searching: true,
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json',
+                },
+                order: [[0, 'desc']]
+            });
+        }
+    }
+
+    function ActivarBotonesAdmin(indexAdmin) { 
+
+        //console.log(ListadeOrdenesAdmin[indexAdmin].Estado);
+
+        if (ListadeOrdenesAdmin[indexAdmin].Estado === "@Estados.Generado" ||
+            ListadeOrdenesAdmin[indexAdmin].Estado === "@Estados.OrdenRecolectada" ||
+            ListadeOrdenesAdmin[indexAdmin].Estado === "@Estados.OrdenEnAnalisis" ||
+            ListadeOrdenesAdmin[indexAdmin].Estado === "@Estados.OrdenEnviado" ||
+            ListadeOrdenesAdmin[indexAdmin].Estado === "@Estados.OrdenRecolectadaParcial" ||
+            ListadeOrdenesAdmin[indexAdmin].Estado === "@Estados.OrdenEnviadoParcial" ||
+            ListadeOrdenesAdmin[indexAdmin].Estado === "@Estados.OrdenRechazada" ||
+            ListadeOrdenesAdmin[indexAdmin].Estado === "@Estados.OrdenRecibidaParcial" ||
+            ListadeOrdenesAdmin[indexAdmin].Estado === "@Estados.OrdenRecibida" ||
+            ListadeOrdenesAdmin[indexAdmin].Estado === "@Estados.PorRecolectar") {
+            $('#Editar' + indexAdmin).show();
+            $('#Eliminar' + indexAdmin).show();
+            $('#Visualizar' + indexAdmin).hide();
+        }
+        else if (ListadeOrdenesAdmin[indexAdmin].Estado === "@Estados.Cancelado") {
+            $('#Eliminar' + indexAdmin).hide();
+            $('#Editar' + indexAdmin).hide();
+            $('#Visualizar' + indexAdmin).hide();
+        }
+        else if (ListadeOrdenesAdmin[indexAdmin].Estado === "Validado" ||
+            ListadeOrdenesAdmin[indexAdmin].Estado === "Resultado pendiente" ||
+            ListadeOrdenesAdmin[indexAdmin].Estado === "Validacion pendiente" ||
+            ListadeOrdenesAdmin[indexAdmin].Estado === "Facturadas") {
+            $('#Visualizar' + indexAdmin).show();
+            $('#Editar' + indexAdmin).hide();
+            $('#Eliminar' + indexAdmin).hide();
+            pdfResultAdmin = true;
+        }
+
+        // if (ListadeOrdenesAdmin[indexAdmin].Estado === "@Estados.OrdenRecolectada" ||
+        //     ListadeOrdenesAdmin[indexAdmin].Estado === "@Estados.OrdenEnAnalisis" ||
+        //     ListadeOrdenesAdmin[indexAdmin].Estado === "@Estados.OrdenEnviado" ||
+        //     ListadeOrdenesAdmin[indexAdmin].Estado === "@Estados.OrdenRecolectadaParcial" ||
+        //     ListadeOrdenesAdmin[indexAdmin].Estado === "@Estados.OrdenEnviadoParcial" ||
+        //     ListadeOrdenesAdmin[indexAdmin].Estado === "@Estados.OrdenRechazada" ||
+        //     ListadeOrdenesAdmin[indexAdmin].Estado === "Recibida Parcial" ||
+        //     ListadeOrdenesAdmin[indexAdmin].Estado === "Recibida") {
+        //     $('#Editar' + indexAdmin).show();
+        // }
+    }
+
+    function ModificarOrdenAdmin(indexAdmin) { 
+        var url = "@Url.Action("EditarOrdAdmin","Administrativo", new {IdOrden = Numeros.Uno})";
+        url = url.replace(@Numeros.Uno, indexAdmin);
+
+        window.location.href = url;
+    }
+
+    function ObtenerResultAdmin(indexAdmin)
+    {
+        var barrAdmin = document.getElementById("TbFilaItem" + indexAdmin).textContent;        
+
+        if(pdfResultAdmin === true){
+            loadingShow();
+
+            $.ajax({
+                url: '@Url.Action("PDFResultadosNuevoAdmin", "Administrativo")',
+                type: 'GET',
+                data: { CodigoBarra: barrAdmin },
+                success: function (response) { 
+                    if (response !== "01") {
+                        var base64Admin = "data:application/pdf;base64," + response;
+                        var pdfWindowAdmin = window.open("", "_blank");
+
+                        if (pdfWindowAdmin) {
+                            pdfWindowAdmin.document.write("<iframe width='100%' height='100%' src='" + base64Admin + "'></iframe>");
+                            pdfWindowAdmin.document.title = 'ResultadoExamenes';
+
+                            loadingHide();
+                        }
+                        else {
+                            loadingHide();
+                        }
+                    }
+                    else{
+                        MensajeAlerta1("@Notificaciones.TituloDanger", "@Notificaciones.DangerPdfResultados");
+                        loadingHide();
+                    }
+                }
+            });
+        }
+    }
+
+    function eliminarFilaAdmin(indexAdmin) {
+        indicePopAdmin = indexAdmin;        
+        document.getElementById("mensajePopUpAdmin").innerHTML = "@Notificaciones.WarningEliminarOrden";
+        $('#ModalPopUpAdmin').modal('show');
+    }
+
+    function EliminarConsultaOrdenAdmin(indexAdmin) {        
+
+        var filaEliminadaOrdAdmin = {
+            IdOrden: ListadeOrdenesAdmin[indexAdmin].NOrden,
+            IdUsuarioGalileo: @infousuario!.UsuarioID
+        }
+
+        $.ajax({
+            url: '@Url.Action("EliminarOrdenAdmin","Administrativo")',
+            type: 'POST',
+            data: { orden: filaEliminadaOrdAdmin },
+            beforeSend: function () {
+                loadingShow();
+            },
+            success: function (response) {
+
+                // if (response === @Transaccion.Correcta) {
+                //     document.getElementById("TbFilaEstado" + index).innerHTML = "@Estados.Cancelado";
+                    
+                //     ListadeOrdenesAdmin[index].Estado = "@Estados.Cancelado";
+                //     $('#Eliminar' + index).hide();
+                //     $('#Editar' + index).hide();
+
+                //     window.location.reload();
+                // }
+                // else {
+                //     MensajeAlerta1("@Notificaciones.TituloDanger", "@Notificaciones.DangerError");
+                //     window.location.reload();
+                // }
+
+                loadingHide();
+            }
+        });
+
+        
+    }
+
+    function ValidarFechasAdmin() {
+        InicioAdmin = new Date(document.getElementById("dtpInicioAdmin").value);
+        FinAdmin = new Date(document.getElementById("dtpFinAdmin").value);
+
+        if (InicioAdmin > FinAdmin) {
+            MensajeAlerta1("@Notificaciones.TituloDanger", "@Notificaciones.DangerFecha");
+            document.getElementById("dtpInicioAdmin").value = FechadeInicioAdmin;
+            document.getElementById("dtpFinAdmin").value = moment().format("YYYY-MM-DD");
+            CambioFechaAdmin = false;
+        }
+        else if (InicioAdmin === FinAdmin) {
+            MensajeAlerta1("@Notificaciones.TituloDanger", "@Notificaciones.DangerFecha");
+            document.getElementById("dtpInicioAdmin").value = FechadeInicioAdmin;
+            document.getElementById("dtpFinAdmin").value = moment().format("YYYY-MM-DD");
+            CambioFecha = false;
+        }
+        else {
+            CambioFecha = true;
+        }
+    }
+
+    function BuscarOrdenesAdmin() {
+        var count = $("#tbOrdenesAdmin tr").length;
+
+        for (var j = 0; j < count; j++) {
+            $("#TbFila" + j).remove();
+        }
+
+        var textoBuscarAdmin = document.getElementById("txtBuscarOrdenAdmin").value;
+        var opcionEstadoAdmin = document.getElementById("cmbEstadobOrdenAdmin").value;
+        var FechaDesdeAdmin = document.getElementById("dtpInicioAdmin").value;
+        var FechaHastaAdmin = document.getElementById("dtpFinAdmin").value;       
+
+        ListadeOrdenesAdmin.length = 0;
+
+        if (textoBuscarAdmin.trim().length === 0 && CambioFechaAdmin === false && opcionEstadoAdmin === '@Numeros.Cero') {
+            ConsultarOrden = {
+                OpcionBusqueda: @Numeros.Cero,                
+                FechaCreacion: moment().format("YYYY-MM-DD")
+            }
+        }
+
+        //Busqueda de todas las ordenes solo por fechas
+        if (textoBuscarAdmin.trim().length === 0 && CambioFechaAdmin === false && opcionEstadoAdmin === '@Numeros.Cero') {
+            ConsultarOrden = {
+                OpcionBusqueda: @Numeros.Trece,                
+                FechaInicio: FechaDesdeAdmin,
+                FechaFin: FechaHastaAdmin,
+            }
+        }
+        else if (textoBuscarAdmin.trim().length === 0 && CambioFechaAdmin === true && opcionEstadoAdmin === '@Numeros.Cero') {
+            ConsultarOrden = {
+                OpcionBusqueda: @Numeros.Trece,                
+                FechaInicio: FechaDesdeAdmin,
+                FechaFin: FechaHastaAdmin,
+            }
+        }
+
+        //Busqueda de ordenes por cedula, nombres o apellidos
+        if (textoBuscarAdmin.trim().length != 0 && CambioFechaAdmin === false) {
+            textoBuscarAdmin = textoBuscarAdmin.replace(" ", "%")
+                .replace(" ", "%");
+            
+            ConsultarOrden = {
+                OpcionBusqueda: @Numeros.Dos,                
+                DatoBusqueda: textoBuscarAdmin,
+                FechaInicio: FechaDesdeAdmin,
+                FechaFin: FechaHastaAdmin,
+                opcionEstado: opcionEstadoAdmin
+            }
+        }
+        else if (textoBuscarAdmin.trim().length != 0 && CambioFechaAdmin === true) {
+            textoBuscarAdmin = textoBuscarAdmin.replace(" ", "%")
+                .replace(" ", "%");
+
+            ConsultarOrden = {
+                OpcionBusqueda: @Numeros.Dos,                
+                DatoBusqueda: textoBuscarAdmin,
+                FechaInicio: FechaDesdeAdmin,
+                FechaFin: FechaHastaAdmin,
+                opcionEstado: opcionEstadoAdmin
+            }
+        }
+
+        //Busqueda por fechas recolectado total/parcial
+        if (textoBuscarAdmin.trim().length === 0 && CambioFechaAdmin === false && opcionEstadoAdmin === '@Numeros.Diez') {
+            ConsultarOrden = {
+                OpcionBusqueda: @Numeros.Diez,
+                FechaInicio: FechaDesdeAdmin,
+                FechaFin: FechaHastaAdmin
+            }
+        } else if (CambioFechaAdmin === true && opcionEstadoAdmin === '@Numeros.Diez') {
+            ConsultarOrden = {
+                OpcionBusqueda: @Numeros.Diez,
+                FechaInicio: FechaDesdeAdmin,
+                FechaFin: FechaHastaAdmin
+            }
+        }
+
+        //Busqueda por fechas enviado total/parcial
+        if (textoBuscarAdmin.trim().length === 0 && CambioFechaAdmin === false && opcionEstadoAdmin === '@Numeros.Once') {
+            ConsultarOrden = {
+                OpcionBusqueda: @Numeros.Once,
+                FechaInicio: FechaDesdeAdmin,
+                FechaFin: FechaHastaAdmin
+            }
+        } else if (CambioFechaAdmin === true && opcionEstadoAdmin === '@Numeros.Once') {
+            ConsultarOrden = {
+                OpcionBusqueda: @Numeros.Once,
+                FechaInicio: FechaDesdeAdmin,
+                FechaFin: FechaHastaAdmin
+            }
+        }
+
+        //Busqueda por fechas recibida/parcial
+        if (textoBuscarAdmin.trim().length === 0 && CambioFechaAdmin === false && opcionEstadoAdmin === '@Numeros.Doce') {
+            ConsultarOrden = {
+                OpcionBusqueda: @Numeros.Doce,
+                FechaInicio: FechaDesdeAdmin,
+                FechaFin: FechaHastaAdmin
+            }
+        }
+        else if (CambioFechaAdmin === true && opcionEstadoAdmin === '@Numeros.Doce') {
+            ConsultarOrden = {
+                OpcionBusqueda: @Numeros.Doce,
+                FechaInicio: FechaDesdeAdmin,
+                FechaFin: FechaHastaAdmin
+            }
+        }
+
+        CargarOrdenesAdminDefault();
+        //$('#btnEnviarOrden').prop("disabled", true);
+    }
+
+</script>

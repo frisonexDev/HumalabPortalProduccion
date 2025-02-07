@@ -1,0 +1,714 @@
+﻿@using GDifare.Portal.Humalab.Seguridad.Modelos;
+@using Newtonsoft.Json;
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+@{
+	ObjUsuario usuario = JsonConvert.DeserializeObject<ObjUsuario>
+		(HttpContextAccessor.HttpContext.Session.GetString("usuario"));	 
+}
+
+
+<div class="modal fade" id="ModalDardeAlta" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			
+			<div class="modal-header bg-primary">
+				<h5 class="modal-title text-white">GESTIÓN DE CLIENTES</h5>
+				<a class="btn text-decoration-none rounded-2" id="cerrarModal" data-bs-dismiss="modal" aria-label="Close" onclick="CancelarClienteNuevo()" style="background-color:red"><i class="fa-solid fa-xmark fa-xl" style="color:white ;"></i></a>
+			</div>
+
+			<div class="modal-body justify-content-center align-items-center m-4">
+				
+				<!--CONTENIDO DEL MODAL-->
+				<div class="d-flex gap-5">
+
+					<div class="fw-bold">
+						Ruc Cliente:
+					</div>
+					
+					<input class="form-control" style="margin-left:9.5px"  id="clienteFlexline" maxlength="13" placeholder="Identificación" type="search" />
+					<button type="button" class="btn btn-primary" onclick="BuscarClienteFlexTodo()">Buscar</button>
+
+				</div>
+
+				<div class="d-flex gap-4 mt-2">
+
+					<div class="fw-bold">
+						Usuario:
+					</div>
+
+					<select class="form-control" style="margin-left:27px" id="comboUsuarios">
+					</select>
+
+				</div>
+
+				<div class="d-flex gap-3 mt-2">
+					<div class="fw-bold">
+						Código cliente:
+					</div>
+
+					<select class="form-control" style="margin-left:13px"  id="codCliente">
+					</select>
+				</div>
+
+				<div class="d-flex gap-4 mt-2">
+					<div class="fw-bold">
+						Nombre cliente:
+					</div>
+
+					<input class="form-control" style="margin-left:2px" id="nomCliente" placeholder="Nombre cliente" type="search" />
+				</div>
+
+				<div class="d-flex gap-4 mt-2">
+					<div class="fw-bold">
+						Nombre comercial laboratorio:
+					</div>
+
+					<input class="form-control" style="margin-left:2px" id="nomLabCom" type="search" />
+				</div>
+
+				<div class="d-flex gap-4 mt-2">
+
+					<div class="fw-bold">
+						OP. Logístico:
+					</div>
+
+					<select class="form-control" style="margin-left:12px" id="comboOperador">
+					</select>
+				</div>
+
+				<div class="d-flex gap-4 mt-2">
+					<div class="fw-bold">
+						*Dirección:
+					</div>
+
+					<input class="form-control" style="margin-left:12px" id="direCliente" placeholder="Dirección" type="search" />
+				</div>
+
+
+				<div class="d-flex gap-4 mt-2">
+					<div class="fw-bold">
+						*Provincia:
+					</div>
+
+					<input class="form-control" style="margin-left:12px" id="clienteProvincia" placeholder="Provincia" type="search" />
+
+					<div class="fw-bold">
+						*Ciudad:
+					</div>
+
+					<input class="form-control" style="margin-left:2px" id="clienteCiudad" placeholder="Ciudad" type="search" />
+
+				</div>
+
+				<div class="d-flex gap-5 mt-2">
+					<div class="fw-bold">
+						Latitud:
+					</div>
+
+					<input class="form-control" style="margin-left:8.5px" id="clienteLatitud" placeholder="Latitud" type="search" />
+
+					<div class="fw-bold">
+						Longitud:
+					</div>
+
+					<input class="form-control" style="margin-left:2px" id="clienteLongitud" placeholder="Longitud" type="search" />
+				</div>
+
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick="CancelarClienteNuevo()">Cancelar</button>
+				<button type="button" class="btn btn-success" onclick="GuardarClienteNuevo()">Guardar</button>				
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<link class="js-stylesheet" href="~/AdminKit/css/light.css" rel="stylesheet">
+<script src="~/AdminKit/js/app.js"></script>
+<script src="~/js/Notificaciones.js"></script>
+
+
+<script>
+	var email = "";
+	var identificacion = "";
+	var identiGalileo = "";	
+	var idOperadorLog = "";
+	var nombreCliente = "";
+	var idAsesorLis = "";
+	var usuarioAse = "";
+	var telefono = "";
+
+	var mailFinalUsuario = "";
+
+	var clienteHuma = false;
+
+	var dirClientHuma = document.getElementById("direCliente");
+	var provClientHuma = document.getElementById("clienteProvincia");
+	var ciuClientHuma = document.getElementById("clienteCiudad");
+	var latClientHuma = document.getElementById("clienteLatitud");
+	var lonClientHuma = document.getElementById("clienteLongitud");
+
+	function TeclaEnterClienteFlex(){
+		var rucFlex = document.getElementById("clienteFlexline");
+
+		rucFlex.addEventListener("keyup", function (event) {
+			if (event.key === "Enter") {
+				var clienteFlex = document.getElementById("clienteFlexline").value;
+				
+				if (clienteFlex === "" || clienteFlex === null) {
+					MensajeAlerta1("warning", "Debe ingresar el ruc del cliente.")
+				}else{
+					BuscarClienteFlexEnter(clienteFlex);
+				}
+			}
+		});
+	}
+
+	//Cliente flexline funcion tecla enter
+	function BuscarClienteFlexEnter(rucFlex) {
+		var txtClienteFlex = "";
+		
+		//buscar cliente humalab direccion
+		$.ajax({
+			url: '@Url.Action("DireccionHumaCliente", "GestionCliente")',
+			type: 'GET',
+			data: { ruc: rucFlex, accion: "C" },
+			success: function (response) {
+
+				if (response.codigo === "00") {
+					dirClientHuma.value = response.direccion;
+					provClientHuma.value = response.provincia;
+					ciuClientHuma.value = response.ciudad;
+					latClientHuma.value = response.latitud;
+					lonClientHuma.value = response.longitud;
+
+					clienteHuma = true;
+				}
+				else {
+					dirClientHuma.value = "";
+					provClientHuma.value = "";
+					ciuClientHuma.value = "";
+					latClientHuma.value = "";
+					lonClientHuma.value = "";
+					
+					clienteHuma = false;
+
+				}
+			}
+		});
+
+		//buscar cliente Flexline
+		$.ajax({
+			url: '@Url.Action("BuscarClienteFlexline","GestionCliente")',
+			type: 'GET',
+			data: { clienteFlexline: rucFlex },
+			beforeSend: function () {
+				loadingShow();
+			},
+			success: function (response) {				
+
+				if (clienteHuma === false){
+					CancelarClienteNuevo();
+				}
+
+				if (response === "Error" || response === "01") {
+					loadingHide();
+					MensajeAlerta1("danger", "Cliente no encontrado o se ha producido un error, comuníquese con el área de sistemas.")
+
+					var modalDarAlta = document.getElementById("ModalDardeAlta");
+					modalDarAlta.style.display = "none";
+
+					setTimeout(() => {
+						location.reload();
+					}, 3000);
+				}
+				else {
+
+					for (var i = 0; i < response.length; i++) {
+						email = response[i].email;
+						identificacion = response[i].ruc;
+						idOperadorLog = response[i].codAsesor;
+						nombreCliente = response[i].nombre;
+						idAsesorLis = response[i].idAsesor;
+						usuarioAse = response[i].usuario;
+						telefono = response[i].telefono;
+					}
+					
+					document.getElementById("clienteFlexline").value = identificacion;
+					txtClienteFlex = document.getElementById("clienteFlexline");					
+
+					//combo box de usuarios galileo
+					UsuariosGalileo();					
+					
+					//combo box codigos del cliente a buscar
+					codigosClientes(response);
+
+					loadingHide();
+				}
+			}
+		});
+	}
+
+
+	//Clientes flexline boton buscar
+	function BuscarClienteFlexTodo() {
+		var rucFlex = document.getElementById("clienteFlexline").value;
+		var txtClienteFlex = "";
+
+		if (rucFlex === "" || rucFlex === null) {
+			MensajeAlerta1("warning", "Debe ingresar el ruc del cliente.")
+		}
+		else{
+
+			//buscar cliente humalab direccion
+			$.ajax({
+				url: '@Url.Action("DireccionHumaCliente", "GestionCliente")',
+				type: 'GET',
+				data: { ruc: rucFlex, accion: "C" },
+				success: function (response) {
+					
+					if (response.codigo === "00") {
+						dirClientHuma.value = response.direccion;
+						provClientHuma.value = response.provincia;
+						ciuClientHuma.value = response.ciudad;
+						latClientHuma.value = response.latitud;
+						lonClientHuma.value = response.longitud;
+
+						clienteHuma = true;
+					}
+					else{
+						dirClientHuma.value = "";
+						provClientHuma.value = "";
+						ciuClientHuma.value = "";
+						latClientHuma.value = "";
+						lonClientHuma.value = "";
+
+						clienteHuma = false;
+					}
+				}
+			});
+
+			//buca cliente flexline
+			$.ajax({
+				url: '@Url.Action("BuscarClienteFlexline","GestionCliente")',
+				type: 'GET',
+				data: { clienteFlexline: rucFlex },
+				beforeSend: function () {
+					loadingShow();
+				},
+				success: function (response) {					
+
+					//console.log(response);
+
+					if (clienteHuma === false) {
+						CancelarClienteNuevo();
+					}					
+
+					if (response === "Error" || response === "01") {
+						loadingHide();
+						MensajeAlerta1("danger", "Cliente no encontrado o se ha producido un error, comuníquese con el área de sistemas.")
+
+						var modalDarAlta = document.getElementById("ModalDardeAlta");
+						modalDarAlta.style.display = "none";
+
+						setTimeout(() => {
+							location.reload();
+						}, 3000);
+					}
+					else {
+						
+						for (var i = 0; i < response.length; i++) {
+							email = response[i].email;
+							identificacion = response[i].ruc;
+							idOperadorLog = response[i].codAsesor;
+							nombreCliente = response[i].nombre;
+							idAsesorLis = response[i].idAsesor;
+							usuarioAse = response[i].usuario;
+							telefono = response[i].telefono;
+						}
+						
+						document.getElementById("clienteFlexline").value = identificacion;
+						txtClienteFlex = document.getElementById("clienteFlexline");						
+
+						//combo box de usuarios galileo.
+						UsuariosGalileo();
+						
+						//combo box de asesores flexline.
+						//BuscarAsesorFlex();
+						
+						//combo box codigos del cliente a buscar
+						codigosClientes(response);
+
+						loadingHide();
+					}
+				}
+			});
+		}		
+	}
+
+	//usuarios galileo
+	function UsuariosGalileo() {
+		var idEmpresa = '@usuario!.EmpresaID'; //idUsuario administrador
+		var rucFlex = document.getElementById("clienteFlexline").value; //ruc avalab
+
+		$.ajax({
+			url: '@Url.Action("BuscarUsuariosGalileo","GestionCliente")',
+			type: 'GET',
+			data: { usuarioRuc: rucFlex },
+			success: function (response) {				
+
+				if (response === "Error") {					
+					MensajeAlerta1("danger", "Se ha producido un error, comuníquese con el área de sistemas.")
+					
+					var modalDarAlta = document.getElementById("ModalDardeAlta");
+					modalDarAlta.style.display = "none";
+
+					setTimeout(() => {
+						location.reload();
+					}, 3000);
+				}
+				else{					
+					var comboUsuariosGa = document.getElementById('comboUsuarios');
+
+					for (var i = 0; i < response.length; i++) {						
+						if (identificacion === response[i].identificacion) {
+							var opcionesUsua = document.createElement('option');
+
+							opcionesUsua.text = response[i].usuario + " | " + response[i].identificacion;
+							opcionesUsua.value = response[i].identificacion;
+							opcionesUsua.setAttribute('data-info', response[i].usuarioID);
+							opcionesUsua.setAttribute('data-info1', response[i].usuario);
+
+							mailFinalUsuario = response[i].correo;
+							comboUsuariosGa.add(opcionesUsua);
+						}
+					}
+
+					// if (identificacion === response.identificacion) {
+					// 	var opcionesUsua = document.createElement('option');
+					// 	opcionesUsua.text = response.usuario + " | " + response.identificacion;
+					// 	opcionesUsua.value = response.identificacion;
+					// 	opcionesUsua.setAttribute('data-info', response.usuarioID);
+					// 	opcionesUsua.setAttribute('data-info1', response.usuario);
+
+					// 	mailFinalUsuario = response.correo; //correo para enviar al usuario
+					// 	//cuando se da de alta
+					// 	comboUsuariosGa.add(opcionesUsua);
+					// }
+				}				
+			}
+		});
+	}
+
+	//Asesores Flexline
+	function BuscarAsesorFlex(){
+		$.ajax({
+			url: '@Url.Action("BuscarAsesoresFlexline","GestionCliente")',
+			type: 'GET',
+			success: function (response) {
+
+				if (response === "Error") {
+					MensajeAlerta1("danger", "Se ha producido un error, comuníquese con el área de sistemas.")
+
+					var modalDarAlta = document.getElementById("ModalDardeAlta");
+					modalDarAlta.style.display = "none";
+
+					setTimeout(() => {
+						location.reload();
+					}, 3000);
+				}
+				else {
+					var comboAsesores = document.getElementById('comboOperador');
+
+					for (i = 0; i < response.length; i++) {
+						var opcionesAse = document.createElement('option');
+						opcionesAse.text = response[i].descripcion;
+						opcionesAse.value = response[i].codigo;
+
+						comboAsesores.add(opcionesAse);
+					}
+				}
+			}
+		});
+	}
+	
+	//Llenar codigos clientes
+	function codigosClientes(response) {		
+
+		var codClientes = document.getElementById('codCliente');		
+		var nomCliente = "";		
+
+		var cmbCodCliente = document.getElementById("codCliente");		
+
+		for (i = 0; i < response.length; i++) {
+			var opcionesCod = document.createElement('option');			
+			opcionesCod.text = response[i].ctaCte;
+			opcionesCod.value = response[i].ctaCte;
+			opcionesCod.setAttribute('data-info', response[i].nombre);
+			opcionesCod.setAttribute('data-info1', response[i].codAsesor);
+			opcionesCod.setAttribute('data-info2', response[i].usuario);
+
+			codClientes.add(opcionesCod);			
+
+			document.getElementById("nomCliente").value = response[0].nombre;
+
+			// var idOperador = response[0].codAsesor;
+			// var usuarioOperador = response[0].usuario;
+			var idOperador = response[i].codAsesor;
+			var usuarioOperador = response[i].usuario;
+
+			var cmbOperadorFlex = document.getElementById("comboOperador");
+
+			var opciones = document.createElement('option');
+			opciones.text = usuarioOperador;
+			opciones.value = idOperador;
+
+			cmbOperadorFlex.add(opciones);
+		}					
+
+		cmbCodCliente.addEventListener('change', function(){
+			var codigos = cmbCodCliente.options[cmbCodCliente.selectedIndex];			
+			var nomCodigo = codigos.getAttribute('data-info');
+
+			var idOperador = codigos.getAttribute('data-info1');
+			var usuarioOperador = codigos.getAttribute('data-info2');
+
+			document.getElementById("nomCliente").value = nomCodigo;
+
+			var cmbOperadorFlexCambio = document.getElementById("comboOperador");			
+
+			for (var i = 0; i < cmbOperadorFlexCambio.options.length; i++) {
+				var opcionesC = cmbOperadorFlexCambio.options[i];
+
+				if (opcionesC.value === idOperador) {
+					cmbOperadorFlexCambio.selectedIndex = i;
+				}
+			}
+		});		
+	}
+
+
+	//Dar de alta a un nuevo cliente
+	function GuardarClienteNuevo(){		
+		var idUsuario = '@usuario.UsuarioID';		
+		var codigoCorreo = 201;
+
+		//Usuario galileo cliente
+		var cmbGalileo = document.getElementById("comboUsuarios");				
+		var nombreUsuario = cmbGalileo.selectedIndex;		
+		var txtGalileo = cmbGalileo.options[nombreUsuario].text;
+		var txtGalileoSplit = txtGalileo.split(" |");
+		var txtGalileoFinal = txtGalileoSplit[0];
+
+		//Operador logistico
+		var cmbFlexlineAsesor = document.getElementById("comboOperador");
+		var nombreAsesor = cmbFlexlineAsesor.selectedIndex;
+		var txtAsesor = cmbFlexlineAsesor.options[nombreAsesor].text;		
+		
+		//id de usuario galileo y correo
+		var galileoCombo = cmbGalileo.options[cmbGalileo.selectedIndex];
+		var usuarioID = galileoCombo.getAttribute('data-info');
+		var correoUsuario = galileoCombo.getAttribute('data-info1');
+
+		//datos del combo
+		var clienteFlex = document.getElementById("clienteFlexline").value;
+		var clienteSplit = clienteFlex.split("|");
+		var clienteFinal = clienteSplit[0];
+
+		//datos combo codigo cliente
+		var codCliente = document.getElementById("codCliente").value;
+
+		//datos de ubicacion cliente
+		var dirCliente = document.getElementById("direCliente").value;
+		var provCliente = document.getElementById("clienteProvincia").value;
+		var ciuCliente = document.getElementById("clienteCiudad").value;
+		var latCliente = document.getElementById("clienteLatitud").value;
+		var lonCliente = document.getElementById("clienteLongitud").value;
+
+		var usuarioGalileo = document.getElementById("comboUsuarios").value;
+		var operadorFlex = document.getElementById("comboOperador").value;		
+
+		//cliente final nombre
+		var nombreFinal = document.getElementById("nomCliente").value;	
+		
+		//nombre comercial lab
+		var nomLabComercial = document.getElementById("nomLabCom").value;
+
+		if (usuarioGalileo === "" || usuarioGalileo === null ||			
+			dirCliente === "" || dirCliente === null ||
+			provCliente === "" || provCliente === null ||
+			ciuCliente === "" || ciuCliente === null || 
+			nombreFinal === "" || nombreFinal === null ||
+			clienteFinal === "" || clienteFinal === null) {
+				MensajeAlerta1("warning", "Debe llenar todos los campos.")
+		}
+		else{
+			if (identificacion === usuarioGalileo) {
+				var darAltaCliente = {
+					idGalileo: usuarioID, //usuario -> idGalileo					
+					Usuario: nombreFinal, //nombre del cliente flexline -> Cliente
+					Identificacion: identificacion, //identificacion o ruc -> Identificacion del cliente
+					UsuarioCreacion: idUsuario, //quien realizo el registro -> UsuarioCreacion
+					//Email: correoUsuario, //correo del cliente -> Email del cliente					
+					Email: mailFinalUsuario,
+					idAsesorFlex: operadorFlex, //id del asesor o operador -> idOperadorLogistico
+					nombreAsesor: txtAsesor, //nombre del asesor o operador - > OperadorLogistico
+					nombreGalileo: txtGalileoFinal, //nombre del usuario galileo -> Usuario
+					codigoCliente: codCliente, //codigo de cliente sirve para la factura
+					DireccionCliente: dirCliente, //direccion del cliente
+					ProvinciaCliente: provCliente, //provincia del cliente
+					CiudadCliente: ciuCliente, //ciudad del cliente
+					LatitudCliente: latCliente, //latitud del cliente
+					LongitudCliente: lonCliente, //longitud del cliente					
+					IdAsesorLis: idAsesorLis, //corresponde al id del operador logistico logueado
+					Telefono: telefono, //telefono del cliente
+					LabComercial: nomLabComercial //nombre comercial laboratorio
+				};				
+
+				var modalDarAlta = document.getElementById("ModalDardeAlta");
+
+				$.ajax({
+					url: '@Url.Action("DarAltaClienteHuma","GestionCliente")',
+					type: 'POST',
+					data: darAltaCliente,
+					success: function (response) {
+
+						if (response.codigoRespuesta === '00') {							
+							
+							MensajeAlerta1("success", response.mensajeRespuesta)
+							//modalDarAlta.style.display = "none";							
+							
+							const URLactual = new String(window.location);
+														
+							//envia correo al cliente
+							$.ajax({
+								url: '@Url.Action("EnviarCorreoClienteHuma","GestionCliente")',
+								type: 'POST',
+								data: {
+									//Usuario: correoUsuario,
+									Usuario: mailFinalUsuario,
+									Contrasena: identificacion,
+									UsuarioCreacion: idUsuario,
+									Url: URLactual,
+									NomUsuario: txtGalileoFinal
+								},								
+								success: function (response) {
+
+								},
+								error: function (error) {
+									console.error(error);
+									MensajeAlerta1("danger", "No se envió el correo electrónico al cliente.")
+								}
+							});							
+
+							setTimeout(() => {
+								location.reload();
+							}, 3000);
+
+						}
+						else {
+							
+							var modalDarAlta = document.getElementById("ModalDardeAlta");
+							modalDarAlta.style.display = "none";
+
+							//modificacion del cliente dar de alta
+							bootbox.confirm({
+								title: 'Actualizar Cliente',
+								message: 'Está seguro de actualizar el cliente ?',
+								buttons:{
+									cancel: {
+										label: '<i class="fa fa-times"></i> No',
+										className: 'btn-danger'
+									},
+									confirm: {
+										label: '<i class="fa fa-check"></i> Si',
+										className: 'btn-success'
+									}
+								},
+								callback: function (result){
+									if (result) {
+										loadingShow();
+
+										$.ajax({
+											url: '@Url.Action("ModicarHumalabDarAlta","GestionCliente")',
+											type: 'PUT',
+											data: darAltaCliente,
+											success: function (response) {
+												if (response.codigoRespuesta === '00') {
+													MensajeAlerta1("success", response.mensajeRespuesta)
+													modalDarAlta.style.display = "none";
+
+													setTimeout(() => {
+														location.reload();
+													}, 3000);
+												}
+												else{
+													MensajeAlerta1("danger", response.mensajeRespuesta)
+													modalDarAlta.style.display = "none";
+
+													setTimeout(() => {
+														location.reload();
+													}, 3000);
+												}
+											}
+										});
+									}
+									else{
+										setTimeout(() => {
+											location.reload();
+										}, 1000);
+									}
+								}
+							});							
+							
+						}
+					}
+				});
+			}
+			else {
+				MensajeAlerta1("danger", "No se puede dar de alta al cliente.")
+				setTimeout(() => {
+					location.reload();
+				}, 2000);
+			}
+		}
+	}
+
+	function CancelarClienteNuevo(){
+		var inputCliente = document.getElementById("clienteFlexline");
+		inputCliente.value = "";		
+
+		var comboUsuario = document.getElementById("comboUsuarios");
+		comboUsuario.innerHTML = '';
+
+		var comboOperador = document.getElementById("comboOperador");
+		comboOperador.innerHTML = '';
+
+		var comboCodigo = document.getElementById("codCliente");
+		comboCodigo.innerHTML = '';
+
+		var nomCodigoCliente = document.getElementById("nomCliente");
+		nomCodigoCliente.value = "";
+
+		var direCliente = document.getElementById("direCliente");
+		direCliente.value = "";
+
+		var clienteProvincia = document.getElementById("clienteProvincia");
+		clienteProvincia.value = "";
+
+		var clienteCiudad = document.getElementById("clienteCiudad");
+		clienteCiudad.value = "";
+
+		var clienteLatitud = document.getElementById("clienteLatitud");
+		clienteLatitud.value = "";
+
+		var clienteLongitud = document.getElementById("clienteLongitud");
+		clienteLongitud.value = "";
+	}
+
+	TeclaEnterClienteFlex();
+
+</script>

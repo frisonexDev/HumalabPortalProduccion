@@ -1,0 +1,80 @@
+﻿<div id="barraBusquedaOrdenAdmin" class="container-fluid bg-white rounded-3 mt-2">
+
+    <div class="row d-flex gap-2 p-3">
+
+        <div class="d-flex col-auto">
+
+            <div class="d-flex col gap-3 align-items-center justify-content-left">
+                <input id="txtBuscarOrdenAdmin" class="form-control" placeholder="Buscar" type="text" style="width:200px" />
+
+            </div>
+
+        </div>
+
+        <div class="d-flex col-auto">
+
+            <div class="d-flex col gap-3 align-items-center justify-content-left">
+
+                <select id="cmbEstadobOrdenAdmin" class="form-select" style="width:200px">
+
+                    <option selected value="0">Estado Orden</option>
+                    <option selected value="10">Recolectado total/parcial</option>
+                    <option selected value="11">Enviado total/parcial</option>
+                    <option selected value="12">Recibida/parcial</option>
+
+                </select>
+
+            </div>
+
+        </div>
+
+        <div class="d-flex col gap-3 align-items-center">
+
+            <span class="fw-bold">Desde</span>
+            <span><input id="dtpInicioAdmin" class="form-control" type="date" onchange="ValidarFechasAdmin()" /></span>
+
+            <span class="fw-bold">Hasta</span>
+            <span><input id="dtpFinAdmin" class="form-control" type="date" onchange="ValidarFechasAdmin()" /></span>
+
+            <a class="btn text-decoration-none text-white p-2 rounded-1 bg-primary" onclick="BuscarOrdenesAdmin()">Buscar</a>
+
+        </div>
+
+    </div>
+
+</div>
+
+
+<script>
+
+    function txtPlaceHolder(texto) {
+
+        var txtPlace = document.getElementById("txtBuscarOrdenAdmin");
+        txtPlace.value = "";
+
+        $('#txtBuscarOrdenAdmin').attr('placeholder', texto);
+
+        const txtHolder = document.getElementById("txtBuscarOrdenAdmin");
+
+        txtHolder.addEventListener('input', function () {
+            if (this.value.length > 13) {
+                this.value = this.value.slice(0, 50);
+            }
+        });
+
+    }
+
+    var barraBusquedaOrden = document.getElementById("barraBusquedaOrdenAdmin");
+    var rect = barraBusquedaOrden.getBoundingClientRect();
+    var posicionOriginal = rect.top + window.scrollY;
+
+    window.addEventListener('scroll', function () {
+        if (window.scrollY >= posicionOriginal) {
+            barraBusquedaOrden.style.position = 'fixed';
+            barraBusquedaOrden.style.top = '0';
+        } else {
+            barraBusquedaOrden.style.position = 'relative';
+        }
+    });
+
+</script>

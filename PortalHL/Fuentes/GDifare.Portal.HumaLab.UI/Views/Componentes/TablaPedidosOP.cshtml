@@ -1,0 +1,439 @@
+﻿@using GDifare.Portal.HumaLab.UI.Models.Pedidos;
+@using GDifare.Portal.Humalab.Seguridad.Modelos;
+@using GDifare.Portal.Humalab.Servicio.Utils;
+@using Newtonsoft.Json;
+
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+@model List<ConsultaPedidosOpLogistico>
+
+@{
+    string datos = JsonConvert.SerializeObject(ViewBag.DatosConsulta);
+
+}
+
+@{
+    ObjUsuario infousuario = JsonConvert.DeserializeObject<ObjUsuario>
+        (HttpContextAccessor.HttpContext.Session.GetString("usuario"));
+}
+
+<style>
+    a.disabled {
+        color: gray;
+        cursor: not-allowed;
+        pointer-events: none;
+        text-decoration: none;
+    }
+
+    @@media (max-width: 768px) {
+        .table th,
+        .table td {
+            font-size: 0.8rem;
+            white-space: nowrap;
+        }
+            /* Oculta ciertas columnas en pantallas pequeñas */
+            .table th:nth-child(3),
+            .table td:nth-child(3),
+            .table th:nth-child(4),
+            .table td:nth-child(4) {
+                display: none;
+            }
+    }
+
+</style>
+<div id="datos" data-datosconsulta="@datos"></div>
+<div class="container-fluid bg-white rounded-3 p-3 mt-3 mb-3">
+
+    <div class="table-responsive">
+        <table id="example" class="table dataTable mt-2" style="width:100%;" aria-describedby="example_info">
+            <thead class="bg-primary">
+                <tr>
+                    <th class="fw-bold text-center" tabindex="0" rowspan="1" colspan="1" style="width: 10.613px; color:#F4F4F2;"></th>
+                    @* <th class="sorting fw-bold text-center" tabindex="0" rowspan="1" colspan="1" style="width: 50.613px; color:#F4F4F2;"><input id="CheckAll" class="form-check-input" type="checkbox" onclick="SeleccionarTodoPedidos()" /></th> *@
+                    <th class="sorting fw-bold text-center" tabindex="1" aria-controls="example" rowspan="1" colspan="1" style="width: 100.2125px;color:#F4F4F2;">CLIENTE</th>
+                    <th class="sorting fw-bold text-center" tabindex="2" aria-controls="example" rowspan="1" colspan="1" style="width: 100.2125px;color:#F4F4F2;">LABORATORIO</th>
+                    <th class="sorting fw-bold text-center" tabindex="3" aria-controls="example" rowspan="1" colspan="1" style="width: 50.688px;color:#F4F4F2;">N° REMISIÓN</th>
+                    @*<th class="sorting fw-bold text-center" tabindex="2" aria-controls="example" rowspan="1" colspan="1" style="width: 50.688px;color:#F4F4F2;">PACIENTE</th>*@
+                    <th class="sorting fw-bold text-center" tabindex="4" aria-controls="example" rowspan="1" colspan="1" style="width: 40.325px;color:#F4F4F2;">FECHA</th>
+                    <th class="sorting fw-bold text-center" tabindex="5" aria-controls="example" rowspan="1" colspan="1" style="width: 40.2125px;color:#F4F4F2;">TOTAL ORDENES</th>
+                    <th class="sorting fw-bold text-center" tabindex="6" aria-controls="example" rowspan="1" colspan="1" style="width: 40.8375px;color:#F4F4F2;">TOTAL MUESTRAS</th>
+                    <th class="sorting fw-bold text-center" tabindex="7" aria-controls="example" rowspan="1" colspan="1" style="width: 40.325px;color:#F4F4F2;">TOTAL RETIRADAS</th>
+                    <th class="sorting fw-bold text-center" tabindex="8" aria-controls="example" rowspan="1" colspan="1" style="width: 50.325px;color:#F4F4F2;">FECHA RETIRO</th>
+                    <th class="sorting fw-bold text-center" tabindex="9" aria-controls="example" rowspan="1" colspan="1" style="width: 60.325px;color:#F4F4F2;">ESTADO</th>
+                    <th class="sorting fw-bold text-center" tabindex="10" aria-controls="example" rowspan="1" colspan="1" style="width: 40.325px;color:#F4F4F2;">ACCIÓN</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @* <input id="check'+@item.IdPedido+'" class="form-check-input" type="checkbox" onclick="CheckOrdenP('+@item.IdPedido+')"/> *@
+                            <input id="check@item.IdPedido" class="form-check-input" type="checkbox" onclick="CheckOrdenP('@item.IdPedido', '@item.NumeroRemision', '@item.Cliente', this.checked)" />
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Cliente)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NomLab)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.NumeroRemision)
+                        </td>
+                        @*                    <td>
+                    @Html.DisplayFor(modelItem => item.Paciente)
+                    </td>*@
+                        <td>
+                            <text>@item.FechaPedido.Value.ToString("dd/MM/yyyy")</text>
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TotalOrdenes)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TotalMuestras)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TotalRetiradas)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FechaRetiro)
+                        </td>
+                        <td>
+                            @*@Html.DisplayFor(modelItem => item.EstadoPedido)*@
+                            @{
+                                string clase = string.Empty;
+                                string estado = item.EstadoPedido;
+
+                                if (estado == Estados.PedidoAnulado)
+                                    clase = "bg-danger";
+                                else if (estado == Estados.PedidoRecolectado || estado == Estados.PedidoRecolectadoParcial)
+                                    clase = "bg-success";
+                                else if (estado == Estados.PedidoPorRecolectar)
+                                    clase = "bg-secondary";
+                                else
+                                    clase = "bg-primary";
+                            }
+                            <spa n class="badge @clase" style="font-size:0.75rem;">@estado</spa>
+                        </td>
+                        <td>
+                            @if (item.TotalMuestras == 0)
+                            {
+                                <a href="#" class="disabled">Recolectar</a>
+                                <a href="#" class="disabled">PDF</a>
+                            }
+                            else
+                            {
+                                <a asp-action="Recolectar" asp-route-id="@item.IdPedido" asp-route-datos="@datos">Recolectar</a>
+                    // <a asp-action="RecolectarPDF" asp-route-id="@item.IdPedido" target="_blank">PDF</a>
+                                <a target="_blank" onclick="GenerarPDF('@item.IdPedido')">PDF</a>
+                            }
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+
+    <div class="mt-4">
+
+        <div class="d-flex justify-content-end align-items-end gap-2">            
+            <button id="btnValidarRecoleccion" onclick="validarRecoleccionOp()" class="btn btn-primary text-decoration-none" disabled>ENVIAR</button>                        
+        </div>
+
+    </div>
+
+
+</div>
+
+<!--Modales-->
+<partial name="~/Views/Modales/RecolectarMuestras.cshtml" />
+
+<script>
+    
+    var lstPedidos = [];
+    var remision = [];
+    var lstClientes = [];
+
+    @* $(document).ready(function () {
+    //Habilita/deshabilita dependiendo del estado de pedido en la consulta
+        var estado = $("#estPedido").data("nombre");
+
+        console.log("Estado del pedido es:");
+        console.log(estado);
+
+        if (estado === "RCTL" || estado === "RCPC")
+            $("#example input[type='checkbox']").prop("disabled", false);
+        else
+            $("#example input[type='checkbox']").prop("disabled", true);
+    }); *@
+
+        $(document).ready(function () {
+            //Habilita/deshabilita dependiendo del estado de pedido en la consulta
+            var estado = $("#estPedido").data("nombre");
+
+            if (estado === "RCTL" || estado === "RCTL_RCPC" || estado === -1 || estado === "")
+                $("#example input[type='checkbox']").prop("disabled", false);
+            else if (estado === "PREC" || estado === "ENV_ENVP" || estado === "ANUL")
+                $("#example input[type='checkbox']").prop("disabled", true);
+        });
+
+
+    
+    //Función que valida si existen pedidos seleccionados. Devuelve un string con la lista de idPedido
+    function obtenerSeleccionados() {
+        var seleccionados = [];
+        var pedidos = '';
+
+        $("input[name='selectedPedidos']:checked").each(function () {
+            seleccionados.push($(this).val());
+        });
+
+        if (seleccionados.length > 0) {
+            pedidos = seleccionados.join(",");
+        }
+        else {
+            pedidos = '';
+        }
+        return pedidos;
+    }
+
+    //Función para que al hacer check en algún pedido se habilite o deshabilite el botón Entregar
+    $(document).ready(function () {
+
+        $("input[name='selectedPedidos']").on('change', function () {
+            
+            var pedidos = obtenerSeleccionados();
+
+            if (pedidos.length > 0) {
+                $("#notyf-show-succes").prop("disabled", false);
+            } else {
+                $("#notyf-show-succes").prop("disabled", true);
+            }
+        });
+    });
+
+    //Funcionalidad del botón Entregar
+    $(document).ready(function () {
+        $("#notyf-show-succes").click(function () {
+            
+            var pedidos = obtenerSeleccionados();
+            if (pedidos.length > 0) {
+                $.ajax({
+                    url: '@Url.Action("EntregarPedido","OpLogistico")',
+                    type: "POST",
+                    data: { pedidos: pedidos },
+                    success: function (response) {
+
+                        $("#buscar").click();
+                    },
+                    error: function (error) {
+                        MensajeAlerta1("@Notificaciones.TituloDanger", "@Notificaciones.DangerError");
+                    }
+                });
+            }
+        });
+    });
+
+    function GenerarPDF(id) {
+
+        var impresion = false;
+
+        bootbox.confirm({
+            title: 'Informe pedidos',
+            message: 'Desea imprimir el informe en Excel ?',
+            buttons: {
+                cancel: {
+                    label: '<i class="fa fa-times"></i> No',
+                    className: 'btn-danger'
+                },
+                confirm: {
+                    label: '<i class="fa fa-check"></i> Si',
+                    className: 'btn-success'
+                }
+            },
+            callback: function (result) {
+                if (result) {
+                    impresion = true;
+
+                    $.ajax(
+                        {
+                            url: '@Url.Action("RecolectarPDF", "OpLogistico")',
+                            type: 'POST',
+                            data: { id: id, impresion: impresion },
+                            success: function (response) {
+
+                                var byteCharacters = atob(response);                                
+                                var byteNumbers = new Array(byteCharacters.length);                                
+
+                                for (var i = 0; i < byteCharacters.length; i++) {
+                                    byteNumbers[i] = byteCharacters.charCodeAt(i);
+                                }
+
+                                var byteArray = new Uint8Array(byteNumbers);                                
+                                var blob = new Blob([byteArray], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });                                
+                                var url = window.URL.createObjectURL(blob);
+
+                                var a = document.createElement("a");
+                                document.body.appendChild(a);
+                                a.style = "display: none";
+                                a.href = url;
+                                a.download = "Pedidos.xlsx";
+                                a.click();
+
+                                window.URL.revokeObjectURL(url);
+                            }
+
+                        });
+                }
+                else {
+
+                    $.ajax(
+                        {
+                            url: '@Url.Action("RecolectarPDF", "OpLogistico")',
+                            type: 'POST',
+                            data: { id: id, impresion: impresion },
+                            success: function (response) {
+                                let pdfWindow = window.open("")
+                                pdfWindow.document.write(
+                                    "<iframe width='100%' height='100%' src='data:application/pdf;base64, " +
+                                    encodeURI(response) + "'></iframe>"
+                                )
+                                pdfWindow.document.title = 'Pedidos'
+                            }
+
+                        });
+                }
+            }
+        });
+
+    }
+
+
+    @* Validar recoleccion *@
+    function validarRecoleccionOp() {
+        @* var filas = $('#datosTbodyCheck');
+        var checksVacios = false;
+        var cont = 0; *@
+        
+        $('#ModalRecolectarMuestras').modal('show');                
+@*      
+
+        filas.each(function () {
+            var checkboxRetirado = $(this).find('input[value^="Retirado"]').prop('checked');
+            console.log("retirado");
+            console.log(checkboxRetirado);
+
+            var checkboxRechazado = $(this).find('input[value^="Rechazado"]').prop('checked');
+            console.log("rechazado");
+            console.log(checkboxRechazado);
+
+            if (checkboxRetirado === true) {
+                cont = cont + 1;
+            }
+            if (checksVacios === false && checkboxRetirado === false && checkboxRechazado === false) {
+                checksVacios = true;
+            }
+        });
+
+
+        if (cont === 0) {
+            MensajeAlerta1("@Notificaciones.TituloDanger", "@Notificaciones.DangerRecolecta");
+        }
+        else {
+            if (checksVacios === true) {
+
+                bootbox.confirm({
+                    title: '@Notificaciones.TituloConfirmarPedido',
+                    message: '@Notificaciones.WarningConfirmarPedido',
+                    buttons: {
+                        cancel: {
+                            label: '<i class="fa fa-times"></i> No',
+                            className: 'btn-danger'
+                        },
+                        confirm: {
+                            label: '<i class="fa fa-check"></i> Si',
+                            className: 'btn-success'
+                        }
+                    },
+                    callback: function (result) {
+                        if (result) {
+                            //actualizar el pedido
+                            $('#ModalRecolectarMuestras').modal('show');
+
+                        }
+                    }
+                });
+            }
+            else {
+                $('#ModalRecolectarMuestras').modal('show');
+            }
+        } *@
+
+        return;
+    }
+
+    function CheckOrdenP(idPedido, numRemision, cliente, isChecked){
+        var btnRecolectar = document.getElementById("btnValidarRecoleccion");
+        var pedido = parseInt(idPedido);        
+        var remisionesConcatenadas = "";
+        var clientesConcatenados = "";
+
+        $('#usuarioModal').val(cliente);
+
+        if (isChecked === true) {
+
+            @* pedidos *@
+            lstPedidos.push(pedido);            
+            $('#idPedidoModal').val(lstPedidos);
+            
+            @* numero remision *@
+            remision.push(numRemision);            
+            remisionesConcatenadas = remision.join(',');  
+            
+            @* clientes *@
+           @*  lstClientes.push(cliente);
+            clientesConcatenados = lstClientes.join(','); *@
+
+            $('#numeroRemisionModal').val(remisionesConcatenadas);
+            @* $('#usuarioModal').val(clientesConcatenados); *@
+
+            if (lstPedidos.length > 0) {
+                btnRecolectar.disabled = false;
+            }
+            else {
+                btnRecolectar.disabled = true;
+            }
+        }
+        else{
+            for (var i = 0; i < lstPedidos.length; i++) {
+                if (pedido === lstPedidos[i]) {
+                    lstPedidos.splice(i, 1);
+                }
+            }
+
+            for (var i = 0; i < remision.length; i++) {
+                if (numRemision === remision[i]) {
+                    remision.splice(i, 1);
+
+                    remisionesConcatenadas = remision.join(',');
+                }
+            }
+
+            @* for (var i = 0; i < lstClientes.length; i++) {
+                if(cliente === lstClientes[i]){
+                    lstClientes.splice(i, 1);
+
+                    clientesConcatenados = lstClientes.join(',');
+                }
+            } *@
+
+            $('#idPedidoModal').val(lstPedidos);
+            $('#numeroRemisionModal').val(remisionesConcatenadas);
+            @* $('#usuarioModal').val(clientesConcatenados); *@            
+        }        
+
+    }
+
+</script>

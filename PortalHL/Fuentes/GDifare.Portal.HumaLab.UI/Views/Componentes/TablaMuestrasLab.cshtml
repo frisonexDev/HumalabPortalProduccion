@@ -1,0 +1,67 @@
+﻿@model GDifare.Portal.HumaLab.UI.Models.Pedidos.MuestrasPruebaLab
+
+@{
+    var lista = Model.PruebasMuestras != null ? Model.PruebasMuestras.Where(muestra => muestra.IdPrueba == Model.IdPrueba)
+                        .Select(muestra => new { muestra.IdMuestra, muestra.CodigoBarra, muestra.IdPrueba, recb = false, rech = false, obs = "", estado = "" })
+                        : null;
+
+}
+
+<style>
+    @@media (max-width: 768px) {
+        .table th,
+        .table td {
+            font-size: 0.8rem;
+            white-space: nowrap;
+        }
+            /* Oculta ciertas columnas en pantallas pequeñas */
+            .table th:nth-child(3),
+            .table td:nth-child(3),
+            .table th:nth-child(4),
+            .table td:nth-child(4) {
+                display: none;
+            }
+    }
+</style>
+
+<div class="table-responsive">
+    <table id="muestras" class="table dataTable mt-2" style="width:100%;" aria-describedby="example_info">
+        <thead class="bg-primary">
+            <tr>
+                <th class="fw-bold text-center" tabindex="0" aria-controls="pruebas" rowspan="1" colspan="1" style="width: 50.613px; color:#F4F4F2;">IDMUESTRA </th>
+                <th class="sorting fw-bold text-md-start" tabindex="1" aria-controls="muestras" rowspan="1" colspan="1" style="width: 20.2125px;color:#F4F4F2;">RECB</th>
+                <th class="sorting fw-bold text-md-start" tabindex="2" aria-controls="muestras" rowspan="1" colspan="1" style="width: 20.8375px;color:#F4F4F2;">RECH</th>
+                <th class="sorting fw-bold text-md-start" tabindex="3" aria-controls="muestras" rowspan="1" colspan="1" style="width: 100.325px;color:#F4F4F2;">COMENTARIO</th>
+                <th class="sorting fw-bold text-md-start" tabindex="4" aria-controls="muestras" rowspan="1" colspan="1" style="width: 50.325px;color:#F4F4F2;">ESTADO</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if (lista != null)
+            {
+                @foreach (var item in lista)
+                {
+                    <tr>
+                        @*                        <td hidden>
+                @item.IdMuestra
+                </td>*@
+                        <td>
+                            @item.CodigoBarra
+                        </td>
+                        <td>
+                            <input type="checkbox" id="@String.Concat("ret",item.IdMuestra)" data-id="@item.IdMuestra" value="recb" @(item.recb ? "checked" : "") />
+                        </td>
+                        <td>
+                            <input type="checkbox" id="@String.Concat("rech",item.IdMuestra)" data-id="@item.IdMuestra" value="rech" @(item.rech ? "checked" : "") />
+                        </td>
+                        <td>
+                            <label id="@String.Concat("obs",item.IdMuestra)">@item.obs</label>
+                        </td>
+                        <td>
+                            <label id="@String.Concat("est",item.IdMuestra)">@item.estado</label>
+                        </td>
+                    </tr>
+                }
+            }
+        </tbody>
+    </table>
+</div>

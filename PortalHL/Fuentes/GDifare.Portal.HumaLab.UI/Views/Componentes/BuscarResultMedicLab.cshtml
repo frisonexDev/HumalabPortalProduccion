@@ -1,0 +1,89 @@
+﻿<div id="busquedaResultLab" class="container-fluid bg-white rounded-3 mt-2">
+    
+    <div class="row d-flex gap-2 p-3">
+        
+        <div class="d-flex col-auto">
+            <div class="d-flex col gap-3 align-items-center justify-content-left">
+                <select id="cmbResultLab" class="form-select" onchange="buscarResultChange()" style="width:200px">
+                    <option selected value="1">N° de Orden</option>
+                    <option value="2">Nombre del Paciente</option>
+                    <option value="3">Cédula</option>
+                </select>
+
+                <input id="txtBuscarResultLab" class="form-control" placeholder="Buscar por N° de Orden" type="text" style="width:200px" />                
+
+            </div>
+        </div>
+
+        <div class="d-flex col-auto">
+            <div class="d-flex col gap-3 align-items-center justify-content-left">
+
+                <select id="cmbEstadoResultLabMed" class="form-select" onchange="buscarResultChange()" style="width:200px">
+                    <option selected value="0">Estado Resultados</option>
+                    <option selected value="1">Abierta</option>
+                    <option selected value="2">Resultados Pendientes</option>
+                    <option selected value="3">Validacion Pendiente</option>
+                    <option selected value="4">Validada</option>                    
+                </select>
+
+            </div>
+        </div>
+
+        <div class="d-flex col gap-3 align-items-center">
+            <span class="fw-bold">Desde</span>
+            <span><input id="dtpInicioResultLab" class="form-control" type="date" onchange="ValidarFechasResultLab()" /></span>
+
+            <span class="fw-bold">Hasta</span>
+            <span><input id="dtpFinResultLab" class="form-control" type="date" onchange="ValidarFechasResultLab()" /></span>
+
+            <a class="btn text-decoration-none text-white p-2 rounded-1 bg-primary" onclick="BuscarResultLabMed()">Buscar</a>
+
+        </div>
+
+    </div>
+
+</div>
+
+<script>
+    function buscarResultChange() {
+        var select = document.getElementById("cmbResultLab").value;
+
+        switch (select) {
+            case "1":
+
+                txtPlaceHolder("Buscar por N° de Orden");
+
+                break;
+            case "2":
+
+                txtPlaceHolder("Buscar por nombre del Paciente");
+
+                break;
+
+            case "3":
+
+                txtPlaceHolder("Buscar por cédula");
+
+                break;
+        }
+
+
+    }
+
+    function txtPlaceHolder(texto) {
+
+        var txtPlace = document.getElementById("txtBuscarResultLab");
+        txtPlace.value = "";
+
+        $('#txtBuscarResultLab').attr('placeholder', texto);
+
+        const txtHolder = document.getElementById("txtBuscarResultLab");
+
+        txtHolder.addEventListener('input', function () {
+            if (this.value.length > 13) {
+                this.value = this.value.slice(0, 50);
+            }
+        });
+    }    
+
+</script>

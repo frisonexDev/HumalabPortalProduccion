@@ -1,0 +1,24 @@
+﻿@{
+    ViewData["Title"] = "Administrativo";
+    Layout = "/Views/Shared/_BootStrapLayoutMenu.cshtml";
+}
+
+<div class="container-fluid d-flex justify-content-center align-items-center vh-100" >
+	<img src="~/resources/images/fondo/humalabhome2.png" />
+    </div>
+
+
+
+<script>
+
+    window.onload = function () {
+        var estado = '@ViewData["cartera"]';        
+        
+        jQuery('#staticBackdrop').modal('hide');
+        if (estado == 'S')
+            jQuery('#staticBackdrop').modal('show');
+    }        
+
+</script>
+
+<partial name="/Views/Modales/VencidoCartera.cshtml" />

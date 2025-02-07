@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "kLmUZlM3XpTDFire+i1W/HdwVP23mnXGwUyf26I8YIf47We2z60Uwa5pVBPId+xpf7oBR+Q73BG90U43P/rbaw==",
+  "success": true,
+  "projectFilePath": "C:\\HumalabPortalGit\\PortalHL\\Fuentes\\GDifare.Portal.Humalab.Seguridad\\GDifare.Portal.Humalab.Seguridad.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Brenda Jimenez\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}

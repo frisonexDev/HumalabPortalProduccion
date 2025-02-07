@@ -1,0 +1,16 @@
+﻿@using GDifare.Portal.HumaLab.UI.Models.Pedidos;
+@model PedidosLaboratorista
+@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@{
+    ViewData["Title"] = "Laboratorista";
+    Layout = "/Views/Shared/_BootStrapLayoutMenu.cshtml";
+}
+
+@await Html.PartialAsync("~/Views/Componentes/BuscarPedidosLaboratorista.cshtml", Model.BuscarPedidosLab)
+@await Html.PartialAsync("~/Views/Componentes/TablaOrdenLaboratorista.cshtml", Model)
+<div id="estPedido" data-nombre="@ViewBag.Estado"></div>
+
+@*<partial name="~/Views/Componentes/BusquedaClienteFecha.cshtml" />
+<partial name="~/Views/Componentes/TablaOrdenLab.cshtml" />*@

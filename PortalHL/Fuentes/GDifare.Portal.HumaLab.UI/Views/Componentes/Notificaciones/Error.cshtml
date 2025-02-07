@@ -1,0 +1,36 @@
+﻿@*<link class="js-stylesheet" href="~/AdminKit/css/light.css" rel="stylesheet">
+<script src="~/AdminKit/js/notyf.js"></script>
+<script src="~/AdminKit/js/app.js"></script>*@
+
+<input id="notyf-message4" name="notyf-message4" type="text" class="form-control" hidden value="Se ha producido un error con la solicitud">
+
+<script>
+
+    // Notyf
+    document.addEventListener("DOMContentLoaded", function () {
+
+        document.querySelector("#notyf-show-danger").addEventListener("click", function () {
+            var message = document.querySelector("#notyf-message4").value;
+            var type = "danger";
+            var duration = 2500;
+            var ripple = true;
+            var dismissible = false;
+            var positionX = "right";
+            var positionY = "top";
+            window.notyf.open({
+                type,
+                message,
+                duration,
+                ripple,
+                dismissible,
+                position: {
+                    x: positionX,
+                    y: positionY
+                }
+            });
+        });
+    });
+
+
+
+</script>

@@ -1,0 +1,36 @@
+﻿@*<link class="js-stylesheet" href="~/AdminKit/css/light.css" rel="stylesheet">
+<script src="~/AdminKit/js/notyf.js"></script>
+<script src="~/AdminKit/js/app.js"></script>*@
+
+<input id="notyf-message3" name="notyf-message3" type="text" class="form-control" hidden value="Falta completar campos">
+
+<script>
+
+    // Notyf
+    document.addEventListener("DOMContentLoaded", function () {
+
+        document.querySelector("#notyf-show-warning").addEventListener("click", function () {
+            var message = document.querySelector("#notyf-message3").value;
+            var type = "warning";
+            var duration = 2500;
+            var ripple = true;
+            var dismissible = false;
+            var positionX = "right";
+            var positionY = "top";
+            window.notyf.open({
+                type,
+                message,
+                duration,
+                ripple,
+                dismissible,
+                position: {
+                    x: positionX,
+                    y: positionY
+                }
+            });
+        });
+    });
+
+
+
+</script>

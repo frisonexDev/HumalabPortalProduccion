@@ -1,0 +1,391 @@
+﻿@using GDifare.Portal.Humalab.Seguridad.Modelos
+@using GDifare.Portal.Humalab.Servicio.Utils
+@using Newtonsoft.Json
+
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+@{
+    ViewData["Title"] = "Medico";
+    Layout = "/Views/Shared/_BootStrapLayoutMenu.cshtml";
+}
+
+@{
+    ObjUsuario infousuario = JsonConvert.DeserializeObject<ObjUsuario>
+        (HttpContextAccessor.HttpContext.Session.GetString("usuario"));	 
+}
+
+<partial name="~/Views/Componentes/BuscarResultMedicLab.cshtml" />
+
+<partial name="~/Views/Componentes/TablaResultadosLab.cshtml" />
+
+<!--Modales-->
+<partial name="~/Views/Modales/PopUp.cshtml" />
+
+<!--JS-->
+<script src="~/js/Notificaciones.js"></script>
+
+<script>
+
+    //Declarción Variables
+    var ConsultarResultados = new Object();
+    var ResultadosLab = new Object();
+    var FechadeInicio;
+    var Fecha;
+    var FechaActual;
+    var CambioFecha;
+    var UsuarioGalileo;
+    var idLab;
+    var nombreFuncion;
+    var indicePop;
+    var sedes;
+
+    var datosPrevios = null;
+
+    //Valores PDF resultados
+    var pdfResultado = true;
+    var PdfOrdenActualizaRes = new Object();
+
+    var ListaResultMedico = [];
+
+    var pdfResultadosFinal = new Object();
+
+    window.addEventListener('load', function () {
+        
+        CambioFecha = false;
+        UsuarioGalileo = @infousuario.UsuarioID;
+        idLab = @infousuario.EmpresaID;        
+        sedes = "@infousuario.SegundoApellido";        
+
+        ConsultarResultados = {
+            OpcionBusqueda: 0,
+            idLaboratorio: idLab,            
+            FechaCreacion: moment().format("YYYY-MM-DD"),
+            Sedes: sedes
+        }        
+
+        FechaActual = moment().format("YYYY-MM-DD");
+        CalculoFechaInicioResult();
+
+        document.getElementById("dtpInicioResultLab").value = moment().format("YYYY-MM-DD");;
+        document.getElementById("dtpFinResultLab").value = moment().format("YYYY-MM-DD");
+
+        CmbEstadosResultados();
+
+        ListarResultadosDefault();        
+    });
+
+    function CmbEstadosResultados() {
+        var select = document.getElementById("cmbEstadoResultLabMed");
+        var primerElemento = select.getElementsByTagName("option")[0];
+        
+        select.insertBefore(primerElemento, select.firstChild);
+        primerElemento.selected = true;
+    }    
+
+    function ValidarFechasResultLab() {
+        Inicio = new Date(document.getElementById("dtpInicioResultLab").value);
+        Fin = new Date(document.getElementById("dtpFinResultLab").value);
+
+        if (Inicio > Fin) {
+            MensajeAlerta1("@Notificaciones.TituloDanger", "@Notificaciones.DangerFecha");
+            document.getElementById("dtpInicioResultLab").value = FechadeInicio;
+            document.getElementById("dtpFinResultLab").value = moment().format("YYYY-MM-DD");
+            CambioFecha = false;
+        }
+        else if (Inicio === Fin) {
+            MensajeAlerta1("@Notificaciones.TituloDanger", "@Notificaciones.DangerFecha");
+            document.getElementById("dtpInicioResultLab").value = FechadeInicio;
+            document.getElementById("dtpFinResultLab").value = moment().format("YYYY-MM-DD");
+            CambioFecha = false;
+        }
+        else {
+            CambioFecha = true;
+        }
+    }
+
+    function CalculoFechaInicioResult() {
+        //Fecha Actual del sistema
+        var Fecha = moment().subtract(90, 'days').calendar();
+
+        Fecha = Fecha.replace('/', '')
+            .replace('/', '');
+
+        var Mes = Fecha.substring(0, 2);
+        var Dia = Fecha.substring(2, 4);
+        var Ano = Fecha.substring(4, 8);
+
+        FechadeInicio = Ano + '-' + Mes + '-' + Dia;
+        Fecha = FechadeInicio;
+    }
+
+    function ListarResultadosDefault() {
+
+        ListaResultMedico = [];
+
+        $.ajax({
+            url: '@Url.Action("ListarResultadosLab", "Medico")',
+            type: 'GET',
+            data: ConsultarResultados,
+            beforeSend: function () {
+                loadingShow();
+            },
+            success: function (response) {
+                const resp = JSON.parse(response);                
+
+                if (resp.length > 0) {
+
+                    for (var i = 0; i < resp.length; i++) {
+                        ResultadosLab = {
+                            IdResultado: resp[i].idResultados,
+                            Identificacion: resp[i].Identificacion,
+                            NumeroOrden: resp[i].NumeroOrden,
+                            NombrePaciente: resp[i].NombrePaciente,
+                            Genero: resp[i].Genero,
+                            FechaIngreso: resp[i].FechaIngreso,
+                            Estado: resp[i].Estado,
+                            NombreSede: resp[i].NombreSede
+                        }
+
+                        ListaResultMedico.push(ResultadosLab);
+                    }
+
+                    TablaResultMedico(ListaResultMedico);
+                }
+                else{
+
+                }
+
+                loadingHide();
+            }
+        });
+    }    
+
+    function TablaResultMedico(Lista) {        
+
+        var html = '';        
+
+        var tablaResultados = document.getElementById("TbItemsResultLab");
+        tablaResultados.innerHTML = '';
+
+        var filasResultados = tablaResultados.getElementsByTagName("tr");        
+
+        for (var i = 0; i < Lista.length; i++) {
+            var val = "Validada";
+            var resulPen = "Resultados Pendiente";
+            var valPen = "Validación Pendiente";
+            var abi = "Abierta";
+
+            var colorEstado = "";
+            var tamanioColor = "16px";
+
+            if (val === Lista[i].Estado) {
+                colorEstado = "#28B463"; //color verde oscuro
+            }
+            else if (abi === Lista[i].Estado) {
+                colorEstado = "#1F618D"; //azul oscuro
+            }
+            else if (resulPen === Lista[i].Estado || valPen === Lista[i].Estado) {
+                colorEstado = "#CA6F1E"; //anaranjado oscuro
+            }
+
+
+            var filaResult = tablaResultados.insertRow();
+
+            //IdResultado
+            var IdResultado = filaResult.insertCell();
+            IdResultado.innerHTML = Lista[i].IdResultado;
+
+            //NumeroOrden
+            var NumeroOrden = filaResult.insertCell();
+            NumeroOrden.innerHTML = Lista[i].NumeroOrden;
+
+            //Identificacion
+            var Identificacion = filaResult.insertCell();
+            Identificacion.innerHTML = Lista[i].Identificacion;
+
+            //NombrePaciente
+            var NombrePaciente = filaResult.insertCell();
+            NombrePaciente.innerHTML = Lista[i].NombrePaciente;
+
+            //FechaIngreso
+            var FechaIngreso = filaResult.insertCell();
+            FechaIngreso.innerHTML = Lista[i].FechaIngreso;
+
+            //colorEstado
+            var Estado = filaResult.insertCell();
+            Estado.innerHTML = Lista[i].Estado;
+
+            //NombreSede
+            var Sede = filaResult.insertCell();
+            Sede.innerHTML = Lista[i].NombreSede;
+
+            //boton visualizar
+            var divBoton = document.createElement('div');
+            divBoton.className = "d-flex justify-content-center align-items-center";
+
+            var botonVisualizar = document.createElement('a');
+            botonVisualizar.className = "btn text-decoration-none";
+
+            // Crea un objeto de datos que contiene toda la información de la fila
+            (function (filaData) {
+                botonVisualizar.addEventListener('click', function () {
+                    ObtenerResult(filaData);
+                });
+            })({
+                IdResultado: Lista[i].IdResultado,
+                NumeroOrden: Lista[i].NumeroOrden,
+                Identificacion: Lista[i].Identificacion,
+                NombrePaciente: Lista[i].NombrePaciente,
+                FechaIngreso: Lista[i].FechaIngreso,
+                Estado: Lista[i].Estado,
+                NombreSede: Lista[i].NombreSede
+            });
+
+            botonVisualizar.innerHTML = '<i class="fa-solid fa-square-poll-horizontal" style="color: #c7c7c7;"></i>';
+            divBoton.appendChild(botonVisualizar);
+            filaResult.insertCell().appendChild(divBoton);
+
+            // html = '<tr class="odd" id="TbFila' + i + '">'
+            //     + '<td class="sorting_1 text-center" id="TbFilaItem' + i + '" >' + Lista[i].IdResultado + '</td>'
+            //     + '<td class="sorting_1 text-center" id="TbFilaItemOrden' + i + '" >' + Lista[i].NumeroOrden + '</td>'
+            //     + '<td class="text-center">' + Lista[i].Identificacion + '</td>'
+            //     + '<td >' + Lista[i].NombrePaciente + '</td>'
+            //     + '<td class="text-center">' + Lista[i].FechaIngreso + '</td>'
+            //     + '<td class="text-center" style="background-color:' + colorEstado + '; font-size: ' + tamanioColor + '; color: white" id="TbFilaEstado' + i + '">' + Lista[i].Estado + '</td>'
+            //     + '<td>'
+            //     //+ '<td class="text-center">$' + Lista[i].Genero + '</td>'
+            //     + '<div class="d-flex justify-content-center align-items-center">'
+            //     + '<a id="Visualizar' + i + '" class="btn text-decoration-none" onclick="ObtenerResult(' + i + ')"><i class="fa-solid fa-square-poll-horizontal" style="color: #c7c7c7;"></i></a>'
+            //     + '</div>'
+            //     + '</td>'
+            //     + '</tr>';
+
+            // $('#TbItemsResultLab').append(html);
+
+        }
+
+        if (!$.fn.DataTable.isDataTable('#TResultMedicoLab')) {
+            $('#TResultMedicoLab').DataTable({
+                pageLength: 10,
+                searching: true,
+                language: {
+                    url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json',
+                },
+                order: [[0, 'desc']]
+            });
+        }
+    }
+
+    function ObtenerResult(index) {
+
+        // var idResultado = document.getElementById("TbFilaItem" + index).textContent;        
+        // var barra = document.getElementById("TbFilaItemOrden" + index).textContent;
+        
+        var idResultado = index.IdResultado;
+        var barra = index.NumeroOrden;
+
+        $.ajax({
+            url: '@Url.Action("PDFResultadosLabMed", "Medico")',
+            type: 'GET',
+            data: { CodigoBarra: barra, IdResultado: idResultado },
+            success: function (response) {
+
+                if (response !== "01") {
+
+                    var base64 = "data:application/pdf;base64," + response;
+
+                    var pdfWindow = window.open("", "_blank");
+
+                    if (pdfWindow) {
+                        pdfWindow.document.write("<iframe width='100%' height='100%' src='" + base64 + "'></iframe>");
+                        pdfWindow.document.title = 'ResultadoExamenes';
+                        
+                        loadingHide();
+                    }
+                    else {
+                        loadingHide();
+                    }
+                }
+                else {
+                    MensajeAlerta1("@Notificaciones.TituloDanger", "@Notificaciones.DangerPdfResultados");
+                    loadingHide();
+                }
+
+            }
+        });
+    }
+
+
+    function BuscarResultLabMed() {        
+
+        var count = $("#TbItemsResultLab tr").length;
+
+        for (var j = 0; j < count; j++) {
+            $("#TbFila" + j).remove();
+        }
+
+        var textoBuscar = document.getElementById("txtBuscarResultLab").value;
+        var opcionBusqueda = document.getElementById("cmbResultLab").value;
+        var opcionEstado = document.getElementById("cmbEstadoResultLabMed").value;
+        var FechaDesde = document.getElementById("dtpInicioResultLab").value;
+        var FechaHasta = document.getElementById("dtpFinResultLab").value;
+        ListaResultMedico.length = 0;
+
+        // console.log("textoBuscar");
+        // console.log(textoBuscar);
+
+        // console.log("opcionBusqueda");
+        // console.log(opcionBusqueda);
+
+        // console.log("opcionEstado");
+        // console.log(opcionEstado);
+
+        // console.log("fecha desde: " + FechaDesde);
+        // console.log("fecha hasta: " + FechaHasta);
+
+        //busqueda por numero de orden
+        if (parseInt(opcionBusqueda) === 1) {
+            // console.log("llego 1");
+            ConsultarResultados = {
+                OpcionBusqueda: opcionBusqueda,
+                idLaboratorio: idLab,
+                FechaInicio: FechaDesde,
+                FechaFin: FechaHasta,
+                opcionEstado: parseInt(opcionEstado),
+                DatoBusqueda: textoBuscar,
+                Sedes: sedes
+            }
+        }
+
+        //busqueda por nombre paciente
+        if (parseInt(opcionBusqueda) === 2) {
+            // console.log("llego 2");
+            ConsultarResultados = {
+                OpcionBusqueda: opcionBusqueda,
+                idLaboratorio: idLab,
+                FechaInicio: FechaDesde,
+                FechaFin: FechaHasta,
+                opcionEstado: parseInt(opcionEstado),
+                DatoBusqueda: textoBuscar,
+                Sedes: sedes
+            }
+        }
+
+        //busqueda por cedula        
+        if (parseInt(opcionBusqueda) === 3) {
+            // console.log("llego 3");
+            ConsultarResultados = {
+                OpcionBusqueda: opcionBusqueda,
+                idLaboratorio: idLab,
+                FechaInicio: FechaDesde,
+                FechaFin: FechaHasta,
+                opcionEstado: parseInt(opcionEstado),
+                DatoBusqueda: textoBuscar,
+                Sedes: sedes
+            }
+        }        
+
+        ListarResultadosDefault();
+    }
+
+</script>

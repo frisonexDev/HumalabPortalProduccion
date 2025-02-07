@@ -1,0 +1,44 @@
+﻿@using GDifare.Portal.Humalab.Servicio.Utils;
+
+<div class="modal fade" id="ModalPopUpAdmin" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header bg-primary">
+				<h5 class="modal-title text-white">ELIMINAR</h5>
+				<a class="btn text-decoration-none rounded-2" id="cerrarModalAdmin" data-bs-dismiss="modal" aria-label="Close" onclick="BtnCancelarOrdAdmin()" style="background-color:red"><i class="fa-solid fa-xmark fa-xl" style="color:white ;"></i></a>
+			</div>
+
+			<div class="modal-body justify-content-center align-items-center m-4">
+
+				<!--CONTENIDO DEL MODAL-->
+				<div id="mensajePopUpAdmin"></div>
+
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-secondary" data-bs-dismiss="modal" onclick="BtnCancelarOrdAdmin()">Cancelar</button>
+				<button type="button" class="btn btn-danger" onclick="BtnEliminarOrdAdmin()">Eliminar</button>
+			</div>
+
+		</div>
+	</div>
+</div>
+
+<script>
+
+	function BtnEliminarOrdAdmin() {
+		if (nombreFuncionAdmin === "@Funcion.EliminarOrdenAdmin") {
+			EliminarConsultaOrdenAdmin(indicePopAdmin);
+		}
+
+		if (nombreFuncionAdmin === "@Funcion.EliminarPruebaOrdAdmin") {
+			EliminarPrbOrdenAdmin();
+		}
+
+		$('#ModalPopUpAdmin').modal('hide');
+	}
+	function BtnCancelarOrdAdmin() {
+		console.log("Presiona Cancelar");
+	}
+
+</script>

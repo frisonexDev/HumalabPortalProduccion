@@ -1,0 +1,9 @@
+﻿@using GDifare.Portal.Humalab.Servicio.Modelos.PedidosLaboratorista;
+@model VerOrdenLaboratoristaResponse
+@{
+    ViewData["Title"] = "Laboratorista";
+    Layout = "/Views/Shared/_BootStrapLayoutMenu.cshtml";
+}
+
+@await Html.PartialAsync("~/Views/Componentes/InformativoPedidoLab.cshtml", Model.Orden)
+@await Html.PartialAsync("~/Views/Componentes/TablaPedidosLab.cshtml", Model.PruebasMuestras)

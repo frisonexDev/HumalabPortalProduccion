@@ -1,0 +1,125 @@
+﻿@using GDifare.Portal.Humalab.Servicio.Modelos.PedidosLaboratorista;
+@using Newtonsoft.Json;
+@model OrdenCab
+
+@{
+    string datos = JsonConvert.SerializeObject(ViewBag.DatosConsulta);
+
+}
+<style>
+    label {
+        display: inline-block;
+        width: 110px;
+        font-weight: bold;
+    }
+</style>
+<div id="datos" data-datosconsulta="@datos"></div>
+<div>
+    <a id="openViewLink" href="#">Regresar</a>
+
+    <form id="openViewForm" asp-controller="Laboratorista" asp-action="regresarBusqueda" method="post">
+        <input class="form-control" type="hidden" name="modelJson" value="@datos" />
+    </form>
+</div>
+<div class="container-fluid mt-3 p-3 rounded-3 bg-white">
+
+    <div class="row mt-2 d-flex align-items-center">
+        <div class="col">
+            <label >Género:</label>
+            <input type="text" disabled value="@Model.Genero" />
+
+        </div>
+
+        <div class="col">
+            <label>Paciente:</label>
+            <input type="text" disabled value="@Model.NombresPaciente" style="width:300px" />
+        </div>
+
+        <div class="col">
+            <label>Cedula:</label>
+            <input type="text" disabled value="@Model.Identificacion"/>
+        </div>
+
+        <div class="col">
+            <label >Fecha de Nacimiento:</label>
+            <input type="text" disabled value="@Model.FechaNacimiento.ToString("yyyy/MM/dd")" style="width: 150px" />
+        </div>
+        <div class="col">
+            <label >Edad:</label>
+            <input type="text" disabled value="@Model.Edad" />
+        </div>
+    </div>
+
+
+    <div class="row justify-content-between mt-3">
+        <div class="col">
+
+            <label>Diagnóstico:</label>
+            <input type="text" disabled value="@Model.Diagnostico" style="width: 70%" />
+
+        </div>
+        <div class="col">
+
+            <label>Medicamento:</label>
+            <input type="text" disabled value="@Model.Medicamento" style="width: 69%" />
+
+        </div>
+    </div>
+@*    <div class="row justify-content-between mt-2">
+        <div class="col gap-2">
+
+            <label>Medicamento:</label>
+            <input type="text" disabled value="@Model.Medicamento" style="width: 95%" />
+
+        </div>
+    </div>*@
+    <div class="row justify-content-between mt-3">
+        <div class="col gap-2">
+
+            <label>Observaciones:</label>
+            <input type="text" disabled value="@Model.ObservacionOrden" style="width: 85%" />
+
+        </div>
+    </div>
+
+
+</div>
+
+
+
+
+<div class="container-fluid mt-3 p-3 rounded-3 bg-white">
+
+    <div class="row">
+
+       
+
+        <div class="col">
+
+            <label>Observación Cliente:</label>
+            <input type="text" disabled value="@Model.ObservacionCliente" style="width: 70%" />
+
+        </div>
+
+        <div class="col">
+            <label>Observación Operador:</label>
+            <input type="text" disabled value="@Model.ObservacionOpLogistico" style="width: 70%" />
+        </div>
+
+        <div class="col">
+            <label>Fecha de envío pedido</label>
+            <input type="text" disabled value="@Model.FechaEnvio" style="width: 70%"/>
+        </div>
+
+
+    </div>
+
+    
+</div>
+<script>
+    
+    document.getElementById("openViewLink").addEventListener("click", function () {
+        document.getElementById("openViewForm").submit();
+    });
+
+</script>

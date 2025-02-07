@@ -1,0 +1,71 @@
+﻿ @using GDifare.Portal.HumaLab.UI.Models;
+@using GDifare.Portal.HumaLab.UI.Utils;
+@using Newtonsoft.Json
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+
+<div id="sidebar-wrapper">
+    @{
+        IEnumerable<MenuItem> MenuCompleto = JsonConvert.DeserializeObject<IEnumerable<MenuItem>>
+        (HttpContextAccessor.HttpContext.Session.GetString("menu"));
+        var actionName = @ViewContext.RouteData.Values["action"].ToString();
+        var controllerName = @ViewContext.RouteData.Values["controller"].ToString(); 
+
+       
+    }
+    <div class="list-group list-group-flush">
+        @{
+            if (MenuCompleto != null)
+            {
+                foreach (MenuItem item in MenuCompleto)
+                {
+
+
+                    <a id="@item.OpcionID" class="list-group-item list-group-item-action p-3 " onclick="activarMenus(@item.OpcionID)" asp-area="" asp-controller="@item.Modulo" asp-action="@item.Action" data-controller="@item.Modulo" data-action="@item.Action" data-descripcion="@item.Descripcion">
+
+                        <span class="w-25"> <i class="@item.Icon"></i> </span>
+
+                        <span class="p-2 ms-2">@item.Descripcion.ToString()</span>
+
+                    </a>
+
+                }
+            }
+        }
+
+    </div>
+
+</div>
+<style>
+
+    .activado {
+        color: #fff !important;
+        font-weight:bold;
+        background-color: #659EC8 !important;
+    }
+
+        .activado:hover {
+        color: #fff !important;
+        font-weight: bold;
+            background-color: #00558B !important;
+        font-size:14px;
+    }
+
+</style>
+
+<script>
+
+   
+    function activarMenus(item) {
+        let  menuopc = $('#'+item)  
+        // console.log(menuopc)
+        localStorage.setItem('opcionMenu', item);
+        localStorage.setItem('Menu', menuopc[0].dataset.descripcion);
+      
+    }
+    let opcionSelecionada = localStorage.getItem('opcionMenu')
+    //let menuSelecionada = localStorage.getItem('Menu')
+    //console.log('Activar menu', menuSelecionada)
+    //if (menuSelecionada!=null)  CargarMiga(menuSelecionada)
+    activarMenu(opcionSelecionada, 'activado')
+</script>

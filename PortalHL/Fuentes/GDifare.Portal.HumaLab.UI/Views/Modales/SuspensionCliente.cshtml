@@ -1,0 +1,156 @@
+﻿@using GDifare.Portal.Humalab.Seguridad.Modelos;
+@using Newtonsoft.Json;
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+@{
+	ObjUsuario usuario = JsonConvert.DeserializeObject<ObjUsuario>
+		(HttpContextAccessor.HttpContext.Session.GetString("usuario"));
+}
+
+<div class="modal fade" id="ModalSuspensionCliente" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			
+			<div class="modal-header bg-primary">
+				<h5 class="modal-title text-white">GESTIÓN ESTADO DE CLIENTES</h5>
+				<a class="btn text-decoration-none rounded-2" data-bs-dismiss="modal" onclick="CancelarEstadoCliente()" aria-label="Close" style="background-color:red"><i class="fa-solid fa-xmark fa-xl" style="color:white ;"></i></a>
+			</div>
+
+			<div class="modal-body justify-content-center align-items-center m-3">
+
+				<!--CONTENIDO DEL MODAL-->
+				<div class="d-flex gap-5">
+
+					<div class="fw-bold">
+						Cliente:
+					</div>
+
+					<input class="form-control" style="margin-left:5px" id="clienteHumalab" placeholder="Cliente" />
+				</div>
+
+				<div class="d-flex mt-2 gap-4">
+
+					<div class="fw-bold" id="valorFecha">
+						Fecha Vigente:
+					</div>
+
+					<input class="form-control" type="date" id="fechaVigente"/>
+
+				</div>
+				
+				<br />
+
+				<div class="d-flex gap-3">
+					<div class="fw-bold">
+						Cambiar estado:
+					</div>
+
+					<select class="form-control" id="cmbestadoSus">						
+					</select>
+				</div>
+
+				<div class="d-flex mt-2 gap-2">
+
+					<div class="fw-bold">
+						*Observación:
+					</div>
+
+					<textarea class="form-control" style="margin-left:2px" id="observacion" rows="3" placeholder="Máximo 200 palabras" maxlength="200" style="height: 74px; resize:none"></textarea>
+
+				</div>
+
+				<div class="d-flex mt-2 gap-3">
+					<div class="fw-bold">
+						Facturación:
+					</div>
+					<input class="form-control" style="margin-left:5px" id="facturacion" placeholder="Facturación" />
+				</div>
+
+			</div>
+
+			<div class="modal-footer">
+				<button type="button" class="btn btn-danger" data-bs-dismiss="modal" onclick="CancelarEstadoCliente()">Cancelar</button>
+				<button type="button" class="btn btn-success" onclick="ModificarCliente()">Guardar</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<link class="js-stylesheet" href="~/AdminKit/css/light.css" rel="stylesheet">
+<script src="~/AdminKit/js/app.js"></script>
+<script src="~/js/Notificaciones.js"></script>
+
+<script>	
+
+	function ModificarCliente(){
+		var modalSus = document.getElementById("ModalSuspensionCliente");
+		var idUsario = '@usuario!.UsuarioID'; //idUsuario administrador		
+		var clienteId = sessionStorage.getItem('miVariable');
+
+		var clienteRuc = document.getElementById("clienteHumalab").value;
+		var estadoCliente = document.getElementById("cmbestadoSus").value;
+		var fechaVigencia = document.getElementById("fechaVigente").value;
+		var observa = document.getElementById("observacion").value;
+
+		if (clienteRuc === null || clienteRuc === "" || 
+			estadoCliente === null || estadoCliente === "" ||
+			observa === null || observa === "") {
+			MensajeAlerta1("warning", "Debe llenar todos los campos.")
+		}
+		else{
+			var datosClienteSuspen = {
+				idCliente: clienteId,
+				Cliente: clienteRuc,
+				IdEstado: estadoCliente,
+				FechaVigencia: fechaVigencia,
+				Observacion: observa,
+				UsuarioModificacion: idUsario
+			};
+
+			$.ajax({
+				url: '@Url.Action("ModificarClienteHumalab","GestionCliente")',
+				type: 'PUT',
+				data: datosClienteSuspen,
+				success: function (response) {
+
+					if (response.codigoRespuesta === '00') {
+						MensajeAlerta1("success", "Estado del cliente actualizado.")
+						modalSus.style.display = "none";
+
+						setTimeout(() => {
+							location.reload();
+						}, 2000);
+
+						CancelarEstadoCliente();
+					}
+					else {
+						MensajeAlerta1("danger", "Estado del cliente no actualizado.")
+						modalSus.style.display = "none";
+
+						setTimeout(() => {
+							location.reload();
+						}, 2000);
+
+						CancelarEstadoCliente();
+					}
+				}
+			});
+		}
+	}
+
+	function CancelarEstadoCliente(){
+		var clienteHuma = document.getElementById("clienteHumalab");
+		clienteHuma = "";
+		
+		var fechaVigencia = document.getElementById("fechaVigente");
+		fechaVigencia.value = "";
+		
+		var observacion = document.getElementById("observacion");
+		observacion.value = "";
+
+		var valorFactura = document.getElementById("facturacion");
+		valorFactura.value = "";
+	}
+
+</script>
+

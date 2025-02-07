@@ -1,0 +1,257 @@
+﻿@using GDifare.Portal.Humalab.Seguridad.Modelos;
+@using Newtonsoft.Json;
+@using GDifare.Portal.Humalab.Servicio.Utils;
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+@{
+	ObjUsuario infoUsuario = JsonConvert.DeserializeObject<ObjUsuario>
+	(HttpContextAccessor.HttpContext.Session.GetString("usuario"));
+
+}
+
+
+
+<div class="modal fade" id="ModalEnviarOrden" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header bg-primary">
+				<h5 class="modal-title text-white">ENVIAR ORDEN</h5>
+				<a class="btn text-decoration-none rounded-2" data-bs-dismiss="modal" aria-label="Close" style="background-color:red"><i class="fa-solid fa-xmark fa-xl" style="color:white ;"></i></a>
+			</div>
+
+			<div class="modal-body justify-content-center align-items-center m-3">
+
+				<!--CONTENIDO DEL MODAL-->
+
+				
+				<div class="d-flex gap-5">
+
+					<div class="fw-bold">
+						N° Remisión:
+					</div>
+
+					<input id="txtRemision" class="form-control" disabled type="text" />
+
+
+				</div>
+
+				
+
+				<div id="divOperador" class="d-flex gap-5 mt-3">
+
+					<div>
+						<h5 class="fw-bold" style="font-size:16px">Operador</h5>
+						<h5 class="fw-bold" style="font-size:16px">Logístico:</h5>
+					</div>
+
+					<input id="txtOperador" class="form-control" disabled type="text" />
+
+
+				</div>
+
+
+				<div id="divObservacionCliente" class="d-flex mt-3 gap-4">
+
+					<div>
+						<h5 class="fw-bold" style="font-size:16px">Observación</h5>
+					</div>
+
+					<textarea id="txtObservacionCliente" class="form-control" rows="3" placeholder="Máximo 200 palabras" maxlength="200" style="height: 74px; resize:none"></textarea>
+
+				</div>
+
+
+				
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-success" onclick="CrearPedido()" data-bs-dismiss="modal" aria-label="Close">Guardar</button>
+			</div>
+		</div>
+	</div>
+</div>
+
+<script src="~/js/LimpiarTabla.js"></script>
+
+<script>
+	
+	var remision="";
+	var datosPedido = new Object();
+	var datosOperador = new Object();
+	var nPedido;
+	var idClientePedido;
+
+	window.addEventListener('load',function(){
+		ObtenerOperador();
+		ObtenerIdPedido();
+		ObtenerIdClientePed();
+
+	});
+
+
+	function GenerarRemision(idPedido)
+	{
+		var IdCliente=@infoUsuario.UsuarioID;
+		var ClienteId;
+
+		$.ajax({
+			url: '@Url.Action("ObtenerIdCliente", "Cliente")',
+			type: 'GET',
+			async: false,
+			data: { idGalileo: IdCliente },
+			success: function (response) {
+				ClienteId = response;
+
+				if (idPedido < 9 && idPedido > 0) {
+					nPedido = '@CodigoBarra.DosDigitos' + idPedido;
+				}
+
+				if (idPedido < 99 && idPedido > 9) {
+					nPedido = '@CodigoBarra.UnDigito' + idPedido;
+				}
+
+				var fecha = moment().format("YYYY/MM/DD")
+
+				fecha = fecha.replace('/', '')
+					.replace('/', '');
+
+				remision = ClienteId + fecha + nPedido;
+				document.getElementById("txtRemision").value = remision;
+			}
+		});
+	}
+
+	function ObtenerIdPedido()
+	{
+
+		$.ajax({
+		
+			url: '@Url.Action("ObtenerNPedido","Cliente")',
+			type: 'GET',
+			data: { IdUsuario: @infoUsuario.UsuarioID},
+			
+			success: function(response)
+			{
+				if(response == @Numeros.CuatroCientosUno)
+				{
+					MensajeAlerta1("@Notificaciones.TituloDanger", "@Notificaciones.DangerError");
+				}
+				else{
+					GenerarRemision(response);
+				}				
+			}
+		
+		});
+
+	}
+
+
+	function ObtenerOperador() {
+
+		$.ajax({
+
+			url: '@Url.Action("ObtenerOperador","Cliente")',
+			type: 'GET',
+			data: { IdUsuario: @infoUsuario.UsuarioID},
+
+			success: function (response) {				
+
+				if (response.idOperador == 0) {
+					
+					MensajeAlerta1("@Notificaciones.TituloDanger", "@Notificaciones.DangerOperador");
+				}
+				else{
+					datosOperador={
+						idOperador: response.idOperador,
+						NombreOperador: response.nombre
+					}
+					document.getElementById("txtOperador").value = response.nombre;
+					// console.log(response);
+				}
+			}
+
+		});
+
+	}
+
+	function CrearPedido() {
+		DatosdelPedido();		
+		
+		var idenClientes = String(@infoUsuario.Identificacion);		
+
+		if (idenClientes.charAt(0) !== "0") {
+			idenClientes = "0" + idenClientes;
+		}
+
+		$.ajax({
+
+			url: '@Url.Action("CrearPedido","Cliente")',
+			type: 'POST',
+			data: { Valor: datosPedido},
+
+			success: function (response) {
+
+				if(response == @Transaccion.Correcta)
+				{					
+					var modal = document.getElementById("ModalEnviarOrden");
+					modal.style.display = "none";
+					MensajeAlerta1("@Notificaciones.TituloSuccess", "@Notificaciones.SuccessPedidoNuevo");
+					LimpiarTabla("@Tablas.TOrdenes");
+					ObtenerIdPedido();
+					document.getElementById("txtObservacionCliente").value="";
+					ListaOrdenPedido = [];
+
+					// //envia el correo del pedido
+					$.ajax({
+						url: '@Url.Action("EnviarCorreoPedido","Cliente")',
+						type: 'POST',
+						data: { Valor: datosPedido, idenCliente: idenClientes },
+
+						success: function (response) {
+						}
+
+					});
+
+					setTimeout(() => {
+						ListarOrdenesDefault();
+					}, 500);
+
+					window.location.reload();
+				}
+				else{
+					MensajeAlerta1("@Notificaciones.TituloDanger", "@Notificaciones.DangerError");
+				}
+			}
+
+		});
+	}
+
+	function DatosdelPedido()
+	{
+		var observacionElement = document.getElementById("txtObservacionCliente");
+		var observacion = observacionElement ? observacionElement.value : '';
+
+		datosPedido={
+			NumeroRemision:remision,
+			IdOperador: datosOperador.idOperador,
+			UsuarioOperador: datosOperador.NombreOperador,
+			DatosOrden: ListaOrdenPedido,			
+			Observacion: observacion,
+			UsuarioCreacion: @infoUsuario.UsuarioID,
+			IdClientePedido: idClientePedido
+		}
+	}
+
+	function ObtenerIdClientePed()
+	{
+		$.ajax({
+			url: '@Url.Action("ObtenerIdClientePed", "Cliente")',
+			type: 'GET',
+			async: false,
+			data: { idGalileo: @infoUsuario.UsuarioID },
+			success: function (response) {
+				idClientePedido = response;
+			}
+		});
+	}
+
+</script>

@@ -1,0 +1,214 @@
+﻿@using GDifare.Portal.HumaLab.UI.Models.Pedidos;
+@using GDifare.Portal.Humalab.Seguridad.Modelos;
+@using GDifare.Portal.Humalab.Servicio.Utils;
+@using Newtonsoft.Json;
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+@model BuscarPedidosLaboratorista
+@{
+    string datos = JsonConvert.SerializeObject(ViewBag.DatosConsulta);
+}
+
+<form asp-action="." method="post">
+    <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+    <div class="container-fluid bg-white rounded-3 mt-3">
+
+        <div class="row justify-content-between my-3">
+
+            <div class="col mt-3 ml-5">
+
+                <div class="form-group d-flex">
+                    <label asp-for="UsuarioOperador" class="control-label fw-bold d-inline" style="margin-left: 5px; margin-right: 10px">Operador</label>
+                    @* <input asp-for="UsuarioOperador" id="UsuarioOperador" class="form-control" placeholder="Operador" value="@Model.UsuarioOperador" name="UsuarioOperador" /> *@
+                    <select id="UsuarioOperadorFlex" asp-for="IdAsesor" class="form-select" value="@Model.IdAsesor">
+                        <option value="">                           </option>
+                    </select>
+                </div>
+            </div>
+            <div class="col mt-3">
+                <div class="form-group d-flex">
+                    <input asp-for="Cliente" id="Cliente" class="form-control" placeholder="Cliente" value="@Model.Cliente" name="Cliente" />
+                </div>
+            </div>
+            <div class="col mt-3">
+                <div class="form-check">
+                    <input asp-for="BuscarPorRuc" class="form-check-input" type="checkbox" checked="@Model.BuscarPorRuc" id="BuscarPorRuc" name="BuscarPorRuc">
+                    <label class="form-check-label" for="flexCheckDefault">
+                        Busqueda por Cliente RUC
+                    </label>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="row justify-content-between my-3" style="margin-right: 10px;">
+            <div class="col">
+                <div class="form-group d-flex">
+                    <label asp-for="EstadoPedido" class="control-label fw-bold" style="margin-left: 5px; margin-right: 10px">Estado</label>
+                    <select id="cmbestado" asp-for="EstadoPedido" class="form-select" value="@Model.EstadoPedido">
+                        <option value="">                </option>
+                    </select>
+                </div>
+            </div>
+            <div class="col mb-2">
+                <div class="form-group d-flex">
+                    <label asp-for="FechaDesde" class="control-label fw-bold"></label>
+                    <input asp-for="FechaDesde" class="form-control" width="50" value="@Model.FechaDesde.ToString("yyyy-MM-dd")" required />
+                    <span asp-validation-for="FechaDesde" class="text-danger"></span>
+
+                </div>
+            </div>
+            <div class="col mb-2">
+                    <div class="form-group d-flex">
+                        <label asp-for="FechaHasta" class="control-label fw-bold"></label>
+                        <input asp-for="FechaHasta" class="form-control" value="@Model.FechaHasta.ToString("yyyy-MM-dd")" required />
+                        <span asp-validation-for="FechaHasta" class="text-danger"></span>
+                    </div>
+            </div>
+            <div class="col-md-1 d-flex justify-content-right">
+                <div class="form-group">
+                    <input id="buscar" type="submit" value="Buscar" class="btn btn-primary" />
+                </div>
+            </div>
+
+        </div>
+    </div>
+</form>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
+
+<script>
+    $(document).ready(function () {
+        // Asignar evento click al checkbox
+        $("#BuscarPorRuc").click(function () {
+            // Actualizar el valor del checkbox a true al hacer clic
+            $(this).val(this.checked);
+        });        
+    });
+
+    $(document).ready(function () {
+        var valorSeleccionado = '@Model.EstadoPedido';
+
+        CargarEstadosOrden(valorSeleccionado);
+        GetOperadoresHL();
+
+        function CargarEstadosOrden(valorSeleccionado) {
+            var nombreMaestro = "@Estados.Orden";
+            
+            var recolectado = "RCTL";
+            var recolParcial = "RCTP";
+            var enviado = "ENV";
+            var envParcial = "ENVP";
+            var recTotal = "RCBD";
+            var recParcial = "RCBP";
+            var anali = "ANLS";
+
+            $.ajax({
+                url: '@Url.Action("EstadosPedido","OpLogistico")',
+                type: 'GET',
+                data: { nombreMaestro: nombreMaestro },
+                success: function (response) {
+                    var comboEstados = document.getElementById('cmbestado');
+                    comboEstados.innerHTML = '';
+
+                    for (var i = 0; i < response.length; i++) {
+                        var opciones = document.createElement('option');
+                        opciones.text = response[i].nombre;
+                        opciones.value = response[i].valor;
+                        
+                        if (response[i].valor === recolectado ||
+                            response[i].valor === recolParcial ||
+                            response[i].valor === enviado ||
+                            response[i].valor === envParcial ||
+                            response[i].valor === recTotal ||
+                            response[i].valor === recParcial ||
+                            response[i].valor === anali) {
+                        }
+                        else{
+                            comboEstados.add(opciones);                                                       
+                        }
+                    }
+
+                    var recoT = "Recolectado total";
+                    var recoP = "Recolectado parcial";
+                    var env = "Enviado total";
+                    var envP = "Enviado parcial";
+                    var recT = "Recibida";
+                    var recP = "Recibida parcial";
+
+                    var opRTP = recoT + "/" + recoP;
+                    var opEP = env + "/" + envP;
+                    var opRP = recT + "/" + recP;
+
+                    //recolectado total y parcial
+                    var nuevaOpcionR = document.createElement('option');
+                    nuevaOpcionR.value = "RCTL_RCPC";
+                    nuevaOpcionR.text = opRTP;
+
+                    var comboNew = document.getElementById('cmbestado');
+                    comboNew.add(nuevaOpcionR);
+
+                    //enviado total y parcial
+                    var nuevaOpcionE = document.createElement('option');
+                    nuevaOpcionE.value = "ENV_ENVP";
+                    nuevaOpcionE.text = opEP;
+
+                    var comboFinal = document.getElementById('cmbestado');
+                    comboFinal.add(nuevaOpcionE);
+
+                    //recibida total y parcial
+                    var nuevaOpcionRec = document.createElement('option');
+                    nuevaOpcionRec.value = "RCBD_RCBP";
+                    nuevaOpcionRec.text = opRP;
+
+                    var comboFinalNew = document.getElementById('cmbestado');
+                    comboFinalNew.add(nuevaOpcionRec);
+
+
+                    // Restaurar el valor seleccionado después de cargar los datos
+                    $("#cmbestado").val(valorSeleccionado);
+                    //if (valorSeleccionado === "RCTL" || valorSeleccionado === "RCPC")
+                    //    puedeEntregar = true;
+                    //else
+                    //    puedeEntregar = false;
+                    var ejecutarEvento = @Html.Raw(Json.Serialize(ViewBag.CargaDatos));
+
+                    if (ejecutarEvento) {
+                        $('#buscar').click();
+                    }
+
+                },
+                error: function (error) {
+                    MensajeAlerta1("@Notificaciones.TituloDanger", "@Notificaciones.DangerConsultaCatalogo");
+                }
+
+            });
+        }
+
+        function GetOperadoresHL()
+        {
+            $.ajax({
+                url: '@Url.Action("OperadoresHl","OpLogistico")',
+                type: 'GET',
+                success: function (response) { 
+                    //console.log(response);
+                    var cmbAsesores = document.getElementById('UsuarioOperadorFlex');
+
+                    for (var i = 0; i < response.length; i++) {
+                        var opciones = document.createElement('option');
+                        opciones.text = response[i].descripcion;
+                        opciones.value = response[i].codigo;
+
+                        //asigna valores al combo
+                        cmbAsesores.add(opciones);
+                    }
+                }
+            });
+        }
+    })
+</script>

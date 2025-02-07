@@ -1,0 +1,99 @@
+﻿@using GDifare.Portal.Humalab.Seguridad.Modelos;
+@using GDifare.Portal.Humalab.Servicio.Modelos.Orden;
+@using GDifare.Portal.Humalab.Servicio.Utils;
+@using Newtonsoft.Json;
+
+
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+
+
+@{
+    ObjUsuario infoUsuario = JsonConvert.DeserializeObject<ObjUsuario>
+    (HttpContextAccessor.HttpContext.Session.GetString("usuario"));
+
+}
+
+<style>
+
+    .a-disable {
+        pointer-events: none;
+        /*color: currentColor;
+        cursor: not-allowed;
+        opacity: 0.5;
+        text-decoration: none;*/
+    }
+
+
+</style>
+<div class="container-fluid bg-white rounded-3 p-3 mt-3 mb-3">
+
+    <div class="mt-4">
+
+        <div class="d-flex justify-content-end align-items-end gap-2">
+            <a id="nuevaOrden" class="btn btn-secondary text-decoration-none" asp-controller="Cliente" asp-action="NuevaOrden" style="color:white">NUEVA ORDEN</a>
+            <button id="btnEnviarOrden" data-bs-toggle="modal" data-bs-target="#ModalEnviarOrden" class="btn btn-primary text-decoration-none" style="color:white">ENVIAR</button>
+        </div>
+
+    </div>
+    <br />
+    <table id="TOrdenes" class="table table-responsive dataTable mt-2" style="width:100%;" aria-describedby="example_info">
+        <thead class="bg-primary">
+            <tr>
+                <th class="fw-bold text-center" tabindex="0" rowspan="1" colspan="1" style="width: 15.613px; color:#F4F4F2;"><input id="CheckAll" class="form-check-input" type="checkbox" onclick="SeleccionarTodo()" /></th>
+                <th class=" fw-bold text-center" tabindex="1" aria-controls="example" rowspan="1" colspan="1" style="width: 50.2125px;color:#F4F4F2;">N° ORDEN</th>
+                <th class=" fw-bold text-center" tabindex="1" aria-controls="example" rowspan="1" colspan="1" style="width: 50.2125px;color:#F4F4F2;">N° ORDEN LIS</th>
+                <th class=" fw-bold text-center" tabindex="2" aria-controls="example" rowspan="1" colspan="1" style="width: 75.688px;color:#F4F4F2;">FECHA INGRESO</th>
+                <th class=" fw-bold text-center" tabindex="3" aria-controls="example" rowspan="1" colspan="1" style="width: 100.325px;color:#F4F4F2;">NOMBRE PACIENTE</th>
+                <th class=" fw-bold text-center" tabindex="4" aria-controls="example" rowspan="1" colspan="1" style="width: 86.2125px;color:#F4F4F2;">PRECIO</th>
+                <th class=" fw-bold text-center" tabindex="5" aria-controls="example" rowspan="1" colspan="1" style="width: 75.8375px;color:#F4F4F2;">ESTADO</th>
+                <th class=" fw-bold text-center" tabindex="6" aria-controls="example" rowspan="1" colspan="1" style="width: 40.325px;color:#F4F4F2;">ACCIÓN</th>
+            </tr>
+        </thead>
+
+        <tbody id="TbItems">
+
+           
+
+        </tbody>
+
+    </table>  
+    
+    <div>
+        <label id="selecRegistros"></label>
+    </div>
+
+</div>
+
+
+<!--Modales-->
+<partial name="/Views/Modales/Comentarios.cshtml" />
+<partial name="~/Views/Modales/EnviarOrden.cshtml" />
+
+
+<partial name="~/Views/Modales/VencidoCartera.cshtml" />
+
+
+<script>
+
+    //$('#nuevaOrden').addClass('a-disable');
+    var estado = "@infoUsuario.BloqueoCartera"
+
+   // console.log(estado);
+
+    if (estado == "S") {
+       $('#nuevaOrden').addClass('a-disable');
+    }
+    else
+    {
+        $('#nuevaOrden').removeClass('a-disable');
+    }
+
+
+    window.onload = function () {         
+        $('#staticBackdrop').modal('hide');
+        if (estado == 'S')
+            $('#staticBackdrop').modal('show');
+    }
+
+</script>

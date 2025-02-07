@@ -1,0 +1,122 @@
+﻿<div id="barraBusquedaOrden" class="container-fluid bg-white rounded-3 mt-2">
+
+    <div class="row d-flex gap-2 p-3">
+
+        <div class="d-flex col-auto">
+
+            <div class="d-flex col gap-3 align-items-center justify-content-left">
+                <input id="txtBuscarOrden" class="form-control" placeholder="Buscar" type="text" style="width:200px" />
+
+                @* <select id="cmbOrden" class="form-select" onchange="buscarOrdenChange()" style="width:200px">
+                    <option selected value="1">N° de Orden</option>
+                    <option value="2">Nombre del Paciente</option>
+                    <option value="3">Cédula</option>
+
+                </select> *@
+
+            </div>
+
+        </div>
+
+        <div class="d-flex col-auto">
+
+            <div class="d-flex col gap-3 align-items-center justify-content-left">
+
+                <select id="cmbEstadobOrden" class="form-select" @* onchange="buscarOrdenChange()" *@ style="width:200px">
+                   
+                    <option selected value="0">Estado Orden</option>
+                    <option selected value="10">Recolectado total/parcial</option>
+                    <option selected value="11">Enviado total/parcial</option>
+                    <option selected value="12">Recibida/parcial</option>
+                    
+                </select>
+
+            </div>
+
+        </div>
+
+
+
+        <div class="d-flex col gap-3 align-items-center">
+
+            <span class="fw-bold">Desde</span>
+            <span><input id="dtpInicio" class="form-control" type="date" onchange="ValidarFechas()"/></span>
+
+            <span class="fw-bold">Hasta</span>
+            <span><input id="dtpFin" class="form-control" type="date" onchange="ValidarFechas()" /></span>
+
+            <a class="btn text-decoration-none text-white p-2 rounded-1 bg-primary" onclick="BuscarOrdenes()">Buscar</a>
+
+
+        </div>
+
+
+
+    </div>
+
+
+
+</div>
+
+
+<script>
+
+    // function buscarOrdenChange()
+    // {
+    //     var select = document.getElementById("cmbOrden").value;
+
+    //    switch(select)
+    //    {
+    //        case "1":
+
+    //            txtPlaceHolder("Buscar por N° de Orden");
+
+    //        break;
+    //        case "2":
+
+    //             txtPlaceHolder("Buscar por nombre del Paciente");
+
+    //        break;
+            
+    //        case "3":
+
+    //             txtPlaceHolder("Buscar por cédula");
+
+    //        break;
+    //    }
+
+
+    // }
+
+    function txtPlaceHolder(texto)
+    {
+
+        var txtPlace = document.getElementById("txtBuscarOrden");
+        txtPlace.value = "";
+
+        $('#txtBuscarOrden').attr('placeholder', texto);
+
+        const txtHolder = document.getElementById("txtBuscarOrden");
+
+        txtHolder.addEventListener('input', function () {
+            if (this.value.length > 13) {
+                this.value = this.value.slice(0, 50);
+            }
+        });
+
+    }
+
+    var barraBusquedaOrden = document.getElementById("barraBusquedaOrden");
+    var rect = barraBusquedaOrden.getBoundingClientRect();
+    var posicionOriginal = rect.top + window.scrollY;
+
+    window.addEventListener('scroll', function () {
+        if (window.scrollY >= posicionOriginal) {
+            barraBusquedaOrden.style.position = 'fixed';
+            barraBusquedaOrden.style.top = '0';
+        } else {
+            barraBusquedaOrden.style.position = 'relative';
+        }
+    });
+
+</script>

@@ -1,0 +1,12 @@
+﻿@using GDifare.Portal.HumaLab.UI.Models.Pedidos;
+@model PedidosOpLogistico
+@{
+    ViewData["Title"] = "Pedidos";
+    Layout = "/Views/Shared/_BootStrapLayoutMenu.cshtml";
+}
+<div id="contenidoIndex">
+@await Html.PartialAsync("~/Views/Componentes/BuscarPedidosOpLogistico.cshtml", Model.BuscarPedidos)
+@await Html.PartialAsync("~/Views/Componentes/TablaPedidosOP.cshtml", Model.ConsultaPedidos)
+</div>
+<div id="estPedido" data-nombre="@ViewBag.Estado"></div>
+

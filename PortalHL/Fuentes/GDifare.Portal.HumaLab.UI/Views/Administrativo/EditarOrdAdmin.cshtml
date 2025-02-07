@@ -1,0 +1,756 @@
+﻿@using GDifare.Portal.Humalab.Seguridad.Modelos;
+@using GDifare.Portal.Humalab.Servicio.Modelos.Orden;
+@using Newtonsoft.Json;
+@using System.Text.Json;
+@using GDifare.Portal.Humalab.Servicio.Utils;
+
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+@model Orden
+
+<link class="js-stylesheet" href="~/AdminKit/css/light.css" rel="stylesheet">
+
+@{
+    ViewData["Title"] = "Cliente";
+    Layout = "/Views/Shared/_BootStrapLayoutMenu.cshtml";
+}
+
+@{
+    ObjUsuario infousuario = JsonConvert.DeserializeObject<ObjUsuario>
+        (HttpContextAccessor.HttpContext.Session.GetString("usuario"));
+}
+
+<di class="container-fluid  bg-white rounded-3 p-3 mt-2">
+    <div class="d-flex gap-3 align-items-center">
+        <a id="btnActualizarAdmin" onclick="GuardarOrdenAdmin()" class="btn btn-success"><i class="fa-solid fa-floppy-disk" style="color:white"></i> ACTUALIZAR</a>
+        <a href="#" onclick="GenerarPDFAdmin()" class="btn btn-secondary"><i class="fa-solid fa-print" style="color:white"></i> IMPRIMIR ETIQUETA</a>
+        <div id="EncabezadoBarraAdmin" class="d-flex gap-1 mt-2">
+            <h5 id="NombreBarraAdmin" class="fs-4"></h5>
+            <h5 id="lblBarraAdmin" class="fs-4 fw-bold"></h5>
+        </div>
+    </div>
+</di>
+
+<!--JS-->
+<script src="~/AdminKit/js/notyf.js"></script>
+<script src="~/AdminKit/js/app.js"></script>
+<script src="~/js/Notificaciones.js"></script>
+<script src="~/js/LimpiarTabla.js"></script>
+
+<!--Componentes-->
+<partial name="~/Views/Componentes/DemograficoPacienteAdmin.cshtml" />
+<partial name="~/Views/Componentes/DemograficoPedidoAdmin.cshtml" />
+<partial name="~/Views/Componentes/BusquedaExamenAdmin.cshtml" />
+
+<!--Alerta de Notificación-->
+<partial name="~/Views/Componentes/Notificaciones/Success.cshtml" />
+<partial name="~/Views/Componentes/Notificaciones/Warning.cshtml" />
+<partial name="~/Views/Componentes/Notificaciones/Error.cshtml" />
+
+<!--Modal-->
+<partial name="~/Views/Modales/PopUpAdmin.cshtml" />
+
+<label id="lbljson"></label>
+
+<script>
+    var datosPruebaAdmin = new Object();
+    var ConsultaOrdenAdmin = new Object();
+    var ConsultarPacienteAdmin = new Object();
+    var examenPrecioAdmin = new Object();
+    var MuestrasSelectAdmin = new Object();
+
+    var ListaSelectAdmin = [];
+    var PrecioOrdenAdmin = [];
+    var checkBlockPruebasAdmin = false;
+    var contadorItemAdmin;
+    var nombEstadoAdmin = "";
+    var codigoBarraAdmin;
+    var OrdenAdmin;
+    var PacienteOrdenAdmin;
+    var idOrdenAdmin;
+
+    window.addEventListener('load', function () {
+
+        contadorItemAdmin = @Numeros.Cero;
+        nombreFuncion = "@Funcion.EliminarPrueba";
+        ListaSelectAdmin = [];
+        PrecioOrdenAdmin = [];
+
+        //DesactivarControlesOrden();
+
+        //Demográficos del Paciente
+        document.getElementById("txtIdentPacAdmin").value = "@Model.Identificacion";
+        document.getElementById("txtNomPacAdmin").value = validarCaracteresAdmin("@Model.Paciente.Nombres");
+        document.getElementById("txtApellPacAdmin").value = validarCaracteresAdmin("@Model.Paciente.Apellidos");
+        document.getElementById("txtEdadPacAdmin").value = "@Model.Paciente.Edad";
+        document.getElementById("txtTelPacAdmin").value = "@Model.Paciente.Telefono!.Substring(4)";
+        document.getElementById("txtCorrPacAdmin").value = "@Model.Paciente.Email";
+        document.getElementById("dtpNaciPacAdmin").value = '@Model.Paciente.FechaNacimiento.ToString("yyyy-MM-dd")';
+        document.getElementById("txtCodLabAdmin").value = '@Model.Paciente.CodLaboratorio';
+
+        if ("@Model.Paciente.Genero" === "@Estados.Falso") {
+            document.getElementById("selGenPacAdmin").value = "@Numeros.Cero";
+        }
+        else {
+            document.getElementById("selGenPacAdmin").value = "@Numeros.Uno";
+        }
+
+        //Demográficos de la Orden
+        document.getElementById("dptFecIngAdmin").value = moment().format("DD/MM/YYYY hh:mm");
+        document.getElementById("txtMedicamentoAdmin").value = "@Model.Medicamento";
+        document.getElementById("txtObsOrdAdmin").value = "@Model.Observacion";
+        document.getElementById("txtDiagnosticoAdmin").value = "@Model.Diagnostico";
+        document.getElementById("NombreBarraAdmin").innerHTML = "Código de Barra:";
+        document.getElementById("lblBarraAdmin").innerHTML = "@Model.CodigoBarra";
+        document.getElementById("txtCodLabAdmin").value = "@Model.Paciente.CodLaboratorio";
+
+        idOrdenAdmin = "@Model.IdOrden";
+        codigoBarraAdmin = "@Model.CodigoBarra";
+
+        //Desactivar Datos de la Orden
+        DesacOrdeneDemograficosAdmin();
+
+        NumeroOrdenAdmin(codigoBarraAdmin);
+
+        //Cargar Datos con las nuevas Pruebas
+        CargarCatalogoPruebasNewAdmin();
+
+        //Tipo de paciente
+        CargarTiposClientesEditAdmin()
+
+    });
+
+    function DesacOrdeneDemograficosAdmin()
+    {
+        $.ajax({
+            url: '@Url.Action("NombreEstadoOrdenAdmin","Administrativo")',
+            type: 'GET',
+            data: { IdOrdenEstado: @Model.Estado },
+            success: function (response){
+                nombEstadoAdmin = response;
+
+                if (nombEstadoAdmin === "En Analisis" || nombEstadoAdmin === "Enviado" ||
+                    nombEstadoAdmin === "Enviado Parcial" || nombEstadoAdmin === "Rechazada" ||
+                    nombEstadoAdmin === "Recibida Parcial" || nombEstadoAdmin === "Recibida" ||
+                    nombEstadoAdmin === "Recolectado Parcial" || nombEstadoAdmin === "Recolectado Total" ||
+                    nombEstadoAdmin === "Validacion pendiente" || nombEstadoAdmin === "Resultado pendiente" ||
+                    nombEstadoAdmin === "Validado") {
+
+                    // document.getElementById("txtIdentPacAdmin").disabled = true;
+                    // document.getElementById("txtNomPacAdmin").disabled = true;
+                    // document.getElementById("txtApellPacAdmin").disabled = true;
+                    // document.getElementById("txtEdadPacAdmin").disabled = true;
+                    // document.getElementById("txtTelPacAdmin").disabled = true;
+                    // document.getElementById("txtCorrPacAdmin").disabled = true;
+                    // document.getElementById("dtpNaciPacAdmin").disabled = true;
+
+                    // document.getElementById("dptFecIngAdmin").disabled = true;
+                    // document.getElementById("txtMedicamentoAdmin").disabled = true;
+                    // document.getElementById("txtObsOrdAdmin").disabled = true;
+                    // document.getElementById("txtDiagnosticoAdmin").disabled = true;
+                    // document.getElementById("selGenPacAdmin").disabled = true;
+                    // document.getElementById("txtCodLabAdmin").disabled = true;
+
+                    // var botonEliminar = document.getElementById("mensajePopUpAdmin").innerHTML;
+
+                    // checkBlockPruebasAdmin = true;
+                    ListarPruebasOrdenAdmin();
+
+                    // $('#btnActualizarAdmin').css({
+                    //     "pointer-events": "none",  // Desactiva los eventos de puntero
+                    //     "opacity": "0.5",          // Cambia la opacidad para que parezca deshabilitado
+                    //     "color": "gray"            // Cambia el color del texto si deseas
+                    // });
+                }
+                else{
+                    // document.getElementById("txtIdentPacAdmin").disabled = false;
+                    // document.getElementById("txtNomPacAdmin").disabled = false;
+                    // document.getElementById("txtApellPacAdmin").disabled = false;
+                    // document.getElementById("txtEdadPacAdmin").disabled = false;
+                    // document.getElementById("txtTelPacAdmin").disabled = false;
+                    // document.getElementById("txtCorrPacAdmin").disabled = false;
+                    // document.getElementById("dtpNaciPacAdmin").disabled = false;
+
+                    // document.getElementById("dptFecIngAdmin").disabled = false;
+                    // document.getElementById("txtMedicamentoAdmin").disabled = false;
+                    // document.getElementById("txtObsOrdAdmin").disabled = false;
+                    // document.getElementById("txtDiagnosticoAdmin").disabled = false;
+                    // document.getElementById("selGenPacAdmin").disabled = false;
+                    // document.getElementById("dptFecIngAdmin").disabled = false;
+
+                    // checkBlockPruebasAdmin = false;
+                    ListarPruebasOrdenAdmin();
+                    // $('#btnActualizarAdmin').css({
+                    //     "pointer-events": "auto",  // Activa eventos de puntero
+                    //     "opacity": "1",             // Restaura la opacidad
+                    //     "color": "white"            // Restaura el color del texto
+                    // });
+                }
+
+            }
+        });
+    }
+
+    function NumeroOrdenAdmin(BarraAdmin) {
+        document.getElementById("txtNOrdenAdmin").value = BarraAdmin.substring(11, 12);
+        
+        if (BarraAdmin.substring(10, 11) != "@Numeros.Cero") {
+            document.getElementById("txtNOrdenAdmin").value = BarraAdmin.substring(10, 12);
+        }
+
+        if (BarraAdmin.substring(8, 10) != "@Numeros.Cero@Numeros.Cero") {
+            document.getElementById("txtNOrdenAdmin").value = BarraAdmin.substring(9, 12);
+        }
+
+        if (BarraAdmin.substring(7, 9) != "@Numeros.Cero@Numeros.Cero") {
+            document.getElementById("txtNOrdenAdmin").value = BarraAdmin.substring(8, 12);
+        }
+
+        if (BarraAdmin.substring(6, 8) != "@Numeros.Cero@Numeros.Cero") {
+            document.getElementById("txtNOrdenAdmin").value = BarraAdmin.substring(7, 12);
+        }
+
+        if (BarraAdmin.substring(5, 7) != "@Numeros.Cero@Numeros.Cero") {
+            document.getElementById("txtNOrdenAdmin").value = BarraAdmin.substring(5, 12);
+        }
+    }
+
+    function CargarTiposClientesEditAdmin() { 
+        var tipoPacienteAdmin = "@Model.Paciente.TipoPaciente";
+        var cmbTiposClientesAdmin = document.getElementById("selTipClienteAdmin");
+
+        $.ajax({
+            url: '@Url.Action("TiposClientesHumalabAdmin", "Administrativo")',
+            type: 'GET',
+            success: function (response){
+                for (var i = 0; i < response.length; i++) {
+                    var opComboAdmin = document.createElement("option");
+                    opComboAdmin.text = response[i].nombreCatalogo;
+                    opComboAdmin.value = response[i].idCatalogo;
+
+                    cmbTiposClientesAdmin.appendChild(opComboAdmin);
+                }
+
+                var cmbTipoPacAdmin = document.getElementById("selTipClienteAdmin");
+
+                for (var i = 0; i < cmbTipoPacAdmin.options.length; i++) {
+
+                    if (cmbTipoPacAdmin.options[i].value === tipoPacienteAdmin) {
+                        cmbTipoPacAdmin.selectedIndex = i;
+                        break;
+                    }
+                }
+            }
+
+        });
+    }
+
+
+    function validarCaracteresAdmin(textoAdmin) {
+        const tempElementAdmin = document.createElement('textarea');
+        tempElementAdmin.innerHTML = textoAdmin;
+
+        var nuevoValorAdmin = tempElementAdmin.value;
+        return nuevoValorAdmin;
+    }
+
+    function CargarCatalogoPruebasNewAdmin() {
+        $.ajax({
+            url: '@Url.Action("CatalogoPruebasNewAdmin","Administrativo")',
+            type: 'GET',
+            success: function (response) {
+                if (response !== "01") {
+                    var resp = JSON.parse(response);
+                    ComboPruebasNewAdmin(resp);
+                    loadingHide();
+                }
+                else {
+                    MensajeAlerta1("@Notificaciones.TituloDanger", "Problemas para obtener el catalogo de pruebas.");
+                }
+            }
+
+        });
+    }
+
+    function ComboPruebasNewAdmin(listaAdmin) { 
+        var htmlAdmin = '';
+        var nombreMuestraAdmin = '';
+        var idMuestraAdmin = 0;
+
+        ListaPruebasAdmin = [];
+
+        for (var key = 0, size = listaAdmin.length; key < size; key++) {
+
+            if (listaAdmin[key].Estado !== 'Inactivo') {
+
+                datosPruebaAdmin = {
+                    IdExamen: listaAdmin[key].IdExamen,
+                    IdMuestra: listaAdmin[key].IdMuestra,
+                    CodigoExamen: listaAdmin[key].CodigoExamen,
+                    EsPerfil: listaAdmin[key].EsPerfil,
+                    Nombre: listaAdmin[key].Nombre,
+                    Abreviatura: listaAdmin[key].Abreviatura,
+                    Metodologia: listaAdmin[key].Metodologia,
+                    Muestra: listaAdmin[key].Muestra,
+                    Recipiente: listaAdmin[key].Recipiente,
+                    Observaciones: listaAdmin[key].Observaciones,
+                    MuestraAlterna: listaAdmin[key].MuestraAlterna,
+                    Precio: listaAdmin[key].Precio
+                }
+
+                ListaPruebasAdmin.push(datosPruebaAdmin);
+            }
+        }
+
+        ListaPruebasAdmin.forEach((prueba, key) => {
+            htmlAdmin += '<option value="' + key + '">'
+                + prueba.CodigoExamen + " "
+                + prueba.Nombre + " "
+                + '$' + prueba.Precio
+                + '</option>';
+        });
+
+        $('#select-pruebasAdmin').append(htmlAdmin);
+    }
+
+    function SelectTableAdmin() { 
+        var valorAdmin = document.getElementById("select-pruebasAdmin").value;
+        var htmlAdmin = '';
+        var recipienteAdmin = '';
+        var muestraAlternaAdmin = '';
+        var precioPruebaAdmin = @Numeros.Cero;
+        var metodologiaAdmin = '';
+        var contarrepetidosAdmin = @Numeros.Cero;
+
+        for (var i = 0, size = ListaPruebasAdmin.length; i < size; i++) {
+            if (valorAdmin == i) {
+                MuestrasSelectAdmin = {
+                    id: i,
+                    IdOrden: @Model.IdOrden,
+                    IdPrueba: null,
+                    IdPruebaGalileo: ListaPruebasAdmin[i].IdExamen,
+                    IdMuestraGalileo: ListaPruebasAdmin[i].IdMuestra,
+                    CodigoExamen: ListaPruebasAdmin[i].CodigoExamen,
+                    Abreviatura: ListaPruebasAdmin[i].Abreviatura,
+                    Metodologia: ListaPruebasAdmin[i].Metodologia,
+                    EsPerfil: ListaPruebasAdmin[i].EsPerfil,
+                    Nombre: ListaPruebasAdmin[i].Nombre,
+                    NombreMuestra: ListaPruebasAdmin[i].Muestra,
+                    MuestraAlterna: ListaPruebasAdmin[i].MuestraAlterna,
+                    Recipiente: ListaPruebasAdmin[i].Recipiente,
+                    Precio: ListaPruebasAdmin[i].Precio,
+                    CodigoBarra: codigoBarraAdmin,
+                    Observaciones: ListaPruebasAdmin[i].Observaciones,
+                    UsuarioCreacion: @infousuario!.UsuarioID
+                }
+
+                examenPrecioAdmin = {
+                    id: i,
+                    Precio: ListaPruebasAdmin[i].Precio
+                }
+
+                //obtener el precio y agregar en la tabla columna precio
+                if (ListaPruebasAdmin[i].Precio === null) {
+                    precioPruebaAdmin = 0;
+                } else {
+                    precioPruebaAdmin = ListaPruebasAdmin[i].Precio;
+                }
+
+                if (ListaPruebasAdmin[i].Recipiente === undefined || ListaPruebasAdmin[i].Recipiente === null) {
+                    recipienteAdmin = "@Caracteres.Guion";
+                } else {
+                    recipienteAdmin = ListaPruebasAdmin[i].Recipiente;
+                }
+
+                if (ListaPruebasAdmin[i].MuestraAlterna === undefined || ListaPruebasAdmin[i].MuestraAlterna === null) {
+                    muestraAlternaAdmin = "@Caracteres.Guion";
+                } else{
+                    muestraAlternaAdmin = ListaPruebasAdmin[i].MuestraAlterna;
+                }
+
+                if (ListaSelectAdmin.length > 0) {
+                    
+                    for (var j = 0; j < ListaSelectAdmin.length; j++) {
+                        if (ListaPruebasAdmin[i].IdExamen === ListaSelectAdmin[j].IdPruebaGalileo) {
+                            contarrepetidosAdmin++;
+                        }
+                    }
+
+                    if (contarrepetidosAdmin === @Numeros.Cero) {
+                        PrecioOrdenAdmin.push(examenPrecioAdmin);
+                        ListaSelectAdmin.push(MuestrasSelectAdmin);
+
+                        contadorItemAdmin++;
+                        html = '<tr class="odd"' + 'id="fila' + i + '"' + '>'
+                            + '<td class="text-center" hidden>' + contadorItemAdmin + '</td>'
+                            + '<td class="sorting_1 text-center">' + ListaPruebasAdmin[i].CodigoExamen + '</td>'
+                            + ' <td>' + ListaPruebasAdmin[i].Nombre + '</td>'
+                            + ' <td class="text-center">' + ListaPruebasAdmin[i].Abreviatura + '</td>'                            
+                            + ' <td>' + ListaPruebasAdmin[i].Muestra + '</td>'                            
+                            + ' <td class="text-center">' + precioPruebaAdmin + '</td>'
+                            + ' <td class="text-center">' + muestraAlternaAdmin + '</td>'
+                            + '<td class="justify-content-center align-items-center">'
+                            + '<div class="d-flex">'
+                            + '<a class="btn text-decoration-none" onclick="eliminarFilaAdmin(' + i + ');"><i class="fa-solid fa-xmark" style="color: #d4024c;"></i></a>'
+                            + '</div>'
+                            + '</td>'
+                            + '</tr>'
+
+                        $('#TbItemsExamenAdmin').append(html);
+                    }
+                }
+                else{
+                    PrecioOrdenAdmin.push(examenPrecioAdmin);
+                    ListaSelectAdmin.push(MuestrasSelectAdmin);
+
+                    contadorItemAdmin++;
+                    html = '<tr class="odd"' + 'id="fila' + i + '"' + '>'
+                        + '<td class="text-center" hidden>' + contadorItemAdmin + '</td>'
+                        + '<td class="sorting_1 text-center">' + ListaPruebasAdmin[i].CodigoExamen + '</td>'
+                        + ' <td>' + ListaPruebasAdmin[i].Nombre + '</td>'
+                        + ' <td class="text-center">' + ListaPruebasAdmin[i].Abreviatura + '</td>'                        
+                        + ' <td>' + ListaPruebasAdmin[i].Muestra + '</td>'                        
+                        + ' <td class="text-center">' + precioPruebaAdmin + '</td>'
+                        + ' <td class="text-center">' + muestraAlternaAdmin + '</td>'
+                        + '<td class="justify-content-center align-items-center">'
+                        + '<div class="d-flex">'
+                        + '<a class="btn text-decoration-none" onclick="eliminarFilaAdmin(' + i + ');"><i class="fa-solid fa-xmark" style="color: #d4024c;"></i></a>'
+                        + '</div>'
+                        + '</td>'
+                        + '</tr>'
+
+                    $('#TbItemsExamenAdmin').append(html);
+                }
+            }
+        }
+
+        sortTableAdmin();
+        TotalOrdenAdmin();
+    }
+
+    function sortTableAdmin()
+    {
+        var table, rows, switching, i, x, y, shouldSwitch;
+        table = document.getElementById("TExamenOrdenAdmin");
+        switching = true;
+
+        while (switching) {
+            switching = false;
+            rows = table.rows;
+
+            for (i = 1; i < (rows.length - 1); i++) {
+                shouldSwitch = false;
+                x = rows[i].getElementsByTagName("TD")[0];
+                y = rows[i + 1].getElementsByTagName("TD")[0];
+
+                if (x.innerHTML.toLowerCase() < y.innerHTML.toLowerCase()) {
+                    shouldSwitch = true;
+                    break;
+                }
+            }
+
+            if (shouldSwitch) {
+                rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+                switching = true;
+            }
+        }
+    }
+
+    function ListarPruebasOrdenAdmin() {
+        $.ajax({
+            url: '@Url.Action("ListarPruebasAdmin","Administrativo")',
+            type: 'GET',
+            data: { IdOrden: @Model.IdOrden, IdUsuario: @infousuario!.UsuarioID },
+            success: function (response) {
+                const resp = JSON.parse(response);
+                LlenarTableAdmin(resp);
+            }
+        });
+    }
+
+    function LlenarTableAdmin(respAdmin) {
+        var htmlAdmin = '';
+        var recipienteAdmin = '';
+        var muestraAlternaAdmin = '';
+
+        var isBlockedAdmin = checkBlockPruebasAdmin;
+        var bloqueadoAttrAdmin = isBlockedAdmin ? 'data-disabled="true"' : '';
+
+        for (var i = 0, size = respAdmin.length; i < size; i++) {
+            MuestrasSelectAdmin = {
+                id: i,
+                IdOrden: @Model.IdOrden,
+                IdPrueba: respAdmin[i].idPrueba,
+                IdPruebaGalileo: respAdmin[i].idPruebaGalileo,
+                IdMuestraGalileo: respAdmin[i].idMuestraGalileo,
+                CodigoExamen: respAdmin[i].codigoExamen,
+                EsPerfil: respAdmin[i].esPerfil,
+                Abreviatura: respAdmin[i].abreviatura,
+                Metodologia: respAdmin[i].metodologia,
+                Nombre: respAdmin[i].nombre,
+                NombreMuestra: respAdmin[i].nombreMuestra,
+                MuestraAlterna: respAdmin[i].muestraAlterna,
+                Recipiente: respAdmin[i].recipiente,
+                Precio: respAdmin[i].precio,
+                CodigoBarra: codigoBarraAdmin,
+                UsuarioCreacion: @infousuario.UsuarioID
+            }
+
+            examenPrecioAdmin = {
+                id: i,
+                Precio: respAdmin[i].precio
+            }
+
+            PrecioOrdenAdmin.push(examenPrecioAdmin);
+            ListaSelectAdmin.push(MuestrasSelectAdmin);
+
+            if (respAdmin[i].recipiente === undefined || respAdmin[i].recipiente === null) {
+                recipienteAdmin = "@Caracteres.Guion";
+            }
+            else {
+                recipienteAdmin = respAdmin[i].recipiente;
+            }
+
+            if (respAdmin[i].muestraAlterna === undefined || respAdmin[i].muestraAlterna === null) {
+                muestraAlternaAdmin = "@Caracteres.Guion";
+            }
+            else {
+                muestraAlternaAdmin = respAdmin[i].muestraAlterna;
+            }
+
+            contadorItemAdmin++;
+            htmlAdmin = '<tr class="odd"' + ' id="fila' + i + '"' + bloqueadoAttrAdmin + '>' +
+                '<td class="text-center" hidden>' + contadorItemAdmin + '</td>' +
+                '<td class="sorting_1 text-center">' + respAdmin[i].codigoExamen + '</td>' +
+                '<td>' + respAdmin[i].nombre + '</td>' +
+                '<td class="text-center">' + respAdmin[i].abreviatura + '</td>' +
+                '<td>' + respAdmin[i].nombreMuestra + '</td>' +
+                '<td class="text-center">' + respAdmin[i].precio + '</td>' +
+                '<td>' + muestraAlternaAdmin + '</td>' +
+                '<td class="justify-content-center align-items-center">' +
+                '<div class="d-flex">';
+
+            if (!isBlockedAdmin) { // Solo agregar el enlace si no está bloqueado
+                htmlAdmin += '<a class="btn text-decoration-none" onclick="eliminarFilaAdmin(' + i + ');"><i class="fa-solid fa-xmark" style="color: #d4024c;"></i></a>';
+            }
+
+            htmlAdmin += '</div>' +
+                '</td>' +
+                '</tr>';
+
+            $('#TbItemsExamenAdmin').append(htmlAdmin);
+            TotalOrdenAdmin();
+
+        }
+    }
+
+    function TotalOrdenAdmin() { 
+        var SumarAdmin = 0;
+
+        if (PrecioOrdenAdmin.length > 0) {
+            for (var i = 0; i < PrecioOrdenAdmin.length; i++) {
+                SumarAdmin += parseFloat(PrecioOrdenAdmin[i].Precio);
+            }
+            document.getElementById("lblTotalOrdenAdmin").value = "@Caracteres.Dolar" + SumarAdmin.toFixed(2);
+        }
+        else {
+            document.getElementById("lblTotalOrdenAdmin").value = "@Caracteres.Dolar" + "@NumDecimales.CeroString";
+        }
+    }
+
+    function CamposObligatoriosAdmin() {
+        var identAdmin = document.getElementById("txtIdentPacAdmin").value;
+        var nomPacAdmin = document.getElementById("txtNomPacAdmin").value;
+        var apellPacAdmin = document.getElementById("txtApellPacAdmin").value;
+        var generoAdmin = document.getElementById("selGenPacAdmin").value;
+        var fechaAdmin = document.getElementById("dtpNaciPacAdmin").value;
+        var edadPacAdmin = document.getElementById("txtEdadPacAdmin").value;
+        var telPacAdmin = document.getElementById("txtTelPacAdmin").value;
+        var corrPacAdmin = document.getElementById("txtCorrPacAdmin").value;
+
+        var obsOrdAdmin = document.getElementById("txtObsOrdAdmin").value;
+        var MedicamentosAdmin = document.getElementById("txtMedicamentoAdmin").value;
+        var DiagOrdAdmin = document.getElementById("txtDiagnosticoAdmin").value;
+        var numfilaAdmin = document.getElementById('TExamenOrdenAdmin').getElementsByTagName('tr').length - 1;
+
+
+        if (validaVacio(identAdmin) || validaVacio(nomPacAdmin) || validaVacio(apellPacAdmin) /* || validaVacio(edadPac) */
+            // || fecha == moment().format("YYYY-MM-DD")
+            || generoAdmin == 2) {
+            MensajeAlerta("@Notificaciones.TituloWarning", "@Notificaciones.WarningCampos");
+            return false;
+        }
+
+        if (numfilaAdmin < 1) {
+            MensajeAlerta("@Notificaciones.TituloWarning", "@Notificaciones.WarningExamen");
+            return false;
+        }
+        else {
+            return true;
+        }
+
+    }
+
+    function DatosOrdenAdmin() {
+        DatosPacienteAdmin();
+        OrdenAdmin = {
+            IdOrden: @Model.IdOrden,
+            IdPedidos: null,
+            IdUsuarioGalileo: @infousuario.UsuarioID,
+            Identificacion: document.getElementById("txtIdentPacAdmin").value,
+            CodigoBarra: @Model.CodigoBarra,
+            Medicamento: document.getElementById("txtMedicamentoAdmin").value,
+            Diagnostico: document.getElementById("txtDiagnosticoAdmin").value,
+            Observacion: document.getElementById("txtObsOrdAdmin").value,
+            Estado: @Model.Estado, //verificar
+            Pruebas: ListaSelectAdmin,
+            Paciente: PacienteOrdenAdmin,
+            CodigoBarra: codigoBarraAdmin,
+            UsuarioCreacion: @infousuario.UsuarioID,
+            FechaCreacion: document.getElementById("dptFecIngAdmin").value,
+
+        }
+    }
+
+    function DatosPacienteAdmin() {
+        var identAdmin = document.getElementById("txtIdentPacAdmin").value;
+        var nomPacAdmin = document.getElementById("txtNomPacAdmin").value;
+        var apellPacAdmin = document.getElementById("txtApellPacAdmin").value;
+        var generoAdmin = document.getElementById("selGenPacAdmin").value;
+        var fechaAdmin = document.getElementById("dtpNaciPacAdmin").value;
+        var edadPacAdmin = document.getElementById("txtEdadPacAdmin").value;
+        var codPaisAdmin = document.getElementById("txtcodigoPaisAdmin").value;
+        var telPacAdmin = document.getElementById("txtTelPacAdmin").value;
+        var corrPacAdmin = document.getElementById("txtCorrPacAdmin").value;
+        var telefonoAdmin = codPaisAdmin + telPacAdmin;
+        var resGeneroAdmin = false;
+
+        //Tipo paciente
+        var tipClienteAdmin = document.getElementById("selTipClienteAdmin");
+        var txtTipClienteAdmin = tipClienteAdmin.selectedIndex;
+
+        var valTipoAdmin = tipClienteAdmin.options[txtTipClienteAdmin].value;
+        var txtTipoAdmin = tipClienteAdmin.options[txtTipClienteAdmin].text;
+
+        //codigo de laboratorio
+        var codLabAdmin = document.getElementById("txtCodLabAdmin").value;
+
+        if (generoAdmin === "@Numeros.Uno") {
+            resGeneroAdmin = true;
+        }
+        else if (generoAdmin === "@Numeros.Cero") {
+            resGeneroAdmin = false;
+        }
+
+        PacienteOrdenAdmin = {
+            Identificacion: identAdmin,
+            Nombres: nomPacAdmin,
+            Apellidos: apellPacAdmin,
+            Genero: resGeneroAdmin,
+            FechaNacimiento: fechaAdmin,
+            Edad: edadPacAdmin,
+            Telefono: telefonoAdmin,
+            Email: corrPacAdmin,
+            UsuarioCreacion: @infousuario.UsuarioID,
+            FechaCreacion: document.getElementById("dptFecIngAdmin").value,
+            TipoPaciente: valTipoAdmin, //verificar
+            CodLaboratorio: codLabAdmin //verificar
+
+        }
+    }
+
+    function GuardarOrdenAdmin() { 
+        if (CamposObligatoriosAdmin()) {
+            DatosOrdenAdmin();
+            ActualizarOrdenAdmin();
+        }
+    }
+
+    function ActualizarOrdenAdmin() {
+        $.ajax({
+            url: '@Url.Action("ActualizarOrdenAdmin","Administrativo")',
+            type: 'POST',
+            data: { orden: OrdenAdmin },
+            success: function (response) {
+
+                if (response == 201) {
+                    MensajeAlerta("@Notificaciones.TituloSuccess", "@Notificaciones.SuccessOrdenActualizada");
+                }
+                else {
+                    MensajeAlerta("@Notificaciones.TituloDanger", "@Notificaciones.DangerError");
+                }
+            }
+
+        });
+    }
+
+    function GenerarPDFAdmin() {
+
+        $.ajax({
+            url: '@Url.Action("ObtenerPDFAdmin","Administrativo")',
+            type: 'POST',
+            data: { IdOrden: idOrdenAdmin },
+            success: function (response) {
+
+                let pdfWindowAdmin = window.open("")
+                pdfWindowAdmin.document.write(
+                    "<iframe width='100%' height='100%' src='data:application/pdf;base64, " +
+                    encodeURI(response) + "'></iframe>"
+                )
+                pdfWindowAdmin.document.title = 'Etiquetas'
+            }
+        });
+    }
+
+    function eliminarFilaAdmin(indexAdmin) { 
+        indicePopAdmin = indexAdmin;
+
+        if (ListaSelectAdmin.length <= 1) {
+            document.getElementById("mensajePopUpAdmin").innerHTML = "@Notificaciones.WarningEliminarPrueba";
+            $('#ModalPopUpAdmin').modal('show');
+        }
+        else {
+            EliminarPruebaAdmin(indexAdmin);
+        }
+    }
+
+    function EliminarPruebaAdmin(indexAdmin) {
+        $.ajax({
+            url: '@Url.Action("EliminarPruebasAdmin","Administrativo")',
+            type: 'POST',
+            data: { prueba: ListaSelectAdmin[indexAdmin] },
+            beforeSend: function () {
+                loadingShow();
+            },
+            success: function (response){
+                
+                if (response === @Transaccion.Correcta) {
+                    $("#fila" + indexAdmin).remove();
+
+                    for (var i = 0, size = ListaSelectAdmin.length; i <= size; i++) 
+                    {
+                        if (ListaSelectAdmin[i].id == indexAdmin) {
+                            ListaSelectAdmin.splice(i, 1);
+                            break;
+                        }
+                    }
+
+                    for (var i = 0; i < PrecioOrdenAdmin.length; i++) {
+                        if (PrecioOrdenAdmin[i].id == indexAdmin) {
+                            PrecioOrdenAdmin.splice(i, 1);
+                            break;
+                        }
+                    }
+
+                    TotalOrdenAdmin();
+                }
+                else{
+                    MensajeAlerta("@Notificaciones.TituloDanger", "@Notificaciones.DangerError");
+                }
+
+                loadingHide();
+            }
+        });
+    }
+
+</script>

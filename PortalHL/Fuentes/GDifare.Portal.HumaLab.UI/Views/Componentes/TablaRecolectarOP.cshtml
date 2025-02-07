@@ -1,0 +1,435 @@
+﻿@using GDifare.Portal.HumaLab.UI.Models.Pedidos;
+@model IEnumerable<GDifare.Portal.Humalab.Servicio.Modelos.PedidosOpLogistico.VerDetallePedidoOperadorDet>
+@using GDifare.Portal.Humalab.Servicio.Utils;
+
+<style>
+    @@media (max-width: 768px) {
+        .table th,
+        .table td {
+            font-size: 0.8rem;
+            white-space: nowrap;
+        }
+            /* Oculta ciertas columnas en pantallas pequeñas */
+            .table th:nth-child(3),
+            .table td:nth-child(3),
+            .table th:nth-child(4),
+            .table td:nth-child(4) {
+                display: none;
+            }
+    }
+</style>
+
+
+<div class="container-fluid bg-white rounded-3 p-3 mt-3 mb-3">
+    @{
+        //bool recolectado = (ViewBag.DatoConsulta != null)? (((BuscarPedidosOpLogistico)(ViewBag.DatoConsulta)).Estado == "RCTL") ? true : false : false;
+        bool recolectado = (ViewBag.DatoConsulta != null)
+        ? (((BuscarPedidosOpLogistico)(ViewBag.DatoConsulta)).Estado == "RCTL" || ((BuscarPedidosOpLogistico)(ViewBag.DatoConsulta)).Estado == "RCPC")
+        ? true 
+        : false
+        : false;
+    }
+    <input type="hidden" id="recolectado" value="@recolectado" />
+    <input id="codigoBarrasInput" class="form-control" type="text" hidden />
+
+    <div class="table-responsive">
+        <table id="example" class="table dataTable mt-2" style="width:100%;" aria-describedby="example_info">
+            <thead class="bg-primary">
+                <tr>
+                    <th class="fw-bold text-center" tabindex="0" rowspan="1" colspan="1" style="width: 20.613px; color:#F4F4F2;">N°</th>
+                    <th class="sorting fw-bold text-center" tabindex="1" aria-controls="example" rowspan="1" colspan="1" style="width: 50.2125px;color:#F4F4F2;">N° ORDEN - T.MUESTRA</th>
+                    <th class="sorting fw-bold text-center" tabindex="2" aria-controls="example" rowspan="1" colspan="1" style="width: 130.688px;color:#F4F4F2;">TIPO DE MUESTRA</th>
+                    <th class="sorting fw-bold text-center" tabindex="3" aria-controls="example" rowspan="1" colspan="1" style="width: 20.325px;color:#F4F4F2;">IDENTIFICACIÓN</th>
+                    <th class="sorting fw-bold text-center" tabindex="4" aria-controls="example" rowspan="1" colspan="1" style="width: 20.325px;color:#F4F4F2;">NOMBRE PACIENTE</th>
+                    <th class="sorting fw-bold text-center" tabindex="5" aria-controls="example" rowspan="1" colspan="1" style="width: 20.325px;color:#F4F4F2;">CODIGO LABORATORIO</th>
+                    <th class="sorting fw-bold text-center" tabindex="6" aria-controls="example" rowspan="1" colspan="1" style="width: 20.2125px;color:#F4F4F2;">RETIRADO</th>
+                    <th class="sorting fw-bold text-center" tabindex="7" aria-controls="example" rowspan="1" colspan="1" style="width: 20.8375px;color:#F4F4F2;">RECHAZADO</th>
+                    <th class="sorting fw-bold text-center" tabindex="8" aria-controls="example" rowspan="1" colspan="1" style="width: 150.325px;color:#F4F4F2;">COMENTARIO</th>
+                    <th class="sorting fw-bold text-center" tabindex="9" aria-controls="example" rowspan="1" colspan="1" style="width: 40.325px;color:#F4F4F2;">ESTADO</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Numero)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CodigoBarra)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.TipoMuestra)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Identificacion)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Paciente)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CodLaboratorio)
+                        </td>
+                        <td>
+                            @{
+                                string estadoMuestraRet = @item.EstadoMuestra;                                
+                                if (estadoMuestraRet != Estados.MuestraCancelada)
+                                {
+                                    <input type="checkbox" id="@String.Concat("ret",item.IdPruebaMuestra)" name="@item.Numero" data-id="@item.IdPruebaMuestra" value="Retirado" @(item.Retirado ? "checked" : "") />
+                                }
+                            }                                                        
+                        </td>
+                        <td>
+                            @{
+                                string estadoMuestraRech = @item.EstadoMuestra;
+                                if (estadoMuestraRech != Estados.MuestraCancelada)
+                                {
+                                    <input type="checkbox" id="@String.Concat("rech",item.IdPruebaMuestra)" name="@item.Numero" data-id="@item.IdPruebaMuestra" value="Rechazado" @(item.Rechazado ? "checked" : "") />
+                                }
+                            }                            
+                        </td>
+                        <td>
+                            <label id="@String.Concat("obs",item.IdPruebaMuestra)">@item.ObservacionOperador</label>
+                        </td>
+                        <td>
+                            @*<label id="@String.Concat("est",item.IdPruebaMuestra)">@item.EstadoMuestra</label>*@
+                            @{
+                                string clase = string.Empty;
+                                string estado = item.EstadoMuestra;
+
+                                if (estado == Estados.MuestraRechazadaLab || estado == Estados.MuestraRechazadaOp)
+                                    clase = "bg-danger";
+                                else if (estado == Estados.MuestraRecibida)
+                                    clase = "bg-success";
+                                else if (estado == Estados.MuestraRecolectada)
+                                    clase = "bg-success";
+                                else if (estado == Estados.MuestraPorRecolectar)
+                                    clase = "bg-secondary";
+                                else
+                                    clase = "bg-primary";
+                            }
+                            <span class="badge @clase" style="font-size:0.75rem;" id="@String.Concat("est",item.IdPruebaMuestra)">@estado</span>
+
+                        </td>
+                    </tr>
+                }
+            </tbody>
+
+        </table>
+    </div>
+
+    @* <div class="mt-4">
+
+        <div class="d-flex justify-content-end align-items-end gap-2">            
+            <button id="btnValidarRecoleccion" onclick="validarRecoleccion()" class="btn btn-primary text-decoration-none" disabled >RECOLECTAR</button>
+        </div>
+
+    </div> *@
+
+</div>
+
+<!--Modales-->
+<partial name="~/Views/Modales/RecolectarMuestras.cshtml" />
+
+<div class="modal fade" id="comentarioModal" tabindex="-1" role="dialog" aria-labelledby="comentarioModalLabel" aria-hidden="true"data-bs-backdrop="static" data-bs-keyboard="false">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="comentarioModalLabel">Comentario</h5>
+                <a class="btn text-decoration-none rounded-2" data-bs-dismiss="modal" onclick="CancelaComentario()" aria-label="Close" style="background-color:red"><i class="fa-solid fa-xmark fa-xl" style="color:white ;"></i></a>
+
+            </div>
+            <div class="modal-body">
+                <input type="text" id="comentarioInput" class="form-control" placeholder="Ingresa un comentario..." required>
+                <input type="text" id="h_idMuestra" hidden />
+                <input type="text" id="chk_retirado" hidden />
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" id="guardarComentarioBtn">Guardar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+
+    var idPedido = 0;
+    var valorAccion = true;
+    var valorCheck = false;
+    var countCheck = 0;    
+
+    function validarRecoleccion() {
+ 
+        var filas = $('#example tbody tr');
+        var checksVacios = false;
+        var cont = 0;
+
+        @* console.log(filas); *@
+
+        filas.each(function () {
+            var checkboxRetirado = $(this).find('input[value^="Retirado"]').prop('checked');
+            var checkboxRechazado = $(this).find('input[value^="Rechazado"]').prop('checked');
+
+            if(checkboxRetirado === true)
+            {
+                cont = cont + 1;
+            }
+            if (checksVacios === false && checkboxRetirado === false && checkboxRechazado === false) {
+                checksVacios = true;                
+            }
+        });
+
+
+        if (cont === 0){
+            MensajeAlerta1("@Notificaciones.TituloDanger", "@Notificaciones.DangerRecolecta");
+        }            
+        else
+        {
+            if (checksVacios === true) {
+
+                bootbox.confirm({
+                    title: '@Notificaciones.TituloConfirmarPedido',
+                    message: '@Notificaciones.WarningConfirmarPedido',
+                    buttons: {
+                        cancel: {
+                            label: '<i class="fa fa-times"></i> No',
+                            className: 'btn-danger'
+                        },
+                        confirm: {
+                            label: '<i class="fa fa-check"></i> Si',
+                            className: 'btn-success'
+                        }
+                    },
+                    callback: function (result) {                        
+                        if (result) {                            
+                            //actualizar el pedido                                                     
+                            $('#ModalRecolectarMuestras').modal('show');
+
+                        }
+                    }
+                });
+            }
+            else {                
+                $('#ModalRecolectarMuestras').modal('show');
+            }
+        }
+
+        return;
+    }
+
+    $(document).ready(function () {
+
+        $('#numeroRemisionModal').val($("#numeroRemisionCab").val());
+        $('#usuarioModal').val($("#usuarioCab").val());
+        $('#operadorModal').val($("#operadorCab").val());
+        $('#observacionUsuarioModal').val($("#observacionUsuarioCab").val());
+        $('#idPedidoModal').val($("#idPedidoCab").val());
+        $('#idOperadorModal').val($("#idOperadorCab").val());        
+
+        idPedido = $("#idPedidoCab").val();
+
+        var rec = document.getElementById("recolectado").value;
+
+        if(!rec){
+            $('input[type="checkbox"]').prop("disabled",false);
+            $('#btnValidarRecoleccion').prop("disabled", false);
+        }
+        else
+        {
+            $('input[type="checkbox"]').prop("disabled", true);
+            $('#btnValidarRecoleccion').prop("disabled", true);
+        }
+
+        $('input[type="checkbox"]').on('change', function () 
+        {            
+            var retirado = undefined;
+            var rechazado = undefined;            
+
+            var idPruebaMuestra = $(this).data('id');
+            var controlActual = $(this).val();
+            var chkRetirado = undefined;
+            retirado = $('#ret' + idPruebaMuestra).prop('checked');
+            rechazado = $('#rech' + idPruebaMuestra).prop('checked');
+
+            chkRetirado = retirado;
+
+            if (controlActual === 'Retirado' && retirado) {
+                $('#rech' + idPruebaMuestra).prop('checked',false);
+                rechazado = false; 
+                @* countCheck++; *@
+            }
+            else if (controlActual === 'Retirado' && !retirado) {
+                retirado = false;                              
+            }
+            else if (controlActual === 'Rechazado' && rechazado) {
+                $('#ret' + idPruebaMuestra).prop('checked', false);
+                retirado = false;
+            }
+            else if (controlActual === 'Rechazado' && !rechazado) {
+                rechazado = false;                
+            }
+
+            if(retirado === true && rechazado === true)
+            {
+                return;
+            }
+
+            @* Mostrar el modal para ingresar el comentario
+            de recolectar a rechazado *@
+            if (retirado === false && rechazado === true) {                
+                $('#h_idMuestra').val(idPruebaMuestra);
+                $('#chk_retirado').val(chkRetirado);
+                $('#comentarioInput').val("");
+                $('#comentarioInput').focus();
+                $('#comentarioModal').modal('show');                
+            }
+            @* Mostrar el modal para ingresar el comentario de
+            rechazada a recolectar *@
+            @* else if (rechazado === false && countCheck > 1) {
+                $('#h_idMuestra').val(idPruebaMuestra);
+                $('#chk_retirado').val(chkRetirado); //check de rechazado
+                $('#comentarioInput').val("");
+                $('#comentarioInput').focus();
+                $('#comentarioModal').modal('show');
+                valorAccion = false;
+                alert(rechazado);
+            } *@
+            else
+            {                
+                enviarActualizacionEstado(idPruebaMuestra, retirado, rechazado, true, "");
+            }
+            
+        });
+
+        @* Escuchar el evento clic del botón "Guardar" en el modal *@
+        $('#guardarComentarioBtn').on('click', function () {
+            var idPruebaMuestra = $('#h_idMuestra').val();
+            var comentario = $('#comentarioInput').val();            
+
+            if (comentario === undefined || comentario === '') {
+                comentario.text("El comentario es requerido.");
+                return;
+            }
+
+            $('#comentarioModal').modal('hide');
+                        
+            if(valorAccion === true){
+                @* Llamada AJAX al controlador *@                
+                enviarActualizacionEstado(idPruebaMuestra, false, true, true, comentario);
+                window.location.reload();
+            }            
+            else{
+                //Llamada AJAX al controlador                
+                enviarActualizacionEstado(idPruebaMuestra, true, false, true, comentario);
+                valorAccion = true;  
+                window.location.reload();
+            }
+            
+            @* location.reload(); *@            
+        });
+        
+    });
+
+    //Lectura del código de barras
+    $(document).ready(function () {
+        var barcode = "";
+        var codigoBarrasInput = document.getElementById("codigoBarrasInput");
+        var rec = document.getElementById("recolectado").value;
+        document.addEventListener("keydown", function (e) {
+            
+            // Verificar si el evento proviene de la tecla Enter (código ASCII 13)
+            if (e.keyCode === 13)
+            {
+                var barcode = codigoBarrasInput.value.trim()
+                if (barcode !== "") {
+                    if (!rec)
+                    {
+                        buscarEnTabla(codigoBarrasInput.value);
+                        codigoBarrasInput.value = "";
+                    }
+                }
+            }
+            else {
+                codigoBarrasInput.value += event.key;
+            }
+        });
+
+        function buscarEnTabla(codigoBarra) {
+            $("#example tbody tr").each(function () {
+                var codigoMuestra = $(this).find("td:eq(1)").text().trim();
+                if (codigoMuestra === codigoBarra) {
+                    // Código de barras encontrado en la tabla
+                    var retirado = $(this).find("td:eq(4) input[type='checkbox']");
+                    var rechazado = $(this).find("td:eq(5) input[type='checkbox']");
+
+                    rechazado.prop("checked", false);
+                    retirado.trigger("click");
+                    retirado.prop("checked", true);
+
+                    return false;
+                }
+            });
+        }
+    });
+
+    function enviarActualizacionEstado(idPruebaMuestra, recoger, rechazar, esOperador, comentario) {
+        $.ajax({
+            type: 'POST',
+            url: '@Url.Action("ActualizarEstadoMuestra", "OpLogistico")',
+            data: { idPruebaMuestra: idPruebaMuestra, recoger: recoger, rechazar: rechazar, esOperador: esOperador, comentario: comentario },
+            success: function (response) {
+
+                var respuesta = JSON.parse(response);
+                
+                $("#est" + idPruebaMuestra).text(respuesta.estadoMuestra);
+                $("#obs" + idPruebaMuestra).text(respuesta.observacion);
+                EstiloEstadoMuestra("#est" + idPruebaMuestra, respuesta.estadoMuestra);
+
+               @*  $("#est" + idPruebaMuestra).text(respuesta.EstadoMuestra);
+                $("#obs" + idPruebaMuestra).text(respuesta.Observacion);
+                EstiloEstadoMuestra("#est" + idPruebaMuestra, respuesta.EstadoMuestra); *@
+
+            },
+            error: function (error) {
+                MensajeAlerta1("@Notificaciones.TituloDanger", "@Notificaciones.DangerActualizaEstadoM");
+            }
+        });
+    }
+
+    function CancelaComentario(){
+        var idMuestra = $('#h_idMuestra').val();
+        var retirado = $('#chk_retirado').val();
+        
+        var chRech = $("#example tbody tr").find("#rech" + idMuestra);
+        var chRet = $("#example tbody tr").find("#ret" + idMuestra);
+
+        if (chRech.length > 0)
+        {
+            chRech.prop("checked", false);
+            if (retirado === "true")
+                chRet.prop("checked", true);
+            else
+                chRet.prop("checked", false);
+        }
+
+    }
+
+    function EstiloEstadoMuestra(idControl,estado){
+
+        var clase = "";
+        if (estado === "@Estados.MuestraRechazadaLab" || estado === "@Estados.MuestraRechazadaOp")
+            clase = "badge bg-danger";
+        else if (estado === "@Estados.MuestraRecibida")
+            clase = "badge bg-success";
+        else if (estado === "@Estados.MuestraRecolectada")
+            clase = "badge bg-success";
+        else if (estado === "@Estados.MuestraPorRecolectar")
+            clase = "badge bg-secondary";
+        else
+            clase = "badge bg-primary";
+        $(idControl).removeClass().addClass(clase);
+    }
+
+    
+</script>

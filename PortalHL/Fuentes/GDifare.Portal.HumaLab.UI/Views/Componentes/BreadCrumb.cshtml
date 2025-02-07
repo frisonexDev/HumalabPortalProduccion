@@ -1,0 +1,53 @@
+﻿<style>
+    .miga {
+        color: #000;
+        font-weight:bold;
+        font-size:1.1rem;
+        display: flex;
+        justify-content: start;
+        padding-top: 5px !important;        
+    }
+
+</style>
+
+<div class="container-fluid bg-white rounded-3 mt-1">
+
+<nav aria-label="breadcrumb">
+    <ol id="brcLevel" class="breadcrumb miga">
+        
+    </ol>
+</nav>
+</div>
+<script>
+    
+    function CargarMiga(Titulo)
+    {
+        var itemBread = document.getElementsByClassName("breadcrumb-item");
+      //  console.log("Lista de LI BreadCrumbs");
+      //  console.log(itemBread);
+
+        var html="";
+        
+        //if(itemBread.length>-1)
+        //{
+        //  //  console.log("Varios Items");
+        //    for (var i = 0; i < itemBread.length; i++) {
+        //        html += itemBread[i];
+        //    }
+        //    html += '<i class="fa-solid fa-house"></i> &nbsp; <i class="fa-solid fa-angle-right"> &nbsp; </i> <li class="breadcrumb-item">' + Titulo + '</li> ';
+        //}
+        //else
+        //{
+           // console.log("Pocos Items");
+            html = ' <i class="fa-solid fa-house"></i> &nbsp; <i class="fa-solid fa-angle-right"></i> &nbsp; <li class="breadcrumb-item">' + Titulo + '</li> ';
+       // }
+         
+        $('#brcLevel').append(html);
+    }
+
+    function LimpiarMiga()
+    {
+        document.getElementById("brcLevel").innerHTML="";
+    }
+
+</script>

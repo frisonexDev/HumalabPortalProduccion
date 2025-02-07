@@ -1,0 +1,193 @@
+﻿@using GDifare.Portal.Humalab.Seguridad.Modelos;
+@using Newtonsoft.Json;
+@inject Microsoft.AspNetCore.Http.IHttpContextAccessor HttpContextAccessor
+
+@{
+    ObjUsuario usuario = JsonConvert.DeserializeObject<ObjUsuario>
+        (HttpContextAccessor.HttpContext.Session.GetString("usuario"));
+}
+
+<div class="container-fluid bg-white rounded-3 mt-3 p-3">
+
+    <div class="d-flex justify-content-start align-items-start mb-2">
+
+        <h3 class="text-start text-primary">Ordenes</h3>
+
+    </div>
+
+    <div class="card">
+
+        <div>
+            <div class="fw-bold">
+                Pedido:
+            </div>
+
+            <select class="form-control" id="cmbpedido" onchange="CargaDatosPedido()">
+                <option value="0">Seleccionar</option>
+            </select>
+        </div>
+
+        <div>
+            <div class="fw-bold">
+                Ordenes:
+            </div>
+
+            <input id="txtorden" class="form-control" placeholder="Orden" type="text" />
+        </div>
+
+        <div>
+            <div class="fw-bold">
+                Prueba:
+            </div>
+
+            <select class="form-control" id="cmbprueba" onchange="BuscarPruebas()">
+            </select>
+        </div>
+        
+
+        <div class="card-body">
+            <canvas id="pieChart"></canvas>
+        </div>
+    </div>
+</div>
+
+
+
+<script>
+
+    var idCliente = '@usuario.UsuarioID';    
+
+    function GraficoPastel() {
+        $.ajax({
+            url: '@Url.Action("GraficarPedidosTodosHumalab","GestionCliente")',
+            type: 'GET',
+            data: { idCliente: idCliente },
+            success: function (response) {                
+                var ctxP = document.getElementById('pieChart');
+
+                var myPieChart = new Chart(ctxP, {
+                    type: 'pie',
+                    data: {
+                        labels: ["Pendientes", "Enviadas", "Procesadas"],
+                        datasets: [{
+                            data: [response.totalPendientes, response.totalEnviadas, response.totalProcesadas],                            
+                            backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C"],
+                            hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870"]
+                        }]
+                    },
+                    options: {
+                        responsive: true
+                    }
+                });
+            }
+        });
+    }
+
+    function GraficoPastelPedidos(totalProcesadas, totalEnviadas, totalPendientes) {
+        var ctxP = document.getElementById('pieChart');
+
+        var myPieChart = new Chart(ctxP, {
+            type: 'pie',
+            data: {
+                labels: ["Pendientes", "Enviadas", "Procesadas"],
+                datasets: [{
+                    data: [totalPendientes, totalEnviadas, totalProcesadas],                    
+                    backgroundColor: ["#F7464A", "#46BFBD", "#FDB45C"],
+                    hoverBackgroundColor: ["#FF5A5E", "#5AD3D1", "#FFC870"]
+                }]
+            },
+            options: {
+                responsive: true
+            }
+        });
+    }
+
+    function MetodoGetPedido(){
+        $.ajax({
+            url: '@Url.Action("PedidosHumalab","GestionCliente")',
+            type: 'GET',
+            data: { idCliente: idCliente },
+            success: function (response) {
+
+                var cmbPedido = document.getElementById('cmbpedido');
+
+                for (var i = 0; i < response.length; i++) {
+                    var opciones = document.createElement('option');
+                    opciones.text = response[i].numeroRemision;
+                    opciones.value = response[i].numeroRemision;
+
+                    cmbPedido.add(opciones);
+                }
+            }
+        });
+    }
+
+    function CargaDatosPedido(){
+        limpiarDatosGraficos();
+
+        var idPedido = document.getElementById("cmbpedido").value;
+        var cmbPrueba = document.getElementById('cmbprueba');
+        var opcPrueba = "";
+        var totalOrden = 0;        
+
+        $.ajax({
+            url: '@Url.Action("PedidosOrdenHumalab","GestionCliente")',
+            type: 'GET',
+            data: { idPedido: idPedido, idCliente: idCliente },
+            success: function (response) {
+
+                document.getElementById("txtorden").value = response.totalOrdenes;
+                numOrden = document.getElementById("txtorden");
+                numOrden.disabled = true;
+
+                for (var i = 0; i < response.diagnostico.length; i++) {
+                    opcPrueba = document.createElement('option');
+                    opcPrueba.text = response.diagnostico[i].nombre;
+
+                    cmbPrueba.add(opcPrueba);
+                }
+
+                var idPedido = document.getElementById("cmbpedido").value;                
+                var totalOrden = document.getElementById("txtorden").value;
+
+                $.ajax({
+                    url: '@Url.Action("GraficarPedidosHumalab","GestionCliente")',
+                    type: 'GET',
+                    data: { numRemision: idPedido, idCliente: idCliente, Ordenes: totalOrden, nomPrueba: "" },
+                    success: function (response) {
+                        GraficoPastelPedidos(response.totalProcesadas, response.totalEnviadas, response.totalPendientes);
+                    }
+                });                
+            }
+        });
+    }
+
+    //function BuscarPruebas() {
+
+    //    var idPedido = document.getElementById("cmbpedido").value;
+    //    var cmbPrueba = document.getElementById('cmbprueba').value;
+    //    var totalOrden = document.getElementById("txtorden").value;
+
+    //    $.ajax({
+    //        url: '@Url.Action("GraficarPedidosHumalab","GestionCliente")',
+    //        type: 'GET',
+    //        data: { numRemision: idPedido, idCliente: idCliente, Ordenes: totalOrden, nomPrueba: cmbPrueba },
+    //        success: function (response) {
+    //            GraficoPastelPedidos(response.totalProcesadas, response.totalEnviadas, response.totalPendientes);
+    //        }
+    //    });
+    //}
+
+
+    function limpiarDatosGraficos(){
+        var cmbPrueba = document.getElementById('cmbprueba');
+        cmbPrueba.innerHTML = '';
+        
+        var ordenTotal = document.getElementById("txtorden");
+        ordenTotal = "";
+    }
+
+    GraficoPastel();
+    MetodoGetPedido();
+
+</script>

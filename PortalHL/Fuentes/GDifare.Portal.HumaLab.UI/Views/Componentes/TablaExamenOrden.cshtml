@@ -1,0 +1,56 @@
+﻿@using GDifare.Portal.Humalab.Servicio.Utils;
+
+<div class="container-fluid bg-white rounded-3 p-3 mt-3 mb-3">
+
+    <table id="TExamenOrden" class="table table-responsive dataTable mt-2" style="width:100%;" aria-describedby="example_info">
+        <thead class="bg-primary">
+            <tr>
+                <th class="fw-bold text-center" tabindex="0" aria-controls="example" rowspan="1" colspan="1" hidden style="width: 20.613px; color:#F4F4F2;">Item</th>
+                <th class="fw-bold text-center" tabindex="0" aria-controls="example" rowspan="1" colspan="1" style="width: 40.613px; color:#F4F4F2;">CODIGO</th>
+                <th class="fw-bold text-center" tabindex="1" aria-controls="example" rowspan="1" colspan="1" style="width: 228px;color:#F4F4F2;">PRUEBA</th>
+                <th class="fw-bold text-center" tabindex="2" aria-controls="example" rowspan="1" colspan="1" style="width: 100.688px;color:#F4F4F2;">ABR.</th>
+                @* <th class="fw-bold text-center" tabindex="3" aria-controls="example" rowspan="1" colspan="1" style="width: 136.325px;color:#F4F4F2;">METODOLOGÍA</th> *@
+                <th class="fw-bold text-center" tabindex="4" aria-controls="example" rowspan="1" colspan="1" style="width: 86.2125px;color:#F4F4F2;">MUESTRA PRINCIPAL</th>
+                @*<th class="fw-bold text-center" tabindex="5" aria-controls="example" rowspan="1" colspan="1" style="width: 75.8375px;color:#F4F4F2;">RECIPIENTE</th>*@
+                <th class="fw-bold text-center" tabindex="5" aria-controls="example" rowspan="1" colspan="1" style="width: 75.8375px;color:#F4F4F2;">PRECIO</th>
+                <th class="fw-bold text-center" tabindex="7" aria-controls="example" rowspan="1" colspan="1" style="width: 86.2125px;color:#F4F4F2;">MUESTRA ALTERNA</th>
+                <th class="fw-bold text-center" tabindex="8" aria-controls="example" rowspan="1" colspan="1" style="width: 75.8375px;color:#F4F4F2;">ACCIÓN</th>
+
+            </tr>
+        </thead>
+
+        <tbody id="TbItemsExamen">
+
+        </tbody>
+
+    </table>
+
+    <div class="mt-4">
+
+        <div class="d-flex justify-content-end align-items-end gap-2">
+            <div>Total:</div>
+            <input disabled id="lblTotalOrden" class="fw-bold" style="font-size:14px; width:4rem" value="@Caracteres.Dolar @NumDecimales.CeroString"/>
+        </div>
+
+    </div>
+
+
+</div>
+
+<script>
+
+    $('#TbExamenOrden').DataTable({
+
+        language: {
+            url: '//cdn.datatables.net/plug-ins/1.13.4/i18n/es-ES.json',
+        },
+        scrollX: true,
+        searching: false,
+        paging: false,
+    });
+
+</script>
+
+<!--Modal Observación-->
+<partial name="/Views/Modales/Comentarios.cshtml" />
+
