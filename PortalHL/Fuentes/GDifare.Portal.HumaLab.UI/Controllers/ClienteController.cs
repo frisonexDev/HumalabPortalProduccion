@@ -408,6 +408,15 @@ namespace GDifare.Portales.HumaLab.UI.Controllers
             return result;
         }
 
+        //Saca datos para despues proceder a descargar en un formato excel
+        public string ListOrdCliente(ConsultarOrden Valor)
+        {
+            List<ListOrdClienteExcel> lista = gestionarOrdenes.ListarOrdenCliente(Valor);
+
+            string result = System.Text.Json.JsonSerializer.Serialize(lista);
+            return result;
+        }
+
         public string ListarObservaciones(string CodigoBarra)
         {
             List<LogObservaciones> lista = gestionarOrdenes.Observaciones(CodigoBarra);
@@ -826,6 +835,77 @@ namespace GDifare.Portales.HumaLab.UI.Controllers
             }
 
             return base64Pdf;
+        }
+
+        public string ExportOrdClienteExcel(string datosOrden)
+        {
+            string excelOrdenesCliente = "";
+            DateTime now = DateTime.Now;
+            string fechaExport = now.ToString("dd/MM/yyyy HH:mm:ss");
+
+            List<ListOrdClienteExcel> ordenes = JsonConvert.DeserializeObject<List<ListOrdClienteExcel>>(datosOrden);
+
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+
+            try
+            {
+                using (MemoryStream memoryStream = new MemoryStream())
+                {
+                    using (ExcelPackage package = new ExcelPackage(memoryStream))
+                    {
+                        ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("Sheet1");
+
+                        worksheet.Cells["A2"].Value = "LISTADO DE ÓRDENES";
+                        worksheet.Cells["A3"].Value = "Generado el " + fechaExport;
+
+                        int rowStart = 5;
+
+                        worksheet.Cells[rowStart, 1].Value = "Codigo Barras";
+                        worksheet.Cells[rowStart, 2].Value = "Muestra";
+                        worksheet.Cells[rowStart, 3].Value = "Asunto";
+                        worksheet.Cells[rowStart, 4].Value = "Identificación";
+                        worksheet.Cells[rowStart, 5].Value = "Código Examen";
+                        worksheet.Cells[rowStart, 6].Value = "Nombre Prueba";
+                        worksheet.Cells[rowStart, 7].Value = "Operador Logístico";
+                        worksheet.Cells[rowStart, 8].Value = "Estado Orden";
+                        worksheet.Cells[rowStart, 9].Value = "Estado Muestra";
+                        worksheet.Cells[rowStart, 10].Value = "Estado Prueba";
+                        worksheet.Cells[rowStart, 11].Value = "Orden LIS";
+                        worksheet.Cells[rowStart, 12].Value = "Fecha Creación";
+
+                        int row = rowStart + 1;
+
+                        foreach (var ordenesCliente in ordenes)
+                        {
+                            worksheet.Cells[row, 1].Value = ordenesCliente.CodigoBarra;
+                            worksheet.Cells[row, 2].Value = ordenesCliente.MuestraOrden;
+                            worksheet.Cells[row, 3].Value = ordenesCliente.NombresPaciente;
+                            worksheet.Cells[row, 4].Value = ordenesCliente.Identificacion;
+                            worksheet.Cells[row, 5].Value = ordenesCliente.CodigoExamen;
+                            worksheet.Cells[row, 6].Value = ordenesCliente.NombrePrueba;
+                            worksheet.Cells[row, 7].Value = ordenesCliente.Operador;
+                            worksheet.Cells[row, 8].Value = ordenesCliente.EstadoOrden;
+                            worksheet.Cells[row, 9].Value = ordenesCliente.EstadoMuestra;
+                            worksheet.Cells[row, 10].Value = ordenesCliente.EstadoPrueba;
+                            worksheet.Cells[row, 11].Value = ordenesCliente.OrdenLis;
+                            worksheet.Cells[row, 12].Value = ordenesCliente.FechaCreacion;
+
+                            row++;
+                        }
+
+                        package.Save();
+                    }
+
+                    byte[] excelBytes = memoryStream.ToArray();
+                    excelOrdenesCliente = Convert.ToBase64String(excelBytes);
+                }
+            }
+            catch(Exception ex)
+            {
+                return null;
+            }
+
+            return excelOrdenesCliente;
         }
 
         #endregion

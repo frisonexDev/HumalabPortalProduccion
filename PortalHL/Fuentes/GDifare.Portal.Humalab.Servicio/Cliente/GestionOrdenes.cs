@@ -368,6 +368,47 @@ namespace GDifare.Portal.Humalab.Servicio.Cliente
             }
         }
 
+		//Datos para el excel del cliente sus ordenes que realiza
+		public List<ListOrdClienteExcel> ListarOrdenCliente(ConsultarOrden valor)
+		{            
+            string FechaInicial = valor.FechaInicio.ToString("dd'\\d'MM'\\d'yyyy");
+            string FechaFinal = valor.FechaFin.ToString("dd'\\d'MM'\\d'yyyy");
+
+            List<ListOrdClienteExcel> lista = new List<ListOrdClienteExcel>();
+            object objOrdCliente;
+
+            try
+            {
+                var stringBuilder = new StringBuilder();
+                stringBuilder.Append("/listarOrdClienteExcel?");                               
+                stringBuilder.Append("IdUsuarioGalileo=" + valor.IdUsuarioGalileo + "&");
+                stringBuilder.Append("FechaInicio=" + FechaInicial + "&");
+                stringBuilder.Append("FechaFin=" + FechaFinal);
+                var queryString = stringBuilder.ToString();
+
+                var url = ServerCliente + ":" + PortCliente + "/" + RouteCliente + queryString;
+                var request = (HttpWebRequest)WebRequest.Create(url)!;
+                request.Method = "GET";
+
+                using (var response = (HttpWebResponse)request.GetResponse())
+                {
+                    using (var reader = new StreamReader(response.GetResponseStream()))
+                    {
+                        var responseText = reader.ReadToEnd();
+
+                        objOrdCliente = JsonConvert.DeserializeObject<object>(responseText)!;
+                    }
+                }
+                
+                lista = JsonConvert.DeserializeObject<List<ListOrdClienteExcel>>(objOrdCliente.ToString()!)!;
+                return lista;
+            }
+            catch (Exception ex)
+            {
+                return lista;
+            }
+        }
+
 
         public int RegistrarOrden(Orden orden)
         {

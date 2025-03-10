@@ -1380,4 +1380,71 @@
 
     }
 
+    //Exportar en formato excel ordenes del cliente
+    function exportOrdCliente()
+    {
+        var FechaDesde = document.getElementById("dtpInicio").value;
+        var FechaHasta = document.getElementById("dtpFin").value;        
+
+        ConsultaOrdenes = {
+            IdUsuarioGalileo: @infousuario.UsuarioID,            
+            FechaInicio: FechaDesde,
+            FechaFin: FechaHasta
+        }
+
+        $.ajax({
+            url: '@Url.Action("ListOrdCliente","Cliente")',
+            type: 'GET',
+            data: ConsultaOrdenes,
+            beforeSend: function () {
+                loadingShow();
+            },
+            success: function (response) {                
+
+                if(response !== null || response !== "")
+                {
+                    $.ajax({
+                        url: '@Url.Action("ExportOrdClienteExcel","Cliente")',
+                        type: 'POST',
+                        data: { datosOrden: response },
+                        success: function (response) {
+                            //console.log(response);
+
+                            if(response !== null || response !== "")
+                            {
+                                var byteCharacters = atob(response);
+                                var byteNumbers = new Array(byteCharacters.length);
+
+                                for (var i = 0; i < byteCharacters.length; i++) {
+                                    byteNumbers[i] = byteCharacters.charCodeAt(i);
+                                }
+
+                                var byteArray = new Uint8Array(byteNumbers);
+                                var blob = new Blob([byteArray], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
+                                var url = window.URL.createObjectURL(blob);
+                                var a = document.createElement("a");
+                                document.body.appendChild(a);
+                                a.style = "display: none";
+                                a.href = url;
+                                a.download = "ReporteOrdenes.xlsx";
+                                a.click();
+
+                                window.URL.revokeObjectURL(url);
+                            }
+                            else{
+                                MensajeAlerta1("@Notificaciones.TituloWarning", "No existen órdenes generadas en las fechas establecidas.");
+                            }                            
+                        }
+                    });
+                }
+                else{
+                    MensajeAlerta1("@Notificaciones.TituloWarning", "No es posible descargar el archivo Excel.");
+                }
+                
+                loadingHide();
+            }
+        });
+
+    }
+
 </script>

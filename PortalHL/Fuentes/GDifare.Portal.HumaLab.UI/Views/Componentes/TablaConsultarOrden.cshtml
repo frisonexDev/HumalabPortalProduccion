@@ -31,6 +31,7 @@
     <div class="mt-4">
 
         <div class="d-flex justify-content-end align-items-end gap-2">
+            <input id="btnExportOrdCliente" onclick="exportOrdCliente()" type="submit" value="EXPORTAR" class="btn btn-primary" />
             <a id="nuevaOrden" class="btn btn-secondary text-decoration-none" asp-controller="Cliente" asp-action="NuevaOrden" style="color:white">NUEVA ORDEN</a>
             <button id="btnEnviarOrden" data-bs-toggle="modal" data-bs-target="#ModalEnviarOrden" class="btn btn-primary text-decoration-none" style="color:white">ENVIAR</button>
         </div>

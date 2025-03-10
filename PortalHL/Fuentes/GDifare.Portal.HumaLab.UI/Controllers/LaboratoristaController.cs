@@ -322,7 +322,8 @@ namespace GDifare.Portales.HumaLab.UI.Controllers
                         OrdenEstado = muestra.EstadoOrden,
                         FechaCreacion = muestra.FechaCreacion,
                         codLis = muestra.CodLis,
-                        estadoPrueba = muestra.EstadoPrueba
+                        estadoPrueba = muestra.EstadoPrueba,
+                        estadoMuestra = muestra.EstadoMuestra
                     };
 
                     datosResponse.muestras.Add(nuevaMuestra);                    
@@ -360,22 +361,26 @@ namespace GDifare.Portales.HumaLab.UI.Controllers
                         worksheet.Cells[rowStart, 1].Value = "Codigo Orden";
                         worksheet.Cells[rowStart, 2].Value = "Recipiente";
                         worksheet.Cells[rowStart, 3].Value = "Asunto";
-                        worksheet.Cells[rowStart, 4].Value = "Código Examen";
-                        worksheet.Cells[rowStart, 5].Value = "Nombre Examen";
-                        worksheet.Cells[rowStart, 6].Value = "Laboratorio";
-                        worksheet.Cells[rowStart, 7].Value = "Ciudad";
-                        worksheet.Cells[rowStart, 8].Value = "Estado Orden";
+						
+						worksheet.Cells[rowStart, 4].Value = "Identificación";						
 
-                        worksheet.Cells[rowStart, 9].Value = "Ruc Laboratorio";
-						worksheet.Cells[rowStart, 10].Value = "Asesor";
-						worksheet.Cells[rowStart, 11].Value = "Cliente";
-						worksheet.Cells[rowStart, 12].Value = "Codigo Laboratorio";
-						worksheet.Cells[rowStart, 13].Value = "Tipo Paciente";
-						worksheet.Cells[rowStart, 14].Value = "Fecha Creación";
-						worksheet.Cells[rowStart, 15].Value = "Orden Lis";
-                        worksheet.Cells[rowStart, 16].Value = "Estado Prueba";
+						worksheet.Cells[rowStart, 5].Value = "Código Examen";
+                        worksheet.Cells[rowStart, 6].Value = "Nombre Examen";
+                        worksheet.Cells[rowStart, 7].Value = "Laboratorio";
+                        worksheet.Cells[rowStart, 8].Value = "Ciudad";
+                        worksheet.Cells[rowStart, 9].Value = "Estado Orden";
 
-						int row = rowStart + 1;
+                        worksheet.Cells[rowStart, 10].Value = "Ruc Laboratorio";
+						worksheet.Cells[rowStart, 11].Value = "Asesor";
+						worksheet.Cells[rowStart, 12].Value = "Cliente";
+						worksheet.Cells[rowStart, 13].Value = "Codigo Laboratorio";
+						worksheet.Cells[rowStart, 14].Value = "Tipo Paciente";
+						worksheet.Cells[rowStart, 15].Value = "Fecha Creación";
+						worksheet.Cells[rowStart, 16].Value = "Orden Lis";
+                        worksheet.Cells[rowStart, 17].Value = "Estado Prueba";
+                        worksheet.Cells[rowStart, 18].Value = "Estado Muestra";
+
+                        int row = rowStart + 1;
 
                         foreach(var datos in lstDatosLab)
                         {
@@ -389,21 +394,29 @@ namespace GDifare.Portales.HumaLab.UI.Controllers
                                 {
                                     worksheet.Cells[row, 1].Value = datos.CodigoBarraOrden;
                                     worksheet.Cells[row, 2].Value = muestra.NombreMuestra;
-                                    worksheet.Cells[row, 3].Value = datos.NombresPac + "|" + datos.IdentificacionPac;
-                                    worksheet.Cells[row, 4].Value = muestra.CodExamen;
-                                    worksheet.Cells[row, 5].Value = muestra.NombreExamen;
-                                    worksheet.Cells[row, 6].Value = datos.NombreCliente;
-                                    worksheet.Cells[row, 7].Value = datos.CiudadCliente;
-                                    worksheet.Cells[row, 8].Value = muestra.OrdenEstado;
+                                    //worksheet.Cells[row, 3].Value = datos.NombresPac + "|" + datos.IdentificacionPac;
 
-                                    worksheet.Cells[row, 9].Value = datos.RucLab;
-                                    worksheet.Cells[row, 10].Value = datos.Operador;
-									worksheet.Cells[row, 11].Value = datos.ClienteNombre;
-									worksheet.Cells[row, 12].Value = datos.CodLaboratorio;
-                                    worksheet.Cells[row, 13].Value = datos.TipoPaciente;
-                                    worksheet.Cells[row, 14].Value = muestra.FechaCreacion;
-                                    worksheet.Cells[row, 15].Value = muestra.codLis;
-                                    worksheet.Cells[row, 16].Value = muestra.estadoPrueba;
+                                    worksheet.Cells[row, 3].Value = datos.NombresPac;
+									worksheet.Cells[row, 4].Value = datos.IdentificacionPac;
+
+									worksheet.Cells[row, 5].Value = muestra.CodExamen;
+                                    worksheet.Cells[row, 6].Value = muestra.NombreExamen;
+                                    worksheet.Cells[row, 7].Value = datos.NombreCliente;
+                                    worksheet.Cells[row, 8].Value = datos.CiudadCliente;
+                                    worksheet.Cells[row, 9].Value = muestra.OrdenEstado;
+
+                                    worksheet.Cells[row, 10].Value = datos.RucLab;
+                                    worksheet.Cells[row, 11].Value = datos.Operador;
+									worksheet.Cells[row, 12].Value = datos.ClienteNombre;
+									worksheet.Cells[row, 13].Value = datos.CodLaboratorio;
+                                    worksheet.Cells[row, 14].Value = datos.TipoPaciente;
+
+                                    worksheet.Cells[row, 15].Value = muestra.FechaCreacion;
+									worksheet.Cells[row, 15].Style.Numberformat.Format = "dd/MM/yyyy";
+
+									worksheet.Cells[row, 16].Value = muestra.codLis;
+                                    worksheet.Cells[row, 17].Value = muestra.estadoPrueba;
+                                    worksheet.Cells[row, 18].Value = muestra.estadoMuestra;
 
                                     row++;
                                 }
@@ -426,8 +439,10 @@ namespace GDifare.Portales.HumaLab.UI.Controllers
 								worksheet.Cells[row, 14].Value = string.Empty;
 								worksheet.Cells[row, 15].Value = string.Empty;
                                 worksheet.Cells[row, 16].Value = string.Empty;
+								worksheet.Cells[row, 17].Value = string.Empty;
+                                worksheet.Cells[row, 18].Value = string.Empty;
 
-								row++;
+                                row++;
                             }
                         }
 

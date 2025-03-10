@@ -335,7 +335,7 @@
                                    "DeltaMax":0.0,
                                    "ComentarioFijo":null,
                                    "ComentarioImpresion":null,
-                                   "Activo":false,
+                                   "Activo":true,
                                    "DescripcionAnalito":null,
                                    "EntregaResultado":null,
                                    "MuestraAdicional":null,
@@ -390,7 +390,7 @@
                                    "DeltaMax":0.0,
                                    "ComentarioFijo":null,
                                    "ComentarioImpresion":null,
-                                   "Activo":false,
+                                   "Activo":true,
                                    "DescripcionAnalito":null,
                                    "EntregaResultado":null,
                                    "MuestraAdicional":null,
@@ -630,7 +630,7 @@
                                    "DescripcionAnalito":null,
                                    "EntregaResultado":null,
                                    "MuestraAdicional":null,
-                                   "CostoPrueba":0.00,
+                                   "CostoPrueba":6.50,
                                     "ExamenPerfil":[{
                              "IdExamen":28,
                              "NombreExamen":"RETICULOCITOS (%)",
@@ -847,7 +847,7 @@
                                    "NombreMuestra":"Orina espontánea / Frasco para orina",
                                    "IdArea":5,
                                    "IdMetodo":5,
-                                   "NombreMetodo":"Quimioluminiscencia",
+                                   "NombreMetodo":"Quimioluminiscencia de Micropartículas Magnéticas (CLIA)",
                                    "CodigoExamen":"BIO170",
                                    "AbreviaturaExamen":"",
                                    "NombreExamen":"PYRILINKS D (DEOXIPIRIDINOLINA)",
@@ -1416,7 +1416,7 @@
                                    "NombreMuestra":"Suero / Tubo Amarillo",
                                    "IdArea":10,
                                    "IdMetodo":5,
-                                   "NombreMetodo":"Quimioluminiscencia",
+                                   "NombreMetodo":"Quimioluminiscencia de Micropartículas Magnéticas (CLIA)",
                                    "CodigoExamen":"INM094",
                                    "AbreviaturaExamen":"",
                                    "NombreExamen":"CORTISOL AM-PM",
@@ -1487,7 +1487,7 @@
                                    "NombreMuestra":"Suero / Tubo Amarillo",
                                    "IdArea":10,
                                    "IdMetodo":5,
-                                   "NombreMetodo":"Quimioluminiscencia",
+                                   "NombreMetodo":"Quimioluminiscencia de Micropartículas Magnéticas (CLIA)",
                                    "CodigoExamen":"INM095",
                                    "AbreviaturaExamen":"",
                                    "NombreExamen":"INSULINA POST PRANDIAL (INS-2PP)",
@@ -2004,7 +2004,7 @@
                                    "IdMetodo":1,
                                    "NombreMetodo":"Método Standar",
                                    "CodigoExamen":"DYF021",
-                                   "AbreviaturaExamen":"",
+                                   "AbreviaturaExamen":"ETOH",
                                    "NombreExamen":"ALCOHOL ETILICO EN SANGRE",
                                    "Genero":"A",
                                    "EdadMinima":0,
@@ -2031,7 +2031,7 @@
                                    "DescripcionAnalito":null,
                                    "EntregaResultado":null,
                                    "MuestraAdicional":null,
-                                   "CostoPrueba":0.00,
+                                   "CostoPrueba":14.50,
                                     "ExamenPerfil":[
                                ],
                                 "ValorReferencia":[
@@ -2544,6 +2544,157 @@
                                    "MuestraAdicional":null,
                                    "CostoPrueba":4.12,
                                     "ExamenPerfil":[
+                               ],
+                                "ValorReferencia":[
+                                  {
+                                     "TiempoMin":0,
+                                     "TiempoMax":0,
+                                     "UnidadTiempo":null,
+                                     "Genero":null,
+                                     "RefMaxima":0.00,
+                                     "RefMinima":0.0,
+                                     "PanMinima":0.00,
+                                     "PanMaxima":0.00,
+                                     "Observaciones":null
+                                  }
+                               ],
+                               "Correlacionados":[
+                               ]
+                            },{
+                                   "IdExamen":560,
+                                   "IdUnidad":0,
+                                   "IdLaboratorio":0,
+                                   "IdMuestra":22,
+                                   "NombreMuestra":"Orina espontánea / Frasco para orina",
+                                   "IdArea":7,
+                                   "IdMetodo":45,
+                                   "NombreMetodo":"Inmunocromatografía",
+                                   "CodigoExamen":"DYF019",
+                                   "AbreviaturaExamen":"P12D",
+                                   "NombreExamen":"PANEL DE 12 DROGAS EN  ORINA",
+                                   "Genero":"A",
+                                   "EdadMinima":0,
+                                   "EdadMaxima":0,
+                                   "NumeroDecimales":2,
+                                   "Formula":null,
+                                   "AplicaFormula":false,
+                                   "Autovalidacion":"Manual",
+                                   "DiasProceso":0,
+                                   "MinMinResultadoEmergencia":0,
+                                   "MinMinResultadoRutina":60,
+                                   "TipoResultado":"N",
+                                   "AplicaSLA":false,
+                                   "EsMicrobiologia":false,
+                                   "EsPerfil":false,
+                                   "EsConfidencial":false,
+                                   "Orden":560,
+                                   "DeltaDias":0,
+                                   "DeltaMin":0.0,
+                                   "DeltaMax":0.0,
+                                   "ComentarioFijo":null,
+                                   "ComentarioImpresion":null,
+                                   "Activo":true,
+                                   "DescripcionAnalito":null,
+                                   "EntregaResultado":null,
+                                   "MuestraAdicional":null,
+                                   "CostoPrueba":21.00,
+                                    "ExamenPerfil":[{
+                             "IdExamen":301,
+                             "NombreExamen":"COCAINA (COC) EN ORINA",
+                             "IdMuestra":22,
+                             "NombreMuestra":"Orina espontánea / Frasco para orina",
+                             "CodigoExamen":"DYF005",
+                             "AbreviaturaExamen":"COCU"
+                          }
+                    ,{
+                             "IdExamen":306,
+                             "NombreExamen":"ANFETAMINAS (AMP) EN ORINA",
+                             "IdMuestra":22,
+                             "NombreMuestra":"Orina espontánea / Frasco para orina",
+                             "CodigoExamen":"DYF011",
+                             "AbreviaturaExamen":"AMPU"
+                          }
+                    ,{
+                             "IdExamen":303,
+                             "NombreExamen":"METANFETAMINAS (MET) EN ORINA",
+                             "IdMuestra":22,
+                             "NombreMuestra":"Orina espontánea / Frasco para orina",
+                             "CodigoExamen":"DYF007",
+                             "AbreviaturaExamen":"METU"
+                          }
+                    ,{
+                             "IdExamen":302,
+                             "NombreExamen":"MARIHUANA (THC-TETRAHIDROCANBINOL) EN ORINA",
+                             "IdMuestra":22,
+                             "NombreMuestra":"Orina espontánea / Frasco para orina",
+                             "CodigoExamen":"DYF006",
+                             "AbreviaturaExamen":"THCU"
+                          }
+                    ,{
+                             "IdExamen":309,
+                             "NombreExamen":"METADONA (MTD) EN ORINA",
+                             "IdMuestra":22,
+                             "NombreMuestra":"Orina espontánea / Frasco para orina",
+                             "CodigoExamen":"DYF014",
+                             "AbreviaturaExamen":"MTDU"
+                          }
+                    ,{
+                             "IdExamen":304,
+                             "NombreExamen":"EXTASIS (MDMA-METILDIOXOMETANFETAMINA) EN ORINA ",
+                             "IdMuestra":22,
+                             "NombreMuestra":"Orina espontánea / Frasco para orina",
+                             "CodigoExamen":"DYF008",
+                             "AbreviaturaExamen":"MDMAU"
+                          }
+                    ,{
+                             "IdExamen":305,
+                             "NombreExamen":"MORFINA (MOP) EN ORINA",
+                             "IdMuestra":22,
+                             "NombreMuestra":"Orina espontánea / Frasco para orina",
+                             "CodigoExamen":"DYF009",
+                             "AbreviaturaExamen":"MOP"
+                          }
+                    ,{
+                             "IdExamen":1042,
+                             "NombreExamen":"OPIACEOS (OPI) EN ORINA",
+                             "IdMuestra":22,
+                             "NombreMuestra":"Orina espontánea / Frasco para orina",
+                             "CodigoExamen":"DYF019",
+                             "AbreviaturaExamen":"OPIU"
+                          }
+                    ,{
+                             "IdExamen":310,
+                             "NombreExamen":"FENCICLIDINA (PCP) EN ORINA",
+                             "IdMuestra":22,
+                             "NombreMuestra":"Orina espontánea / Frasco para orina",
+                             "CodigoExamen":"DYF015",
+                             "AbreviaturaExamen":"FEND"
+                          }
+                    ,{
+                             "IdExamen":307,
+                             "NombreExamen":"BARBITURICOS (BARB) EN ORINA",
+                             "IdMuestra":22,
+                             "NombreMuestra":"Orina espontánea / Frasco para orina",
+                             "CodigoExamen":"DYF012",
+                             "AbreviaturaExamen":"BARU"
+                          }
+                    ,{
+                             "IdExamen":308,
+                             "NombreExamen":"BENZODIAZEPINAS (BZO) EN ORINA",
+                             "IdMuestra":22,
+                             "NombreMuestra":"Orina espontánea / Frasco para orina",
+                             "CodigoExamen":"DYF013",
+                             "AbreviaturaExamen":"BZO"
+                          }
+                    ,{
+                             "IdExamen":311,
+                             "NombreExamen":"ANTIDEPRESIVOS TRICICLICOS (TCA) EN ORINA",
+                             "IdMuestra":22,
+                             "NombreMuestra":"Orina espontánea / Frasco para orina",
+                             "CodigoExamen":"DYF016",
+                             "AbreviaturaExamen":"TCA"
+                          }
+                    
                                ],
                                 "ValorReferencia":[
                                   {
@@ -3558,7 +3709,7 @@
                                    "NombreMuestra":"Suero / Tubo Amarillo",
                                    "IdArea":1,
                                    "IdMetodo":5,
-                                   "NombreMetodo":"Quimioluminiscencia",
+                                   "NombreMetodo":"Quimioluminiscencia de Micropartículas Magnéticas (CLIA)",
                                    "CodigoExamen":"AUT022",
                                    "AbreviaturaExamen":"ATGB",
                                    "NombreExamen":"ANTICUERPOS ANTI-TIROGLOBULINA (ANTI-TG)",
@@ -3613,7 +3764,7 @@
                                    "NombreMuestra":"Suero / Tubo Amarillo",
                                    "IdArea":1,
                                    "IdMetodo":5,
-                                   "NombreMetodo":"Quimioluminiscencia",
+                                   "NombreMetodo":"Quimioluminiscencia de Micropartículas Magnéticas (CLIA)",
                                    "CodigoExamen":"AUT023",
                                    "AbreviaturaExamen":"ATPO",
                                    "NombreExamen":"ANTICUERPOS ANTI-TIROPEROXIDASA  (ANTI-TPO)",
@@ -3723,7 +3874,7 @@
                                    "NombreMuestra":"Suero / Tubo Amarillo",
                                    "IdArea":1,
                                    "IdMetodo":5,
-                                   "NombreMetodo":"Quimioluminiscencia",
+                                   "NombreMetodo":"Quimioluminiscencia de Micropartículas Magnéticas (CLIA)",
                                    "CodigoExamen":"AUT025",
                                    "AbreviaturaExamen":"ABFI",
                                    "NombreExamen":"ANTICUERPOS BLOQUEANTES DEL FACTOR INTRÍNSECO",
@@ -6105,6 +6256,46 @@
                                    "MuestraAdicional":null,
                                    "CostoPrueba":3.50,
                                     "ExamenPerfil":[{
+                             "IdExamen":818,
+                             "NombreExamen":"PESO",
+                             "IdMuestra":35,
+                             "NombreMuestra":"Suero / Tubo Amarillo",
+                             "CodigoExamen":"",
+                             "AbreviaturaExamen":"PESO"
+                          }
+                    ,{
+                             "IdExamen":817,
+                             "NombreExamen":"TALLA",
+                             "IdMuestra":35,
+                             "NombreMuestra":"Suero / Tubo Amarillo",
+                             "CodigoExamen":"",
+                             "AbreviaturaExamen":"TALLA"
+                          }
+                    ,{
+                             "IdExamen":819,
+                             "NombreExamen":"SUPERFICIE CORPORAL",
+                             "IdMuestra":35,
+                             "NombreMuestra":"Suero / Tubo Amarillo",
+                             "CodigoExamen":"",
+                             "AbreviaturaExamen":"SC"
+                          }
+                    ,{
+                             "IdExamen":70,
+                             "NombreExamen":"CREATININA",
+                             "IdMuestra":35,
+                             "NombreMuestra":"Suero / Tubo Amarillo",
+                             "CodigoExamen":"BIO040",
+                             "AbreviaturaExamen":"CREA"
+                          }
+                    ,{
+                             "IdExamen":556,
+                             "NombreExamen":"CREATININA EN ORINA PARCIAL",
+                             "IdMuestra":22,
+                             "NombreMuestra":"Orina espontánea / Frasco para orina",
+                             "CodigoExamen":"BIO137",
+                             "AbreviaturaExamen":"CREAU"
+                          }
+                    ,{
                              "IdExamen":71,
                              "NombreExamen":"DEPURACION DE CREATININA ORINA 24 HORAS",
                              "IdMuestra":35,
@@ -7993,7 +8184,7 @@
                                    "NombreMuestra":"Suero / Tubo Amarillo",
                                    "IdArea":15,
                                    "IdMetodo":5,
-                                   "NombreMetodo":"Quimioluminiscencia",
+                                   "NombreMetodo":"Quimioluminiscencia de Micropartículas Magnéticas (CLIA)",
                                    "CodigoExamen":"BIO079",
                                    "AbreviaturaExamen":"VB12",
                                    "NombreExamen":"VITAMINA B12 (COBALAMINA)",
@@ -8781,7 +8972,7 @@
                                    "NombreMuestra":"Suero / Tubo Amarillo",
                                    "IdArea":4,
                                    "IdMetodo":5,
-                                   "NombreMetodo":"Quimioluminiscencia",
+                                   "NombreMetodo":"Quimioluminiscencia de Micropartículas Magnéticas (CLIA)",
                                    "CodigoExamen":"BIO107",
                                    "AbreviaturaExamen":"IHO",
                                    "NombreExamen":"INDICE HOMA-RI (RESISTENCIA A LA INSULINA) AYUNAS",
@@ -8812,14 +9003,6 @@
                                    "MuestraAdicional":null,
                                    "CostoPrueba":8.00,
                                     "ExamenPerfil":[{
-                             "IdExamen":102,
-                             "NombreExamen":"INDICE HOMA-RI (RESISTENCIA A LA INSULINA) AYUNAS",
-                             "IdMuestra":35,
-                             "NombreMuestra":"Suero / Tubo Amarillo",
-                             "CodigoExamen":"BIO107",
-                             "AbreviaturaExamen":"IHO"
-                          }
-                    ,{
                              "IdExamen":138,
                              "NombreExamen":"INSULINA BASAL (ULTRASENSIBLE)",
                              "IdMuestra":35,
@@ -8834,6 +9017,14 @@
                              "NombreMuestra":"Suero / Tubo Amarillo",
                              "CodigoExamen":"BIO051",
                              "AbreviaturaExamen":"GLU"
+                          }
+                    ,{
+                             "IdExamen":102,
+                             "NombreExamen":"INDICE HOMA-RI (RESISTENCIA A LA INSULINA) AYUNAS",
+                             "IdMuestra":35,
+                             "NombreMuestra":"Suero / Tubo Amarillo",
+                             "CodigoExamen":"BIO107",
+                             "AbreviaturaExamen":"IHO"
                           }
                     
                                ],
@@ -9041,7 +9232,7 @@
                                    "NombreMuestra":"Plasma con heparina de sodio o litio / Tubo c",
                                    "IdArea":4,
                                    "IdMetodo":5,
-                                   "NombreMetodo":"Quimioluminiscencia",
+                                   "NombreMetodo":"Quimioluminiscencia de Micropartículas Magnéticas (CLIA)",
                                    "CodigoExamen":"BIO111",
                                    "AbreviaturaExamen":"MIO",
                                    "NombreExamen":"MIOGLOBINA",
@@ -9633,7 +9824,7 @@
                                    "NombreMuestra":"Suero / Tubo Amarillo",
                                    "IdArea":4,
                                    "IdMetodo":5,
-                                   "NombreMetodo":"Quimioluminiscencia",
+                                   "NombreMetodo":"Quimioluminiscencia de Micropartículas Magnéticas (CLIA)",
                                    "CodigoExamen":"BIO119",
                                    "AbreviaturaExamen":"TNI",
                                    "NombreExamen":"TROPONINA I",
@@ -9688,7 +9879,7 @@
                                    "NombreMuestra":"Suero / Tubo Amarillo",
                                    "IdArea":15,
                                    "IdMetodo":5,
-                                   "NombreMetodo":"Quimioluminiscencia",
+                                   "NombreMetodo":"Quimioluminiscencia de Micropartículas Magnéticas (CLIA)",
                                    "CodigoExamen":"BIO120",
                                    "AbreviaturaExamen":"FOL",
                                    "NombreExamen":"ACIDO FOLICO (FOLATO) SÉRICO",
@@ -9743,7 +9934,7 @@
                                    "NombreMuestra":"Suero / Tubo Amarillo",
                                    "IdArea":15,
                                    "IdMetodo":5,
-                                   "NombreMetodo":"Quimioluminiscencia",
+                                   "NombreMetodo":"Quimioluminiscencia de Micropartículas Magnéticas (CLIA)",
                                    "CodigoExamen":"BIO121",
                                    "AbreviaturaExamen":"VTD25",
                                    "NombreExamen":"VITAMINA D 25 HIDROXI (COLECALCIFEROL)",
@@ -9900,22 +10091,6 @@
                                    "MuestraAdicional":null,
                                    "CostoPrueba":14.00,
                                     "ExamenPerfil":[{
-                             "IdExamen":752,
-                             "NombreExamen":"GLUCOSA 6 FOSFATO DESHIDROGENASA (HEMOGLOBINA)",
-                             "IdMuestra":30,
-                             "NombreMuestra":"Sangre entera con EDTA / Tubo tapa lila",
-                             "CodigoExamen":"",
-                             "AbreviaturaExamen":"G6PDH"
-                          }
-                    ,{
-                             "IdExamen":223,
-                             "NombreExamen":"GLUCOSA 6 FOSFATO DESHIDROGENASA (ERITROCITOS)",
-                             "IdMuestra":30,
-                             "NombreMuestra":"Sangre entera con EDTA / Tubo tapa lila",
-                             "CodigoExamen":"BIO123",
-                             "AbreviaturaExamen":"G6FD"
-                          }
-                    ,{
                              "IdExamen":594,
                              "NombreExamen":"CONTEO DE ERITROCITOS",
                              "IdMuestra":30,
@@ -9930,6 +10105,22 @@
                              "NombreMuestra":"Sangre entera con EDTA / Tubo tapa lila",
                              "CodigoExamen":"BIO123.2",
                              "AbreviaturaExamen":"HBG6PDH"
+                          }
+                    ,{
+                             "IdExamen":223,
+                             "NombreExamen":"GLUCOSA 6 FOSFATO DESHIDROGENASA (ERITROCITOS)",
+                             "IdMuestra":30,
+                             "NombreMuestra":"Sangre entera con EDTA / Tubo tapa lila",
+                             "CodigoExamen":"BIO123",
+                             "AbreviaturaExamen":"G6FD"
+                          }
+                    ,{
+                             "IdExamen":752,
+                             "NombreExamen":"GLUCOSA 6 FOSFATO DESHIDROGENASA (HEMOGLOBINA)",
+                             "IdMuestra":30,
+                             "NombreMuestra":"Sangre entera con EDTA / Tubo tapa lila",
+                             "CodigoExamen":"",
+                             "AbreviaturaExamen":"G6PDH"
                           }
                     
                                ],
@@ -10011,7 +10202,7 @@
                                    "NombreMuestra":"Suero / Tubo Amarillo",
                                    "IdArea":15,
                                    "IdMetodo":5,
-                                   "NombreMetodo":"Quimioluminiscencia",
+                                   "NombreMetodo":"Quimioluminiscencia de Micropartículas Magnéticas (CLIA)",
                                    "CodigoExamen":"BIO127",
                                    "AbreviaturaExamen":"EPO",
                                    "NombreExamen":"ERITROPOYETINA",
@@ -11588,7 +11779,7 @@
                                    "NombreMuestra":"Sangre entera con EDTA / Tubo tapa lila",
                                    "IdArea":15,
                                    "IdMetodo":5,
-                                   "NombreMetodo":"Quimioluminiscencia",
+                                   "NombreMetodo":"Quimioluminiscencia de Micropartículas Magnéticas (CLIA)",
                                    "CodigoExamen":"BIO150",
                                    "AbreviaturaExamen":"FOLERI",
                                    "NombreExamen":"ACIDO FOLICO (FOLATO) ERITROCITARIO",
@@ -14052,51 +14243,51 @@
                                    "CostoPrueba":13.75,
                                     "ExamenPerfil":[{
                              "IdExamen":301,
-                             "NombreExamen":"COCAINA EN ORINA",
+                             "NombreExamen":"COCAINA (COC) EN ORINA",
                              "IdMuestra":22,
                              "NombreMuestra":"Orina espontánea / Frasco para orina",
                              "CodigoExamen":"DYF005",
-                             "AbreviaturaExamen":"COCO"
+                             "AbreviaturaExamen":"COCU"
                           }
                     ,{
                              "IdExamen":302,
-                             "NombreExamen":"MARIHUANA (TETRAHIDROCANBINOL) EN ORINA",
+                             "NombreExamen":"MARIHUANA (THC-TETRAHIDROCANBINOL) EN ORINA",
                              "IdMuestra":22,
                              "NombreMuestra":"Orina espontánea / Frasco para orina",
                              "CodigoExamen":"DYF006",
-                             "AbreviaturaExamen":"MRHO"
+                             "AbreviaturaExamen":"THCU"
                           }
                     ,{
                              "IdExamen":303,
-                             "NombreExamen":"METANFETAMINAS EN ORINA",
+                             "NombreExamen":"METANFETAMINAS (MET) EN ORINA",
                              "IdMuestra":22,
                              "NombreMuestra":"Orina espontánea / Frasco para orina",
                              "CodigoExamen":"DYF007",
-                             "AbreviaturaExamen":"METO"
+                             "AbreviaturaExamen":"METU"
                           }
                     ,{
                              "IdExamen":305,
-                             "NombreExamen":"MORFINA (OPIACEOS) EN ORINA",
+                             "NombreExamen":"MORFINA (MOP) EN ORINA",
                              "IdMuestra":22,
                              "NombreMuestra":"Orina espontánea / Frasco para orina",
                              "CodigoExamen":"DYF009",
-                             "AbreviaturaExamen":"MORO"
+                             "AbreviaturaExamen":"MOP"
                           }
                     ,{
                              "IdExamen":306,
-                             "NombreExamen":"ANFETAMINAS EN ORINA",
+                             "NombreExamen":"ANFETAMINAS (AMP) EN ORINA",
                              "IdMuestra":22,
                              "NombreMuestra":"Orina espontánea / Frasco para orina",
                              "CodigoExamen":"DYF011",
-                             "AbreviaturaExamen":"ANFD"
+                             "AbreviaturaExamen":"AMPU"
                           }
                     ,{
                              "IdExamen":308,
-                             "NombreExamen":"BENZODIAZEPINAS EN ORINA",
+                             "NombreExamen":"BENZODIAZEPINAS (BZO) EN ORINA",
                              "IdMuestra":22,
                              "NombreMuestra":"Orina espontánea / Frasco para orina",
                              "CodigoExamen":"DYF013",
-                             "AbreviaturaExamen":"BEND"
+                             "AbreviaturaExamen":"BZO"
                           }
                     
                                ],
@@ -14155,79 +14346,79 @@
                                    "CostoPrueba":17.75,
                                     "ExamenPerfil":[{
                              "IdExamen":301,
-                             "NombreExamen":"COCAINA EN ORINA",
+                             "NombreExamen":"COCAINA (COC) EN ORINA",
                              "IdMuestra":22,
                              "NombreMuestra":"Orina espontánea / Frasco para orina",
                              "CodigoExamen":"DYF005",
-                             "AbreviaturaExamen":"COCO"
+                             "AbreviaturaExamen":"COCU"
                           }
                     ,{
                              "IdExamen":302,
-                             "NombreExamen":"MARIHUANA (TETRAHIDROCANBINOL) EN ORINA",
+                             "NombreExamen":"MARIHUANA (THC-TETRAHIDROCANBINOL) EN ORINA",
                              "IdMuestra":22,
                              "NombreMuestra":"Orina espontánea / Frasco para orina",
                              "CodigoExamen":"DYF006",
-                             "AbreviaturaExamen":"MRHO"
+                             "AbreviaturaExamen":"THCU"
                           }
                     ,{
                              "IdExamen":303,
-                             "NombreExamen":"METANFETAMINAS EN ORINA",
+                             "NombreExamen":"METANFETAMINAS (MET) EN ORINA",
                              "IdMuestra":22,
                              "NombreMuestra":"Orina espontánea / Frasco para orina",
                              "CodigoExamen":"DYF007",
-                             "AbreviaturaExamen":"METO"
+                             "AbreviaturaExamen":"METU"
                           }
                     ,{
                              "IdExamen":304,
-                             "NombreExamen":"EXTASIS (METILDIOXOMETANFETAMINA) EN ORINA ",
+                             "NombreExamen":"EXTASIS (MDMA-METILDIOXOMETANFETAMINA) EN ORINA ",
                              "IdMuestra":22,
                              "NombreMuestra":"Orina espontánea / Frasco para orina",
                              "CodigoExamen":"DYF008",
-                             "AbreviaturaExamen":"EXTO"
+                             "AbreviaturaExamen":"MDMAU"
                           }
                     ,{
                              "IdExamen":305,
-                             "NombreExamen":"MORFINA (OPIACEOS) EN ORINA",
+                             "NombreExamen":"MORFINA (MOP) EN ORINA",
                              "IdMuestra":22,
                              "NombreMuestra":"Orina espontánea / Frasco para orina",
                              "CodigoExamen":"DYF009",
-                             "AbreviaturaExamen":"MORO"
+                             "AbreviaturaExamen":"MOP"
                           }
                     ,{
                              "IdExamen":306,
-                             "NombreExamen":"ANFETAMINAS EN ORINA",
+                             "NombreExamen":"ANFETAMINAS (AMP) EN ORINA",
                              "IdMuestra":22,
                              "NombreMuestra":"Orina espontánea / Frasco para orina",
                              "CodigoExamen":"DYF011",
-                             "AbreviaturaExamen":"ANFD"
+                             "AbreviaturaExamen":"AMPU"
                           }
                     ,{
                              "IdExamen":307,
-                             "NombreExamen":"BARBITURICOS EN ORINA",
+                             "NombreExamen":"BARBITURICOS (BARB) EN ORINA",
                              "IdMuestra":22,
                              "NombreMuestra":"Orina espontánea / Frasco para orina",
                              "CodigoExamen":"DYF012",
-                             "AbreviaturaExamen":"BARD"
+                             "AbreviaturaExamen":"BARU"
                           }
                     ,{
                              "IdExamen":308,
-                             "NombreExamen":"BENZODIAZEPINAS EN ORINA",
+                             "NombreExamen":"BENZODIAZEPINAS (BZO) EN ORINA",
                              "IdMuestra":22,
                              "NombreMuestra":"Orina espontánea / Frasco para orina",
                              "CodigoExamen":"DYF013",
-                             "AbreviaturaExamen":"BEND"
+                             "AbreviaturaExamen":"BZO"
                           }
                     ,{
                              "IdExamen":309,
-                             "NombreExamen":"METADONA EN ORINA",
+                             "NombreExamen":"METADONA (MTD) EN ORINA",
                              "IdMuestra":22,
                              "NombreMuestra":"Orina espontánea / Frasco para orina",
                              "CodigoExamen":"DYF014",
-                             "AbreviaturaExamen":"METD"
+                             "AbreviaturaExamen":"MTDU"
                           }
                     ,{
                              "IdExamen":310,
-                             "NombreExamen":"FENCICLIDINA EN ORINA",
+                             "NombreExamen":"FENCICLIDINA (PCP) EN ORINA",
                              "IdMuestra":22,
                              "NombreMuestra":"Orina espontánea / Frasco para orina",
                              "CodigoExamen":"DYF015",
@@ -14258,7 +14449,7 @@
                                    "NombreMuestra":"Suero / Tubo Amarillo",
                                    "IdArea":7,
                                    "IdMetodo":5,
-                                   "NombreMetodo":"Quimioluminiscencia",
+                                   "NombreMetodo":"Quimioluminiscencia de Micropartículas Magnéticas (CLIA)",
                                    "CodigoExamen":"DYF018",
                                    "AbreviaturaExamen":"DGX",
                                    "NombreExamen":"DIGOXINA",
@@ -18239,7 +18430,7 @@
                                    "NombreMuestra":"Suero / Tubo Amarillo",
                                    "IdArea":12,
                                    "IdMetodo":5,
-                                   "NombreMetodo":"Quimioluminiscencia",
+                                   "NombreMetodo":"Quimioluminiscencia de Micropartículas Magnéticas (CLIA)",
                                    "CodigoExamen":"INF031",
                                    "AbreviaturaExamen":"HBSAC",
                                    "NombreExamen":"HEPATITIS B, ANTICUERPOS DE SUPERFICIE (HBsAC - AC VACUNAL)",
@@ -19889,7 +20080,7 @@
                                    "NombreMuestra":"Suero / Tubo Amarillo",
                                    "IdArea":10,
                                    "IdMetodo":5,
-                                   "NombreMetodo":"Quimioluminiscencia",
+                                   "NombreMetodo":"Quimioluminiscencia de Micropartículas Magnéticas (CLIA)",
                                    "CodigoExamen":"INM001",
                                    "AbreviaturaExamen":"FT4",
                                    "NombreExamen":"TIROXINA LIBRE (FT4)",
@@ -19944,7 +20135,7 @@
                                    "NombreMuestra":"Suero / Tubo Amarillo",
                                    "IdArea":10,
                                    "IdMetodo":5,
-                                   "NombreMetodo":"Quimioluminiscencia",
+                                   "NombreMetodo":"Quimioluminiscencia de Micropartículas Magnéticas (CLIA)",
                                    "CodigoExamen":"INM002",
                                    "AbreviaturaExamen":"TT4",
                                    "NombreExamen":"TIROXINA TOTAL (TT4)",
@@ -19999,7 +20190,7 @@
                                    "NombreMuestra":"Suero / Tubo Amarillo",
                                    "IdArea":10,
                                    "IdMetodo":5,
-                                   "NombreMetodo":"Quimioluminiscencia",
+                                   "NombreMetodo":"Quimioluminiscencia de Micropartículas Magnéticas (CLIA)",
                                    "CodigoExamen":"INM003",
                                    "AbreviaturaExamen":"FT3",
                                    "NombreExamen":"TRIYODOTIRONINA LIBRE (FT3)",
@@ -20054,7 +20245,7 @@
                                    "NombreMuestra":"Suero / Tubo Amarillo",
                                    "IdArea":10,
                                    "IdMetodo":5,
-                                   "NombreMetodo":"Quimioluminiscencia",
+                                   "NombreMetodo":"Quimioluminiscencia de Micropartículas Magnéticas (CLIA)",
                                    "CodigoExamen":"INM004",
                                    "AbreviaturaExamen":"TT3",
                                    "NombreExamen":"TRIYODOTIRONINA TOTAL (TT3)",
@@ -20109,7 +20300,7 @@
                                    "NombreMuestra":"Suero / Tubo Amarillo",
                                    "IdArea":10,
                                    "IdMetodo":5,
-                                   "NombreMetodo":"Quimioluminiscencia",
+                                   "NombreMetodo":"Quimioluminiscencia de Micropartículas Magnéticas (CLIA)",
                                    "CodigoExamen":"INM005",
                                    "AbreviaturaExamen":"TSH",
                                    "NombreExamen":"HORMONA ESTIMULANTE DE LA TIROIDES (TSH)",
@@ -20164,7 +20355,7 @@
                                    "NombreMuestra":"Suero / Tubo Amarillo",
                                    "IdArea":10,
                                    "IdMetodo":5,
-                                   "NombreMetodo":"Quimioluminiscencia",
+                                   "NombreMetodo":"Quimioluminiscencia de Micropartículas Magnéticas (CLIA)",
                                    "CodigoExamen":"INM006",
                                    "AbreviaturaExamen":"TGB",
                                    "NombreExamen":"TIROGLOBULINA (TG)",
@@ -20219,7 +20410,7 @@
                                    "NombreMuestra":"Suero / Tubo Amarillo",
                                    "IdArea":10,
                                    "IdMetodo":5,
-                                   "NombreMetodo":"Quimioluminiscencia",
+                                   "NombreMetodo":"Quimioluminiscencia de Micropartículas Magnéticas (CLIA)",
                                    "CodigoExamen":"INM007",
                                    "AbreviaturaExamen":"TGBU",
                                    "NombreExamen":"THYROID UPTAKE",
@@ -20274,7 +20465,7 @@
                                    "NombreMuestra":"Suero / Tubo Amarillo",
                                    "IdArea":10,
                                    "IdMetodo":5,
-                                   "NombreMetodo":"Quimioluminiscencia",
+                                   "NombreMetodo":"Quimioluminiscencia de Micropartículas Magnéticas (CLIA)",
                                    "CodigoExamen":"INM008",
                                    "AbreviaturaExamen":"LH",
                                    "NombreExamen":"HORMONA LUTEINIZANTE (LH)",
@@ -20329,7 +20520,7 @@
                                    "NombreMuestra":"Suero / Tubo Amarillo",
                                    "IdArea":10,
                                    "IdMetodo":5,
-                                   "NombreMetodo":"Quimioluminiscencia",
+                                   "NombreMetodo":"Quimioluminiscencia de Micropartículas Magnéticas (CLIA)",
                                    "CodigoExamen":"INM009",
                                    "AbreviaturaExamen":"FSH",
                                    "NombreExamen":"HORMONA FOLICULO ESTIMULANTE (FSH)",
@@ -20384,7 +20575,7 @@
                                    "NombreMuestra":"Suero / Tubo Amarillo",
                                    "IdArea":10,
                                    "IdMetodo":5,
-                                   "NombreMetodo":"Quimioluminiscencia",
+                                   "NombreMetodo":"Quimioluminiscencia de Micropartículas Magnéticas (CLIA)",
                                    "CodigoExamen":"INM010",
                                    "AbreviaturaExamen":"PRL",
                                    "NombreExamen":"PROLACTINA (PRL)",
@@ -20439,7 +20630,7 @@
                                    "NombreMuestra":"Suero / Tubo Amarillo",
                                    "IdArea":10,
                                    "IdMetodo":5,
-                                   "NombreMetodo":"Quimioluminiscencia",
+                                   "NombreMetodo":"Quimioluminiscencia de Micropartículas Magnéticas (CLIA)",
                                    "CodigoExamen":"INM011",
                                    "AbreviaturaExamen":"EST",
                                    "NombreExamen":"ESTRADIOL (E2)",
@@ -20494,7 +20685,7 @@
                                    "NombreMuestra":"Suero / Tubo Amarillo",
                                    "IdArea":10,
                                    "IdMetodo":5,
-                                   "NombreMetodo":"Quimioluminiscencia",
+                                   "NombreMetodo":"Quimioluminiscencia de Micropartículas Magnéticas (CLIA)",
                                    "CodigoExamen":"INM012",
                                    "AbreviaturaExamen":"ESTT",
                                    "NombreExamen":"ESTRIOL TOTAL (E3)",
@@ -20549,7 +20740,7 @@
                                    "NombreMuestra":"Suero / Tubo Amarillo",
                                    "IdArea":10,
                                    "IdMetodo":5,
-                                   "NombreMetodo":"Quimioluminiscencia",
+                                   "NombreMetodo":"Quimioluminiscencia de Micropartículas Magnéticas (CLIA)",
                                    "CodigoExamen":"INM013",
                                    "AbreviaturaExamen":"ESTU",
                                    "NombreExamen":"ESTRIOL NO CONJUGADO",
@@ -20659,7 +20850,7 @@
                                    "NombreMuestra":"Suero / Tubo Amarillo",
                                    "IdArea":10,
                                    "IdMetodo":5,
-                                   "NombreMetodo":"Quimioluminiscencia",
+                                   "NombreMetodo":"Quimioluminiscencia de Micropartículas Magnéticas (CLIA)",
                                    "CodigoExamen":"INM015",
                                    "AbreviaturaExamen":"PROG",
                                    "NombreExamen":"PROGESTERONA (PROG)",
@@ -20769,7 +20960,7 @@
                                    "NombreMuestra":"Suero / Tubo Amarillo",
                                    "IdArea":10,
                                    "IdMetodo":5,
-                                   "NombreMetodo":"Quimioluminiscencia",
+                                   "NombreMetodo":"Quimioluminiscencia de Micropartículas Magnéticas (CLIA)",
                                    "CodigoExamen":"INM017",
                                    "AbreviaturaExamen":"TEST",
                                    "NombreExamen":"TESTOSTERONA TOTAL",
@@ -21044,7 +21235,7 @@
                                    "NombreMuestra":"Suero / Tubo Amarillo",
                                    "IdArea":10,
                                    "IdMetodo":5,
-                                   "NombreMetodo":"Quimioluminiscencia",
+                                   "NombreMetodo":"Quimioluminiscencia de Micropartículas Magnéticas (CLIA)",
                                    "CodigoExamen":"INM022",
                                    "AbreviaturaExamen":"HCG CUANTI",
                                    "NombreExamen":"B-HCG CUANTITATIVA",
@@ -21099,7 +21290,7 @@
                                    "NombreMuestra":"Suero / Tubo Amarillo",
                                    "IdArea":10,
                                    "IdMetodo":5,
-                                   "NombreMetodo":"Quimioluminiscencia",
+                                   "NombreMetodo":"Quimioluminiscencia de Micropartículas Magnéticas (CLIA)",
                                    "CodigoExamen":"INM023",
                                    "AbreviaturaExamen":"AMH",
                                    "NombreExamen":"HORMONA ANTIMULLERIANA (AMH)",
@@ -21154,7 +21345,7 @@
                                    "NombreMuestra":"Suero / Tubo Amarillo",
                                    "IdArea":10,
                                    "IdMetodo":5,
-                                   "NombreMetodo":"Quimioluminiscencia",
+                                   "NombreMetodo":"Quimioluminiscencia de Micropartículas Magnéticas (CLIA)",
                                    "CodigoExamen":"INM024",
                                    "AbreviaturaExamen":"SHBG",
                                    "NombreExamen":"GLOBULINA TRANSPORTADORA DE HOR. SEXUALES (SHBG)",
@@ -21209,7 +21400,7 @@
                                    "NombreMuestra":"Suero / Tubo Amarillo",
                                    "IdArea":10,
                                    "IdMetodo":5,
-                                   "NombreMetodo":"Quimioluminiscencia",
+                                   "NombreMetodo":"Quimioluminiscencia de Micropartículas Magnéticas (CLIA)",
                                    "CodigoExamen":"INM025",
                                    "AbreviaturaExamen":"INA",
                                    "NombreExamen":"INHIBINA A",
@@ -21264,7 +21455,7 @@
                                    "NombreMuestra":"Suero / Tubo Amarillo",
                                    "IdArea":14,
                                    "IdMetodo":5,
-                                   "NombreMetodo":"Quimioluminiscencia",
+                                   "NombreMetodo":"Quimioluminiscencia de Micropartículas Magnéticas (CLIA)",
                                    "CodigoExamen":"INM026",
                                    "AbreviaturaExamen":"AFP",
                                    "NombreExamen":"ALFA FETO PROTEINA (AFP)",
@@ -21319,7 +21510,7 @@
                                    "NombreMuestra":"Suero / Tubo Amarillo",
                                    "IdArea":14,
                                    "IdMetodo":5,
-                                   "NombreMetodo":"Quimioluminiscencia",
+                                   "NombreMetodo":"Quimioluminiscencia de Micropartículas Magnéticas (CLIA)",
                                    "CodigoExamen":"INM027",
                                    "AbreviaturaExamen":"CEA",
                                    "NombreExamen":"ANTIGENO CARCINO EMBRIONARIO (CEA)",
@@ -21374,7 +21565,7 @@
                                    "NombreMuestra":"Suero / Tubo Amarillo",
                                    "IdArea":14,
                                    "IdMetodo":5,
-                                   "NombreMetodo":"Quimioluminiscencia",
+                                   "NombreMetodo":"Quimioluminiscencia de Micropartículas Magnéticas (CLIA)",
                                    "CodigoExamen":"INM028",
                                    "AbreviaturaExamen":"FPSA",
                                    "NombreExamen":"ANTIGENO PROSTATICO ESPECIFICO LIBRE (F PSA)",
@@ -21429,7 +21620,7 @@
                                    "NombreMuestra":"Suero / Tubo Amarillo",
                                    "IdArea":14,
                                    "IdMetodo":5,
-                                   "NombreMetodo":"Quimioluminiscencia",
+                                   "NombreMetodo":"Quimioluminiscencia de Micropartículas Magnéticas (CLIA)",
                                    "CodigoExamen":"INM029",
                                    "AbreviaturaExamen":"TPSA",
                                    "NombreExamen":"ANTIGENO PROSTATICO ESPECIFICO TOTAL (T PSA)",
@@ -21563,7 +21754,7 @@
                                    "NombreMuestra":"Suero / Tubo Amarillo",
                                    "IdArea":14,
                                    "IdMetodo":5,
-                                   "NombreMetodo":"Quimioluminiscencia",
+                                   "NombreMetodo":"Quimioluminiscencia de Micropartículas Magnéticas (CLIA)",
                                    "CodigoExamen":"INM031",
                                    "AbreviaturaExamen":"2PPSA",
                                    "NombreExamen":"PROPSA (2)",
@@ -21618,7 +21809,7 @@
                                    "NombreMuestra":"Suero / Tubo Amarillo",
                                    "IdArea":10,
                                    "IdMetodo":5,
-                                   "NombreMetodo":"Quimioluminiscencia",
+                                   "NombreMetodo":"Quimioluminiscencia de Micropartículas Magnéticas (CLIA)",
                                    "CodigoExamen":"INM032",
                                    "AbreviaturaExamen":"INSU",
                                    "NombreExamen":"INSULINA BASAL (ULTRASENSIBLE)",
@@ -21673,7 +21864,7 @@
                                    "NombreMuestra":"Suero / Tubo Amarillo",
                                    "IdArea":10,
                                    "IdMetodo":5,
-                                   "NombreMetodo":"Quimioluminiscencia",
+                                   "NombreMetodo":"Quimioluminiscencia de Micropartículas Magnéticas (CLIA)",
                                    "CodigoExamen":"INM033",
                                    "AbreviaturaExamen":"CUI2",
                                    "NombreExamen":"CURVA DE INSULINA (2 HORAS)",
@@ -21752,7 +21943,7 @@
                                    "NombreMuestra":"Suero / Tubo Amarillo",
                                    "IdArea":10,
                                    "IdMetodo":5,
-                                   "NombreMetodo":"Quimioluminiscencia",
+                                   "NombreMetodo":"Quimioluminiscencia de Micropartículas Magnéticas (CLIA)",
                                    "CodigoExamen":"INM036",
                                    "AbreviaturaExamen":"PPC",
                                    "NombreExamen":"PEPTIDO C",
@@ -21988,7 +22179,7 @@
                                    "NombreMuestra":"Plasma con EDTA / Tubo tapa lila",
                                    "IdArea":11,
                                    "IdMetodo":5,
-                                   "NombreMetodo":"Quimioluminiscencia",
+                                   "NombreMetodo":"Quimioluminiscencia de Micropartículas Magnéticas (CLIA)",
                                    "CodigoExamen":"INM041",
                                    "AbreviaturaExamen":"BNP",
                                    "NombreExamen":"PEPTIDO NATRIURETICO CEREBRAL (BNP)",
@@ -22279,7 +22470,7 @@
                                    "NombreMuestra":"Suero / Tubo Amarillo",
                                    "IdArea":10,
                                    "IdMetodo":5,
-                                   "NombreMetodo":"Quimioluminiscencia",
+                                   "NombreMetodo":"Quimioluminiscencia de Micropartículas Magnéticas (CLIA)",
                                    "CodigoExamen":"INM046",
                                    "AbreviaturaExamen":"CCT",
                                    "NombreExamen":"CALCITONINA, (TIROCALCITONINA)",
@@ -22334,7 +22525,7 @@
                                    "NombreMuestra":"Suero / Tubo Amarillo",
                                    "IdArea":10,
                                    "IdMetodo":5,
-                                   "NombreMetodo":"Quimioluminiscencia",
+                                   "NombreMetodo":"Quimioluminiscencia de Micropartículas Magnéticas (CLIA)",
                                    "CodigoExamen":"INM047",
                                    "AbreviaturaExamen":"CORTAM",
                                    "NombreExamen":"CORTISOL AM",
@@ -22389,7 +22580,7 @@
                                    "NombreMuestra":"Suero / Tubo Amarillo",
                                    "IdArea":10,
                                    "IdMetodo":5,
-                                   "NombreMetodo":"Quimioluminiscencia",
+                                   "NombreMetodo":"Quimioluminiscencia de Micropartículas Magnéticas (CLIA)",
                                    "CodigoExamen":"INM048",
                                    "AbreviaturaExamen":"CORTPM",
                                    "NombreExamen":"CORTISOL PM",
@@ -22680,7 +22871,7 @@
                                    "NombreMuestra":"Suero / Tubo Amarillo",
                                    "IdArea":14,
                                    "IdMetodo":5,
-                                   "NombreMetodo":"Quimioluminiscencia",
+                                   "NombreMetodo":"Quimioluminiscencia de Micropartículas Magnéticas (CLIA)",
                                    "CodigoExamen":"INM053",
                                    "AbreviaturaExamen":"CYF21",
                                    "NombreExamen":"CYFRA 21-1 (CARCINOMA ESCAMOSO-PULMON)",
@@ -22735,7 +22926,7 @@
                                    "NombreMuestra":"Suero / Tubo Amarillo",
                                    "IdArea":10,
                                    "IdMetodo":5,
-                                   "NombreMetodo":"Quimioluminiscencia",
+                                   "NombreMetodo":"Quimioluminiscencia de Micropartículas Magnéticas (CLIA)",
                                    "CodigoExamen":"INM054",
                                    "AbreviaturaExamen":"DHEAS",
                                    "NombreExamen":"DEHIDROEPIANDROSTERONA-SULFATO HORMONA (DHEA-SO4)",
@@ -22845,7 +23036,7 @@
                                    "NombreMuestra":"Plasma con EDTA / Tubo tapa lila",
                                    "IdArea":10,
                                    "IdMetodo":5,
-                                   "NombreMetodo":"Quimioluminiscencia",
+                                   "NombreMetodo":"Quimioluminiscencia de Micropartículas Magnéticas (CLIA)",
                                    "CodigoExamen":"INM056",
                                    "AbreviaturaExamen":"ACTH",
                                    "NombreExamen":"HORMONA ADRENOCORTICOTROPA (ACTH)",
@@ -22900,7 +23091,7 @@
                                    "NombreMuestra":"Suero / Tubo Amarillo",
                                    "IdArea":10,
                                    "IdMetodo":5,
-                                   "NombreMetodo":"Quimioluminiscencia",
+                                   "NombreMetodo":"Quimioluminiscencia de Micropartículas Magnéticas (CLIA)",
                                    "CodigoExamen":"INM057",
                                    "AbreviaturaExamen":"HGH",
                                    "NombreExamen":"HORMONA DE CRECIMIENTO ULTRASENSIBLE (HGH)",
@@ -23065,7 +23256,7 @@
                                    "NombreMuestra":"Suero / Tubo Amarillo",
                                    "IdArea":10,
                                    "IdMetodo":5,
-                                   "NombreMetodo":"Quimioluminiscencia",
+                                   "NombreMetodo":"Quimioluminiscencia de Micropartículas Magnéticas (CLIA)",
                                    "CodigoExamen":"INM060",
                                    "AbreviaturaExamen":"PTHI",
                                    "NombreExamen":"PARATOHORMONA INTACTA (PTH INTACTA)",
@@ -23120,7 +23311,7 @@
                                    "NombreMuestra":"Suero / Tubo Amarillo",
                                    "IdArea":14,
                                    "IdMetodo":5,
-                                   "NombreMetodo":"Quimioluminiscencia",
+                                   "NombreMetodo":"Quimioluminiscencia de Micropartículas Magnéticas (CLIA)",
                                    "CodigoExamen":"INM061",
                                    "AbreviaturaExamen":"PEPCPP",
                                    "NombreExamen":"PEPTIDO C POSTPANDRIAL",
@@ -23741,7 +23932,7 @@
                                    "NombreMuestra":"Suero / Tubo Amarillo",
                                    "IdArea":11,
                                    "IdMetodo":5,
-                                   "NombreMetodo":"Quimioluminiscencia",
+                                   "NombreMetodo":"Quimioluminiscencia de Micropartículas Magnéticas (CLIA)",
                                    "CodigoExamen":"INM073",
                                    "AbreviaturaExamen":"IL6",
                                    "NombreExamen":"INTERLEUQUINA 6 (IL-6)",
@@ -23796,7 +23987,7 @@
                                    "NombreMuestra":"Suero / Tubo Amarillo",
                                    "IdArea":14,
                                    "IdMetodo":5,
-                                   "NombreMetodo":"Quimioluminiscencia",
+                                   "NombreMetodo":"Quimioluminiscencia de Micropartículas Magnéticas (CLIA)",
                                    "CodigoExamen":"INM074",
                                    "AbreviaturaExamen":"CA125",
                                    "NombreExamen":"CA 125",
@@ -23851,7 +24042,7 @@
                                    "NombreMuestra":"Suero / Tubo Amarillo",
                                    "IdArea":14,
                                    "IdMetodo":5,
-                                   "NombreMetodo":"Quimioluminiscencia",
+                                   "NombreMetodo":"Quimioluminiscencia de Micropartículas Magnéticas (CLIA)",
                                    "CodigoExamen":"INM075",
                                    "AbreviaturaExamen":"CA153",
                                    "NombreExamen":"CA 15-3",
@@ -23906,7 +24097,7 @@
                                    "NombreMuestra":"Suero / Tubo Amarillo",
                                    "IdArea":14,
                                    "IdMetodo":5,
-                                   "NombreMetodo":"Quimioluminiscencia",
+                                   "NombreMetodo":"Quimioluminiscencia de Micropartículas Magnéticas (CLIA)",
                                    "CodigoExamen":"INM076",
                                    "AbreviaturaExamen":"CA199",
                                    "NombreExamen":"CA 19-9",
@@ -23961,7 +24152,7 @@
                                    "NombreMuestra":"Suero / Tubo Amarillo",
                                    "IdArea":14,
                                    "IdMetodo":5,
-                                   "NombreMetodo":"Quimioluminiscencia",
+                                   "NombreMetodo":"Quimioluminiscencia de Micropartículas Magnéticas (CLIA)",
                                    "CodigoExamen":"INM077",
                                    "AbreviaturaExamen":"CA724",
                                    "NombreExamen":"CA 72-4 (MARCADOR TUMORAL GASTROINTESTINAL)",
@@ -24016,7 +24207,7 @@
                                    "NombreMuestra":"Suero / Tubo Amarillo",
                                    "IdArea":14,
                                    "IdMetodo":5,
-                                   "NombreMetodo":"Quimioluminiscencia",
+                                   "NombreMetodo":"Quimioluminiscencia de Micropartículas Magnéticas (CLIA)",
                                    "CodigoExamen":"INM078",
                                    "AbreviaturaExamen":"NSE",
                                    "NombreExamen":"NEUROENOLASA ESPECIFICA (NSE)",
@@ -24126,7 +24317,7 @@
                                    "NombreMuestra":"Suero / Tubo Amarillo",
                                    "IdArea":11,
                                    "IdMetodo":5,
-                                   "NombreMetodo":"Quimioluminiscencia",
+                                   "NombreMetodo":"Quimioluminiscencia de Micropartículas Magnéticas (CLIA)",
                                    "CodigoExamen":"INM080",
                                    "AbreviaturaExamen":"RST",
                                    "NombreExamen":"RECEPTOR SOLUBLE DE TRANSFERRINA",
@@ -24181,7 +24372,7 @@
                                    "NombreMuestra":"Suero / Tubo Amarillo",
                                    "IdArea":10,
                                    "IdMetodo":5,
-                                   "NombreMetodo":"Quimioluminiscencia",
+                                   "NombreMetodo":"Quimioluminiscencia de Micropartículas Magnéticas (CLIA)",
                                    "CodigoExamen":"INM082",
                                    "AbreviaturaExamen":"TESBIO",
                                    "NombreExamen":"TESTOSTERONA BIODISPONIBLE (TB)",
@@ -24268,7 +24459,7 @@
                                    "NombreMuestra":"Suero / Tubo Amarillo",
                                    "IdArea":10,
                                    "IdMetodo":5,
-                                   "NombreMetodo":"Quimioluminiscencia",
+                                   "NombreMetodo":"Quimioluminiscencia de Micropartículas Magnéticas (CLIA)",
                                    "CodigoExamen":"INM083",
                                    "AbreviaturaExamen":"IAL",
                                    "NombreExamen":"INDICE DE ANDROGENOS LIBRE (IAL-FAI)",
@@ -24347,7 +24538,7 @@
                                    "NombreMuestra":"Sangre entera con EDTA / Tubo tapa lila",
                                    "IdArea":15,
                                    "IdMetodo":5,
-                                   "NombreMetodo":"Quimioluminiscencia",
+                                   "NombreMetodo":"Quimioluminiscencia de Micropartículas Magnéticas (CLIA)",
                                    "CodigoExamen":"INM085",
                                    "AbreviaturaExamen":"AFSE",
                                    "NombreExamen":"ACIDO FOLICO SERICO E INTRAERITROCITARIO",
@@ -24449,6 +24640,14 @@
                                    "MuestraAdicional":null,
                                    "CostoPrueba":15.50,
                                     "ExamenPerfil":[{
+                             "IdExamen":1056,
+                             "NombreExamen":"OLOR",
+                             "IdMuestra":33,
+                             "NombreMuestra":"Semen / Frasco estéril",
+                             "CodigoExamen":"LQB001",
+                             "AbreviaturaExamen":"OLOR"
+                          }
+                    ,{
                              "IdExamen":834,
                              "NombreExamen":"Color",
                              "IdMuestra":33,
@@ -24535,6 +24734,14 @@
                              "NombreMuestra":"Semen / Frasco estéril",
                              "CodigoExamen":"",
                              "AbreviaturaExamen":"CELRED SEM"
+                          }
+                    ,{
+                             "IdExamen":1052,
+                             "NombreExamen":"Vitalidad",
+                             "IdMuestra":33,
+                             "NombreMuestra":"Semen / Frasco estéril",
+                             "CodigoExamen":"LQB001",
+                             "AbreviaturaExamen":"VITA SEM"
                           }
                     
                                ],
@@ -24761,7 +24968,7 @@
                                    "DeltaMax":0.0,
                                    "ComentarioFijo":null,
                                    "ComentarioImpresion":null,
-                                   "Activo":false,
+                                   "Activo":true,
                                    "DescripcionAnalito":null,
                                    "EntregaResultado":null,
                                    "MuestraAdicional":null,
@@ -27438,8 +27645,8 @@
                                    "IdMuestra":35,
                                    "NombreMuestra":"Suero / Tubo Amarillo",
                                    "IdArea":2,
-                                   "IdMetodo":3,
-                                   "NombreMetodo":"ELISA",
+                                   "IdMetodo":1,
+                                   "NombreMetodo":"Método Standar",
                                    "CodigoExamen":"MOL013",
                                    "AbreviaturaExamen":"HVCC",
                                    "NombreExamen":"HEPATITIS C, RNA CARGA VIRAL",
@@ -27464,12 +27671,36 @@
                                    "DeltaMax":0.0,
                                    "ComentarioFijo":null,
                                    "ComentarioImpresion":null,
-                                   "Activo":false,
+                                   "Activo":true,
                                    "DescripcionAnalito":null,
                                    "EntregaResultado":null,
                                    "MuestraAdicional":null,
-                                   "CostoPrueba":125.00,
-                                    "ExamenPerfil":[
+                                   "CostoPrueba":172.50,
+                                    "ExamenPerfil":[{
+                             "IdExamen":1043,
+                             "NombreExamen":"HEPATITIS C, Detección de RNA viral",
+                             "IdMuestra":35,
+                             "NombreMuestra":"Suero / Tubo Amarillo",
+                             "CodigoExamen":"MOL013",
+                             "AbreviaturaExamen":"HCVCV"
+                          }
+                    ,{
+                             "IdExamen":1044,
+                             "NombreExamen":"Carga Viral Hepatitis C (HCV RT-PCR)",
+                             "IdMuestra":35,
+                             "NombreMuestra":"Suero / Tubo Amarillo",
+                             "CodigoExamen":"MOL013",
+                             "AbreviaturaExamen":""
+                          }
+                    ,{
+                             "IdExamen":1045,
+                             "NombreExamen":"LOG(10) ",
+                             "IdMuestra":35,
+                             "NombreMuestra":"Suero / Tubo Amarillo",
+                             "CodigoExamen":"MOL013",
+                             "AbreviaturaExamen":""
+                          }
+                    
                                ],
                                 "ValorReferencia":[
                                   {
@@ -28914,14 +29145,14 @@
                                    "IdExamen":420,
                                    "IdUnidad":0,
                                    "IdLaboratorio":0,
-                                   "IdMuestra":35,
-                                   "NombreMuestra":"Suero / Tubo Amarillo",
+                                   "IdMuestra":25,
+                                   "NombreMuestra":"Plasma con EDTA / Tubo tapa lila",
                                    "IdArea":2,
-                                   "IdMetodo":3,
-                                   "NombreMetodo":"ELISA",
+                                   "IdMetodo":1,
+                                   "NombreMetodo":"Método Standar",
                                    "CodigoExamen":"MOL040",
                                    "AbreviaturaExamen":"HIVC",
-                                   "NombreExamen":"VIH 1 EN PLASMA, RNA CARGA VIRAL",
+                                   "NombreExamen":"VIH 1 CARGA VIRAL Y DETECCION (RNA PCR)",
                                    "Genero":"A",
                                    "EdadMinima":0,
                                    "EdadMaxima":0,
@@ -28943,12 +29174,28 @@
                                    "DeltaMax":0.0,
                                    "ComentarioFijo":null,
                                    "ComentarioImpresion":null,
-                                   "Activo":false,
+                                   "Activo":true,
                                    "DescripcionAnalito":null,
                                    "EntregaResultado":null,
                                    "MuestraAdicional":null,
                                    "CostoPrueba":53.00,
-                                    "ExamenPerfil":[
+                                    "ExamenPerfil":[{
+                             "IdExamen":1047,
+                             "NombreExamen":"VIH 1 CARGA VIRAL (RNA PCR)",
+                             "IdMuestra":30,
+                             "NombreMuestra":"Sangre entera con EDTA / Tubo tapa lila",
+                             "CodigoExamen":"MOL040",
+                             "AbreviaturaExamen":"HIVCV"
+                          }
+                    ,{
+                             "IdExamen":1054,
+                             "NombreExamen":"LOG(10)",
+                             "IdMuestra":25,
+                             "NombreMuestra":"Plasma con EDTA / Tubo tapa lila",
+                             "CodigoExamen":"MOL040",
+                             "AbreviaturaExamen":"LOG10"
+                          }
+                    
                                ],
                                 "ValorReferencia":[
                                   {
@@ -31890,7 +32137,7 @@
                                    "NombreMuestra":"Sangre entera con EDTA / Tubo tapa lila",
                                    "IdArea":15,
                                    "IdMetodo":5,
-                                   "NombreMetodo":"Quimioluminiscencia",
+                                   "NombreMetodo":"Quimioluminiscencia de Micropartículas Magnéticas (CLIA)",
                                    "CodigoExamen":"INM091",
                                    "AbreviaturaExamen":"",
                                    "NombreExamen":"VITAMINA B12-ACIDO FOLICO SERICO E INTRAERITROCITARIO",
@@ -34227,7 +34474,7 @@
                                    "NombreMuestra":"Suero2H / Tubo con gel o sin gel activador",
                                    "IdArea":10,
                                    "IdMetodo":5,
-                                   "NombreMetodo":"Quimioluminiscencia",
+                                   "NombreMetodo":"Quimioluminiscencia de Micropartículas Magnéticas (CLIA)",
                                    "CodigoExamen":"INM035",
                                    "AbreviaturaExamen":"",
                                    "NombreExamen":"INSULINA 2 HORAS",
@@ -34510,7 +34757,7 @@
                                    "DescripcionAnalito":null,
                                    "EntregaResultado":null,
                                    "MuestraAdicional":null,
-                                   "CostoPrueba":0.00,
+                                   "CostoPrueba":7.00,
                                     "ExamenPerfil":[
                                ],
                                 "ValorReferencia":[
@@ -35617,6 +35864,542 @@
                                    "EntregaResultado":null,
                                    "MuestraAdicional":null,
                                    "CostoPrueba":8.50,
+                                    "ExamenPerfil":[
+                               ],
+                                "ValorReferencia":[
+                                  {
+                                     "TiempoMin":0,
+                                     "TiempoMax":0,
+                                     "UnidadTiempo":null,
+                                     "Genero":null,
+                                     "RefMaxima":0.00,
+                                     "RefMinima":0.0,
+                                     "PanMinima":0.00,
+                                     "PanMaxima":0.00,
+                                     "Observaciones":null
+                                  }
+                               ],
+                               "Correlacionados":[
+                               ]
+                            },{
+                                   "IdExamen":561,
+                                   "IdUnidad":0,
+                                   "IdLaboratorio":0,
+                                   "IdMuestra":30,
+                                   "NombreMuestra":"Sangre entera con EDTA / Tubo tapa lila",
+                                   "IdArea":21,
+                                   "IdMetodo":1,
+                                   "NombreMetodo":"Método Standar",
+                                   "CodigoExamen":"CT001",
+                                   "AbreviaturaExamen":"CD348",
+                                   "NombreExamen":"LINFOCITOS T (CD3,CD4,CD8)",
+                                   "Genero":"A",
+                                   "EdadMinima":0,
+                                   "EdadMaxima":0,
+                                   "NumeroDecimales":2,
+                                   "Formula":null,
+                                   "AplicaFormula":false,
+                                   "Autovalidacion":"Manual",
+                                   "DiasProceso":3,
+                                   "MinMinResultadoEmergencia":0,
+                                   "MinMinResultadoRutina":60,
+                                   "TipoResultado":"N",
+                                   "AplicaSLA":false,
+                                   "EsMicrobiologia":false,
+                                   "EsPerfil":false,
+                                   "EsConfidencial":false,
+                                   "Orden":561,
+                                   "DeltaDias":0,
+                                   "DeltaMin":0.0,
+                                   "DeltaMax":0.0,
+                                   "ComentarioFijo":null,
+                                   "ComentarioImpresion":null,
+                                   "Activo":true,
+                                   "DescripcionAnalito":null,
+                                   "EntregaResultado":null,
+                                   "MuestraAdicional":null,
+                                   "CostoPrueba":0.00,
+                                    "ExamenPerfil":[{
+                             "IdExamen":1046,
+                             "NombreExamen":"Linfocitos Totales",
+                             "IdMuestra":30,
+                             "NombreMuestra":"Sangre entera con EDTA / Tubo tapa lila",
+                             "CodigoExamen":"CT001",
+                             "AbreviaturaExamen":"LINFT"
+                          }
+                    ,{
+                             "IdExamen":1048,
+                             "NombreExamen":"Total de Linfocitos T (CD3) ",
+                             "IdMuestra":30,
+                             "NombreMuestra":"Sangre entera con EDTA / Tubo tapa lila",
+                             "CodigoExamen":"CT001",
+                             "AbreviaturaExamen":"CD3"
+                          }
+                    ,{
+                             "IdExamen":1049,
+                             "NombreExamen":"Conteo de Linfocitos T CD3+ CD4+",
+                             "IdMuestra":30,
+                             "NombreMuestra":"Sangre entera con EDTA / Tubo tapa lila",
+                             "CodigoExamen":"CT001",
+                             "AbreviaturaExamen":"CD4"
+                          }
+                    ,{
+                             "IdExamen":1050,
+                             "NombreExamen":"Conteo de Linfocitos T CD3+ CD8+",
+                             "IdMuestra":30,
+                             "NombreMuestra":"Sangre entera con EDTA / Tubo tapa lila",
+                             "CodigoExamen":"CT001",
+                             "AbreviaturaExamen":"CD8"
+                          }
+                    ,{
+                             "IdExamen":1051,
+                             "NombreExamen":"Índice CD4/CD8",
+                             "IdMuestra":30,
+                             "NombreMuestra":"Sangre entera con EDTA / Tubo tapa lila",
+                             "CodigoExamen":"CT001",
+                             "AbreviaturaExamen":"CD4CD8"
+                          }
+                    
+                               ],
+                                "ValorReferencia":[
+                                  {
+                                     "TiempoMin":0,
+                                     "TiempoMax":0,
+                                     "UnidadTiempo":null,
+                                     "Genero":null,
+                                     "RefMaxima":0.00,
+                                     "RefMinima":0.0,
+                                     "PanMinima":0.00,
+                                     "PanMaxima":0.00,
+                                     "Observaciones":null
+                                  }
+                               ],
+                               "Correlacionados":[
+                               ]
+                            },{
+                                   "IdExamen":562,
+                                   "IdUnidad":0,
+                                   "IdLaboratorio":0,
+                                   "IdMuestra":22,
+                                   "NombreMuestra":"Orina espontánea / Frasco para orina",
+                                   "IdArea":7,
+                                   "IdMetodo":1,
+                                   "NombreMetodo":"Método Standar",
+                                   "CodigoExamen":"DYF022",
+                                   "AbreviaturaExamen":"ESCO",
+                                   "NombreExamen":"ESCOPOLAMINA TEST ",
+                                   "Genero":"A",
+                                   "EdadMinima":0,
+                                   "EdadMaxima":0,
+                                   "NumeroDecimales":2,
+                                   "Formula":null,
+                                   "AplicaFormula":false,
+                                   "Autovalidacion":"Manual",
+                                   "DiasProceso":0,
+                                   "MinMinResultadoEmergencia":0,
+                                   "MinMinResultadoRutina":60,
+                                   "TipoResultado":"N",
+                                   "AplicaSLA":false,
+                                   "EsMicrobiologia":false,
+                                   "EsPerfil":false,
+                                   "EsConfidencial":false,
+                                   "Orden":562,
+                                   "DeltaDias":0,
+                                   "DeltaMin":0.0,
+                                   "DeltaMax":0.0,
+                                   "ComentarioFijo":null,
+                                   "ComentarioImpresion":null,
+                                   "Activo":true,
+                                   "DescripcionAnalito":null,
+                                   "EntregaResultado":null,
+                                   "MuestraAdicional":null,
+                                   "CostoPrueba":5.50,
+                                    "ExamenPerfil":[
+                               ],
+                                "ValorReferencia":[
+                                  {
+                                     "TiempoMin":0,
+                                     "TiempoMax":0,
+                                     "UnidadTiempo":null,
+                                     "Genero":null,
+                                     "RefMaxima":0.00,
+                                     "RefMinima":0.0,
+                                     "PanMinima":0.00,
+                                     "PanMaxima":0.00,
+                                     "Observaciones":null
+                                  }
+                               ],
+                               "Correlacionados":[
+                               ]
+                            },{
+                                   "IdExamen":563,
+                                   "IdUnidad":0,
+                                   "IdLaboratorio":0,
+                                   "IdMuestra":35,
+                                   "NombreMuestra":"Suero / Tubo Amarillo",
+                                   "IdArea":11,
+                                   "IdMetodo":1,
+                                   "NombreMetodo":"Método Standar",
+                                   "CodigoExamen":"INM100",
+                                   "AbreviaturaExamen":"LEPTIN",
+                                   "NombreExamen":"LEPTINA",
+                                   "Genero":"A",
+                                   "EdadMinima":0,
+                                   "EdadMaxima":0,
+                                   "NumeroDecimales":2,
+                                   "Formula":null,
+                                   "AplicaFormula":false,
+                                   "Autovalidacion":"Manual",
+                                   "DiasProceso":9,
+                                   "MinMinResultadoEmergencia":0,
+                                   "MinMinResultadoRutina":60,
+                                   "TipoResultado":"N",
+                                   "AplicaSLA":false,
+                                   "EsMicrobiologia":false,
+                                   "EsPerfil":false,
+                                   "EsConfidencial":false,
+                                   "Orden":563,
+                                   "DeltaDias":0,
+                                   "DeltaMin":0.0,
+                                   "DeltaMax":0.0,
+                                   "ComentarioFijo":null,
+                                   "ComentarioImpresion":null,
+                                   "Activo":true,
+                                   "DescripcionAnalito":null,
+                                   "EntregaResultado":null,
+                                   "MuestraAdicional":null,
+                                   "CostoPrueba":0.00,
+                                    "ExamenPerfil":[
+                               ],
+                                "ValorReferencia":[
+                                  {
+                                     "TiempoMin":0,
+                                     "TiempoMax":0,
+                                     "UnidadTiempo":null,
+                                     "Genero":null,
+                                     "RefMaxima":0.00,
+                                     "RefMinima":0.0,
+                                     "PanMinima":0.00,
+                                     "PanMaxima":0.00,
+                                     "Observaciones":null
+                                  }
+                               ],
+                               "Correlacionados":[
+                               ]
+                            },{
+                                   "IdExamen":566,
+                                   "IdUnidad":0,
+                                   "IdLaboratorio":0,
+                                   "IdMuestra":35,
+                                   "NombreMuestra":"Suero / Tubo Amarillo",
+                                   "IdArea":1,
+                                   "IdMetodo":3,
+                                   "NombreMetodo":"ELISA",
+                                   "CodigoExamen":"AUT052",
+                                   "AbreviaturaExamen":"AINS",
+                                   "NombreExamen":"ANTICUERPOS ANTI-INSULINA",
+                                   "Genero":"A",
+                                   "EdadMinima":0,
+                                   "EdadMaxima":0,
+                                   "NumeroDecimales":2,
+                                   "Formula":null,
+                                   "AplicaFormula":false,
+                                   "Autovalidacion":"Manual",
+                                   "DiasProceso":4,
+                                   "MinMinResultadoEmergencia":0,
+                                   "MinMinResultadoRutina":60,
+                                   "TipoResultado":"N",
+                                   "AplicaSLA":false,
+                                   "EsMicrobiologia":false,
+                                   "EsPerfil":false,
+                                   "EsConfidencial":false,
+                                   "Orden":566,
+                                   "DeltaDias":0,
+                                   "DeltaMin":0.0,
+                                   "DeltaMax":0.0,
+                                   "ComentarioFijo":null,
+                                   "ComentarioImpresion":null,
+                                   "Activo":true,
+                                   "DescripcionAnalito":null,
+                                   "EntregaResultado":null,
+                                   "MuestraAdicional":null,
+                                   "CostoPrueba":0.00,
+                                    "ExamenPerfil":[
+                               ],
+                                "ValorReferencia":[
+                                  {
+                                     "TiempoMin":0,
+                                     "TiempoMax":0,
+                                     "UnidadTiempo":null,
+                                     "Genero":null,
+                                     "RefMaxima":0.00,
+                                     "RefMinima":0.0,
+                                     "PanMinima":0.00,
+                                     "PanMaxima":0.00,
+                                     "Observaciones":null
+                                  }
+                               ],
+                               "Correlacionados":[
+                               ]
+                            },{
+                                   "IdExamen":567,
+                                   "IdUnidad":0,
+                                   "IdLaboratorio":0,
+                                   "IdMuestra":35,
+                                   "NombreMuestra":"Suero / Tubo Amarillo",
+                                   "IdArea":1,
+                                   "IdMetodo":3,
+                                   "NombreMetodo":"ELISA",
+                                   "CodigoExamen":"AUT053",
+                                   "AbreviaturaExamen":"GAD65",
+                                   "NombreExamen":"ANTICUERPOS ANTI GAD65 (GLUTAMATO DESCARBOXILASA)",
+                                   "Genero":"A",
+                                   "EdadMinima":0,
+                                   "EdadMaxima":0,
+                                   "NumeroDecimales":2,
+                                   "Formula":null,
+                                   "AplicaFormula":false,
+                                   "Autovalidacion":"Manual",
+                                   "DiasProceso":15,
+                                   "MinMinResultadoEmergencia":0,
+                                   "MinMinResultadoRutina":60,
+                                   "TipoResultado":"N",
+                                   "AplicaSLA":false,
+                                   "EsMicrobiologia":false,
+                                   "EsPerfil":false,
+                                   "EsConfidencial":false,
+                                   "Orden":567,
+                                   "DeltaDias":0,
+                                   "DeltaMin":0.0,
+                                   "DeltaMax":0.0,
+                                   "ComentarioFijo":null,
+                                   "ComentarioImpresion":null,
+                                   "Activo":true,
+                                   "DescripcionAnalito":null,
+                                   "EntregaResultado":null,
+                                   "MuestraAdicional":null,
+                                   "CostoPrueba":0.00,
+                                    "ExamenPerfil":[
+                               ],
+                                "ValorReferencia":[
+                                  {
+                                     "TiempoMin":0,
+                                     "TiempoMax":0,
+                                     "UnidadTiempo":null,
+                                     "Genero":null,
+                                     "RefMaxima":0.00,
+                                     "RefMinima":0.0,
+                                     "PanMinima":0.00,
+                                     "PanMaxima":0.00,
+                                     "Observaciones":null
+                                  }
+                               ],
+                               "Correlacionados":[
+                               ]
+                            },{
+                                   "IdExamen":568,
+                                   "IdUnidad":0,
+                                   "IdLaboratorio":0,
+                                   "IdMuestra":35,
+                                   "NombreMuestra":"Suero / Tubo Amarillo",
+                                   "IdArea":4,
+                                   "IdMetodo":10,
+                                   "NombreMetodo":"EFA: Colorimétrico - enzimático (CHOD-POD)",
+                                   "CodigoExamen":"BIO162",
+                                   "AbreviaturaExamen":"NOHDLC",
+                                   "NombreExamen":"COLESTEROL NO HDL (NO HDHL-C)",
+                                   "Genero":"A",
+                                   "EdadMinima":0,
+                                   "EdadMaxima":0,
+                                   "NumeroDecimales":2,
+                                   "Formula":null,
+                                   "AplicaFormula":false,
+                                   "Autovalidacion":"Manual",
+                                   "DiasProceso":0,
+                                   "MinMinResultadoEmergencia":0,
+                                   "MinMinResultadoRutina":60,
+                                   "TipoResultado":"N",
+                                   "AplicaSLA":false,
+                                   "EsMicrobiologia":false,
+                                   "EsPerfil":false,
+                                   "EsConfidencial":false,
+                                   "Orden":568,
+                                   "DeltaDias":0,
+                                   "DeltaMin":0.0,
+                                   "DeltaMax":0.0,
+                                   "ComentarioFijo":null,
+                                   "ComentarioImpresion":null,
+                                   "Activo":true,
+                                   "DescripcionAnalito":null,
+                                   "EntregaResultado":null,
+                                   "MuestraAdicional":null,
+                                   "CostoPrueba":3.50,
+                                    "ExamenPerfil":[{
+                             "IdExamen":1059,
+                             "NombreExamen":"COLESTEROL NO HDL (NO HDHL-C)",
+                             "IdMuestra":35,
+                             "NombreMuestra":"Suero / Tubo Amarillo",
+                             "CodigoExamen":"BIO162",
+                             "AbreviaturaExamen":"NOHDLC"
+                          }
+                    ,{
+                             "IdExamen":63,
+                             "NombreExamen":"COLESTEROL TOTAL",
+                             "IdMuestra":35,
+                             "NombreMuestra":"Suero / Tubo Amarillo",
+                             "CodigoExamen":"BIO033",
+                             "AbreviaturaExamen":"COL"
+                          }
+                    ,{
+                             "IdExamen":64,
+                             "NombreExamen":"COLESTEROL DE ALTA DENSIDAD (HDL-COLESTEROL)",
+                             "IdMuestra":35,
+                             "NombreMuestra":"Suero / Tubo Amarillo",
+                             "CodigoExamen":"BIO034",
+                             "AbreviaturaExamen":"HDL"
+                          }
+                    
+                               ],
+                                "ValorReferencia":[
+                                  {
+                                     "TiempoMin":0,
+                                     "TiempoMax":0,
+                                     "UnidadTiempo":null,
+                                     "Genero":null,
+                                     "RefMaxima":0.00,
+                                     "RefMinima":0.0,
+                                     "PanMinima":0.00,
+                                     "PanMaxima":0.00,
+                                     "Observaciones":null
+                                  }
+                               ],
+                               "Correlacionados":[
+                               ]
+                            },{
+                                   "IdExamen":569,
+                                   "IdUnidad":0,
+                                   "IdLaboratorio":0,
+                                   "IdMuestra":35,
+                                   "NombreMuestra":"Suero / Tubo Amarillo",
+                                   "IdArea":4,
+                                   "IdMetodo":10,
+                                   "NombreMetodo":"EFA: Colorimétrico - enzimático (CHOD-POD)",
+                                   "CodigoExamen":"BIO163",
+                                   "AbreviaturaExamen":"",
+                                   "NombreExamen":"COLESTEROL REMANENTE",
+                                   "Genero":"A",
+                                   "EdadMinima":0,
+                                   "EdadMaxima":0,
+                                   "NumeroDecimales":2,
+                                   "Formula":null,
+                                   "AplicaFormula":false,
+                                   "Autovalidacion":"Manual",
+                                   "DiasProceso":0,
+                                   "MinMinResultadoEmergencia":0,
+                                   "MinMinResultadoRutina":60,
+                                   "TipoResultado":"N",
+                                   "AplicaSLA":false,
+                                   "EsMicrobiologia":false,
+                                   "EsPerfil":false,
+                                   "EsConfidencial":false,
+                                   "Orden":569,
+                                   "DeltaDias":0,
+                                   "DeltaMin":0.0,
+                                   "DeltaMax":0.0,
+                                   "ComentarioFijo":null,
+                                   "ComentarioImpresion":null,
+                                   "Activo":true,
+                                   "DescripcionAnalito":null,
+                                   "EntregaResultado":null,
+                                   "MuestraAdicional":null,
+                                   "CostoPrueba":4.50,
+                                    "ExamenPerfil":[{
+                             "IdExamen":1060,
+                             "NombreExamen":"COLESTEROL REMANENTE",
+                             "IdMuestra":35,
+                             "NombreMuestra":"Suero / Tubo Amarillo",
+                             "CodigoExamen":"BIO163",
+                             "AbreviaturaExamen":"COLREM"
+                          }
+                    ,{
+                             "IdExamen":63,
+                             "NombreExamen":"COLESTEROL TOTAL",
+                             "IdMuestra":35,
+                             "NombreMuestra":"Suero / Tubo Amarillo",
+                             "CodigoExamen":"BIO033",
+                             "AbreviaturaExamen":"COL"
+                          }
+                    ,{
+                             "IdExamen":64,
+                             "NombreExamen":"COLESTEROL DE ALTA DENSIDAD (HDL-COLESTEROL)",
+                             "IdMuestra":35,
+                             "NombreMuestra":"Suero / Tubo Amarillo",
+                             "CodigoExamen":"BIO034",
+                             "AbreviaturaExamen":"HDL"
+                          }
+                    ,{
+                             "IdExamen":65,
+                             "NombreExamen":"COLESTEROL DE BAJA DENSIDAD (LDL-COLESTEROL)",
+                             "IdMuestra":35,
+                             "NombreMuestra":"Suero / Tubo Amarillo",
+                             "CodigoExamen":"BIO035",
+                             "AbreviaturaExamen":"LDL"
+                          }
+                    
+                               ],
+                                "ValorReferencia":[
+                                  {
+                                     "TiempoMin":0,
+                                     "TiempoMax":0,
+                                     "UnidadTiempo":null,
+                                     "Genero":null,
+                                     "RefMaxima":0.00,
+                                     "RefMinima":0.0,
+                                     "PanMinima":0.00,
+                                     "PanMaxima":0.00,
+                                     "Observaciones":null
+                                  }
+                               ],
+                               "Correlacionados":[
+                               ]
+                            },{
+                                   "IdExamen":570,
+                                   "IdUnidad":0,
+                                   "IdLaboratorio":0,
+                                   "IdMuestra":22,
+                                   "NombreMuestra":"Orina espontánea / Frasco para orina",
+                                   "IdArea":10,
+                                   "IdMetodo":5,
+                                   "NombreMetodo":"Quimioluminiscencia de Micropartículas Magnéticas (CLIA)",
+                                   "CodigoExamen":"INM101",
+                                   "AbreviaturaExamen":"CORTU",
+                                   "NombreExamen":"CORTISOL EN ORINA OCASIONAL",
+                                   "Genero":"A",
+                                   "EdadMinima":0,
+                                   "EdadMaxima":0,
+                                   "NumeroDecimales":2,
+                                   "Formula":null,
+                                   "AplicaFormula":false,
+                                   "Autovalidacion":"Manual",
+                                   "DiasProceso":0,
+                                   "MinMinResultadoEmergencia":0,
+                                   "MinMinResultadoRutina":60,
+                                   "TipoResultado":"N",
+                                   "AplicaSLA":false,
+                                   "EsMicrobiologia":false,
+                                   "EsPerfil":false,
+                                   "EsConfidencial":false,
+                                   "Orden":570,
+                                   "DeltaDias":0,
+                                   "DeltaMin":0.0,
+                                   "DeltaMax":0.0,
+                                   "ComentarioFijo":null,
+                                   "ComentarioImpresion":null,
+                                   "Activo":true,
+                                   "DescripcionAnalito":null,
+                                   "EntregaResultado":null,
+                                   "MuestraAdicional":null,
+                                   "CostoPrueba":8.00,
                                     "ExamenPerfil":[
                                ],
                                 "ValorReferencia":[

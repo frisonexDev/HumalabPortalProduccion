@@ -109,6 +109,11 @@
 					nPedido = '@CodigoBarra.UnDigito' + idPedido;
 				}
 
+				if(idPedido < 9999 && idPedido > 999)
+				{
+					nPedido = '@CodigoBarra.UnDigito' + idPedido;
+				}
+
 				var fecha = moment().format("YYYY/MM/DD")
 
 				fecha = fecha.replace('/', '')
@@ -131,6 +136,8 @@
 			
 			success: function(response)
 			{
+				//GenerarRemision(response);
+
 				if(response == @Numeros.CuatroCientosUno)
 				{
 					MensajeAlerta1("@Notificaciones.TituloDanger", "@Notificaciones.DangerError");

@@ -14,6 +14,7 @@ using GDifare.Portal.Humalab.Servicio.Modelos.Cliente;
 using GDifare.Portal.Humalab.Servicio.Modelos.Facturas;
 using GDifare.Portal.Humalab.Servicio.Modelos.GestionCliente;
 using GDifare.Portal.Humalab.Servicio.Modelos.Orden;
+using GDifare.Portal.Humalab.Servicio.Modelos.PedidosLaboratorista;
 using GDifare.Portal.Humalab.Servicio.Utils;
 using GDifare.Portal.HumaLab.UI.Models;
 using GDifare.Portal.HumaLab.UI.Utils;
@@ -28,6 +29,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using OfficeOpenXml;
 using System;
+using System.IO;
 using System.Text;
 using System.Web.Helpers;
 
@@ -572,6 +574,61 @@ namespace GDifare.Portales.HumaLab.UI.Controllers
             {
                 return "01";
             }
+        }
+
+        public string ExportPruebasAdmin(string datosPruebas)
+        {
+            string excelPruebas = "";
+            DateTime now = DateTime.Now;
+            string fechaExport = now.ToString("dd/MM/yyyy HH:mm:ss");
+
+            List<PruebaExportAdmin> pruebas = JsonConvert.DeserializeObject<List<PruebaExportAdmin>>(datosPruebas);
+
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
+
+            try
+            {
+                using (MemoryStream memoryStream = new MemoryStream())
+                {
+                    using (ExcelPackage package = new ExcelPackage(memoryStream))
+                    {
+                        ExcelWorksheet worksheet = package.Workbook.Worksheets.Add("Sheet1");
+
+                        worksheet.Cells["A2"].Value = "PRUEBAS ACTIVAS E INACTIVAS";
+                        worksheet.Cells["A3"].Value = "Generado " + fechaExport;
+
+                        int rowStart = 5;
+
+                        worksheet.Cells[rowStart, 1].Value = "Codigo Prueba";
+                        worksheet.Cells[rowStart, 2].Value = "Nombre";
+                        worksheet.Cells[rowStart, 3].Value = "Muestra";                        
+                        worksheet.Cells[rowStart, 4].Value = "Estado";
+
+                        int row = rowStart + 1;
+
+                        foreach(var pruebasAdmin in pruebas)
+                        {
+                            worksheet.Cells[row, 1].Value = pruebasAdmin.CodigoExamen;
+                            worksheet.Cells[row, 2].Value = pruebasAdmin.Nombre;
+                            worksheet.Cells[row, 3].Value = pruebasAdmin.Muestra;
+                            worksheet.Cells[row, 4].Value = pruebasAdmin.Estado;
+
+                            row++;
+                        }
+
+                        package.Save();
+                    }
+
+                    byte[] excelBytes = memoryStream.ToArray();
+                    excelPruebas = Convert.ToBase64String(excelBytes);
+                }   
+            }
+            catch(Exception ex)
+            {
+                return "01";
+            }
+
+            return excelPruebas;
         }
 
     }

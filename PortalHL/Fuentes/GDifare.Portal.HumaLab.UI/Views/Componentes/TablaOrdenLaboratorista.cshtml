@@ -105,7 +105,8 @@
                                 estado == Estados.OrdenEnviado || estado == Estados.OrdenEnviadoParcial ||
                                 estado == Estados.RechazadaLabora || estado == Estados.OrdenRecibida ||
                                 estado == Estados.OrdenRecibida || estado == Estados.OrdenRecibidaParcial ||
-                                estado == Estados.OrdenPorRecolectar || estado == Estados.Generado)
+                                estado == Estados.OrdenPorRecolectar || estado == Estados.Generado ||
+                                estado == Estados.Validado || estado == Estados.ValidadoPendiente)
                                 {
                                     <a asp-action="PedidosLab" asp-route-id="@item.IdOrden" asp-route-datos="@datos" asp-route-estado="@estado">Detalles</a>
                                 }

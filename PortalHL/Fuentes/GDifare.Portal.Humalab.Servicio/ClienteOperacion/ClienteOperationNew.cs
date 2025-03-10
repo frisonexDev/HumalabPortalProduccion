@@ -93,20 +93,21 @@ public class ClienteOperationNew
                     }
                 case "S":
                     {
-                        string item3 = tuple2.Item2;
+                        result = "S";
+                        //string item3 = tuple2.Item2;
 
-                        if (!(item3 == "A"))
-                        {
-                            if (item3 == "S")
-                            {
-                                result = "S";
-                            }
-                        }
-                        else
-                        {
-                            ActualizaEstadoHumalab(ruc, "A");
-                            result = "A";
-                        }
+                        //if (!(item3 == "A"))
+                        //{
+                        //    if (item3 == "S")
+                        //    {
+                        //        result = "S";
+                        //    }
+                        //}
+                        //else
+                        //{
+                        //    ActualizaEstadoHumalab(ruc, "A");
+                        //    result = "A";
+                        //}
 
                         break;
                     }

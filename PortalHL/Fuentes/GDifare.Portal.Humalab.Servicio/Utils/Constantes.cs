@@ -128,6 +128,7 @@ namespace GDifare.Portal.Humalab.Servicio.Utils
 
 		public const string Cancelado = "Cancelada";
 		public const string Validado = "Validado";
+		public const string ValidadoPendiente = "Validacion pendiente";
 		public const string Generado = "Generada";
 		public const string PorRecolectar = "Por Recolectar";
 		public const string Anulado = "Anulado";

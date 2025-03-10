@@ -158,6 +158,38 @@
         });
     }
 
+    function exportPruebAdmin() { 
+        var pruebasJSONExport = JSON.stringify(ListaPruebasFinal);
+
+        $.ajax({
+            url: '@Url.Action("ExportPruebasAdmin","Administrativo")',
+            type: 'POST',
+            data: { datosPruebas: pruebasJSONExport },
+            success: function (response) {
+                //console.log(response);
+
+                var byteCharacters = atob(response);
+                var byteNumbers = new Array(byteCharacters.length);
+
+                for (var i = 0; i < byteCharacters.length; i++) {
+                    byteNumbers[i] = byteCharacters.charCodeAt(i);
+                }
+
+                var byteArray = new Uint8Array(byteNumbers);
+                var blob = new Blob([byteArray], { type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" });
+                var url = window.URL.createObjectURL(blob);
+                var a = document.createElement("a");
+                document.body.appendChild(a);
+                a.style = "display: none";
+                a.href = url;
+                a.download = "ReportePruebas.xlsx";
+                a.click();
+
+                window.URL.revokeObjectURL(url);
+            }
+        });
+    }
+
     CargarCatalogoPruebas();
 
 </script>
